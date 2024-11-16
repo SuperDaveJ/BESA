@@ -1,0 +1,131 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/lesson_screen_back_city.jpg);
+}
+#Content { width:870px; }
+-->
+</style>
+<script type="text/javascript" src="../../scripts/Trashcan.js" ></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+//==distracters=========
+var nObj = 4;
+var CorrectAns="Good Job!  When developing the soil and solid sampling strategy, you must consider the objectives of the sampling and any situational requirements.  You must also consider the resources and time available, as well as environmental conditions.  Characterization of the health threat is an outcome of the sampling and not a factor that affects the development of the strategy.  Select Forward to continue."
+var strCorrectObjs = "4,";
+
+function onpage() {
+	distrload(nObj, strCorrectObjs, CorrectAns);
+	init();
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "3smp040.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "3smp020.html"
+	goURL(pgURL);
+}
+function showaudiot() {
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Sampling / Soil and Solid Sampling
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 3 of 13<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Appraisal<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <p>Which one of the following factors will NOT affect the  development of your soil and solid sampling strategy?</p>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<!--================ Drag items positon ==================-->
+<div id="lydistracters" style="position:absolute; left:161px; top:172px; width:350px; z-index:-1"> 
+  <img src="images/3smp030a.jpg" /></div>
+<div id="drag1" style="position:absolute; left:182px; top:211px; width:20px; height:20px; z-index:3; visibility: visible; cursor:pointer;"><img name="Drag1Img" src="images/3smp030b.jpg" width="189" height="51" alt="Sampling Objectives" /></div>
+
+<div id="drag2" style="position:absolute; left:182px; top:301px; width:20px; height:20px; z-index:3; visibility: visible; cursor:pointer;"><img name="Drag2Img" src="images/3smp030c.jpg" width="189" height="51"  alt="Situational Requirements" /></div>
+
+<div id="drag3" style="position:absolute; left:182px; top:391px; width:20px; height:20px; z-index:3; visibility: visible; cursor:pointer;"><img name="Drag3Img" src="images/3smp030d.jpg" width="189" height="51"  alt="Resources, Time, and Conditions" /></div>
+  
+<div id="drag4" style="position:absolute; left:182px; top:480px; width:20px; height:20px; z-index:3; visibility: visible; cursor:pointer;"><img name="Drag4Img" src="images/3smp030e.jpg" width="189" height="51"  alt="Health Threat Characterization" /></div>
+  
+<!-- *********** Trashcan as a target ************** -->
+
+<div id="target1" style="position:absolute; left:494px; top:237px; width:411px; height:120px; z-index:1; visibility: visible; z-index:-1">
+  <div align="center"><img src="../../sysimages/trashcan.png" alt="Trashcan" name="target1Img" width="149" height="179" border="0" />  </div>
+  <br />
+  <div class='txtfdbk' id='lyfdbk' style=" visibility:hidden; width:400px"></div>
+</div>
+
+<div id="snowMapDot" style="position:absolute; top:29px; left:732px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Drag the item that does not belong into the trash can.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

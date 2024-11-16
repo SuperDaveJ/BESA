@@ -1,0 +1,172 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style>
+	/*body { background: url(../../sysimages/scenario_forest.jpg) no-repeat; }*/
+	#Content { 
+		width:803px; 
+	}
+body { background: url(../../sysimages/scenario_forest.jpg) no-repeat; }
+</style>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+var uC;
+function onpage() {
+	uC = getQueryValue('uC');	//user correct from previous page
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	if (uC == 0) {
+		var pgURL = "1hra110.html?uT=1"
+	} else {
+		var pgURL = "1hra130.html"		//set user tries
+	}
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "1hra110.html"
+	goURL(pgURL);
+}
+function showaudiot(){
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('images/1hra11a1_2.jpg','images/1hra11a2_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  <p>HRA/Health Risk Assessments</p>
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 11a of 19<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Identifying and Analyzing Health Threats<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" --> 
+  <p>HRAs can be performed in both large and small-scale situations.&nbsp; Regardless of the size of the HRA, the assessment  is comprised of two primary steps. Select each tab for more information.</p>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<!-- tab background image Layers -->
+<div id="tabImg" style="position:absolute; left:41px; top:159px; width:800px; height:200px; z-index:-1;">
+<img src="images/1hra11a.jpg" width="888" height="378" border="0" /></div>
+<!-- image of "HRA Process" Layers -->  
+<div id="graphic" style="position:absolute; left:684px; top:208px; width:250px; height:300px"><img src="images/1hra11a4.jpg" alt="Graphic organizer representing the steps of the HRA process with &ldquo;Identify Health Threats&rdquo; and &ldquo;Analyze Health Threats / Hazards&rdquo; highlighted. " width="216" height="313" /></div>
+<!-- tab 1 Layers -->
+<div id="tab1" style="position:absolute; top:215px; left:65px; width:609px; height:272px; visibility: hidden">
+    <p class="pop"><strong>Identifying Health Threats</strong></p>
+    <p class="pop">Identifying health threats is vital to focus resources on credible health threats instead of tracking or assessing threats with minimal or no impact to the mission, operations, or personnel.</p>
+    <p class="pop">You will identify health threats to determine whether a potential or existing exposure poses a health risk to a specific population during a specific period at a specified location. In addition, in this step you should assess the vulnerability for each potential health threat identified.</p>
+	<p class="pop">The identification of health threats is determined <em>without</em> consideration of countermeasures or controls necessary to reduce the health threat.</p>
+</div>
+<!-- tab 2 Layers -->
+<div id="tab2" style="position:absolute; top:215px; left:65px; width:609px; height:272px;  visibility: hidden">
+    <p class="pop"><strong>Analyzing Health Threats and Risks</strong></p>
+    <p class="pop">It is critical to analyze a health threat within the context of the mission and operational requirements.  Remember, professional judgment must be exercised to analyze the situation and determine a recommended COA.  It's the commander's decision to accept, reject, or attempt to control a health risk based on information provided.</p>
+    <p class="pop">When analyzing health threats you should consider several factors that can affect both large and small-scale HRAs:</p>
+    <ul>
+        <li><a href="1hra11a_01.html?TB_iframe=true&amp;width=443&amp;height=277" class="thickbox" title="">Why is the health threat a potential or actual problem?</a></li>
+        <li><a href="1hra11a_02.html?TB_iframe=true&amp;width=443&amp;height=277" class="thickbox" title="">Are there other potential threats surrounding the problem?</a></li>
+        <li><a href="1hra11a_03.html?TB_iframe=true&amp;width=443&amp;height=277" class="thickbox" title="">Does the threat impact operations, or is it a nuisance?</a></li>
+        <li><a href="1hra11a_04.html?TB_iframe=true&amp;width=443&amp;height=277" class="thickbox" title="">Is there the potential for exposure variability?</a></li>
+	</ul>
+</div>
+
+<!--  highlighted button Layers -->
+<div id="hlB1" style="position:absolute; top:165px; left:601px; width:50px; height:20px; z-index:11; visibility:hidden;">
+<img src="images/1hra11a1_2.jpg" border="0" /></div>
+<div id="hlB2" style="position:absolute; top:165px; left:747px; width:50px; height:20px; z-index:11; visibility:hidden;">
+<img src="images/1hra11a2_2.jpg" border="0" /></div>
+
+<!-- Button Layers -->
+    <div id="btn1" style="position:absolute; left:601px; top:165px;"><a href="javascript:MM_showHideLayers('tab1','','show','hlB1','','show', 'tab2','','hide','hlB2','','hide');" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('button1','','images/1hra11a1_2.jpg',1)"><img src="images/1hra11a1_0.jpg" name="button1" width="136" height="36" border="0" id="button1" /></a></div>
+
+<div id="btn2" style="position:absolute; left:747px; top:165px;"><a href="javascript:MM_showHideLayers('tab1','','hide', 'hlB1','','hide','tab2','','show','hlB2','','show');" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('button2','','images/1hra11a2_2.jpg',1)"><img src="images/1hra11a2_0.jpg" name="button2" width="136" height="36" border="0" id="button2" /></a></div>
+
+<div id="snowMapDot" style="position:absolute; top:25px; left:726px;">
+<img src="../../sysimages/map_dot.png" border="0" />
+</div>
+
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select each tab and the highlighted text, and then click Forward to continue.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+        
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

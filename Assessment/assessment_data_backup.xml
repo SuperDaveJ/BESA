@@ -1,0 +1,2820 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Assessments>
+	<IsRandomize>Yes</IsRandomize>
+	<Group>1</Group> <!-- value: 1 or 2. You must set the IsRandomize value to No. -->
+	<PassingScore>70</PassingScore>
+	<Assessment id="A" Section1Num = "43" >
+
+	<!-- Question 1 -->
+		 <Question PageID="1" >
+			<QuestionStem>Which one of the following is a primary goal of the HRA process?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Develop strategies for disease surveillance programs.</Option>
+				<Option>Determine and select appropriate administrative controls. </Option>
+				<Option>Include professional judgment which is based on estimates.</Option>
+				<Option>Minimize health threats and negative health outcomes.</Option>
+			</Options>	
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No;1a001e</Branch>
+			<Unit>2</Unit>
+		</Question>
+		
+	<!-- Question 2 -->	
+		<Question PageID="2" >
+			<QuestionStem>Which one of the following processes is the portion of Health Risk Assessment (HRA) that focuses on the quantification of health risks?</QuestionStem>	
+			<Options distrnum="4">
+				<Option>Occupational and Environmental Health Site Assessment (OEHSA) </Option>
+				<Option>Operational Risk Management (ORM)</Option>
+				<Option>Vulnerability Assessment (VA)</Option>
+				<Option>Health Risk Estimate (HRE)</Option>
+			</Options>	
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>	
+			<Unit>3</Unit>
+		</Question>
+	<!-- Question 3 -->		
+		<Question PageID="3" >
+			<QuestionStem>During which one of the following OESHA steps in the site selection process should you collect and document known information about contamination and pollution in air, water, and soil?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Pre-deployment and Baseline Activities</Option>
+				<Option>Site Identification and Sectoring</Option>	
+				<Option>Conceptual Site Model </Option>
+				<Option>Site Reconnaissance</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>3</Unit>
+		</Question>
+	
+	<!-- Question 4 -->		
+		<Question PageID="4" >
+			<QuestionStem><![CDATA[Which two of the following are BE roles in the site selection process?<ol><li>Conducting water vulnerability assessments.</li><li>Maintaining security surrounding the site.</li><li>Developing occupational health programs.</li><li>Recommending the location of facilities.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>1 and 4</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>1a002e;No</Branch>
+			<Unit>3</Unit>			
+		</Question>
+	
+	<!-- Question 5 -->		
+		<Question PageID="5" >
+			<QuestionStem>Which step in the OEHSA process will be used for verification?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Site Identification and Sectoring</Option>
+				<Option>Initial/Specialized Surveillance</Option>	
+				<Option>Conceptual Site Model</Option>
+				<Option>Site Reconnaissance</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>1a003e;1a002e_b</Branch>
+			<Unit>3</Unit>			
+		</Question>
+		
+	<!-- Question 6 -->		
+		<Question PageID="6" >
+			<QuestionStem>Which site consideration do stressed plants and soil discoloration fall into?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Topography</Option>
+				<Option>Noise pollution</Option>	
+				<Option>Field contamination</Option>
+				<Option>Industrial health threats</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>1a004e;1a003e</Branch>
+			<Unit>3</Unit>			
+		</Question>
+		
+	<!-- Question 7 -->		
+		<Question PageID="7" >
+			<QuestionStem>During which part of OEHSA will you conduct sampling to gain more information about the sites being considered for the water treatment facility?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Site Reconnaissance</Option>
+				<Option>Conceptual Site Model </Option>	
+				<Option>Pre-deployment/Baseline Activities</Option>
+				<Option>Routine or Special Assessment</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No;1a004e</Branch>
+			<Unit>4</Unit>		
+		</Question>
+		
+	<!-- Question 8 -->		
+		<Question PageID="8" >
+			<QuestionStem><![CDATA[In what two ways does the assessment type affect sampling strategy development?<ol><li>Health threats identified</li><li>Prioritizing the assessment needs</li><li>It is not necessary to define the scope of support and resources</li><li>Compliance assessments are conducted only for deployed settings</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>3 and 4</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+		
+	<!-- Question 9 -->		
+		<Question PageID="9" >
+			<QuestionStem><![CDATA[Which two of the following are potential exposure assessment goals for the sampling strategy at each of the four sites?<ol><li>Analyze risks to water treatment workers. </li><li>Communicate health risks present.</li><li>Identify the degree of health threat.</li><li>Fulfill a special purpose.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>3 and 4</Option>
+				<Option>1 and 3</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+		
+	<!-- Question 10 -->		
+		<Question PageID="10" >
+			<QuestionStem>Which type of radiation is primarily used for communications and can also be used for weather surveillance, search and detection radar, and remote control devices?</QuestionStem>
+			<Options distrnum="4">
+				<Option>X-ray Radiation </Option>
+				<Option>Infrared Radiation</Option>	
+				<Option>Gamma Radiation</Option>
+				<Option>Radio Frequency Radiation</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>8</Unit>			
+		</Question>
+		
+	<!-- Question 11 -->		
+		<Question PageID="11" >
+			<QuestionStem>Which one of the following is a reason why RFR risk assessments are performed?</QuestionStem>
+			<Options distrnum="4">
+				<Option>To determine the strategic value of the emitter. </Option>
+				<Option>To establish a safe perimeter around an RFR emitter.</Option>	
+				<Option>To set baseline levels of ionizing radiation in the area.</Option>
+				<Option>To evaluate a technician’s performance with the emitter.</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>			
+		</Question>
+		
+	<!-- Question 12 -->		
+		<Question PageID="12" >
+			<QuestionStem>Which one of the following is NOT a characteristic of RFR?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Wavelength</Option>
+				<Option>Frequency</Option>	
+				<Option>Ionization</Option>
+				<Option>Energy</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>			
+		</Question>
+		
+	<!-- Question 13 -->		
+		<Question PageID="13" >
+			<QuestionStem>An early warning system at Site A is an example of which one of the following types of RFR emitters found in the Air Force?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Ground Fixed </Option>
+				<Option>Mobile Systems</Option>	
+				<Option>Aircraft Mounted</Option>
+				<Option>Medical Diathermy</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>			
+		</Question>
+		
+	<!-- Question 14 -->		
+		<Question PageID="14" >
+			<QuestionStem>Which one of the following is NOT a component of an RFR emitter?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Antenna </Option>
+				<Option>Transmitter </Option>	
+				<Option>Signal Encoder</Option>
+				<Option>Transmission Line</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>			
+		</Question>
+		
+	<!-- Question 15 -->		
+		<Question PageID="15" >
+			<QuestionStem>Which one of the following describes the frequencies where optimal absorption takes place?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Specific Absorption Frequencies </Option>
+				<Option>Direct / Terminal Frequencies</Option>	
+				<Option>Permissible Frequencies</Option>
+				<Option>Resonant Frequencies</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+	<!-- Question 16 -->		
+		<Question PageID="16" >
+			<QuestionStem><![CDATA[Which two of the following should you complete during the analysis phase of your RFR risk assessment at Site A?<ol><li>Identify the applicable PEL for each emitter. </li><li>Define the appropriate controls for the hazard.</li><li>Communicate risk to the technicians operating emitter.</li><li>Determine the risk assessment rating for the emitter.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>1 and 4</Option>
+				<Option>2 and 3</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>			
+		</Question>
+	
+	<!-- Question 17 -->		
+		<Question PageID="17" >
+			<QuestionStem>Which one of the following is the first step you should complete when performing an RFR measurement survey at Site A?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Take small steps towards the emitter.</Option>
+				<Option>Begin surveying until the PEL is found.</Option>	
+				<Option>Obtain absolute control of the emitter.</Option>
+				<Option>Have the operator turn off the emitter.</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+	<!-- Question 18 -->		
+		<Question PageID="18" >
+			<QuestionStem>Which one of the following methods will you use to determine whether the site is a hazardous noise area, by taking into account the actual sound intensity and exposure durations present in the area?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Noise Source Method </Option>
+				<Option>Indirect Method</Option>	
+				<Option>Direct Method</Option>
+				<Option>C/T Method</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>6</Unit>			
+		</Question>
+	
+	<!-- Question 19 -->		
+		<Question PageID="19" >
+			<QuestionStem>Which one of the following would be required in order for Site A to be considered a hazardous noise area?</QuestionStem>
+			<Options distrnum="4">
+				<Option>8-hour continuous sound level greater than 85 dB(A)</Option>
+				<Option>4-hour continuous sound level greater than 30 dB(A)</Option>	
+				<Option>Continuous or intermittent noise greater than 70 dB</Option>
+				<Option>Peak sound pressure level less than 140 dB</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>6</Unit>			
+		</Question>
+		
+	<!-- Question 20 -->		
+		<Question PageID="20" >
+			<QuestionStem>How long can personnel safely remain in an area while being exposed to these 88 dB(A)?</QuestionStem>
+			<Options distrnum="4">
+				<Option>2 hours</Option>
+				<Option>4 hours</Option>	
+				<Option>8 hours</Option>
+				<Option>16 hours</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>6</Unit>			
+		</Question>
+		
+	<!-- Question 21 -->		
+		<Question PageID="21" >
+			<QuestionStem><![CDATA[Which two of the following will be best to use, for screening purposes, to evaluate the background concentrations of aircraft exhaust from use of JP-8?<ol><li>	Integrated sampling</li><li>Instantaneous sampling</li><li>Area sampling</li><li>Personal sampling</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>3 and 4</Option>
+				<Option>1 and 3</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+		
+	<!-- Question 22 -->		
+		<Question PageID="22" >
+			<QuestionStem>Which of the following defines the OEL-TWA?</QuestionStem>
+			<Options distrnum="4">
+				<Option>A calculation used to adjust exposure standards when the employee is working more than 8 hours a day and 40 hours a week.</Option>
+				<Option>A concentration to which workers can be exposed continuously for a short period of time without suffering from adverse health effects.</Option>	
+				<Option>The concentration of airborne contaminants to which workers are exposed that must never be exceeded during any part of the workday.</Option>
+				<Option>The concentration to which nearly all workers may be exposed, 8 hours per day, 40 hours per week, without adverse health effects.</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+	
+	<!-- Question 23 -->		
+		<Question PageID="23" >
+			<QuestionStem><![CDATA[Using the Brief and Scala Model, calculate the equivalent OEL for JP-8 exposure by workers with a 9-hour workday.  <br />The OEL<sub>8-hr</sub> for JP-8 is 29 ppm.<br /><br /><br /><br /><br /><br /><br /><br />]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>18 ppm</Option>
+				<Option>22 ppm</Option>	
+				<Option>24 ppm</Option>
+				<Option>26 ppm</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Picture>q23A</Picture>
+			<Unit>4</Unit>		
+		</Question>
+	
+	<!-- Question 24 -->		
+		<Question PageID="24" >
+			<QuestionStem>Which situation is the LEAST appropriate circumstance for collecting soil or solid samples?</QuestionStem>
+			<Options distrnum="4">
+				<Option>An aircraft fuel tank overflows and spills JP-8 on the pavement.</Option>
+				<Option>An underground storage tank is removed and a crack is discovered.</Option>	
+				<Option>You are conducting an Environmental Baseline Survey.</Option>
+				<Option>Lead-based paint is being removed from inside base housing.</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>		
+		</Question>
+	
+	<!-- Question 25 -->		
+		<Question PageID="25" >
+			<QuestionStem><![CDATA[Which two of the following are factors that you should consider when developing a soil and solid sampling strategy?<ol><li>Type of standard</li><li>Assessment type</li><li>Threat characterization</li><li>ampling objectives</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 4</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>2 and 3</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>		
+		</Question>
+	
+	<!-- Question 26 -->		
+		<Question PageID="26" >
+			<QuestionStem>In which soil sampling approach are sampling locations selected based on historical information, visual inspection, and professional judgment? </QuestionStem>
+			<Options distrnum="4">
+				<Option>Transect </Option>
+				<Option>Judgmental</Option>	
+				<Option>Systematic grid</Option>
+				<Option>Stratified random</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+	
+	<!-- Question 27 -->		
+		<Question PageID="27" >
+			<QuestionStem><![CDATA[Which of the following is the <em>first</em> step you will take when performing field analysis at Site B?]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>Characterize potential exposure routes.</Option>
+				<Option>Screen for elements of highest risk.</Option>	
+				<Option>Document results and reprioritize.</Option>
+				<Option>Prioritize each area of concern.</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+	
+	<!-- Question 28 -->		
+		<Question PageID="28" >
+			<QuestionStem><![CDATA[Which of the following is the <em>first</em> step you will take when interpreting the results of the samples you collected at Site B for environmental analysis?]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>Compare results to a standard.</Option>
+				<Option>Select the applicable standard.</Option>	
+				<Option>Convert units of measurement.</Option>
+				<Option>Determine follow-up actions needed.</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+	
+	<!-- Question 29 -->		
+		<Question PageID="29" >
+			<QuestionStem><![CDATA[Which two of the following characteristics of the water samples should you try to ensure by choosing the most appropriate sampling point locations at Site C?<ol><li>Limpidity</li><li>Heterogeneity</li><li>Homogeneity</li><li>Representativeness</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 3</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+	
+	<!-- Question 30 -->		
+		<Question PageID="30" >
+			<QuestionStem><![CDATA[Which two of the following statements describe why biological health threats should be identified and analyzed at Site D?<ol><li>To make control decisions or recommendations to the Commander.</li><li>To protect the health of personnel on the base and in the community.</li><li>To allow the BEE to make decisions about whether to establish a quarantine.</li><li>To accurately predict the incidents of illness that could affect base personnel.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 4</Option>	
+				<Option>1 and 3</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>13</Unit>			
+		</Question>
+	
+	<!-- Question 31 -->		
+		<Question PageID="31" >
+			<QuestionStem>Which category of biological health threat causes diseases that are transmitted by humans and can often be successfully treated with antibiotics? </QuestionStem>
+			<Options distrnum="4">
+				<Option>Fungi</Option>
+				<Option>Viruses</Option>	
+				<Option>Bacteria</Option>
+				<Option>Toxins</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>13</Unit>		
+		</Question>
+	
+	<!-- Question 32 -->		
+		<Question PageID="32" >
+			<QuestionStem>Hand washing is a method of stopping the spread of disease at what point in the chain of infection?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Portal of entry </Option>
+				<Option>Reservoir (source)</Option>	
+				<Option>Means of transmission</Option>
+				<Option>Susceptible person (host)</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>1a005e;No</Branch>
+			<Unit>13</Unit>			
+		</Question>
+		
+	<!-- Question 33 -->		
+		<Question PageID="33" >
+			<QuestionStem>Which one of the following best describes the risk level for an exposure that seldom occurs and would have negligible effects on the mission?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Low</Option>
+				<Option>Moderate</Option>	
+				<Option>High</Option>
+				<Option>Extremely High</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No;1a007e</Branch>
+			<Unit>14</Unit>		
+		</Question>
+	
+	<!-- Question 34 -->		
+		<Question PageID="34" >
+			<QuestionStem><![CDATA[Which two of the following statements best describe the relationship of results to standards, mission accomplishment, and health effects?<ol><li>The BE Tech uses the sampling results to make decisions about the mission and the anticipated effects.</li><li>When comparing results to standards, the total exposure must be considered in context of the mission.</li><li>Interpretation of the results is affected only by the workday exposures and the acceptable levels of risk.</li><li>Intelligence, mission details, and other dynamics affect how the sampling results are interpreted.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>3 and 4</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>1 and 3</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>1a008e;No</Branch>	
+			<Unit>4</Unit>		
+		</Question>
+	
+	<!-- Question 35 -->		
+		<Question PageID="35" >
+			<QuestionStem><![CDATA[When a water main breaks, what two disinfection procedures should typically be followed?<ol><li>After 24 hours, flush the lines until the water runs clear. </li><li>Maintain a CL2 concentration of 500 ppm for 30 minutes.</li><li>Maintain a CL2 concentration of 50 ppm for 24 hours. </li><li>After 30 minutes, flush the lines until the water runs clear.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>1 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No;1a008e</Branch>
+			<Unit>4</Unit>		
+		</Question>
+	
+	<!-- Question 36 -->		
+		<Question PageID="36" >
+			<QuestionStem>If a repair is needed at the water treatment facility, what is the FINAL step you must take after a water main break is repaired, before notifying the affected personnel or community the water is safe to drink?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Disinfect the water by chlorination.</Option>
+				<Option>Conduct bacteriological sampling analysis.</Option>	
+				<Option>Apply hypochlorite to all new components.</Option>
+				<Option>Flush the line until the water runs clear.</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>		
+		</Question>
+		
+	<!-- Question 37 -->		
+		<Question PageID="37" >
+			<QuestionStem><![CDATA[Which two of the following are reasons for performing a base sanitary survey?<ol><li>To identify areas in a water system that could be subject to sabotage. </li><li>To ensure treated water quality meets drinking water standards.</li><li>To evaluate the installation’s ability to prevent contamination.</li><li>To identify deficiencies in the system so they can be corrected.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>3 and 4</Option>	
+				<Option>1 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>5</Unit>			
+		</Question>
+		
+	<!-- Question 38 -->		
+		<Question PageID="38" >
+			<QuestionStem><![CDATA[Which two of the following are purposes of the final written report you will create during the post-survey phase of the sanitary survey?<ol><li>To provide a record for future inspectors.</li><li>To notify system operators of deficiencies.</li><li>To offer recommendations about vulnerability.</li><li>To document critical limit monitoring procedures.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>3 and 4</Option>
+				<Option>1 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>5</Unit>			
+		</Question>
+		
+	<!-- Question 39 -->		
+		<Question PageID="39" >
+			<QuestionStem>Because the installation’s water system has been modified, which of the following must you perform to identify areas in the water distribution system that could be subject to tampering, sabotage, and contamination?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Sanitary survey </Option>
+				<Option>Emergency response plan</Option>	
+				<Option>Aircraft watering point survey</Option>
+				<Option>Water vulnerability assessment</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>5</Unit>		
+		</Question>
+		
+	<!-- Question 40 -->		
+		<Question PageID="40" >
+			<QuestionStem>In which step of the WVA process will you identify subject matter experts (SMEs) and arrange a time to interview them? </QuestionStem>
+			<Options distrnum="4">
+				<Option>Plan Approach</Option>
+				<Option>Delineate Observations</Option>	
+				<Option>Coordinate with Stakeholders</Option>
+				<Option>Assess Security/Survivability Programs</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>5</Unit>			
+		</Question>
+	
+	<!-- Question 41 -->		
+		<Question PageID="41" >
+			<QuestionStem><![CDATA[On which two of the following fundamental ideas is health risk communication focused?<ol><li>Communicating technical data and providing risk estimations.</li><li>Providing simple and practical health risk comparisons to your audience.</li><li>Providing practical and effective information and recommendations.</li><li>Communicating the right information to the right people, at the right time.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>16</Unit>				
+		</Question>
+		
+	<!-- Question 42 -->		
+		<Question PageID="42" >
+			<QuestionStem><![CDATA[Which two of the following are techniques for effective health risk communication?<ol><li>Deal with uncertainty.</li><li>Use risk comparisons freely.</li><li>Communicate clearly and honestly.</li><li>Communicate using scientific terms.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>3 and 4</Option>	
+				<Option>1 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>1a009e;No</Branch>
+			<Unit>16</Unit>			
+		</Question>
+	
+	<!-- Question 43 -->		
+		<Question PageID="43" >
+			<QuestionStem>Which of the following should be evaluated during an aircraft watering point survey?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Non-potable outlets </Option>
+				<Option>System maintenance </Option>	
+				<Option>Sanitation procedures</Option>
+				<Option>Transport procedures</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No;1a009e</Branch>
+			<Unit>5</Unit>			
+		</Question>
+	
+	<!-- Question 44 -->		
+		<Question PageID="44" >
+			<QuestionStem>How many octave bands should you test when conducting an audiometric booth survey? </QuestionStem>
+			<Options distrnum="4">
+				<Option>5</Option>
+				<Option>8</Option>	
+				<Option>10</Option>
+				<Option>12</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>6</Unit>			
+		</Question>
+		
+	<!-- Question 45 -->		
+		<Question PageID="45" >
+			<QuestionStem>Which one of the following pieces of data is NOT required to be collected when performing an octave band survey? </QuestionStem>
+			<Options distrnum="4">
+				<Option>dB (A) level</Option>
+				<Option>1000 Hz octave band </Option>	
+				<Option>Sound pressure level</Option>
+				<Option>Noise Reduction Rating</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>6</Unit>			
+		</Question>
+		
+	<!-- Question 46 -->		
+		<Question PageID="46" >
+			<QuestionStem><![CDATA[Which two of the following are engineering controls used to control noise health threats at the source?<ol><li>Worker Rotation </li><li>Room Treatments</li><li>Product Substitution</li><li>Machine Treatments</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 3</Option>
+				<Option>3 and 4</Option>	
+				<Option>2 and 3</Option>
+				<Option>1 and 2</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>6</Unit>			
+		</Question>
+		
+	<!-- Question 47 -->		
+		<Question PageID="47" >
+			<QuestionStem>Which one of the following is NOT a calculation you will perform when considering options for controlling hazardous exposures to noise?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Inverse Square</Option>
+				<Option>Critical Distance</Option>	
+				<Option>Absorption Coefficient</Option>
+				<Option>Daily Reduction Factor</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>6</Unit>			
+		</Question>
+	
+	<!-- Question 48 -->		
+		<Question PageID="48" >
+			<QuestionStem>4Which one of the following steps should you complete first when analyzing and classifying a confined space?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Analyze the space using indirect reading instruments.</Option>
+				<Option>Analyze the space for slippery and uneven walking surfaces.</Option>	
+				<Option>Analyze the space using atmospheric monitoring equipment.</Option>
+				<Option>Analyze the space using observations and personal interviews.</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>7</Unit>			
+		</Question>
+		
+	<!-- Question 49 -->		
+		<Question PageID="49" >
+			<QuestionStem><![CDATA[Which two of the following are characteristics of a permit-required confined space?<ol><li>Oxygen levels in the space are less than 19.5% or greater than 23.5%.</li><li>All present hazards can be eliminated without having to enter the space.</li><li>It contains no actual or potential hazards that could cause injury or death.</li><li>The Lower Explosive Limit (LEL) is greater than 10%, making it flammable.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 4</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>7</Unit>			
+		</Question>
+		
+	<!-- Question 50 -->		
+		<Question PageID="50" >
+			<QuestionStem>Which one of the following describes the relationship between energy and mass?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Mass Defect</Option>
+				<Option>1/2 Mass x Velocity&lt;sup&gt;2&lt;/sup&gt;</Option>	
+				<Option>The Theory of Relativity</Option>
+				<Option>Law of Conservation of Energy</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>8</Unit>			
+		</Question>
+
+	<!-- Question 51 -->		
+		<Question PageID="51" >
+			<QuestionStem>Which one of the following radiation categories found in the electromagnetic spectrum is primarily used for communications?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Gamma Rays</Option>
+				<Option>Radio Waves</Option>	
+				<Option>Ultraviolet</Option>
+				<Option>Infrared</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>8</Unit>			
+		</Question>
+		
+	<!-- Question 52 -->		
+		<Question PageID="52" >
+			<QuestionStem>Which one of the following describes the spontaneous disintegration or transformation of an atom in an attempt to reach a stable state?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Ionization </Option>
+				<Option>Radioactivity</Option>	
+				<Option>Nuclear Stability</Option>
+				<Option>Radioactive Decay</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 53 -->		
+		<Question PageID="53" >
+			<QuestionStem>Which one of the following is energy lost by particles along the path through which they are traveling?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Ionization</Option>
+				<Option>Radioactivity</Option>	
+				<Option>Radioactive Decay</Option>
+				<Option>Liner Energy Transfer (LET)</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 54 -->		
+		<Question PageID="54" >
+			<QuestionStem>Which one of the following types of ionizing radiation can react through bremsstrahlung?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Alpha</Option>
+				<Option>Beta</Option>	
+				<Option>Gamma and X-Ray</Option>
+				<Option>Neutron</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 55 -->		
+		<Question PageID="55" >
+			<QuestionStem><![CDATA[Which two of the following types of radiation are likely to cause an internal health threat?<ol><li>Alpha </li><li>Beta</li><li>Gamma / X-Ray</li><li>Neutrons</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 4</Option>	
+				<Option>1 and 3</Option>
+				<Option>2 and 3</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 56 -->		
+		<Question PageID="56" >
+			<QuestionStem>Which one of the following is NOT a step that should be performed as a part of an x-ray scatter survey?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Place a 1 gallon container of water in the beam.</Option>
+				<Option>Sketch the x-ray room and the adjacent areas.</Option>	
+				<Option>Conduct a comprehensive inventory of all PPE available.</Option>
+				<Option>Monitor worker and adjacent areas for radiation leakage.</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 57 -->		
+		<Question PageID="57" >
+			<QuestionStem><![CDATA[Which two of the following are situations where a scatter survey must be conducted on an x-ray unit?<ol><li>After 1 year of operation. </li><li>After 6 months of continual operation.</li><li>Prior to the device being put into use.</li><li>Prior to the first full month of operation.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 58 -->		
+		<Question PageID="58" >
+			<QuestionStem>Which one of the following survey calculations should be used to determine annual x-ray exposures?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Radioactive Decay for an Activity at an Earlier Date</Option>
+				<Option>Medical/Industrial X-Ray Survey Calculation</Option>	
+				<Option>RAM Shipment and Transport Calculation</Option>
+				<Option>Radioactive Decay for a Current Activity</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>	
+			<Unit>9</Unit>		
+		</Question>
+		
+	<!-- Question 59 -->		
+		<Question PageID="59" >
+			<QuestionStem>Which one of the following describes that you should always try to keep radiation exposures as minimal as possible, regardless of the standard? </QuestionStem>
+			<Options distrnum="4">
+				<Option>ALARA Concept</Option>
+				<Option>Nuclear Stability</Option>	
+				<Option>Annual Exposure Rule</Option>
+				<Option>Liner Energy Transfer</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>		
+		</Question>
+		
+	<!-- Question 60 -->		
+		<Question PageID="60" >
+			<QuestionStem><![CDATA[Because scatter survey results at a dental facility waiting room are calculated to be 101.2 mR/yr, which two of the following are potential courses of action you should take?<ol><li>Relocate or rearrange the waiting room.</li><li>Post warning signs in the waiting room.</li><li>Relocate the x-ray room within the facility.</li><li>Suspend all x-ray operations at the facility.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 3</Option>
+				<Option>1 and 4</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 61 -->		
+		<Question PageID="61" >
+			<QuestionStem>Which one of the following is a method for determining and documenting the circumstances surrounding a suspected ionizing radiation overexposure?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Sampling for ultraviolet radiation sources in the shop.</Option>
+				<Option>Making control recommendations to the shop supervisor.</Option>	
+				<Option>Performing an onsite review of the dosimeters collected.</Option>
+				<Option>Completing a detailed sketch of the positions of personnel.</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 62 -->		
+		<Question PageID="62" >
+			<QuestionStem><![CDATA[Which two of the following situations would prompt an ionizing radiation overexposure investigation?<ol><li>A survey meter is returned over the exposure limit.  </li><li>An individual’s TLD reads greater than 500 mR.</li><li>An individuals EPD reads greater than 50 mR.</li><li>A new piece of equipment is added to the shop.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 63 -->		
+		<Question PageID="63" >
+			<QuestionStem><![CDATA[Which one of the following types of controls should be the <em>first</em> method to control ionizing radiation exposures?]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>Time</Option>
+				<Option>Distance</Option>	
+				<Option>Shielding</Option>
+				<Option>Contamination Control</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 64 -->		
+		<Question PageID="64" >
+			<QuestionStem>Which one of the following types of materials would serve as a minimally appropriate shield for alpha particles?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Paper</Option>
+				<Option>Plastic</Option>	
+				<Option>Lead </Option>
+				<Option>Concrete</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>		
+		</Question>
+		
+	<!-- Question 65 -->		
+		<Question PageID="65" >
+			<QuestionStem>When using an ion chamber to determine the dose rate of exposures for RAM storage and use surveys, how far should the measurements be taken from external sources or surfaces the radiation penetrates?</QuestionStem>
+			<Options distrnum="4">
+				<Option>10 cm</Option>
+				<Option>20 cm</Option>	
+				<Option>30 cm</Option>
+				<Option>40 cm</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 66 -->		
+		<Question PageID="66" >
+			<QuestionStem><![CDATA[Which two of the following describe the importance of performing RAM storage and use surveys?<ol><li>Identify &quot;problem&quot; isotopes that require special attention.</li><li>Protect personnel and the environment from RAM exposures.</li><li>Determine the most effective method for disposal and transport.</li><li>Ensure compliance with the use, storage, and transfer of RAM.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 67 -->		
+		<Question PageID="67" >
+			<QuestionStem>Once you have completed a swipe on the package when performing a RAM shipment or transport survey, what should be your next course of action?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Record the results from the dose rate measurements.</Option>
+				<Option>Ensure proper labeling and markings on the package.</Option>	
+				<Option>Open package and perform a dose rate measurement.</Option>
+				<Option>Take dose rate exposure measurement on all sides of package.</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 68 -->		
+		<Question PageID="68" >
+			<QuestionStem><![CDATA[During which two of the following situations should a RAM shipment be surveyed?<ol><li>Before packing the RAM.</li><li>Before shipping the RAM.</li><li>During the shipping process.</li><li>After receiving the shipment.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 3</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 69 -->		
+		<Question PageID="69" >
+			<QuestionStem>Which one of the following calculations would you perform when surveying RAM for shipment and transport?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Estimated Hazard Distance (D&lt;sub&gt;pel&lt;/sub&gt;)</Option>
+				<Option>Disintegrations per Minute (dpm)</Option>	
+				<Option>Roentgen Equivalent Man (REM)</Option>
+				<Option>Radiation Absorbed Dose (RAD)</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+	<!-- Question 70 -->		
+		<Question PageID="70" >
+			<QuestionStem>Which of the following is the central point of contact for the disposal of radioactive materials for the Air Force?</QuestionStem>
+			<Options distrnum="4">
+				<Option>EPA</Option>
+				<Option>AFMOA</Option>	
+				<Option>AFRRAD</Option>
+				<Option>USAFSAM</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+	
+	<!-- Question 71 -->		
+		<Question PageID="71" >
+			<QuestionStem><![CDATA[Which two of the following are critical organs that are at risk for RFR exposures?<ol><li>Eyes</li><li>Lungs</li><li>Heart</li><li>Gall Bladder</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 4</Option>
+				<Option>2 and 4</Option>	
+				<Option>1 and 3</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+	<!-- Question 72 -->		
+		<Question PageID="72" >
+			<QuestionStem>Which of the following is NOT calculated to determine the Estimated Hazard Distance (D&lt;sub&gt;pel&lt;/sub&gt;)?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Duty Factor (DF)</Option>
+				<Option>Quality Factor (Q)</Option>	
+				<Option>Absolute Gain (G&lt;sub&gt;abs&lt;/sub&gt;)</Option>
+				<Option>Average Power (P&lt;sub&gt;avg&lt;/sub&gt;)</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+	<!-- Question 73 -->		
+		<Question PageID="73" >
+			<QuestionStem><![CDATA[Once BE is notified of a potential RFR overexposure or accident, which two of the following should be notified?<ol><li>Public Health </li><li>CE Readiness</li><li>MAJCOM BEE</li><li>AFMOA/SG3PB</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+	<!-- Question 74 -->		
+		<Question PageID="74" >
+			<QuestionStem><![CDATA[Which two of the following are reasons why an RFR overexposure/accident investigation is performed?<ol><li>To identify operation deficiencies.</li><li>To calculate the appropriate PEL.</li><li>To determine severity of exposure.</li><li>To determine strategic value of emitter.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>			
+		</Question>
+		
+	<!-- Question 75 -->		
+		<Question PageID="75" >
+			<QuestionStem>Which one of the following types of RFR controls should be used in a situation where an RFR emitter needs to be switched off because a door, hatch, or other entry point is breached?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Interlocks </Option>
+				<Option>Kill switches</Option>	
+				<Option>Dummy loads</Option>
+				<Option>Azimuth blanking</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+	<!-- Question 76 -->		
+		<Question PageID="76" >
+			<QuestionStem>Which one of the following types of light do lasers produce?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Coherent </Option>
+				<Option>Ultraviolet</Option>	
+				<Option>Incoherent</Option>
+				<Option>Radioactive</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>			
+		</Question>
+		
+	<!-- Question 77 -->		
+		<Question PageID="77" >
+			<QuestionStem><![CDATA[Which two of the following factors influence how laser systems are classified?<ol><li>Frequency</li><li>Wavelength</li><li>Expected exposure distance for personnel</li><li>Capability to cause health effects to personnel</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 3</Option>
+				<Option>1 and 4</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>			
+		</Question>
+		
+	<!-- Question 78 -->		
+		<Question PageID="78" >
+			<QuestionStem>Which one of the following describes the distance along the laser beam beyond which the exposure is not expected to exceed the maximum limit?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Nominal Hazard Zone (NHZ)</Option>
+				<Option>Estimated Hazard Distance (D&lt;sub&gt;pel&lt;/sub&gt;)</Option>	
+				<Option>Maximum Permissible Exposure (MPE)</Option>
+				<Option>Nominal Ocular Hazard Distance (NOHD)</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>			
+		</Question>
+		
+	<!-- Question 79 -->		
+		<Question PageID="79" >
+			<QuestionStem>When analyzing laser hazards, which one of the following does determining the MPE, NOHD, and NHZ enable you to do? </QuestionStem>
+			<Options distrnum="4">
+				<Option>Define the area of responsibility (AOR), area of operations (AO), and missions associated with the laser hazards.</Option>
+				<Option>Obtain parameters of the laser such as wavelength, optical power, beam divergence, and aperture beam diameter.</Option>	
+				<Option>Determine the acute and chronic health effects that will likely be experienced by personnel who are exposed to laser hazards.</Option>
+				<Option>Identify the amount and type of energy a person can be exposed to before the exposure becomes hazardous at a certain distance.</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>			
+		</Question>
+		
+	<!-- Question 80 -->		
+		<Question PageID="80" >
+			<QuestionStem><![CDATA[Which two of the following are factors contributing to the biological effects of laser exposures?<ol><li>Wavelength</li><li>Exposure Duration</li><li>Color of the Laser Beam</li><li>Intended Use of the Laser</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>			
+		</Question>
+		
+	<!-- Question 81 -->		
+		<Question PageID="81" >
+			<QuestionStem>Which one of the following steps for identifying laser hazards should you perform in the Pre-deployment/Baseline Activities phase of the OEHSA process?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Determine which personnel may be affected by the laser hazard.</Option>
+				<Option>Obtain any available information about existing lasers in the AOC.</Option>	
+				<Option>Use measuring equipment for lasers to conduct a survey of the area.</Option>
+				<Option>Perform a site visit to confirm the information that has been gathered.</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>			
+		</Question>
+		
+	<!-- Question 82 -->		
+		<Question PageID="82" >
+			<QuestionStem><![CDATA[Which two of the following are appropriate control recommendations for using Class 2 lasers?<ol><li>Protecting housing</li><li>Standard operating procedures</li><li>Optional posting of &quot;Caution&quot; signs </li><li>Required posting of &quot;Danger&quot; signs</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>			
+		</Question>
+		
+	<!-- Question 83 -->		
+		<Question PageID="83" >
+			<QuestionStem><![CDATA[Which two of the following are factors you should consider when recommending laser eye protection (LEP)?<ol><li>Wavelength</li><li>Age of laser system</li><li>Optical Density (OD)</li><li>Length of exposure to laser</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>			
+		</Question>
+		
+	<!-- Question 84 -->		
+		<Question PageID="84" >
+			<QuestionStem>What type of exposure did a worker likely receive who was severely sunburned?</QuestionStem>
+			<Options distrnum="4">
+				<Option>UVA</Option>
+				<Option>UVB</Option>	
+				<Option>UVC</Option>
+				<Option>IR</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>12</Unit>	
+		</Question>
+		
+	<!-- Question 85 -->		
+		<Question PageID="85" >
+			<QuestionStem><![CDATA[Which two of the following could be recommendations for controlling UV radiation when welding?<ol><li>Restrict access to the area around the UV/IR source.</li><li>Lessen the amount of time exposed to the UV/IR source.</li><li>Issue respirators and sunglasses to all workers around the area.</li><li>Workers should wear light colored clothing around UV/IR sources.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>12</Unit>			
+		</Question>
+		
+	<!-- Question 86 -->		
+		<Question PageID="86" >
+			<QuestionStem>During which step of the biological health threat identification and analysis process will you conduct interviews?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Gathering Information </Option>
+				<Option>Conducting Sampling</Option>	
+				<Option>Assessing the Health Risk</Option>
+				<Option>Making Recommendations</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>13</Unit>			
+		</Question>
+		
+	<!-- Question 87 -->		
+		<Question PageID="87" >
+			<QuestionStem>Which organization is responsible for disease surveillance and food safety surveillance?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Public Health</Option>
+				<Option>Civil Engineering</Option>	
+				<Option>Medical Laboratory</Option>
+				<Option>Bioenvironmental Engineering</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>13</Unit>		
+		</Question>
+		
+	<!-- Question 88 -->		
+		<Question PageID="88" >
+			<QuestionStem>Which one of the following is an engineering control you could recommend for biological health threats?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Establishing limited-access areas.</Option>
+				<Option>Installing biological safety cabinets.</Option>	
+				<Option>Training personnel on proper procedures.</Option>
+				<Option>Issuing gloves, safety goggles, and masks.</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>13</Unit>		
+		</Question>
+		
+	<!-- Question 89 -->		
+		<Question PageID="89" >
+			<QuestionStem><![CDATA[Which two of the following statements are true regarding the proper use of respiratory protection?<ol><li>Fit testing must be conducted prior to issuing any kind of respiratory protection.</li><li>Respirators should be stored in a clean, dry location away from direct sunlight.</li><li>Fit testing is required prior to issuing respiratory protection relying on a mask-to-face seal.</li><li>For convenience, respirators should be stored near the chemicals for which they will be used.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>13</Unit>			
+		</Question>
+		
+	<!-- Question 90 -->		
+		<Question PageID="90" >
+			<QuestionStem><![CDATA[Which two of the following are steps you should take while analyzing chemical health threats?<ol><li>Determine which chemicals should be used for a given process. </li><li>Determine the Health Risk Estimate for each identified chemical. </li><li>Determine why the health threat is an actual or potential problem.</li><li>Determine the effectiveness of the mission when using the chemicals.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>		
+		</Question>
+		
+	<!-- Question 91 -->		
+		<Question PageID="91" >
+			<QuestionStem><![CDATA[Which two of the following statements describe situations in which a respirator should be used?<ol><li>Permanent controls are awaiting funding, or they are being designed or installed.</li><li>Employees request respiratory protection, such as a half mask, for personal comfort.</li><li>Based on professional judgment, the supervisor expects exposures greater than the action level.</li><li>Other means of control are not feasible or cannot decrease the contaminant to acceptable levels.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 4</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>			
+		</Question>
+		
+	<!-- Question 92 -->		
+		<Question PageID="92" >
+			<QuestionStem><![CDATA[You were recently called to a shop to recommend an appropriate respirator for personnel who are working in a confined space with oxygen levels at 15.9%.  Which two of the following statements are true regarding this situation?<ol><li>An escape-only respirator should be selected.</li><li>You must choose RP according to AFOSH Std 91-25.</li><li>A self-contained breathing apparatus should be used.</li><li>An air-purifying full face piece respirator should be used.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 3</Option>
+				<Option>1 and 4</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>		
+		</Question>
+		
+	<!-- Question 93 -->		
+		<Question PageID="93" >
+			<QuestionStem><![CDATA[Which two of the following methods would be most appropriate to control workers’ exposure to high concentrations of chemicals in a large maintenance hangar?<ol><li>Local exhaust ventilation system</li><li>Half-mask air-purifying respirator</li><li>Full-face air-purifying respirator</li><li>Dilution ventilation system</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 3</Option>
+				<Option>2 and 4</Option>	
+				<Option>1 and 2</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>		
+		</Question>
+		
+	<!-- Question 94 -->		
+		<Question PageID="94" >
+			<QuestionStem><![CDATA[Which two of the following actions should a worker take when borrowing a co-workers respirator?<ol><li>Refuse to wear the borrowed respirator.</li><li>Inspect the borrowed respirator for defects.</li><li>Clean and disinfect the borrowed respirator before use.</li><li>Request an immediate replacement respirator from BE.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>		
+		</Question>
+		
+	<!-- Question 95 -->		
+		<Question PageID="95" >
+			<QuestionStem><![CDATA[Under which two of the following conditions must a regulated area be established?<ol><li>Whenever required by Title 29 Code of Federal Regulations (CFR) 1910 or 29 CFR 1926.</li><li>In any occupational area where hazardous chemicals or other substances are used routinely. </li><li>In areas that, in the supervisor’s professional judgment, are potentially dangerous for personnel.</li><li>In areas where hazardous exposures exceed, or are expected to exceed, acceptable limits.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 4</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>		
+		</Question>
+		
+	<!-- Question 96 -->		
+		<Question PageID="96" >
+			<QuestionStem>Which of the following statements best describes local exhaust ventilation?</QuestionStem>
+			<Options distrnum="4">
+				<Option>This ventilation is best used in temperate climates and low humidity.</Option>
+				<Option>This ventilation involves pulling air into the room to mix with contaminated air.</Option>	
+				<Option>This ventilation system is generally composed of large exhaust fans in the walls or roof.</Option>
+				<Option>This ventilation is designed to remove the contaminant prior to its escape into the workplace.</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>		
+		</Question>
+		
+	<!-- Question 97 -->		
+		<Question PageID="97" >
+			<QuestionStem>Which of the following is an example of an occupational setting where dilution ventilation is an effective measure of control?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Welding hood</Option>
+				<Option>Paint spray booth</Option>	
+				<Option>Pesticide storage</Option>
+				<Option>Vehicle exhaust testing shop</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>		
+		</Question>
+		
+	<!-- Question 98 -->		
+		<Question PageID="98" >
+			<QuestionStem><![CDATA[Which one of the following statements must be <em>true</em> regarding the results of a static pressure test to arrive at the conclusion that the ventilation system is adequately controlling COCs?]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>Results are within 10 percent of the baseline value. </Option>
+				<Option>Results are within 15 percent of the baseline value.</Option>	
+				<Option>Results are within 10 percent of initial survey results.</Option>
+				<Option>Results are within 15 percent of initial survey results.</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>		
+		</Question>
+		
+	<!-- Question 99 -->		
+		<Question PageID="99" >
+			<QuestionStem><![CDATA[Which two of the following are steps you should conduct in Phase 1 of the TIC/TIM vulnerability assessment process, Planning and Coordination?<ol><li>Identify the team</li><li>Collect TIC/TIM data</li><li>Develop location maps </li><li>Develop a list of stakeholders</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 4</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>15</Unit>				
+		</Question>
+		
+	<!-- Question 100 -->		
+		<Question PageID="100" >
+			<QuestionStem>According to AFI 41-106, how often must a TIC/TIM vulnerability assessment be conducted?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Monthly</Option>
+				<Option>Quarterly</Option>	
+				<Option>Semi-annually</Option>
+				<Option>Annually</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>15</Unit>				
+		</Question>
+
+	</Assessment>
+	
+<!-- end of Exam A -->	
+	
+<!-- Exam B -->		
+	<Assessment id="B" Section1Num = "43" >	
+	
+	
+		<!-- Question 1 -->		
+		<Question PageID="1" >
+			<QuestionStem>Which one of the following statements describes a health threat?</QuestionStem>
+			<Options distrnum="4">
+				<Option>The process of estimating the human toxicological impact of a specific material based on published and unpublished literature sources.</Option>
+				<Option>The process of effectively communicating potential health effects, outcomes, and control measures to all stakeholders.</Option>	
+				<Option>A potential or actual condition that can cause short or long-term injury, illness, or death to personnel.</Option>
+				<Option>A measure of the likelihood of an adverse health effect to a given individual or population.</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>2</Unit>			
+		</Question>
+		
+		<!-- Question 2 -->		
+		<Question PageID="2" >
+			<QuestionStem><![CDATA[Which two of the following statements are true regarding Occupational and Environmental Health Site Assessment (OEHSA)<ol><li>OEHSA is the overarching process that includes Health Risk Assessment (HRA) and focuses on the quantification of health risks.</li><li>OEHSA is the key operational health tool to produce data and information used for HRA and to satisfy OEH surveillance requirements.</li><li>OEHSA is executed as soon as operationally feasible and is dependent on whether the location is in a permissible or non-permissible environment.</li><li>OEHSA is a decision-making process used to evaluate and select COAs, minimize OEH risks, and maximize benefits for operations and missions.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>1 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>	
+			<Unit>3</Unit>	
+		</Question>
+		
+		<!-- Question 3 -->		
+		<Question PageID="3" >
+			<QuestionStem>In which one of the following OESHA steps in the site selection process should you determine the potential areas of operation (AOs)?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Pre-deployment and Baseline Activities</Option>
+				<Option>Site Identification and Sectoring</Option>	
+				<Option>Conceptual Site Model</Option>
+				<Option>Site Reconnaissance</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>			
+			<Unit>3</Unit>
+		</Question>
+		
+		<!-- Question 4 -->		
+		<Question PageID="4" >
+			<QuestionStem><![CDATA[Which two of the following are actions taken by BE during site selection?<ol><li>Selecting which shops should be located on a base.</li><li>Finding sites that meet sanitation requirements.</li><li>Minimizing environmental impacts. </li><li>Designing the water main system.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>1a002e;No</Branch>	
+			<Unit>3</Unit>		
+		</Question>
+		
+		<!-- Question 5 -->		
+		<Question PageID="5" >
+			<QuestionStem>During which one of the following steps in the OEHSA process does the development of the Conceptual Site Model (CSM) begin?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Pre-deployment and Baseline Activities</Option>
+				<Option>Initial/Specialized Surveillance</Option>	
+				<Option>Site Identification/Sectoring</Option>
+				<Option>Reassessment</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>1a003e;1a002e_b</Branch>
+			<Unit>3</Unit>			
+		</Question>
+		
+		<!-- Question 6 -->		
+		<Question PageID="6" >
+			<QuestionStem><![CDATA[Which two of the following are factors you should consider when determining the appropriateness of each potential site for the water treatment facility?<ol><li>Political consent</li><li>Population density</li><li>Soil composition</li><li>Sources of pollution</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>3 and 4</Option>
+				<Option>1 and 3</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>1a004e;1a003e</Branch>
+			<Unit>3</Unit>			
+		</Question>
+		
+		<!-- Question 7 -->		
+		<Question PageID="7" >
+			<QuestionStem>Choose the statement that best describes how the development of a sampling strategy relates to the HRA process.</QuestionStem>
+			<Options distrnum="4">
+				<Option>Sampling is conducted during routine or special assessment.</Option>
+				<Option>Sampling is useful for identifying and analyzing health threats and risks.</Option>	
+				<Option>Multiple sampling strategies may be necessary for multiple health threats.</Option>
+				<Option>OEH sampling is critical to assist with facility placement decision-making.</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No;1a004e</Branch>
+			<Unit>4</Unit>		
+		</Question>
+		
+		<!-- Question 8 -->		
+		<Question PageID="8" >
+			<QuestionStem>Which one of the following is the first step in a special assessment?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Characterize the health threat.</Option>
+				<Option>Collect qualitative exposure assessment data.</Option>	
+				<Option>Define the scope of support and resources needed.</Option>
+				<Option>Prioritize assessment needs to maximize resources.</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+		
+		<!-- Question 9 -->		
+		<Question PageID="9" >
+			<QuestionStem><![CDATA[In this case, which two of the following sampling strategy objectives describe the primary reasons for conducting sampling at each of the four sites?<ol><li>Identifying the degree of health threat.</li><li>Fulfilling a special purpose.</li><li>Assessing compliance.</li><li>Evaluating controls.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+		
+		<!-- Question 10 -->		
+		<Question PageID="10" >
+			<QuestionStem>Which type of radiation is emitted by the search and detection radar at Site A?</QuestionStem>
+			<Options distrnum="4">
+				<Option>X-ray Radiation</Option>
+				<Option>Infrared Radiation</Option>	
+				<Option>Gamma Radiation</Option>
+				<Option>Radio Frequency Radiation</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>8</Unit>		
+		</Question>
+		
+		<!-- Question 11 -->		
+		<Question PageID="11" >
+			<QuestionStem>When should an RFR risk assessment be performed?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Once an emitter is identified as being able to produce levels that meet or exceed the PEL.</Option>
+				<Option>Before an RFR emitter is placed within close proximity of strategic targets at the base location.</Option>	
+				<Option>Any time a new technician is assigned to an emitter that is classified as high risk.</Option>
+				<Option>After an RFR measurement survey has been conducted that identified abnormal hotspots. </Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+		<!-- Question 12 -->		
+		<Question PageID="12" >
+			<QuestionStem>Which one of the following statements best describes RFR’s placement on the electromagnetic spectrum?</QuestionStem>
+			<Options distrnum="4">
+				<Option>RFR occurs in the lower frequencies of the electromagnetic spectrum.</Option>
+				<Option>RFR occurs in the middle frequencies of the electromagnetic spectrum.</Option>	
+				<Option>RFR occurs in the high frequencies of the electromagnetic spectrum.</Option>
+				<Option>RFR is not located on the electromagnetic spectrum.</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+		<!-- Question 13 -->		
+		<Question PageID="13" >
+			<QuestionStem>Which one of the following types of RFR emitters is generally the most hazardous type of emitter?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Medical Diathermy</Option>
+				<Option>Field Deployable</Option>	
+				<Option>Aircraft Mounted</Option>
+				<Option>Ground Fixed</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+		<!-- Question 14 -->		
+		<Question PageID="14" >
+			<QuestionStem>Which one of the following components of an RFR emitter is capable of generating a continuous wave or pulsed wave?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Transmission Line</Option>
+				<Option>Signal Encoder</Option>	
+				<Option>Transmitter</Option>
+				<Option>Antenna</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+		<!-- Question 15 -->		
+		<Question PageID="15" >
+			<QuestionStem>Which one of the following frequency ranges identifies where optimal absorption of RFR takes place for adult humans?</QuestionStem>
+			<Options distrnum="4">
+				<Option>60-70 MHz</Option>
+				<Option>70-80 MHz</Option>	
+				<Option>80-90 MHz</Option>
+				<Option>90-100 MHz</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+		<!-- Question 16 -->		
+		<Question PageID="16" >
+			<QuestionStem><![CDATA[Which two of the following pieces of information should you obtain about the RFR emitters present at Site A during the identification phase of your RFR risk assessment?<ol><li>Duty Factor</li><li>Antenna Size</li><li>Peak Power</li><li>Applicable PEL</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+		<!-- Question 17 -->		
+		<Question PageID="17" >
+			<QuestionStem><![CDATA[After identifying the actual D<sub>pel</sub> when conducting the RFR measurement survey at Site A, what should be your next two courses of action?<ol><li>Perform the estimated hazard distance calculation.</li><li>Measure from the antenna to where the probe stopped.</li><li>Move toward the emitter while taking spatial averages.</li><li>Have the operator of the emitter turn off the system.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 3</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+		<!-- Question 18 -->		
+
+		<Question PageID="18" >
+			<QuestionStem><![CDATA[If you used the indirect method for determining whether the site is a hazardous noise area, which two of the following <em>could</em> be used as the indication that the area is hazardous?<ol><li>The C/T calculation is greater than 1.</li><li>The L<sub>eqT</sub> calculation is over 95 dB(A).</li><li>The L<sub>eqT</sub> calculation is over 85 dB(A).</li><li>The C/T calculation is greater than 100</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>6</Unit>			
+		</Question>
+		
+		<!-- Question 19 -->		
+		<Question PageID="19" >
+			<QuestionStem>In which one of the following situations would Site A be considered a hazardous noise area?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Peak sound pressure level less than 140 dB</Option>
+				<Option>Continuous or intermittent noise greater than 115 dB</Option>	
+				<Option>4-hour continuous sound level greater than 30 dB(A)</Option>
+				<Option>8-hour continuous sound level less than 85 dB(A)</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>6</Unit>			
+		</Question>
+		
+		<!-- Question 20 -->		
+		<Question PageID="20" >
+			<QuestionStem>How long can personnel safely remain in the area while being exposed to 91 dB(A) noise levels?</QuestionStem>
+			<Options distrnum="4">
+				<Option>2 hours</Option>
+				<Option>4 hours</Option>	
+				<Option>8 hours</Option>
+				<Option>16 hours</Option>	
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>6</Unit>			
+		</Question>
+		
+		<!-- Question 21 -->		
+		<Question PageID="21" >
+			<QuestionStem><![CDATA[Which two of the following would you use to get a quick initial estimate of personnel exposure to exhaust from aircraft using JP-8 fuel?<ol><li>Instantaneous sampling</li><li>Integrated sampling</li><li>Indirect reading devices </li><li>Direct reading instruments</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>1 and 4</Option>
+				<Option>2 and 3</Option>				
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+		
+		<!-- Question 22 -->		
+		<Question PageID="22" >
+			<QuestionStem>Which of the following defines the OEL-STEL?</QuestionStem>
+			<Options distrnum="4">
+				<Option>A calculation used to adjust exposure standards when the employee is working more than 8 hours a day and 40 hours a week.</Option>
+				<Option>A concentration to which workers can be exposed continuously for a short period of time without suffering from adverse health effects.</Option>	
+				<Option>The concentration of airborne contaminants to which workers are exposed that must never be exceeded during any part of the workday.</Option>
+				<Option>The concentration to which nearly all workers may be exposed, 8 hours per day, 40 days per week, without adverse health effects.</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+		
+		<!-- Question 23 -->		
+		<Question PageID="23" >
+			<QuestionStem><![CDATA[Using the Brief and Scala Model, calculate the equivalent OEL for JP-8 exposure for workers with an 8-hour work day, 6 days per week. The OEL<sub>8-hr</sub> for JP-8 is 29 ppm. <br /><br /><br /><br /><br /><br /><br /><br />]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>27 ppm</Option>
+				<Option>25 ppm</Option>	
+				<Option>23 ppm</Option>
+				<Option>17 ppm</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>	
+			<Picture>q23B</Picture>
+			<Unit>4</Unit>		
+		</Question>
+		
+		<!-- Question 24 -->		
+		<Question PageID="24" >
+			<QuestionStem>Which of the following is NOT typically a reason for collecting soil or solid samples?</QuestionStem>
+			<Options distrnum="4">
+				<Option>To identify health risks to personnel.</Option>
+				<Option>To define the area of concern (AOC).</Option>	
+				<Option>To determine potential exposure routes.</Option>
+				<Option>To recommend health control decisions.</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+		
+		<!-- Question 25 -->		
+		<Question PageID="25" >
+			<QuestionStem><![CDATA[Which two of the following are most likely to be affected by the time available to conduct sampling?<ol><li>Type of analysis </li><li>Number of samples</li><li>Depth of sampling </li><li>Health control decisions</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>		
+		</Question>
+		
+		<!-- Question 26 -->		
+		<Question PageID="26" >
+			<QuestionStem>Which soil sampling approach divides the site into different, internally homogenous sampling areas and is used for investigating a large site that encompasses a number of soil types, topographic features, or land uses?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Transect</Option>
+				<Option>Judgmental</Option>	
+				<Option>Systematic grid </Option>
+				<Option>Stratified random</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>		
+		</Question>
+		
+		<!-- Question 27 -->		
+		<Question PageID="27" >
+			<QuestionStem>During which step of field analysis will you consider the ways in which personnel could be exposed to any contaminants present at Site B?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Characterize potential exposure routes.</Option>
+				<Option>Screen for elements of highest risk.</Option>	
+				<Option>Document results and reprioritize.</Option>
+				<Option>Prioritize each area of concern.</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+		
+		<!-- Question 28 -->		
+		<Question PageID="28" >
+			<QuestionStem>When interpreting the results of the samples you collected at Site B for environmental analysis, which step should you take after selecting a standard?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Determine any follow-up actions needed.</Option>
+				<Option>Convert the units of measurement if necessary.</Option>	
+				<Option>Identify abnormal results, trends, and variations.</Option>
+				<Option>Compare results with historical data for the site.</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>		
+		</Question>
+		
+		<!-- Question 29 -->		
+		<Question PageID="29" >
+			<QuestionStem><![CDATA[By choosing the most appropriate sampling point locations, which two of the following characteristics of the water samples should you try to ensure?<ol><li>Limpidity </li><li>Homogeneity </li><li>Heterogeneity</li><li>Representativeness </li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+		
+		<!-- Question 30 -->		
+		<Question PageID="30" >
+			<QuestionStem><![CDATA[Which two of the following describe situations in which biological health threats should be identified and analyzed?<ol><li>When a worker expresses concern about a chemical exposure or effects.</li><li>During an initial, routine, or special occupational health risk assessment.</li><li>When an illness or injury report occurs related to a potential biological health threat.</li><li>When a new process is introduced in the workplace that involves excessive noise.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>13</Unit>		
+		</Question>
+		
+		<!-- Question 31 -->		
+		<Question PageID="31" >
+			<QuestionStem>A biological agent such as the Giardia intestinalis parasite, which can be very contagious, is said to have high _____________.</QuestionStem>
+			<Options distrnum="4">
+				<Option>Virulence</Option>
+				<Option>Resistance</Option>	
+				<Option>Infectivity</Option>
+				<Option>Pathogenicity</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>13</Unit>		
+		</Question>
+		
+		<!-- Question 32 -->		
+		<Question PageID="32" >
+			<QuestionStem><![CDATA[Which two of the following are methods of breaking the chain of infection targeting the source of the infection?<ol><li>Disinfecting surfaces.</li><li>Receiving vaccinations.</li><li>Sneezing into one’s sleeve.</li><li>Treating an illness with antibiotics.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 3</Option>
+				<Option>1 and 4</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>1a005e;No</Branch>
+			<Unit>13</Unit>		
+		</Question>
+		
+		<!-- Question 33 -->		
+		<Question PageID="33" >
+			<QuestionStem>Which one of the following best describes the risk level for an exposure that occurs frequently and would probably have catastrophic effects on the mission?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Low</Option>
+				<Option>Moderate</Option>	
+				<Option>High</Option>
+				<Option>Extremely High</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No;1a007e</Branch>
+			<Unit>14</Unit>			
+		</Question>
+		
+		<!-- Question 34 -->		
+		<Question PageID="34" >
+			<QuestionStem><![CDATA[Which two of the following affect how sampling results are interpreted when making a determination on the best location for a water treatment facility?<ol><li>Mission details </li><li>Contaminant </li><li>Intelligence</li><li>Equipment</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 3</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>1a008e;No</Branch>
+			<Unit>4</Unit>			
+		</Question>
+		
+		<!-- Question 35 -->		
+		<Question PageID="35" >
+			<QuestionStem><![CDATA[Which two of the following are your responsibilities related to the new water mains associated with the new water treatment facility?<ol><li>Run bacteriological sampling analysis. </li><li>Follow the base’s water contingency response plan.</li><li>Conduct engineering reviews of scheduled repairs.</li><li>Ensure the distribution system is isolated to control contaminants.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No;1a008e</Branch>
+			<Unit>4</Unit>			
+		</Question>
+		
+		<!-- Question 36 -->		
+		<Question PageID="36" >
+			<QuestionStem><![CDATA[Which two of the following are your responsibilities related to water system repair if needed at the water treatment facility?<ol><li>Run bacteriological sampling analysis.</li><li>Perform the repairs to the water system.</li><li>Conduct engineering reviews of repairs.</li><li>Notify all Commanders of the repair situation.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>4</Unit>		
+		</Question>
+		
+		<!-- Question 37 -->		
+		<Question PageID="37" >
+			<QuestionStem><![CDATA[For which two of the following reasons are base sanitary surveys performed?<ol><li>To evaluate an installation’s ability to prevent contamination and disruptions.</li><li>To identify vulnerabilities in the water distribution system of an installation.</li><li>To identify deficiencies in the water system so they can be corrected.</li><li>To comply with regulatory requirements to conduct sanitary surveys.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>3 and 4</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>5</Unit>			
+		</Question>
+		
+		<!-- Question 38 -->		
+		<Question PageID="38" >
+			<QuestionStem><![CDATA[Which two of the following are purposes of the pre-survey file review you perform before scheduling sanitary survey activities?<ol><li>To notify system operators of deficiencies and recommend corrective actions.</li><li>To ensure that the treated water quality meets all drinking water standards. </li><li>To help create a list of items to check in the field and questions to ask.</li><li>To plan the format of the survey and estimate how much time it may take.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>5</Unit>			
+		</Question>
+		
+		<!-- Question 39 -->		
+		<Question PageID="39" >
+			<QuestionStem>Which of the following statements describes the reasons you must complete a WVA?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Because a new water system has been put into place, a WVA is necessary to comply with regulatory requirements and ensure potable water quality meets drinking water standards.</Option>
+				<Option>Because the water system may be unable to meet demand, a WVA is necessary to determine if the system has the capability to produce and distribute an adequate supply of water.</Option>	
+				<Option>Because the water system has been modified, a WVA is necessary to evaluate the potability of the water and ensure that it continues to remain a reliable and safe source of drinking water.</Option>
+				<Option>Because the water system has been modified, a WVA is necessary to identify areas in the water distribution system that could be subject to tampering, sabotage, and contamination.</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>5</Unit>			
+		</Question>
+		
+		<!-- Question 40 -->		
+		<Question PageID="40" >
+			<QuestionStem><![CDATA[As you are conducting the WVA, which two of the following are steps you will perform in the Information Gathering phase of the WVA process?<ol><li>Identify Control Options</li><li>Coordinate with Stakeholders</li><li>Assess Security/Survivability Programs </li><li>Assess Physical Assets and Access Points</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>5</Unit>			
+		</Question>
+		
+		<!-- Question 41 -->		
+		<Question PageID="41" >
+			<QuestionStem><![CDATA[Which two of the following are main points related to providing practical and effective information and recommendations?<ol><li>Be aware of communication that is based on risk perception, agendas, or emotions, and address those issues honestly.</li><li>Compare risks that are voluntary to those not voluntary so your audience will perceive the health risk as not in their control.</li><li>Use a standard form of communication between various audiences so that your message is communicated consistently each time.  </li><li>Build trust and honesty by providing accurate information; addressing relevant issues, options, and recommendations; and abiding by promises.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 3</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>1 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>	
+			<Unit>16</Unit>			
+		</Question>
+		
+		<!-- Question 42 -->		
+		<Question PageID="42" >
+			<QuestionStem><![CDATA[Which two of the following considerations should you follow for effective health risk communication?<ol><li>Prepare answers to potential questions.</li><li>Use professional judgment as appropriate.</li><li>Communicate by focusing on technical information.</li><li>Withhold information from public until incident has passed.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>1a009e;No</Branch>
+			<Unit>16</Unit>				
+		</Question>
+		
+		<!-- Question 43 -->		
+		<Question PageID="43" >
+			<QuestionStem><![CDATA[Which two of the following should be considered when performing an aircraft watering point survey?<ol><li>Nearby non-potable outlets</li><li>Sanitation and transport procedures</li><li>Critical control points (CCPs)</li><li>Occupational exposure limits (OELs)</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No;1a009e</Branch>
+			<Unit>5</Unit>			
+		</Question>
+		
+		<!-- Question 44 -->		
+		<Question PageID="44" >
+			<QuestionStem><![CDATA[Which two of the following frequency bands will be included in an octave band survey ONLY if your equipment is capable of measuring these frequencies?<ol><li>2 kHz </li><li>16 kHz </li><li>31.5 Hz</li><li>63 Hz</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>6</Unit>			
+		</Question>
+		
+		<!-- Question 45 -->		
+		<Question PageID="45" >
+			<QuestionStem><![CDATA[Which two of the following should you do before leaving the BE shop to perform an octave band survey?<ol><li>Recommend specific controls for the site. </li><li>Perform an operation check on equipment.</li><li>Pre-calibrate the sound meter equipment.</li><li>Plot collected data on 85 dB(A) target spectrum.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>	
+			<Unit>6</Unit>		
+		</Question>
+		
+		<!-- Question 46 -->		
+		<Question PageID="46" >
+			<QuestionStem><![CDATA[Which two of the following are administrative controls used to control noise health threats at the receiver?<ol><li>Shield and Barriers</li><li>Labeling Equipment</li><li>Training Personnel</li><li>Process Substitution</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>6</Unit>			
+		</Question>
+		
+		<!-- Question 47 -->		
+		<Question PageID="47" >
+			<QuestionStem>Which one of the following helps determine the point at which noise levels from a noise source become constant?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Critical Distance </Option>
+				<Option>Inverse Square</Option>	
+				<Option>Absorption Coefficient</Option>
+				<Option>Daily Reduction Factor</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>6</Unit>			
+		</Question>
+		
+		<!-- Question 48 -->		
+		<Question PageID="48" >
+			<QuestionStem>Which one of the following is NOT a BE-specific responsibility related to analyzing confined spaces?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Review and approve non-routine entry permits.</Option>
+				<Option>Assist in the interpretation of monitoring results.</Option>	
+				<Option>Coordinate the installation confined space program.</Option>
+				<Option>Certify organizational personnel to test confined spaces.</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>	
+			<Unit>7</Unit>		
+		</Question>
+		
+		<!-- Question 49 -->		
+		<Question PageID="49" >
+			<QuestionStem><![CDATA[Which two of the following are characteristics of a non-permit required confined space?<ol><li>The space contains no actual or potential hazardous atmosphere.</li><li>Oxygen levels in the confined space are between 19.5% and 23.5%.</li><li>It contains a material that has the potential to engulf entering personnel.</li><li>The space is immediately dangerous to life and health of the personnel. </li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>7</Unit>			
+		</Question>
+		
+		<!-- Question 50 -->		
+		<Question PageID="50" >
+			<QuestionStem><![CDATA[Which two of the following statements are true of energy as it relates to mass?<ol><li>Energy (ergs) = Mass (grams) x Velocity of Light<sup>2</sup> (m/sec)</li><li>Energy (ergs) = Mass <sup>2</sup> (grams) x 1/2 Velocity of Light  (m/sec) </li><li>The total energy in a system increases as mass decreases</li><li>The Theory of Relativity describes mass and energy as interchangeable</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>1 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>8</Unit>			
+		</Question>
+		
+		<!-- Question 51 -->		
+		<Question PageID="51" >
+			<QuestionStem><![CDATA[Which two of the following make up the basic factors of the electromagnetic spectrum? <ol><li>Frequency</li><li>Wavelength </li><li>Mass Defect</li><li>Potential Energy</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>8</Unit>			
+		</Question>
+		
+		<!-- Question 52 -->		
+		<Question PageID="52" >
+			<QuestionStem>Which one of the following statements best describes radioactive decay?</QuestionStem>
+			<Options distrnum="4">
+				<Option>The spontaneous emission of matter or energy from the nucleus of an unstable atom.</Option>
+				<Option>The spontaneous disintegration or transformation of an atom in an attempt to reach a stable state.</Option>	
+				<Option>Occurs where there is an addition of energy to an atomic system changing the atom from a &quot;ground&quot; state to an excited state.</Option>
+				<Option>The process by which an electron is removed from the atom or molecule leaving it with a positive charge and therefore producing ion pairs.</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+		<!-- Question 53 -->		
+		<Question PageID="53" >
+			<QuestionStem>Which one of the following is the process by which an electron is removed from the atom or molecule leaving it with a positive charge and therefore producing ion pairs?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Ionization</Option>
+				<Option>Excitation</Option>	
+				<Option>Nuclear Stability</Option>
+				<Option>Radioactive Decay</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+		<!-- Question 54 -->		
+		<Question PageID="54" >
+			<QuestionStem>Which one of the following is the most penetrating of all the types of radiation?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Alpha</Option>
+				<Option>Beta</Option>	
+				<Option>Gamma and X-Ray</Option>
+				<Option>Neutron</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+		<!-- Question 55 -->		
+		<Question PageID="55" >
+			<QuestionStem><![CDATA[Which one of the following types of radiation can cause <em>both</em> internal and external health threats?]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>Alpha</Option>
+				<Option>Beta</Option>	
+				<Option>Gamma / X-Ray</Option>
+				<Option>Neutrons</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+		<!-- Question 56 -->		
+		<Question PageID="56" >
+			<QuestionStem><![CDATA[Which two of the following things should you instruct the x-ray technician to do when setting up the x-ray unit for a scatter survey?<ol><li>Set a 10&quot; x 10&quot; field when working with a chest x-ray.</li><li>Set a 10&quot; x 10&quot; field when working with a table x-ray.</li><li>Monitor workers and adjacent areas for radiation leakage.</li><li>Obtain the maximum and normal settings for the x-ray unit.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>		
+		</Question>
+		
+		<!-- Question 57 -->		
+		<Question PageID="57" >
+			<QuestionStem><![CDATA[Which two of the following situations would require an x-ray scatter survey to be conducted at a medical facility?<ol><li>Modifications in operation have occurred.</li><li>A new x-ray unit is being installed in the facility. </li><li>An x-ray technician takes a second job at night.</li><li>The film is changed after a routine patient x-ray.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>3 and 4</Option>
+				<Option>1 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>		
+		</Question>
+		
+		<!-- Question 58 -->		
+		<Question PageID="58" >
+			<QuestionStem>Which one of the following is NOT required to conduct the medical/industrial scatter survey calculation?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Scatter reading</Option>
+				<Option>Number of shots</Option>	
+				<Option>Seconds of film</Option>
+				<Option>Intensity of beam</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+		<!-- Question 59 -->		
+		<Question PageID="59" >
+			<QuestionStem>Which one of the following statements should you follow when determining whether to use a standard for radiation purposes?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Use the most readily available standard.</Option>
+				<Option>Use the international radiation standards.</Option>	
+				<Option>Use the standard accepted by the industry.</Option>
+				<Option>Use the most stringent standard available.</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>		
+		</Question>
+		
+		<!-- Question 60 -->		
+		<Question PageID="60" >
+			<QuestionStem><![CDATA[A scatter radiation survey in a medical facility revealed an annual exposure for radiation workers of 5,500 mR/yr, which exceeds the annual exposure limit of 5,000 mR/yr.  Which one of the following is NOT an appropriate potential course of action that could address these results?]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>Increase the thickness of the shielding that is used in the x-ray room.</Option>
+				<Option>Implement worker rotation to reduce the time each worker is exposed.</Option>	
+				<Option>Perform maintenance on the x-ray unit, or replace the unit if maintenance is not sufficient.</Option>
+				<Option>No further action is required because the exposure does not significantly exceed the limit.</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+		<!-- Question 61 -->		
+		<Question PageID="61" >
+			<QuestionStem><![CDATA[Which two of the following are among the groups that need to be immediately notified of a suspected ionizing radiation overexposure?<ol><li>Public Health </li><li>AFMOA/SG3PB</li><li>Security Forces</li><li>MAJCOM BEE</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>		
+		</Question>
+		
+		<!-- Question 62 -->		
+		<Question PageID="62" >
+			<QuestionStem><![CDATA[Which two of the following are reasons ionizing radiation overexposure investigations are conducted?<ol><li>Create radiation protection program policy.</li><li>Determine appropriate courses of action.</li><li>Identity number of x-ray units in the area.</li><li>Confirm an overexposure has occurred.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 4</Option>	
+				<Option>1 and 3</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>		
+		</Question>
+		
+		<!-- Question 63 -->		
+		<Question PageID="63" >
+			<QuestionStem>To which one of the following types of controls does the inverse square law apply? </QuestionStem>
+			<Options distrnum="4">
+				<Option>Time</Option>
+				<Option>Distance</Option>	
+				<Option>Shielding</Option>
+				<Option>Contamination Control</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>		
+		</Question>
+		
+		<!-- Question 64 -->		
+		<Question PageID="64" >
+			<QuestionStem>Which one of the following types of materials would serve as a minimally appropriate shield for gamma and x-rays?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Paper</Option>
+				<Option>Plastic</Option>	
+				<Option>Lead </Option>
+				<Option>Concrete</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>		
+		</Question>
+		
+		<!-- Question 65 -->		
+		<Question PageID="65" >
+			<QuestionStem>Once you have calculated the annual dose equivalent for the RAM storage and use survey, what should be your next course of action?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Sketch a diagram of the radiation storage area.</Option>
+				<Option>Compare the results to the appropriate standards.</Option>	
+				<Option>Take background measurements in the survey area.</Option>
+				<Option>Use an ion chamber to determine dose rate exposures.</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>			
+		</Question>
+		
+		<!-- Question 66 -->		
+		<Question PageID="66" >
+			<QuestionStem><![CDATA[Which two of the following can be assessed using a RAM storage and use survey to determine compliance with appropriate guidelines?<ol><li>Unsealed RAM Sources </li><li>Unmarked RAM Sources</li><li>Type I RAM Sources</li><li>Sealed RAM Sources</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 4</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>		
+		</Question>
+		
+		<!-- Question 67 -->		
+		<Question PageID="67" >
+			<QuestionStem>When performing a RAM shipment and transport survey, if the package swipes and dose rate measurements are below applicable standards, how far away from the inner package should you perform a dose rate measurement? </QuestionStem>
+			<Options distrnum="4">
+				<Option>1 centimeter</Option>
+				<Option>3 inches</Option>	
+				<Option>4 inches</Option>
+				<Option>50 centimeters</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>	
+		</Question>
+		
+		<!-- Question 68 -->		
+		<Question PageID="68" >
+			<QuestionStem>Which one of the following statements best describes the purpose of surveying RAM for shipment and transport?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Determine the most efficient method for packing and shipping the RAM.</Option>
+				<Option>Log the shipment and transport history for facilities within the Air Force.</Option>	
+				<Option>Determine the best route of transfer for RAM from one location to another.</Option>
+				<Option>Ensure compliance with federal regulations related to the transfer of RAM.</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>	
+		</Question>
+		
+		<!-- Question 69 -->		
+		<Question PageID="69" >
+			<QuestionStem>Which one of the following calculations would you perform to enable discussion of potential biological effects of radiation without concern for the radiation type?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Estimated Hazard Distance (D&lt;sub&gt;pel&lt;/sub&gt;)</Option>
+				<Option>Disintegrations per Minute (dpm)</Option>	
+				<Option>Roentgen Equivalent Man (REM)</Option>
+				<Option>Radiation Absorbed Dose (RAD)</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>		
+		</Question>
+		
+		<!-- Question 70 -->		
+		<Question PageID="70" >
+			<QuestionStem>Which one of the following is NOT an acceptable method for disposal of radioactive materials?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Recycle </Option>
+				<Option>Long-term storage </Option>	
+				<Option>Dispose through AFRRAD </Option>
+				<Option>Return to the manufacturer</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>9</Unit>
+		</Question>
+
+		<!-- Question 71 -->		
+		<Question PageID="71" >
+			<QuestionStem><![CDATA[Which two of the following are direct effects of RFR exposures?<ol><li>Electromagnetic interference. </li><li>Immune system alterations.</li><li>Microwave hearing effect.</li><li>Increased tissue heating.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+		<!-- Question 72 -->		
+		<Question PageID="72" >
+			<QuestionStem>Which of the following best describes when to use the Estimated Hazard Distance (D&lt;sub&gt;pel&lt;/sub&gt;) calculation?</QuestionStem>
+			<Options distrnum="4">
+				<Option>To determine a safe position from which to begin conducting an RFR measurement survey.</Option>
+				<Option>To identify what levels of annual exposure personnel surrounding the x-ray equipment may receive.</Option>	
+				<Option>To enable discussion of the potential biological effects without consideration for radiation type.</Option>
+				<Option>To determine the distance where an exposure reaches an identified increase in intensity level.</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+		<!-- Question 73 -->		
+		<Question PageID="73" >
+			<QuestionStem><![CDATA[Which two of the following pieces of information are needed to perform the power density average (S<sub>avg</sub>) calculation to determine the level of RFR exposure?<ol><li>Intensity (I)</li><li>Average Power (P<sub>avg</sub>)</li><li>Wavelength (&lambda;)</li><li>Duration of Exposure (T<sub>exp</sub>)</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 4</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+		<!-- Question 74 -->		
+		<Question PageID="74" >
+			<QuestionStem>Which one of the following situations would prompt an RFR overexposure/accident investigation?</QuestionStem>
+			<Options distrnum="4">
+				<Option>An x-ray technician in the MTF reports an overexposure.</Option>
+				<Option>Routine monitoring and assessment of RFR environments. </Option>	
+				<Option>A new radar site is built on base near a corrosion control shop.</Option>
+				<Option>A worker reports walking in front of a radar emitter to their supervisor.</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+		<!-- Question 75 -->		
+		<Question PageID="75" >
+			<QuestionStem>Which one of the following RFR controls should be used to prevent ground structures from interfering with the radar? </QuestionStem>
+			<Options distrnum="4">
+				<Option>Fences</Option>
+				<Option>Warning signs</Option>	
+				<Option>Azimuth blanking</Option>
+				<Option>Prior coordination</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>10</Unit>		
+		</Question>
+		
+		<!-- Question 76 -->		
+		<Question PageID="76" >
+			<QuestionStem>Which one of the following statements best describes lasers?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Lighting amplified by supplied energy and radiance.</Option>
+				<Option>Light amplification by stimulated emission of radiation.</Option>	
+				<Option>Luminosity accelerated by simultaneous energy release.</Option>
+				<Option>Luminescent apparatus for stimulating energy and rays.</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>			
+		</Question>
+		
+		<!-- Question 77 -->		
+		<Question PageID="77" >
+			<QuestionStem>Which one of the following lasers is an example of a Class 1M laser, which is not capable of producing hazardous effects during normal operation unless viewed with an optical instrument such as a telescope?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Military illuminators</Option>
+				<Option>Classroom laser pointers</Option>	
+				<Option>Precision guided munitions</Option>
+				<Option>Fiber optic communications system</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>		
+		</Question>
+		
+		<!-- Question 78 -->		
+		<Question PageID="78" >
+			<QuestionStem>Which one of the following describes the area within a laser workplace in which the exposure from direct beam, specular reflection, and diffuse reflection could exceed the maximum limit?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Nominal Hazard Zone (NHZ)</Option>
+				<Option>Estimated Hazard Distance (D&lt;sub&gt;pel&lt;/sub&gt;)</Option>	
+				<Option>Maximum Permissible Exposure (MPE)</Option>
+				<Option>Nominal Ocular Hazard Distance (NOHD)</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>			
+		</Question>
+		
+		<!-- Question 79 -->		
+		<Question PageID="79" >
+			<QuestionStem>Which one of the following describes the level of laser radiation to which a person may be exposed without hazardous effects or adverse biological changes in the eyes or skin?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Nominal Hazard Zone (NHZ)</Option>
+				<Option>Estimated Hazard Distance (D&lt;sub&gt;pel&lt;/sub&gt;)</Option>	
+				<Option>Maximum Permissible Exposure (MPE)</Option>
+				<Option>Nominal Ocular Hazard Distance (NOHD)</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>		
+		</Question>
+		
+		<!-- Question 80 -->		
+		<Question PageID="80" >
+			<QuestionStem><![CDATA[Which two of the following common health effects of laser hazards are associated with thermal damage?<ol><li>Short term tissue damage</li><li>Toxic chemical reactions in tissues </li><li>Energy absorption and heat build-up</li><li>Photon absorption directly altering a molecule</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>1 and 4</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>		
+		</Question>
+		
+		<!-- Question 81 -->		
+		<Question PageID="81" >
+			<QuestionStem>Which one of the following steps for identifying laser hazards should you perform in the Site Identification/Sectoring phase of the OEHSA process?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Determine which personnel may be affected by the laser hazard.</Option>
+				<Option>Obtain any available information about existing lasers in the AOC.</Option>	
+				<Option>Use measuring equipment for lasers to conduct a survey of the area.</Option>
+				<Option>Perform a site visit to confirm the information that has been gathered.</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>		
+		</Question>
+		
+		<!-- Question 82 -->		
+		<Question PageID="82" >
+			<QuestionStem>Which one of the following is NOT an appropriate control recommendation for personnel using Class 4 lasers?</QuestionStem>
+			<Options distrnum="4">
+				<Option>LEP</Option>
+				<Option>Interlocks</Option>	
+				<Option>Optional posting of &quot;Caution&quot; signs </Option>
+				<Option>Required posting of &quot;Danger&quot; signs</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>		
+		</Question>
+		
+		<!-- Question 83 -->		
+		<Question PageID="83" >
+			<QuestionStem>Which one of the following laser eye protection (LEP) devices would be appropriate for a laser with a wavelength of 550 nm and an optical density of 6?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Specifications:  Wavelength of 700-1,000 nm; OD of 7+</Option>
+				<Option>Specifications:  Wavelength of 510-680 nm; OD of 6+</Option>	
+				<Option>Specifications:  Wavelength of 430-500 nm; OD of 6+</Option>
+				<Option>Specifications:  Wavelength of 190-380 nm; OD of 4+</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>11</Unit>		
+		</Question>
+		
+		<!-- Question 84 -->		
+		<Question PageID="84" >
+			<QuestionStem>What type of radiation can cause heat loading in the body of a worker who spends 3 hours working on an aircraft on the open flightline in the summer? </QuestionStem>
+			<Options distrnum="4">
+				<Option>UVA</Option>
+				<Option>UVB</Option>	
+				<Option>UVC</Option>
+				<Option>IR</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>12</Unit>		
+		</Question>
+		
+		<!-- Question 85 -->		
+		<Question PageID="85" >
+			<QuestionStem><![CDATA[Which two of the following controls could you recommend for controlling UV radiation?<ol><li>Decrease time around the source.</li><li>Decrease shielding around source.</li><li>Increase the distance from source.</li><li>Increase ventilation around source.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>12</Unit>			
+		</Question>
+		
+		<!-- Question 86 -->		
+		<Question PageID="86" >
+			<QuestionStem>During which step of the biological health threat identification and analysis process will you consider what would happen to the affected population immediately and in the future as a result of controlling the health threat or choosing not to control it?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Gathering Information</Option>
+				<Option>Conducting Sampling</Option>	
+				<Option>Assessing the Health Risk</Option>
+				<Option>Making Recommendations</Option>
+			</Options>
+			<CorrectAnswer>3</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>13</Unit>		
+		</Question>
+		
+		<!-- Question 87 -->		
+		<Question PageID="87" >
+			<QuestionStem>Which individual or organization is responsible for providing pest management services to control the spread of infectious disease?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Public Health</Option>
+				<Option>Civil Engineering</Option>	
+				<Option>Infection Control Officer</Option>
+				<Option>Bioenvironmental Engineering</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>13</Unit>		
+		</Question>
+		
+		<!-- Question 88 -->		
+		<Question PageID="88" >
+			<QuestionStem><![CDATA[Which two of the following are administrative controls that would be appropriate for biological health threats?<ol><li>Wearing gloves and face shields. </li><li>Observing universal precautions.</li><li>Using ventilation to control pressure.</li><li>Training personnel on proper procedures.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 3</Option>
+				<Option>1 and 4</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>13</Unit>			
+		</Question>
+		
+		<!-- Question 89 -->		
+		<Question PageID="89" >
+			<QuestionStem><![CDATA[Which two of the following statements are true regarding the proper maintenance of PPE for biological health threats?<ol><li>Most PPE used for biological health threats is disposable.</li><li>BE is responsible for ensuring proper disinfection of PPE.</li><li>Most PPE used for biological health threats must be bleached.</li><li>PPE used for biological health threats may need to be incinerated.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 3</Option>
+				<Option>1 and 4</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>13</Unit>		
+		</Question>
+		
+		<!-- Question 90 -->		
+		<Question PageID="90" >
+			<QuestionStem><![CDATA[Which two of the following are steps you should take while identifying chemical health threats?<ol><li>Disregard chemicals with countermeasures and controls in place.</li><li>Conduct interviews only with supervisors to get accurate information.</li><li>Consider how specific processes may introduce additional chemicals.</li><li>Read Material Safety Data Sheets and consult with the HazMat Pharmacy.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>			
+		</Question>
+		
+		<!-- Question 91 -->		
+		<Question PageID="91" >
+			<QuestionStem>Which one of the following describes the purpose of respiratory protection in the Air Force?</QuestionStem>
+			<Options distrnum="4">
+				<Option>To protect personnel from inhalation hazards above identified levels of concern. </Option>
+				<Option>To protect personnel from absorption hazards above identified levels of concern.</Option>	
+				<Option>To eliminate the need for more expensive controls such as ventilation systems.</Option>
+				<Option>To comply with standards without consideration of other countermeasures or controls.</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>			
+		</Question>
+		
+		<!-- Question 92 -->		
+		<Question PageID="92" >
+			<QuestionStem>You are selecting respiratory protection for workers in the corrosion control shop.  Your air sampling results indicate airborne concentrations for the COC at 120 ppm, and the OEL is 80 ppm.  What is the hazard ratio for this exposure?</QuestionStem>
+			<Options distrnum="4">
+				<Option>0.67</Option>
+				<Option>0.96</Option>	
+				<Option>1.16</Option>
+				<Option>1.50</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>			
+		</Question>
+		
+		<!-- Question 93 -->		
+		<Question PageID="93" >
+			<QuestionStem><![CDATA[Which two of the following are <em>true</em> regarding selection of appropriate respiratory protection for firefighting personnel?<ol><li>The workers must use a full-face pressure-demand SCBA.</li><li>The workers must use an air-purifying chemical cartridge respirator.</li><li>The respiratory protection must meet the requirements of NFPA 1981.</li><li>The respiratory protection must meet the requirements of AFOSH Std 91-25.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>1 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>			
+		</Question>
+		
+		<!-- Question 94 -->		
+		<Question PageID="94" >
+			<QuestionStem>The Air Force Radiation Assessment Team (AFRAT) has respirators that are stored for emergency or rescue use.  How often must these respirators be inspected? </QuestionStem>
+			<Options distrnum="4">
+				<Option>At least weekly.</Option>
+				<Option>At least monthly.</Option>	
+				<Option>Once per quarter.</Option>
+				<Option>At the end of each shift.</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>		
+		</Question>
+		
+		<!-- Question 95 -->		
+		<Question PageID="95" >
+			<QuestionStem><![CDATA[Which two of the following conditions would require a regulated area to be established?<ol><li>In areas that, in the supervisor’s professional judgment, are potentially dangerous for personnel.</li><li>In any occupational area where hazardous chemicals or other substances are used routinely.</li><li>In areas where personal protective equipment (PPE) is required to avoid skin or eye contact hazards.</li><li>In areas where the OEL is exceeded and/or where threshold amounts of carcinogen use is exceeded.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>4</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>		
+		</Question>
+		
+		<!-- Question 96 -->		
+		<Question PageID="96" >
+			<QuestionStem>Which of the following types of pressure is the difference between duct pressure and atmospheric pressure?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Static pressure</Option>
+				<Option>Total pressure</Option>	
+				<Option>System pressure</Option>
+				<Option>Velocity pressure</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>		
+		</Question>
+		
+		<!-- Question 97 -->		
+		<Question PageID="97" >
+			<QuestionStem>Which of the following is an example of an occupational setting where local exhaust ventilation is an effective measure of control?</QuestionStem>
+			<Options distrnum="4">
+				<Option>Vehicle exhaust testing </Option>
+				<Option>Pesticide storage</Option>	
+				<Option>Photo processing NDI shop</Option>
+				<Option>Aircraft maintenance hangar</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>			
+		</Question>
+		
+		<!-- Question 98 -->		
+		<Question PageID="98" >
+			<QuestionStem>While conducting an HRA at a shop on base, you notice a ventilation system is in place; however, after performing further surveillance, you determine there is no COC to control.  Which one of the following actions is appropriate to conduct, given this situation?
+</QuestionStem>
+			<Options distrnum="4">
+				<Option>No further action is required.</Option>
+				<Option>Recommend that the ventilation system be turned off.</Option>	
+				<Option>Perform a routine ventilation survey and compare to the baseline results.</Option>
+				<Option>Conduct additional air sampling to verify that no contaminants are present.</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>14</Unit>		
+		</Question>
+		
+		<!-- Question 99 -->		
+		<Question PageID="99" >
+			<QuestionStem><![CDATA[Which two of the following are steps you should conduct in Phase 3, Analysis, of the TIC/TIM vulnerability assessment process?<ol><li>Verify the data and compile the inventory. </li><li>Develop worst-case and alternate scenarios.</li><li>Screen toxic substances with potential to impact the base.</li><li>Document and consolidate the results of the field assessment.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>2 and 3</Option>	
+				<Option>2 and 4</Option>
+				<Option>3 and 4</Option>
+			</Options>
+			<CorrectAnswer>2</CorrectAnswer>
+			<Branch>No</Branch>	
+			<Unit>15</Unit>		
+		</Question>
+		
+		<!-- Question 100 -->		
+		<Question PageID="100" >
+			<QuestionStem><![CDATA[Select the two statements that are <em>true</em> regarding why and when TIC/TIM vulnerability assessments are conducted.<ol><li>The BEE or BE Tech is required to conduct an annual assessment of local industrial facilities.</li><li>The goals of the assessment are to stay abreast of current situations and assist with force health protection.</li><li>A semi-annual assessment of TIC/TIM vulnerabilities on and around the base must be performed by Public Health.</li><li>The assessment creates a document that tells first-responders exactly what to do if a TIC/TIM incident occurs around the base.</li></ol>]]></QuestionStem>
+			<Options distrnum="4">
+				<Option>1 and 2</Option>
+				<Option>1 and 3</Option>	
+				<Option>2 and 3</Option>
+				<Option>2 and 4</Option>
+			</Options>
+			<CorrectAnswer>1</CorrectAnswer>
+			<Branch>No</Branch>
+			<Unit>15</Unit>			
+		</Question>
+	
+	</Assessment>
+</Assessments>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>BESA WBT</title>
+<link rel="stylesheet" type="text/css" href="../../besa.css">
+<style type="text/css">
+<!--
+table {width:60%;border-collapse:collapse;margin:0em 0;}
+td {color:#ffffff; font-size:13px; text-align:center; padding:.3em; border:none;}
+td.line{color:#ffffff; font-size:13px; text-align:center; padding:.3em; border-bottom:1px solid #fff}
+-->
+</style>
+</head>
+
+<body style="background-image: url(../../sysimages/popup_large_desert.jpg);background-repeat:no-repeat; background-color:#000000;">
+<div style="position:absolute; top:46px; left:15px; height:393px; width: 699px; scrollbar-arrow-color: #000000; scrollbar-base-color:#63570d; overflow: auto;">
+<p class='popTitle'>Exposed Within Near-Field</p>
+<p>If the individual was  exposed within the near-field range of the emitter, you should calculate the  power density using the power density near-field calculation (S<sub>nf</sub>).&nbsp; Before this can be done, you may need to  calculate the area of the antenna using the following formula:</p>
+<p>Area = Reflector Length x Reflector Width </p>
+<p>Once you have determined  the area of the antenna, you can perform the power density near-field  calculation.&nbsp; The formula used to  calculate the near-field estimation is:</p>
+<table width="50%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="31%" rowspan="2" >&nbsp;</td>
+      <td width="6%" rowspan="2" >S<sub>nf</sub></td>
+      <td width="3%" rowspan="2" >=</td>
+      <td width="36%" class="line">(4) (P<sub>avg</sub>)</td>
+      <td width="24%" rowspan="2" >&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="36%" >antenna area</td>
+    </tr>
+  </table>
+<p>Where:<br />
+P<sub>avg</sub> = average power</p>
+<p>If  the emitter involved is a scanning emitter, you will also need to calculate the  rotation reduction factor (RRF<sub>nf</sub>) and multiply it by the calculated  near-field power density (S<sub>nf</sub>).&nbsp; The RRF<sub>nf</sub> can be  calculated using the following formula:</p>
+<table width="50%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="31%" rowspan="2" >&nbsp;</td>
+      <td width="6%" rowspan="2" >RRF<sub>nf</sub></td>
+      <td width="3%" rowspan="2" >=</td>
+      <td width="36%" class="line">A<sub>d</sub></td>
+      <td width="24%" rowspan="2" >&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="36%" >RQ<sub>s</sub></td>
+    </tr>
+  </table>
+<p>Where:<br />
+  A<sub>d</sub> = antenna dimension in the plane of motion<br />
+  R = distance from a point in the near field, where the person was  standing, to the antenna<br />
+  Q<sub>s</sub>= scan  angle in radians</p>
+</div>
+</body>
+</html>

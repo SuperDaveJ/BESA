@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	background-image: url(sysimages/lessmap_top.jpg);
+	background-repeat: no-repeat;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color:#FFFFFF;
+	background-color: #330000;
+}
+a:link {
+	color:#ffffff;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	}
+a:visited {
+	color:#ffffff;
+	font-weight: bold;
+	text-decoration: none;
+	}
+a:hover {
+	color:#da9d09;
+	}
+	
+a:active {
+	text-decoration: none;
+	font-weight: bold;
+	color:#da9d09;
+	}
+
+
+#lymaptb {
+	position:absolute; 
+	top:44px; 
+	left:0px; 
+	width:341px; 
+	height:341px; 
+	overflow: auto; 
+	scrollbar-arrow-color: #000000; 
+	scrollbar-base-color:#63570d;
+}
+
+#lymapbbar {
+	position:absolute;
+	background-image:url(sysimages/lessmap_bottom.jpg);
+	background-repeat:no-repeat;
+	top:387px;
+	left:0px;
+	width:342px;
+	height:36px;
+}

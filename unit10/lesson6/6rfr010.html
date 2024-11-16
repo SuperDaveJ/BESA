@@ -1,0 +1,785 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besaPC.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/lesson_screen_back_sand.jpg);
+}
+li.table {
+	padding-top: 0px; 
+	
+	}
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+function onpage() {
+	document.getElementById("Next").style.visibility = "hidden";
+	document.getElementById("Repeat").style.visibility = "hidden";
+	document.getElementById("Back").style.visibility = "hidden";
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+if (nTotalCorrect >= 7) blnLastPage = true;
+	var pgURL = "../unit10_menu.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "../unit10_menu.html"
+	goURL(pgURL);
+}
+
+function showaudiot(){ 
+}
+//NOTE: It's not working for MA yet
+// ----------------  Interaction Functions -------------------------------
+//Global variables
+var nextButton = true;		//Is there a Next button for next question
+var blnRandom = false;		//Are questions need to be randomized?
+var blnInTest = true;		//Is the user in test? If yes, disable some buttons.
+var userAns = 0;			//user answer for Multiple Choice questions
+arrUserAns = new Array();	//user answer for Multiple Answer questions
+var triesLimit = 0;
+var blnLastPage = false;
+var lastPprompt;
+var qStatus = 0;			//question status. 1=correct, 0=incorrect
+var qIndex = 0;				//qIndex is an index of question order (qOrder)
+var blnChoiceMade = false;	//Has user made any choice?
+
+var nQs = 10;				//Total number of questions
+var nQtoShow = nQs;			//Number of questiones to be showed for each round
+var nTotalCorrect = 0;
+var qTotalScores = 0;		//Total number of questions that were answered correctly
+var qDisabled = false;		//Is question disabled?
+
+arrQs = new Array(nQs);
+qOrder_seq = new Array(nQs);
+qOrder = new Array(nQs);
+for (var i=0; i<nQs; i++) {
+	arrQs[i] = new Array(10);
+	qOrder_seq[i] = i;
+}
+
+arrLetters = new Array(5);
+arrLetters[1] = "a";
+arrLetters[2] = "b";
+arrLetters[3] = "c";
+arrLetters[4] = "d";
+
+//The index for each queston is as follow:
+// 0 - integer, questoin ID
+// 1 - integer (1 or 2), question type. 1 = Multiple Choice, 2 = Multiple Answer.
+// 2 - integer, number of distracters
+// 3 - string, question stem
+// 4 - string, distracters concatinated with a # symbol
+// 5 - integer (1 to n), correct answer
+// 6 - integer (1 to n), user answer
+// 7 - integer, user tries
+// 8 - string, Feedback - all questions except last one
+// 9 - string, Feedback - optiona: for last question
+
+
+//Question #1
+arrQs[0][0] = 1;	//qID
+arrQs[0][1] = 1;	//qType 1:MC; 2:MA
+arrQs[0][2] = 4;	//number of distracters
+arrQs[0][3] = "Which one of the following parts of an RFR emitter carries the signal between the other parts of the emitter?";		//qStem
+arrQs[0][4] = "Transmitter#Transmission Line#Antenna#Horn";	//distracters
+arrQs[0][5] = 2;		//Correct answer
+arrQs[0][6] = 0;		//User answer
+arrQs[0][7] = 0;	//User attemps for this question
+
+arrQs[0][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[0][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[0][8][1] = "Incorrect. Remember that every RFR emitter is comprised of three basic components and each serves a unique purpose. ";		//First incorrect
+arrQs[0][8][2] = "The correct answer is now displayed. "; //Final incorrect
+arrQs[0][8][3] = "The transmitter is the part of the emitter that generates the RFR signal.  The transmission line for an RFR emitter carries the signal from the transmitter to the antenna.  The antenna is the point on an emitter where RFR energy radiates into free space.<br />";			//Correct
+
+//arrQs[0][9] = new Array(4);	//Feedback for last question.
+//arrQs[0][9][0] = "";
+//arrQs[0][9][1] = "";		//First incorrect
+//arrQs[0][9][2] = "";
+//arrQs[0][9][3] = "";
+
+
+
+//Question #2
+arrQs[1][0] = 2;	//qID
+arrQs[1][1] = 1;	//qType
+arrQs[1][2] = 4;	//number of distracters
+arrQs[1][3] = "Which one of the following describes the frequency range where optimal absorption takes place for adult humans?";		//qStem
+arrQs[1][4] = "30-40 MHz#35-45 MHz#55-65 MHz#70-80 MHz";	//distracters
+arrQs[1][5] = 4;		//Correct answer
+
+arrQs[1][6] = 0;		//User answer
+arrQs[1][7] = 0;	//User attemps for this question
+
+arrQs[1][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[1][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[1][8][1] = "Incorrect. The ability for biological matter to be affected by absorption is greatly influenced by the RFR’s frequency. ";		//First incorrect
+arrQs[1][8][2] = "The correct answers are now displayed. "; //Final incorrect
+arrQs[1][8][3] = "Optimal absorption takes place for adult humans between 70 and 80 MHz. These frequencies are called resonant frequencies.  If a person is in perfect ground contact, the resonant frequencies will shift to 35-40 MHz.<br />";			//Correct
+
+//Question #3
+arrQs[2][0] = 3;	//qID
+arrQs[2][1] = 1;	//qType
+arrQs[2][2] = 4;	//number of distracters
+arrQs[2][3] = "Which one of the following statements best describes the relationship between the permissible exposure limit (PEL) and specific absorption rates (SARs)?";		//qStem
+arrQs[2][4] = "The PEL incorporates a safety factor of 20 below a SAR of 4.0 watts per kilogram (W/kg).#The PEL is based on the whole-body SAR of 0.4 watts per kilogram (W/kg).#The SAR is determined based on the potential biological effects associated with the PEL.#The SAR is based on the whole-body PEL of 0.4 watts per kilogram (W/kg).";	//distracters
+arrQs[2][5] = 2;		//Correct answer
+arrQs[2][6] = 0;		//User answer
+arrQs[2][7] = 0;	//User attemps for this question
+
+arrQs[2][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[2][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[2][8][1] = "Incorrect. Remember that because RFR emitters are common and have widespread uses in both public and private sectors, a certain degree of RFR exposure will inevitably occur.  It’s important to identify the limits at which an RFR exposure begins to cause damaging biological effects. ";		//First incorrect
+arrQs[2][8][2] = ""; //Final incorrect
+arrQs[2][8][3] = "The permissible exposure limit (PEL) is based on the whole-body specific absorption rate (SAR) of 0.4 watts per kilogram (W/kg) and incorporates a safety factor of 10 below a SAR of 4.0 W/kg, which is the threshold for the occurrence of potentially harmful biological effects in humans.<br />";			//Correct
+
+//Question #4
+arrQs[3][0] = 4;	//qID
+arrQs[3][1] = 2;	//qType
+arrQs[3][2] = 4;	//number of distracters
+arrQs[3][3] = "Which two of the following are examples of direct effects associated with an RFR exposure?";		//qStem
+arrQs[3][4] = "Deep heating of body tissues.#Electromagnetic interference.#Immune system alterations.#Microwave hearing effect. ";	//distracters
+arrQs[3][5] = "1,0,0,1";		//Correct answer
+arrQs[3][6] = 0;
+arrQs[3][7] = 0 //User attemps for this question
+
+arrQs[3][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[3][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[3][8][1] = "Incorrect. When an RFR exposure occurs above the PEL, the potential exists for three types of exposure effects, direct, indirect, and athermal. ";		//First incorrect
+arrQs[3][8][2] = ""; //Final incorrect
+arrQs[3][8][3] = "Deep heating of the body’s tissues and the microwave hearing effects are examples of direct effects associated with an RFR exposure.  Electromagnetic interference is an example of an indirect effect of RFR exposures.  Immune system alterations are possible athermal effects associated with an RFR exposure. "
+
+//Question #5
+arrQs[4][0] = 5;	//qID
+arrQs[4][1] = 1;	//qType
+arrQs[4][2] = 4;	//number of distracters
+arrQs[4][3] = "Which one of the following factors primarily determines the biological effects of RFR exposures?";		//qStem
+arrQs[4][4] = "Frequency of the emitter#Wavelength of the emitter#Position of emitter’s antenna#Severity of past exposures ";	//distracters
+arrQs[4][5] = 1;		//Correct answer
+arrQs[4][6] = 0;
+arrQs[4][7] = 0 //User attemps for this question
+
+arrQs[4][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[4][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[4][8][1] = "Incorrect. Remember the organs most affected by RFR exposures are those with the decreased ability to dissipate heat due to lack of blood flow. ";		//First incorrect
+arrQs[4][8][2] = ""; //Final incorrect
+arrQs[4][8][3] = "While the wavelength of the emitter, position of the emitter’s antenna, and the severity of past exposures should be considered, the biological effects of RFR exposures are primarily determined based on the frequency of the emitter. "
+
+//Question #6
+arrQs[5][0] = 6;	//qID
+arrQs[5][1] = 1;	//qType
+arrQs[5][2] = 4;	//number of distracters
+arrQs[5][3] = "Which one of the following describes when an RFR assessment should be conducted?";		//qStem
+arrQs[5][4] = "When an emitter is identified that has the potential to produce RFR levels at or above the PEL.#When the strategic value of an RFR emitter used for mission operations needs to be determined. #When an unapproved technique for operating a low-powered RFR emitter is implemented.#When the appropriate PEL for a particular environment cannot be established by RFR personnel. ";	//distracters
+arrQs[5][5] = 1;		//Correct answer
+arrQs[5][6] = 0;
+arrQs[5][7] = 0 //User attemps for this question
+
+arrQs[5][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[5][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[5][8][1] = "Incorrect. In order to protect personnel from exposure to potentially harmful levels of RFR, BE must assess RFR systems for compliance with accepted PELs. ";		//First incorrect
+arrQs[5][8][2] = ""; //Final incorrect
+arrQs[5][8][3] = "You will perform an RFR risk assessment whenever you identify an emitter with the potential to produce RFR levels at or above the PEL.  This is done to establish a safe perimeter around the emitter.<br />"
+
+//Question #7
+arrQs[6][0] = 7;	//qID
+arrQs[6][1] = 1;	//qType
+arrQs[6][2] = 4;	//number of distracters
+arrQs[6][3] = "Which one of the following describes the ultimate goal for the analysis phase of the RFR risk assessment process?";		//qStem
+arrQs[6][4] = "Gather all pertinent information to determine the emitter’s hazard potential.#Examine existing controls in place to protect personnel from the emitter.#Determine a safe distance for personnel to work in relation to the emitter.#Ensure that new emitters will not cause adverse health effects to personnel.";	//distracters
+arrQs[6][5] = 3;		//Correct answer
+arrQs[6][6] = 0;
+arrQs[6][7] = 0 //User attemps for this question
+
+arrQs[6][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[6][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[6][8][1] = "Incorrect. Once it is determined that an RFR risk assessment will be conducted, the health threat must be properly identified, analyzed, and controlled. ";		//First incorrect
+arrQs[6][8][2] = ""; //Final incorrect
+arrQs[6][8][3] = "The ultimate goal for the analysis phase of the RFR risk assessment process is to determine a safe distance for personnel to work in relation to an emitter.  Before the analysis phase can occur, identification of potential RFR emitters must take place to gather the pertinent information about each emitter.  The final phase of the RFR risk assessment process is to control the RFR health threat by examining the present controls, defining the appropriate controls for the hazard, and determining protection requirements for workers and the general public. "
+
+//Question #8
+arrQs[7][0] = 8;	//qID
+arrQs[7][1] = 1;	//qType
+arrQs[7][2] = 4;	//number of distracters
+arrQs[7][3] = "<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><br />";		//qStem
+arrQs[7][4] = "0.0014 ft#135.3 ft#137.8 ft#1256.6 ft";	//distracters
+arrQs[7][5] = 3;		//Correct answer
+arrQs[7][6] = 0;
+arrQs[7][7] = 0 //User attemps for this question
+
+arrQs[7][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[7][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[7][8][1] = "Incorrect. Remember the estimated hazard distance is the distance from the antenna to the point where the power density equals the PEL. ";		//First incorrect
+arrQs[7][8][2] = ""; //Final incorrect
+arrQs[7][8][3] = "The estimated hazard distance (D<sub>pel</sub>) is 137.8 feet. <br />"
+
+//Question #9
+arrQs[8][0] = 9;	//qID
+arrQs[8][1] = 1;	//qType
+arrQs[8][2] = 4;	//number of distracters
+arrQs[8][3] = "Which one of the following is NOT a reason why an RFR overexposure investigation is conducted?";		//qStem
+arrQs[8][4] = "To identify operation deficiencies to avoid recurrence.#To identify if the radar unit is functioning properly.#To determine if the individual was, in fact, exposed.#To determine the severity of the exposure.";	//distracters
+arrQs[8][5] = 2;		//Correct answer
+arrQs[8][6] = 0;
+arrQs[8][7] = 0 //User attemps for this question
+
+arrQs[8][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[8][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[8][8][1] = "Incorrect. Remember an RFR overexposure or accident investigation is conducted whenever a report occurs of personnel potentially being overexposed to RFR. ";		//First incorrect
+arrQs[8][8][2] = ""; //Final incorrect
+arrQs[8][8][3] = "RFR overexposure or accident investigations are performed to determine whether the individual was exposed, to determine the severity of the exposure so proper medical assessments are performed, and to identify operation deficiencies to avoid recurrence.  They are not performed to identify if a radar unit is functioning properly. <br />"
+
+//Question #10
+arrQs[9][0] = 10;	//qID
+arrQs[9][1] = 1;	//qType
+arrQs[9][2] = 4;	//number of distracters
+arrQs[9][3] = "Which one of the following situations would NOT require control measures to be implemented?";		//qStem
+arrQs[9][4] = "Situations involving high-powered, hazardous emitters.#Situations where the PEL is exceeded for controlled areas.#Situations where the PEL is exceeded for uncontrolled areas.#Situations involving low-powered, non-hazardous emitters.";	//distracters
+arrQs[9][5] = 4;		//Correct answer
+arrQs[9][6] = 0;
+arrQs[9][7] = 0 //User attemps for this question
+
+arrQs[9][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[9][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[9][8][1] = "Incorrect. Remember, control decisions should address the unique factors surrounding the emitter. ";		//First incorrect
+arrQs[9][8][2] = ""; //Final incorrect
+arrQs[9][8][3] = "The only situations where RFR health threats do not require control measures are those involving low-powered, non-hazardous emitters.  Situations involving high-powered, hazardous emitters, situations where the PEL is exceeded for controlled areas, and situations where the PEL is exceeded for uncontrolled areas should all require some form of controls. "
+
+//****************************************************************
+
+function getRandom(topLimit) {   
+	return Math.floor(Math.random()*topLimit)
+}
+
+function setQOrder() {
+	// Set question order
+	document.getElementById("btnBegin").style.visibility = "hidden";
+	document.getElementById("lyscores").innerHTML ="Questions answered correctly: 0 of 10";	
+	if (!blnRandom)
+		qOrder = qOrder_seq;
+	else
+		doRandomization();
+}
+	
+function doRandomization() {
+	// Generate numberOfQuestoins unique random numbers
+	// initialization
+	arrTemp = new Array(nQs);
+		
+	for (i=0; i<nQs; i++) arrTemp[i]=-1
+		
+	// create a temp array of nQs unique random numbers
+	for (i=0; i<nQs; i++) {
+		for (j=0; j<100000; j++) {
+			blnFound = false;
+			intTemp = getRandom(nQs);
+			for (k=0; k<nQs; k++) {
+				if (arrTemp[k] == intTemp) {
+					blnFound = true;
+					break;
+				}
+			}
+			if (!blnFound) {
+				arrTemp[i] = intTemp;
+				break;
+			}
+		}
+	}
+
+	for (i=0; i<nQs; i++) {
+		k = arrTemp[i];
+		qOrder[i] = qOrder_seq[k];
+	}
+}
+
+function reInitialize() {
+	qIndex = 0;
+	var strTemp = "";
+	for (var i=0; i<nQs; i++) {
+		if (arrQs[qOrder[i]][7] < 2) strTemp = strTemp + qOrder[i] + ",";
+	}
+	strTemp = strTemp.substring(0, strTemp.length-1);
+	qOrder = strTemp.split(",");
+	nQtoShow = qOrder.length;
+	
+	writeQuestion(qOrder[0]);
+}
+	
+function itemSelection( qNum,I ) {
+	if (!qDisabled) {
+		hidecont();
+		var qType = arrQs[qNum][1];
+		var nItems = arrQs[qNum][2];
+		switch (qType) {
+			case 1:	//Multiple Choice
+				{
+					userAns = I;
+					blnChoiceMade = true;
+					for (var j=1; j<=nItems; j++) {
+						var g = eval("document.getElementById('img"+j+"').src");
+						var name = "img"+j;
+						var gnum = g.charAt(g.length-5)
+						var gfilename = getgname(g);
+						var gpath = getgpath(g)
+						if (j==I && gnum=="0" ) {
+							gfilename = gfilename.replace('_0','_2')	
+						} else if (j!=I && gnum=="2"  ) {
+							gfilename = gfilename.replace('_2','_0')
+						}
+						document.getElementById(name).src = gpath+gfilename;
+					}
+					break;
+				} //end of case 1
+	
+			case 2:
+				{
+					var blnSelected = arrUserAns[I-1];
+					var g = eval("document.getElementById('img"+I+"').src");
+					var name = "img"+I;
+					var gfilename = getgname(g);
+					var gpath = getgpath(g)
+					// toggle highlight
+					if (blnSelected == 1) {
+						arrUserAns[I-1] = 0;
+						gfilename = gfilename.replace('_2','_0');
+					} else  {
+						arrUserAns[I-1] = 1;
+						gfilename = gfilename.replace('_0','_2')
+					}
+						document.getElementById(name).src = gpath+gfilename;
+						//Make sure at least 1 choice has been made
+						blnChoiceMade = false;
+						for (j=0; j<nItems; j++) {
+							if (arrUserAns[j] == 1) {
+								blnChoiceMade = true;
+								break;
+							}
+						}
+						break;
+				}	// end of case 2
+		} //End of switch
+	} //end of !qDisabled		
+}
+
+function hidecont() {
+	document.getElementById('lydone').style.visibility = 'visible';
+	document.getElementById('lyfdbk').style.visibility = 'hidden';
+	document.getElementById("continue").style.visibility = "hidden";
+}
+
+function judgeInteraction(qNum) {
+ var strTemp = "";
+  if ( !blnChoiceMade ) {
+ 	document.getElementById("lyfdbk").innerHTML = arrQs[qNum][8][0];
+	document.getElementById("lyfdbk").style.visibility = "visible";
+	document.getElementById('lydone').style.visibility = 'hidden';
+  }else {
+	qDisabled = true;
+	var qType = arrQs[qNum][1];
+	var nItems = arrQs[qNum][2];
+	var triesUser = arrQs[qNum][7];
+	arrQs[qNum][7] = arrQs[qNum][7] + 1;
+
+	switch (qType) {
+		case 1:	//Multiple Choice
+			{
+				qStatus = 0;
+				arrQs[qNum][6] = userAns;
+				correctAns = arrQs[qNum][5];
+				if (correctAns == userAns) {
+					qStatus = 1;
+					arrQs[qNum][7] = 2;
+					strTemp = "Correct! &nbsp;" + arrQs[qNum][8][3];
+					
+				} else if (arrQs[qNum][7] < 2) {
+					strTemp = arrQs[qNum][8][1];
+				} else {
+					strTemp = "Incorrect. " + arrQs[0][8][2] + arrQs[qNum][8][3];
+				}
+				break
+			}	//End of case 1
+		case 2:	//Multiple Answer
+			{
+				qStatus = 1;
+				arrQs[qNum][6] = arrUserAns.join();
+				arrCorrectAns = new Array();
+				arrCorrectAns = arrQs[qNum][5].split(",");
+				for (var i=0; i<nItems; i++) {
+					if (arrCorrectAns[i] != arrUserAns[i]) {
+						qStatus = 0;
+						break;
+					}
+				}
+				if (qStatus==1) {
+					arrQs[qNum][7] = 2;
+					strTemp = "Correct! &nbsp;" + arrQs[qNum][8][3];
+				} else if (arrQs[qNum][7] < 2) {
+					strTemp = arrQs[qNum][8][1];
+				} else {
+					strTemp = "Incorrect. "+ arrQs[1][8][2] + arrQs[qNum][8][3];
+				}
+				break;
+			}	// End of case 2
+	}	//End of switch
+	
+	
+//save info.
+	qIndex += 1;	//increment question
+	nTotalCorrect += qStatus;
+// update the graphic
+	if (qStatus == 1 && nTotalCorrect < nQs-2) {
+		var cNum = nTotalCorrect;
+		var name = "lydrop"+cNum;
+		var prename = "lydrop" + (nTotalCorrect-1);
+		//alert(prename)
+		var d = document.getElementById(name).style;
+		d.visibility = "visible"
+		if (nTotalCorrect >= 2 ) {
+			var dpre = document.getElementById(prename).style;
+			dpre.visibility = "hidden"
+		}
+
+	}	
+//==show feedback
+	if (isLastQ() && blnLastPage) {
+		strTemp = strTemp + "Select Forward to continue."  //arrQs[qNum][8][iFdbkTxt];
+		document.getElementById("continue").style.visibility = "hidden";
+		document.getElementById("Next").style.visibility = "visible";
+		document.getElementById("Prompt").innerHTML = "Select Forward to continue.";
+	} else if (isLastQ() && nTotalCorrect < 7) {
+		strTemp = strTemp + "Select Forward to continue."  //arrQs[qNum][8][iFdbkTxt];
+		document.getElementById("continue").style.visibility = "hidden";
+		document.getElementById("Next").style.visibility = "visible";
+		document.getElementById("Prompt").innerHTML = "Select Forward to continue.";
+	} else if (isLastQ() ) {
+		strTemp = strTemp+ " Select Continue."//arrQs[qNum][8][iFdbkTxt];		
+		document.getElementById("continue").style.visibility = "visible";
+		triesLimit = 1
+	} else {
+		strTemp = strTemp+ " Select Continue."//arrQs[qNum][8][iFdbkTxt];		
+		document.getElementById("continue").style.visibility = "visible";
+	}
+	document.getElementById("lyfdbk").innerHTML = strTemp
+	document.getElementById("lydone").style.visibility = "hidden";
+	document.getElementById("lyfdbk").style.visibility = "visible";
+
+
+	
+	document.getElementById("lyscores").innerHTML ="Questions answered correctly: " +nTotalCorrect+ " of 10";
+	if ( (qStatus == 1) || (arrQs[qNum][7] > 1) ) finalStep(qNum)
+	
+  }	//End of choice made
+}
+
+function finalStep(qNum) {
+	var nItems = arrQs[qNum][2];
+	var qType = arrQs[qNum][1];
+	var iTemp;
+	for (var i=1; i<=nItems; i++) {
+		if (qType==1) {
+			iTemp=i;
+		}else{
+			iTemp=1;
+			correctAns = arrCorrectAns[i-1];
+			userAns = arrUserAns[i-1]
+		}
+		var g = eval("document.getElementById('img"+i+"').src");
+		var name = "img"+i;
+		var gnum = g.charAt(g.length-5)
+		var gfilename = getgname(g);
+		var gpath = getgpath(g)
+		if (correctAns == iTemp) {
+			gfilename = gfilename.replace('_0','_2')	
+		} else if (userAns == iTemp) {
+			gfilename = gfilename.replace('_2','_3')
+		} else {
+			gfilename = gfilename.replace('_0','_3')
+		}
+		document.getElementById(name).src = gpath+gfilename;
+	}
+	
+	
+	//if (!isLastQ()) {
+		var d=document.getElementById("lyfdbk").style
+//		if (arrQs[qNum][0]==7) d.height = "130px";
+////		else if (arrQs[qNum][0]==6||arrQs[qNum][0]==7||arrQs[qNum][0]==8) d.height = "auto";
+//		else d.height = "auto";
+//		d.top = "-50px";
+		//document.getElementById("continue").style.top = "-35px";
+	//}
+	
+}
+
+function nextQuestion() {
+
+	if (qIndex < nQtoShow) writeQuestion(qOrder[qIndex])
+	else if (triesLimit==1) {
+	document.getElementById("exitMessage").innerHTML="<p>Congratulations! You have successfully completed this challenge!</p>  "
+	document.getElementById("exitbtnExit").style.left="388px"
+	document.getElementById("Prompt").innerHTML="Select Exit Progress Check"
+	MM_showHideLayers('exitProgress','','show', 'exitMessage','','show', 'exitbtnCont','','hide', 'exitbtnExit','','show', 'greenbar','hide', 'redbar','hide');
+	document.getElementById("continue").style.visibility = "hidden"
+	}
+	else reInitialize()
+}
+
+function isLastQ() {
+	var nTemp = 0;
+	for (var i=0; i<nQs; i++) {
+		if (arrQs[i][7] < 2) {
+			nTemp += 1;
+		}
+	}
+	if (nTemp == 0) return true
+	else return false
+}
+
+
+//****************************************
+function writeQuestion(qNum) {
+	//reset variables
+	//if (qIndex == 0 && arrQs[qNum ][9] ==1 && nTotalCorrect < nQs) alert ("You missed "+ (nQs-nTotalCorrect) + " questions. Now, you're taking second attempt.  ")
+
+	userAns = 0;
+	qStatus = 0;	//question status. 1=correct, 0=incorrect
+	blnChoiceMade = false;
+	qDisabled = false;
+	var nItems = arrQs[qNum][2];
+	var strHTML = "";
+	var gbtnName;
+	var gformat;
+	var strTemp
+	if (arrQs[qNum][1]==1) {
+		gbtnName="mc_circle_";
+		gformat="_0.png";
+		strTemp = "Select the correct answer, and then click Done."
+	}else{
+		gbtnName="mc_"
+		gformat="_0.jpg"
+		for (var j=0; j<nItems; j++) arrUserAns[j] = 0
+		strTemp = "Select all that apply, and then click Done."
+	}
+		if ( nTotalCorrect == 7 && blnLastPage==false ) {
+			MM_showHideLayers('exitProgress','','show', 'exitMessage','','show', 'exitbtnCont','','show', 'exitbtnExit','','show', 'greenbar','','hide', 'redbar','','hide');
+			document.getElementById("Prompt").innerHTML = "";
+			lastPprompt = strTemp 
+		} else {
+			document.getElementById("Prompt").innerHTML = strTemp;
+		}
+//	//var fdbkStyle;
+//	var dontStyle;
+//	 if (qNum==0) {
+//		
+//		dontStyle = "top:-40px;"
+//	 }else{
+////	 	fdbkStyle = " top:-30px; height:auto; overflow:hidden";
+//		dontStyle = "top:-5px;"
+//	 }
+	//alert(qNum+", "+fdbkStyle)
+	if (arrQs[qNum][0] != 8) {
+	distracters = new Array(nItems);
+	distracters = arrQs[qNum][4].split("#");
+	
+	for (var i=1; i<=nItems; i++) {
+		//table cells 
+		strHTML = strHTML + "<tr><td width='10%'><a href='javascript:itemSelection("+qNum+","+ i +")'><img src='../../sysimages/"+gbtnName+arrLetters[i]+gformat+"' alt='Distracter "+arrLetters[i].toUpperCase()+"' id='img"+i+"' name='img"+i+"' width'38' height='38' border='0' /></a></td>"
+		strHTML = strHTML + "<td width='355' class='distrText'>"+ distracters[i-1] +"</td></tr>"	
+	}	
+	strHTML = "<p>"+arrQs[qNum][3]+"</p><table width='85%' align='center' border='0' cellspacing='3' cellpadding='3'>" + strHTML + "<tr><td>&nbsp;</td><td>&nbsp;</td></tr></table>"
+	} else {
+	strHTML = "<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>"
+	}
+//done button	
+	strHTML = strHTML + "<div id='lydone' style='position:relative; text-align: center;'> <a href='javascript:judgeInteraction("+qNum+")'  onMouseOver='MM_swapImage(&quot;imgdone&quot;,&quot;&quot;,&quot;../../sysimages/done_2.jpg&quot;,1)' onMouseOut='MM_swapImgRestore()'><img src='../../sysimages/done_0.jpg' name='imgdone' id='imgdone' alt='Done' width='90' height='36' border='0' /></a></div>"
+	
+	strHTML = strHTML + "<div id='lyfdbk' class='txtfdbk' style='position:relative; top:-50; text-align: center; overflow:auto; visibility:hidden;'></div>"
+	
+	strHTML = strHTML + "<div id='continue' style='position:relative; top:-35px; text-align: center; visibility:hidden;'><a id='fdbkLink'  href='javascript:nextQuestion()' onMouseOver='MM_swapImage(&quot;continue&quot;,&quot;&quot;,&quot;../../sysimages/cont_2.jpg&quot;,1)' onMouseOut='MM_swapImgRestore()'>"
+	strHTML = strHTML + "<img src='../../sysimages/cont_0.jpg' alt='Continue button' name='continue' border='0'>"
+	strHTML = strHTML + "</a></div>"
+
+	document.getElementById("question").innerHTML = strHTML;
+	if (arrQs[qNum][0]==8) {
+		if (arrQs[7][7] == 1) {
+			var g = eval("document.getElementById('img"+arrQs[7][6]+"').src");
+			var name = "img"+arrQs[7][6];
+			var gnum = g.charAt(g.length-5)
+			var gfilename = getgname(g);
+			var gpath = getgpath(g)
+			gfilename = gfilename.replace('_2','_0')
+			document.getElementById(name).src = gpath+gfilename;
+		}
+		document.getElementById("lytable").style.visibility = "visible";document.getElementById("lytable2").style.visibility = "visible"
+	} else {document.getElementById("lytable").style.visibility = "hidden";document.getElementById("lytable2").style.visibility = "hidden"}
+}
+
+function hideexitLy() {
+	MM_showHideLayers('exitProgress','','hide', 'exitMessage','','hide', 'exitbtnCont','','hide', 'exitbtnExit','','hide', 'greenbar','', 'show', 'redbar','', 'show'); 
+	document.getElementById("Prompt").innerHTML = lastPprompt;
+	blnLastPage = true;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad="onpage();MM_preloadImages('../../sysimages/begin_2.jpg','../../sysimages/cont_2.jpg','../../sysimages/exitpgrcheck_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  <p>NIR: Radio Frequency Radiation (RFR) / Progress Check </p>
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" --><!-- InstanceEndEditable --></div>
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Progress Check<!-- InstanceEndEditable --></div>
+<div id="ContentExp" ><!-- InstanceBeginEditable name="EditContents" --> 
+  <div id="btnBegin" style="position:absolute; left:367px; top:125px; width:60px; height:20px; z-index:3;">
+<a href="javascript:setQOrder(); writeQuestion(qOrder[0]);" onMouseOver="MM_swapImage('btnB','','../../sysimages/begin_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/begin_0.jpg" alt="Begin button" name="btnB" width="90" height="36" border="0" id="btnB" /></a></div>
+  
+<div id="question" style="position:absolute; width:835px; height:233px;">
+  <p>Your  challenge is to answer enough questions correctly to move away from the radar emitter into the safe zone.&nbsp;&nbsp; If you do  not reach the safe zone on your first attempt at the questions, you  will be given an opportunity to try any questions you missed one more time.</p>
+  <p>Select  Begin to start.&nbsp;</p>
+</div>
+<!-- InstanceEndEditable --></div>
+<!-- InstanceBeginEditable name="others" -->
+<div id="lyscores" style="position:absolute; left:636px; top:92px; width:302px; height:40px; font-weight: bold; color:#FFFFFF; font-size: 13px; z-index:0"></div>
+<div id="pageGraphic" style="position:absolute; top:313px; left:98px; width:431px; height:303px; z-index: -1;"  >
+<img src="images/progresscheck_unit10_rfr_back_vers2.jpg" width="749" height="272" /></div>
+
+<div id="lytable" style="position:absolute; top:132px; left:54px; width:845px; height:130px; scrollbar-arrow-color: #000000; scrollbar-base-color:#63570d; visibility: hidden;">
+  <p>Use the following information to calculate the Estimated Hazard  Distance (D<sub>pel</sub>).</p>
+  <table width="30%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td colspan="3" valign="top"><img src="images/3rfr06a_11_clip_image002.gif" width="222" height="68" align="left" /></td>
+    </tr>
+    <tr>
+      <td colspan="3" valign="top"><ul>
+          <li><em>PEL = 10 mW/cm<sup>2</sup></em></li>
+          <li><em>P<sub>avg</sub> = 1400 W</em></li>
+          <li><em>G<sub>abs</sub></em><em> = 158</em></li>
+        </ul></td>
+    </tr>
+  </table>
+</div>
+ <div id="lytable2" style="position:absolute; top:171px; left:405px; width:445px; height:130px; visibility: hidden;"> 
+   <table width="100%" border="0" cellspacing="3" cellpadding="3">
+    <tr>
+      <td width="11%"><a href="javascript:itemSelection(7,1)"><img src="../../sysimages/mc_circle_a_0.png" alt="Distracter A" name="img1" width="38" height="38" border="0" id="img1" /></a></td>
+      <td width="89%"><span class="distrText">0.0014 ft</span></td>
+    </tr>
+    <tr>
+      <td><a href="javascript:itemSelection(7,2)"><img src="../../sysimages/mc_circle_b_0.png" alt="Distracter B" name="img2" width="38" height="38" border="0" id="img2" /></a></td>
+      <td><span class="distrText">135.3 ft</span></td>
+    </tr>
+    <tr>
+      <td><a href="javascript:itemSelection(7,3)"><img src="../../sysimages/mc_circle_c_0.png" alt="Distracter C" name="img3" width="38" height="38" border="0" id="img3" /></a></td>
+      <td><span class="distrText">137.8 ft</span></td>
+    </tr>
+    <tr>
+      <td><a href="javascript:itemSelection(7,4)"><img src="../../sysimages/mc_circle_d_0.png" alt="Distracter D" name="img4" width="38" height="38" border="0" id="img4" /></a></td>
+      <td><span class="distrText">1256.6 ft</span></td>
+    </tr>
+  </table>
+</div>
+
+<!--drops (small) graphics layer-->
+
+<div id="exitProgress" style="background-image:url(../../sysimages/background.jpg); background-repeat:no-repeat; position:absolute; width:911px; left: 34px; top: 83px; height: 514px; visibility: hidden;">
+<div id="exitMessage" style="position:absolute; top:152px; left:191px; width:535px">
+<p>Congratulations! You have successfully completed this challenge!  Do you want to keep going and try the next question anyway?</p></div>
+<div id="exitbtnCont" style="position:absolute; width:auto; left:307px; top:286px"><a href="javascript:hideexitLy()" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('imgbtnCont','','../../sysimages/cont_2.jpg',1)"><img src="../../sysimages/cont_0.jpg" alt="Continue" name="imgbtnCont" width="90" height="36" border="0" id="imgbtnCont" /></a></div>
+<div id="exitbtnExit" style="position:absolute; width:auto; left:466px; top:286px"><a href="javascript:findNext()" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('imgbtnExit','','../../sysimages/exitpgrcheck_2.jpg',1)"><img src="../../sysimages/exitpgrcheck_0.jpg" name="imgbtnExit" width="164" height="36" border="0" id="imgbtnExit" /></a></div>
+</div>
+
+<div id="lydrop1" style="position:absolute; width:50px; top: 491px; height: 60px; left: 225px; visibility: hidden; z-index: -1;"><img src="images/soldier_quest1.png" name="pc1" width="41" height="91" id="pc1" /></div>
+<div id="lydrop2" style="position:absolute; width:48px; left: 316px; top: 491px; visibility: hidden; z-index: -1;"> <img src="images/soldier_quest2.png" name="pc2" width="41" height="91" id="pc2" /></div>
+<div id="lydrop3" style="position:absolute; width:45px; left: 410px; top: 491px; visibility: hidden; z-index: -1;"><img src="images/soldier_quest3.png" name="pc3" width="41" height="91" id="pc3" /></div>
+<div id="lydrop4" style="position:absolute; width:48px; left: 500px; top: 491px; visibility: hidden; z-index: -1;"><img src="images/soldier_quest4.png" name="pc4" width="41" height="91" id="pc4" /></div>
+<div id="lydrop5" style="position:absolute; width:48px; left: 592px; top: 491px; visibility: hidden; z-index: -1;"><img src="images/soldier_quest5.png" name="pc5" width="41" height="91" id="pc5" /></div>
+<div id="lydrop6" style="position:absolute; width:48px; left: 684px; top: 491px; visibility: hidden; z-index: -1;"><img src="images/soldier_quest6.png" name="pc6" width="41" height="91" id="pc6" /></div>
+<div id="lydrop7" style="position:absolute; width:48px; left: 777px; top: 491px; visibility: hidden; z-index: -1;"><img src="images/soldier_quest7.png" name="pc7" width="41" height="91" id="pc7" /></div>
+
+<div id="snowMapDot" style="position:absolute; top:35px; left:768px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select Begin to start.<!-- InstanceEndEditable --></div>
+
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+
+<div id="lynav">
+      <ul id="navigation" name="navigation">
+        <!-- InstanceBeginEditable name="maps" -->
+
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="#" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf"  target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+	
+
+</body>
+<!-- InstanceEnd --></html>

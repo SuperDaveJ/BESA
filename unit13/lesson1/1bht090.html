@@ -1,0 +1,143 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/lesson_screen_back_sand.jpg);
+}
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+
+var uC;
+function onpage() {
+	uC = getQueryValue('uC');	//user correct from previous page
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "1bht100.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "1bht080.html"
+	goURL(pgURL);
+}
+
+function showaudiot() {
+}
+
+//===popup text ========
+var arrPopup = new Array(4)
+arrPopup[0]  = "<p><strong>Minimal or No Known Hazard</strong></p><p >Class 1 agents are unlikely to cause human disease  and thus can generally be handled safely without special apparatus or equipment.</p>"
+arrPopup[1]  = "<p><strong>Low Risk</strong></p><p >Class 2 agents may produce diseases of varying degrees of severity, but normally can be contained by good work practices.  Some examples of Class 2 agents include the <em>Legionella</em> bacteria and the influenza virus.</p>"
+arrPopup[2]  = "<p><strong>Moderate Risk</strong></p><p >Class 3 agents require special handling and containment.  Protective clothing, decontamination procedures, controlled access, and engineering controls are minimal conditions for containment of these agents.  Some examples of Class 3 agents include bacteria such as <em>Yersinia pestis</em> and <em>Mycobacterium tuberculosis</em> and fungi such as <em>Histoplasma capsulatum</em>.</p>"
+arrPopup[3]  = "<p><strong>Highly Infectious and/or Capable of Causing Debilitating or Life Threatening Disease</strong></p><p >Class 4 agents may be handled only under conditions of total containment, and the most stringent precautions must be taken to prevent the spread of the agent outside the facility.  The U.S. Army Medical Research Institute of Infectious Diseases (USAMRIID) is the only laboratory in the Department of Defense (DoD) equipped to safely study Class 4 agents.  Examples of Class 4 agents are the Ebola virus, Lassa fever virus, Crimean/Congo hemorrhagic fever, and Variola major (smallpox).</p>"
+
+function showPopup(nT) {
+	document.getElementById("onPageText").innerHTML = arrPopup[nT-1];
+	eval("MM_showHideLayers('hily"+nT+"','','show')");
+}
+
+//-->
+</script>
+
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Biological Health Threats / Identifying and Analyzing Biological Health Threats
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 9 of 15<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Classes of Biological Health Threats<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" --> 
+  <p align="left">To recognize  biological health threats, you must understand the level of risk they may pose.  &nbsp;Select the parts of the graphic to learn  about the four classes of biological health threats.</p>
+  
+<div id="onPageText" style="position:absolute; left:55px; top:106px; width:371px; height:150px;"></div>
+  
+  <!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="pageGraphic" style="position:absolute; top:135px; left:68px; width:346px; height:293px; z-index: -1;"><img src="images/1bht090a.jpg" alt="Graphic of a pyramid with 4 selectable tiers, labeled from bottom to top: Class 1, Class 2, Class 3, and Class 4." width="864" height="396" border="0" usemap="#Map" />
+<map name="Map" id="Map">
+  <area shape="rect" coords="406,302,837,358" href="javascript:showPopup(1)" alt="Graphic of a pyramid with 4 selectable tiers, labeled from bottom to top: Class 1, Class 2, Class 3, and Class 4." />
+  <area shape="rect" coords="465,215,772,271" href="javascript:showPopup(2)" alt="Graphic of a pyramid with 4 selectable tiers, labeled from bottom to top: Class 1, Class 2, Class 3, and Class 4." />
+  <area shape="rect" coords="512,129,721,182" href="javascript:showPopup(3)" alt="Graphic of a pyramid with 4 selectable tiers, labeled from bottom to top: Class 1, Class 2, Class 3, and Class 4." />
+  <area shape="rect" coords="566,8,676,104" href="javascript:showPopup(4)" alt="Graphic of a pyramid with 4 selectable tiers, labeled from bottom to top: Class 1, Class 2, Class 3, and Class 4." />
+</map>
+</div>
+
+<div id="hily1" style="position:absolute; top:424px; left:466px; width:194px; height:78px; visibility: hidden;"><a href="javascript:showPopup(1)" ><img src="images/1bht090e.jpg" alt="Graphic of a pyramid with 4 selectable tiers, labeled from bottom to top: Class 1, Class 2, Class 3, and Class 4." width="447" height="71" border="0" /></a></div>
+
+<div id="hily2" style="position:absolute; top:346px; left:522px; width:100px; height:64px; visibility: hidden;"><a href="javascript:showPopup(2)"><img src="images/1bht090d.jpg" alt="Graphic of a pyramid with 4 selectable tiers, labeled from bottom to top: Class 1, Class 2, Class 3, and Class 4." width="337" height="61" border="0" /></a></div>
+
+<div id="hily3" style="position:absolute; top:262px; left:576px; width:268px; height:80px; visibility: hidden;"><a href="javascript:showPopup(3)"><img src="images/1bht090c.jpg" alt="Graphic of a pyramid with 4 selectable tiers, labeled from bottom to top: Class 1, Class 2, Class 3, and Class 4." width="226" height="57" border="0" /></a></div>
+
+<div id="hily4" style="position:absolute; top:140px; left:632px; width:100px; height:64px; visibility: hidden;"><a href="javascript:showPopup(4)"><img src="images/1bht090b.jpg" alt="Graphic of a pyramid with 4 selectable tiers, labeled from bottom to top: Class 1, Class 2, Class 3, and Class 4." width="115" height="101" border="0" /></a></div>
+
+<div id="snowMapDot" style="position:absolute; top:32px; left:767px;">
+<img src="../../sysimages/map_dot.png" border="0" />
+</div>
+
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select the components of the graphic to learn more. Then click Forward to continue.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+        
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

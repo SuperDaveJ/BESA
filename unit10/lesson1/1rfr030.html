@@ -1,0 +1,185 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<script language="JavaScript" type="text/javascript">
+<!--
+
+
+function onpage() {
+
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "1rfr040.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "1rfr020.html"
+	goURL(pgURL);
+}
+
+var arrPop = new Array(8);
+
+for (var i=0; i<8; i++) {
+	arrPop[i] = new Array(2);
+}
+
+arrPop[0][0] = "<p class='popTitle'>Very Low Frequency (VLF)</p> <p class='pop'>VLF RFR occurs between 3 and 30 kHz.  Sources include:</p><ul><li>Hand-held radio communications.</li><li>Long-range navigation.</li></ul>"
+arrPop[0][1] = "Photo of a hand-held radio in use."
+
+arrPop[1][0] = "<p class='popTitle'>Low Frequency (LF)</p> <p class='pop'>LF RFR occurs between 30 and 300 kHz. Sources include:</p><ul><li>Navigation aids.</li><li>Marine and long-range communications.</li></ul>"
+arrPop[1][1] = "Photo of an antenna on a large ship."
+
+arrPop[2][0] = "<p class='popTitle'>Medium Frequency (MF)</p> <p class='pop'>MF RFR occurs between 300 and 3,000 kHz (3MHz).  Sources include:</p><ul><li>AM radio.</li><li>Amateur radio.</li><li>Navigation.</li></ul>"
+arrPop[2][1] = "Photo of amateur radio equipment."
+
+arrPop[3][0] = "<p class='popTitle'>High Frequency (HF)</p> <p class='pop'>HF RFR occurs between 3 and 30 MHz.  Sources include:</p><ul><li>CB radios.</li><li>&quot;Over the horizon&quot; backscatter radars.</li></ul>"
+arrPop[3][1] = "Photo of a CB radio."
+
+arrPop[4][0] = "<p class='popTitle'>Very High Frequency (VHF)</p> <p class='pop'>VHF RFR occurs between 30 and 300 MHz.  Sources include:</p><ul><li>Long-range communication applications such as satellite detection.</li><li>FM radio.</li><li>Fire and police radios.</li></ul>"
+arrPop[4][1] = "Photo of a satellite dish."
+
+arrPop[5][0] = "<p class='popTitle'>Ultra High Frequency (UHF)</p> <p class='pop'>UHF RFR occurs between 300 and 3,000 MHz.  Sources include:</p><ul><li>Long-range surveillance for missiles and spacecraft.</li><li>Aircraft radar systems.</li></ul>"
+arrPop[5][1] = "Photo of a radar unit."
+
+arrPop[6][0] = "<p class='popTitle'>Super High Frequency (SHF)</p> <p class='pop'>SHF RFR occurs between 3 and 30 GHz.  Sources include:</p><ul><li>Police speed guns.</li><li>Long-range weather radar.</li><li>Military 3-D radar.</li><li>Height-finding radar.</li><li>Satellite communications.</li></ul>"
+arrPop[6][1] = "Photo of a police speed gun."
+
+arrPop[7][0] = "<p class='popTitle'>Extremely High Frequency (EHF)</p> <p class='pop'>EHF RFR occurs between 30 and 300 GHz.  Sources include:</p><ul><li>Satellite communication systems.</li><li>Radio relay.</li><li>Navigation aids.</li><li>Ultrasonic cleaning.</li></ul>"
+arrPop[7][1] = "Photo of a satellite."
+
+function showaudiot() {
+}
+
+function show(iNum) {
+document.getElementById("pageGraphic2").style.visibility = "visible"
+var lyname;
+for(i=0; i<8; i++) {
+	lyname = "lyg"+(i+1)
+	document.getElementById(lyname).style.visibility = "hidden"
+}
+lyname = "lyg"+iNum
+	document.getElementById(lyname).style.visibility = "visible"
+	document.getElementById("popTxt").innerHTML = arrPop[iNum-1][0];
+	document.getElementById("imgHolder").src = "images/1rfr030_"+(iNum-1)+".jpg";
+	document.getElementById("imgHolder").alt = arrPop[iNum-1][1];
+}
+
+//-->
+</script>
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/lesson_screen_back_sand.jpg);
+}
+#Content{width:870px}
+-->
+</style>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  NIR: Radio Frequency Radiation (RFR)  / Principles of Radio Frequency Radiation
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 3 of 5 <!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Subcategories of RFR Energy<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" --> 
+  <p>RFR includes several  subcategories that are determined based on their frequency ranges and  applications.</p>
+  <!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="pageGraphic" style="position:absolute; top:172px; left:183px; width:596px; height:173px;">  <img src="images/1rfr030a.jpg" alt="Graphic of the electromagnetic spectrum zoomed in on the RFR region." width="601" height="183" border="0" usemap="#Map" />
+<map name="Map" id="Map">
+<area shape="rect" coords="58,64,108,121" href="javascript:show(1)"  />
+<area shape="rect" coords="112,64,164,120" href="javascript:show(2)"   />
+<area shape="rect" coords="167,64,216,118" href="javascript:show(3)"  />
+<area shape="rect" coords="220,64,272,119" href="javascript:show(4)"  />
+<area shape="rect" coords="276,65,329,118" href="javascript:show(5)"   />
+<area shape="rect" coords="331,66,378,117" href="javascript:show(6)"   />
+<area shape="rect" coords="383,67,436,118" href="javascript:show(7)"   />
+<area shape="rect" coords="438,65,491,118" href="javascript:show(8)"   />
+</map></div>
+
+<div id="lyg1" style="position:absolute; top:240px; left:245px; width:50px; height:73px; visibility: hidden;"><img src="images/1rfr030b.jpg" alt="Graphic organizer representing the 5 steps for surveying RAM for shipment or Transport." width="43" height="47" border="0" /></div>
+
+<div id="lyg2" style="position:absolute; top:240px; left:300px; width:50px; height:73px; visibility: hidden;"><img src="images/1rfr030c.jpg" alt="Graphic organizer representing the 5 steps for surveying RAM for shipment or Transport." width="43" height="47" border="0" /></div>
+
+<div id="lyg3" style="position:absolute; top:240px; left:354px; width:50px; height:73px; visibility: hidden;"><img src="images/1rfr030d.jpg" alt="Graphic organizer representing the 5 steps for surveying RAM for shipment or Transport." width="43" height="47" border="0" /></div>
+
+<div id="lyg4" style="position:absolute; top:240px; left:408px; width:50px; height:73px; visibility: hidden;"><img src="images/1rfr030e.jpg" alt="Graphic organizer representing the 5 steps for surveying RAM for shipment or Transport." width="43" height="47" border="0" /></div>
+
+<div id="lyg5" style="position:absolute; top:240px; left:463px; width:50px; height:73px; visibility: hidden;"><img src="images/1rfr030f.jpg" alt="Graphic organizer representing the 5 steps for surveying RAM for shipment or Transport." width="43" height="47" border="0" /></div>
+
+<div id="lyg6" style="position:absolute; top:240px; left:516px; width:50px; height:73px; visibility: hidden;"><img src="images/1rfr030g.jpg" alt="Graphic organizer representing the 5 steps for surveying RAM for shipment or Transport." width="43" height="47" border="0" /></div>
+
+<div id="lyg7" style="position:absolute; top:240px; left:571px; width:50px; height:73px; visibility: hidden;"><img src="images/1rfr030h.jpg" alt="Graphic organizer representing the 5 steps for surveying RAM for shipment or Transport." width="43" height="47" border="0" /></div>
+
+<div id="lyg8" style="position:absolute; top:240px; left:626px; width:50px; height:73px; visibility: hidden;"><img src="images/1rfr030j.jpg" alt="Graphic organizer representing the 5 steps for surveying RAM for shipment or Transport." width="43" height="47" border="0" /></div>
+
+<div id="popTxt" style="position:absolute; top:371px; left:238px; width:424px; height:189px; visibility:visible; overflow: auto; scrollbar-arrow-color: #000000; scrollbar-base-color:#63570d;"></div>
+
+<div id="pageGraphic2" style="position:absolute; top:365px; left:665px; width:154px; height:173px; visibility: hidden;"><img src="images/1rfr030k.jpg" alt="Collage of a hand-held radio and a cell phone." name="imgHolder" id="imgHolder" /></div>
+
+<div id="snowMapDot" style="position:absolute; top:35px; left:768px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select each component of the graphic to learn more, and then click Forward to continue.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

@@ -1,0 +1,181 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style>
+	/*body { background: url(../../sysimages/scenario_city.jpg) no-repeat; }*/
+	#Content { 
+		width:870px; 
+	}
+body { background: url(../../sysimages/scenario_sand.jpg) no-repeat; }
+</style>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+var uC;
+function onpage() {
+	uC = getQueryValue('uC');	//user correct from previous page
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	if (uC == 0) {
+		var pgURL = "3rfr090.html?uT=1"
+	} else {
+		var pgURL = "3rfr100.html"		//set user tries
+	}
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "3rfr090.html"
+	goURL(pgURL);
+}
+function showaudiot(){
+}
+
+
+function hidePopups() {
+	MM_showHideLayers('tab1','','hide', 'tab2','','hide', 'tab3','','hide', 'hlB1','','hide', 'hlB2','','hide', 'hlB3','','hide');
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('images/3rfr090aa_2.jpg','images/3rfr090ab_2.jpg','images/3rfr090ac_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+NIR: Radio Frequency Radiation (RFR) / RFR Risk Assessment<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 9a of 12<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Selecting RFR Measurement Survey Equipment<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" --> 
+
+  <p>Before beginning an actual survey, you&rsquo;ll need to  determine the monitoring equipment needed.&nbsp;  If the appropriate surveying equipment is not selected, the results from  the meter will not be accurate.&nbsp;  Furthermore, the person conducting the monitoring could be exposed to  potentially harmful levels of RFR because the meter may indicate levels of RFR  lower than what is actually present. When selecting monitoring equipment for RFR  surveys, you should consider the frequency range of the probe, the power  density of the emitter, and whether you are monitoring the E- or H-Field of the  emitter.&nbsp; Select each tab to learn more  about selecting RFR measurement survey equipment.</p>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<!-- tab background image Layers -->
+<div id="tabImg" style="position:absolute; left:44px; top:234px; width:800px; height:200px; z-index:-1;">
+<img src="images/3rfr090ad.jpg" width="888" height="307" border="0" /></div>
+<!-- image of "HRA Process" Layers -->
+<!-- tab 1 Layers -->
+<div id="tab1" style="position:absolute; top:297px; left:82px; width:760px; height:272px; visibility: hidden">
+  <p ><strong>Frequency Range of Equipment</strong></p>
+    <p>The first consideration for equipment selection is  the frequency range for the probe being used.&nbsp;  The frequency range is printed on the handle of the probe.</p>
+    <p>It is very important to select a probe that monitors  the frequencies of the emitter being surveyed.&nbsp;  If the proper probe is not selected, the data returned will not be  accurate. </p>
+</div>
+<!--  tab 2 Layers -->
+<div id="tab2" style="position:absolute; top:297px; left:70px; width:848px; height:222px; visibility: hidden; overflow: auto; scrollbar-arrow-color: #000000; scrollbar-base-color:#63570d;">
+  <p ><strong>Power Density of Emitter</strong></p>
+    <p>The second consideration for selecting the  appropriate equipment is the power density of the emitter.&nbsp; You must determine whether the probe can  withstand the RFR being emitted.</p>
+    <p>Probes and meters used to monitor RFR are very  sensitive to overload.&nbsp; Meters do not  have to be on or the probe connected to the meter for burnout to occur.&nbsp; Pulsed RFR systems pose the greatest risk for  probe burnout because of the slow response of both the meter and probe to take  measurements.</p>
+    <p>When surveying continuous wave systems, preventing  probe burnout is as simple as watching the meter to ensure it does not exceed  the full scale.&nbsp; However, to <a href="3rfr09a_01.html?TB_iframe=true&amp;width=443&amp;height=277" class="thickbox" title="">prevent probe burnout</a> on pulsed wave systems; you should use the <a href="3rfr09a_02.html?TB_iframe=true&amp;width=561&amp;height=395" class="thickbox" title=""> probe burnout  calculation</a>.  </p>
+  
+</div>
+
+<div id="tab3" style="position:absolute; top:297px; left:78px; width:816px; height:219px; visibility: hidden">
+  <p><strong>E- or H-Field of Emitter</strong></p>
+  <p>The third consideration for equipment selection is  whether the E-Field or H-Field is being monitored.</p>
+  <p>The E-Field is  the electronic field component of an electro-magnetic wave measured in  Volts/Meter. &nbsp;H-Field is the magnetic field component of an electromagnetic wave measured in Amps/Meter.</p>
+  <p>You will most commonly monitor the E-Field because  it is the more hazardous of the two fields.&nbsp;&nbsp;&nbsp; </p>
+</div>
+<!-- tab 2 Layers -->
+
+<div id="hlB1" style="position:absolute; left:459px; top:241px; width:50px; height:20px; z-index:11; visibility:hidden;">
+<img src="images/3rfr090aa_2.jpg" alt="Selectable tab labeled &ldquo;Identify&rdquo;" border="0" /></div>
+<div id="hlB2" style="position:absolute; left:604px; top:241px; width:50px; height:20px; z-index:11; visibility:hidden;">
+<img src="images/3rfr090ab_2.jpg" alt="Selectable tab labeled &ldquo;Analyze&rdquo;" border="0" /></div>
+<div id="hlB3" style="position:absolute; left:749px; top:241px; width:50px; height:20px; z-index:11; visibility:hidden;">
+<img src="images/3rfr090ac_2.jpg" alt="Selectable tab labeled &ldquo;Control&rdquo;" border="0" /></div>
+
+<!-- Button Layers -->
+<div id="btn1" style="position:absolute; left:459px; top:241px;"><a href="javascript: hidePopups(); MM_showHideLayers('tab1','','show','hlB1','','show');" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('button1','','images/3rfr090aa_2.jpg',1)"><img src="images/3rfr090aa_0.jpg" alt="Selectable tab labeled &ldquo;Frequency Range of Equipment&rdquo;" name="button1" width="136" height="36" border="0" id="button1" /></a></div>
+
+<div id="btn2" style="position:absolute; left:604px; top:241px;"><a href="javascript: hidePopups(); MM_showHideLayers('tab2','','show','hlB2','','show');" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('button2','','images/3rfr090ab_2.jpg',1)"><img src="images/3rfr090ab_0.jpg" alt="Selectable tab labeled &ldquo;Power Density of Emitter&rdquo;" name="button2" width="136" height="36" border="0" id="button2" /></a></div>
+
+<div id="btn3" style="position:absolute; left:749px; top:241px;"><a href="javascript: hidePopups(); MM_showHideLayers('tab3','','show','hlB3','','show');" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('button3','','images/3rfr090ac_2.jpg',1)"><img src="images/3rfr090ac_0.jpg" alt="Selectable tab labeled &ldquo;E- or H-Field Emitter&rdquo;" name="button3" width="136" height="36" border="0" id="button3" /></a></div>
+
+<div id="snowMapDot" style="position:absolute; top:35px; left:768px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select each tab and the highlighted text, and then click Forward to continue.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+        
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

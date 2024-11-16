@@ -1,0 +1,376 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style>
+	body { background: url(../../sysimages/scenario_tropical.jpg) no-repeat; }
+	#Content { width:870px; }
+</style>
+<script type="text/javascript" src="../../scripts/DD.js" ></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+//==distracters=========
+
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "1cht040.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "1cht02a.html"
+	goURL(pgURL);
+}
+
+function showaudiot(){
+}
+
+//=====================
+// Set up question variables
+var nObj = 4;
+
+var arrPopup = new Array(4)
+
+//===distribute value to popup
+arrPopup[0]  = "Before proceeding you must complete the question."
+//Correct feedback
+arrPopup[1]  = "Correct!  During your analysis, you must place the health threat into the context of the mission and operational requirements to influence your course of action (COA). Select Continue.";
+//Incorrect feedback for 2nd try
+arrPopup[2]  = "Incorrect.  The correct answers are displayed. During your analysis, you must place the health threat into the context of the mission and operational requirements to influence your course of action (COA). Select Continue.";
+//Incorrect feedback for 1st try
+arrPopup[3]  = "No, sorry.  You will have another opportunity to answer this question after reading some information about this topic. Select Continue.";
+
+var uT;
+function onpage() {
+	document.getElementById("Next").style.visibility = "hidden";	
+	distrload();
+	initDD();
+	uT = getQueryValue('uT');	//user tries set from next page
+	if (uT == 1) {
+		userTries += 1;
+	}
+}
+
+function distrload() {
+//	arrPopup[1] = correctA;
+	dragPositionArray = new Array(nObj);
+	targetLayerArray = new Array(nObj/2);
+	dragLayerArray = new Array(nObj);
+	targetPositionArray = new Array(nObj/2);
+	for (var i=0; i<nObj; i++) {
+		dragLayerArray[i] = "drag"+(i+1);
+		dragPositionArray[i] = new Array(4);
+	}
+	for (var i=0; i<nObj/2; i++) {
+		targetLayerArray[i]="target"+(i+1);
+		targetPositionArray[i] = new Array(4)
+	}
+	
+}
+
+function initDD() {
+	if ( IE ) {
+		var targetStyle;
+		for (var i=0; i<nObj; i++) {
+			/***** Get initial positions *****/
+			//drag layers
+			eval("dragStyle = document.all['drag" + (i+1) + "'].style");
+			dragPositionArray[i][0] = dragStyle.pixelLeft;
+			dragPositionArray[i][1] = dragStyle.pixelTop;
+			eval("dragPositionArray[" + i + "][2] = document.all['drag" + (i+1) + "'].offsetWidth");	
+			eval("dragPositionArray[" + i + "][3] = document.all['drag" + (i+1) + "'].offsetHeight");
+		}
+		//target layers
+		for (var i=0; i<nObj/2; i++) {
+				eval("targetStyle = document.all['target" + (i+1) + "'].style");
+				targetPositionArray[i][0] = targetStyle.pixelLeft;
+				targetPositionArray[i][1] = targetStyle.pixelTop;
+				eval("targetPositionArray[" + i + "][2] = document.all['target" + (i+1) + "'].offsetWidth");	
+				eval("targetPositionArray[" + i + "][3] = document.all['target" + (i+1) + "'].offsetHeight");
+		}
+		//Initialize mouse events
+		document.onmousedown = grabItem;
+		document.onmousemove = dragItem;
+		document.onmouseup = releaseItem;
+	} else if (N4) {
+		setNSEventCapture()
+		document.onmousedown = grabItem
+		document.onmousemove = dragItem
+		document.onmouseup = releaseItem
+	} else {	//NS 6 and others
+		for (var i=1; i<=nObj; i++) {
+			eval("drag" + i + " = document.getElementById('drag" + i + "')");
+			eval("attachEvent(drag" + i + ")");
+		}
+		
+		window.onmousemove = dragItem
+	}
+}
+
+function releaseItem(e) {
+	if (selectedDrag) {
+		showFdbk("");
+		//determine where user released mouse button
+		var releaseX, releaseY;
+		if (IE) {	//Microsoft Internet Explorer
+			releaseX = window.event.clientX
+			releaseY = window.event.clientY
+			//get the integer value of the current dragged layer
+			intDragLayerID = parseInt(dragLayerId.substr(dragLayerId.length-1,1))
+			for (var i=0; i<nObj/2; i++) {
+				//check to see if there is any match
+				if ( (releaseX > targetPositionArray[i][0]) && (releaseX < targetPositionArray[i][0]+targetPositionArray[i][2]) && (releaseY > targetPositionArray[i][1]) && (releaseY < targetPositionArray[i][1] + targetPositionArray[i][3]) ) {
+					if (strTargetOrder.indexOf((i+1)+",") == -1) {
+						moveToTarget(selectedDrag, i)
+						//check to see if an object is already in the dragged list. If it is, it's been moved from one target to another
+						intTemp = strDragOrder.indexOf(intDragLayerID + ",")
+						if (intTemp != -1) {
+							// remove from matched list first
+							strTargetOrder = strTargetOrder.substring(0,intTemp) + strTargetOrder.substring(intTemp+2,strTargetOrder.length)
+							strDragOrder = strDragOrder.substring(0,intTemp) + strDragOrder.substring(intTemp+2,strDragOrder.length)
+						}
+						
+						// add to matched list
+						strTargetOrder = strTargetOrder + (i+1) + ","
+						strDragOrder = strDragOrder + intDragLayerID.toString() + ","
+						//alert(strTargetOrder+"?? "+strDragOrder)
+						//strDraggedLayers = strDraggedLayers
+					} else moveBack(selectedDrag, intDragLayerID)
+					break
+				} else {
+					moveBack(selectedDrag, intDragLayerID)
+					intTemp = strDragOrder.indexOf(intDragLayerID + ",")
+					if (intTemp != -1) {
+						// remove from matched list
+						strTargetOrder = strTargetOrder.substring(0,intTemp) + strTargetOrder.substring(intTemp+2,strTargetOrder.length)
+						strDragOrder = strDragOrder.substring(0,intTemp) + strDragOrder.substring(intTemp+2,strDragOrder.length)
+					}
+				}
+			}
+		} else {	//Other browsers
+			releaseX = e.pageX
+			releaseY = e.pageY
+			if (N6) {
+				//have to hard-code this for N6 - Windows for some reason.  It doesn't see the
+				//"left" or "top" property until it's explicity set like this.
+				document.getElementById("target1").style.left = 10
+				document.getElementById("target1").style.top = 50
+				targetObj = getElementById("target1").style
+				targetWidth = getElementById("target1").offsetWidth			
+				targetHeight = getElementById("target1").offsetHeight
+				targetLeft = parseInt(getElementById("target1").style.left)
+				targetTop = parseInt(getElementById("target1").style.top)
+			} else {
+				targetObj = document.layers["target1"]
+				targetWidth = document.layers["target1"].clip.width
+				targetHeight = document.layers["target1"].clip.height
+				targetLeft = document.layers["target1"].left
+				targetTop = document.layers["target1"].top
+			}
+			
+			//see if user released inside of target
+			if ( (releaseX > targetLeft) && (releaseX < targetLeft + targetWidth) && (releaseY > targetTop) && (releaseY < targetTop + targetHeight) ) {
+			//alert("dragged on target.")
+			}
+		}
+
+		//turn off drag
+		setzIndex(selectedDrag, 1)
+		selectedDrag = null
+	}
+}
+//============click done to judge the question =======
+
+function judgeInteraction_S() {
+
+	var strTemp="";
+	//MM_showHideLayers('done','','hide');
+	if (strDragOrder.length/2 < nObj/2) { // not match all
+		strTemp = arrPopup[0];
+		document.getElementById('fdbkLink').href = "javascript:showFdbk('')";
+	} else {
+		userTries += 1;
+		//alert(userTries)
+			if (strTargetOrder == strDragOrder)  { //correct
+				qStatus = 1
+				strTemp = arrPopup[1];
+				if (userTries < tryLimit) { //1st try correct
+					document.getElementById('fdbkLink').href = "javascript:goURL('1cht03a.html?uC=1')";
+				} else {
+					document.getElementById('fdbkLink').href = "javascript:findNext()";
+				}
+			} else if (userTries == tryLimit) { //2nd try incorrect
+				// move to correct location
+				for (var i=0; i<nObj; i++) {
+				
+					if (i<nObj/2) eval("moveToTarget(drag" + (i+1) + ", " + i + ")");//
+					else eval("moveBack(drag" + (i+1) + ", " + (i+1) + ")"); 
+				}
+				strTemp = arrPopup[2];
+				document.getElementById('fdbkLink').href = "javascript:findNext()";
+			} else { //1st try incorrect
+				// move back incorrect ones
+				var strTempD = strDragOrder;
+				var strTempT = strTargetOrder;
+				for (var i=0; i<strTargetOrder.length/2; i++) {
+					var strTemp = strDragOrder.substr(i*2,1);
+					if (strTargetOrder.substr(i*2,1) != strTemp ) {
+					
+						eval("moveBack(drag" + strTemp + ", " + strTemp + ")")
+						intTemp = strTempD.indexOf(strTemp + ",")
+						if (intTemp != -1) {
+							// remove from matched list
+							strTempD = strTempD.substring(0,intTemp) + strTempD.substring(intTemp+2,strTempD.length)
+							strTempT = strTempT.substring(0,intTemp) + strTempT.substring(intTemp+2,strTempT.length)
+						}
+					}
+				}
+			strTemp = arrPopup[3];
+			strDragOrder = strTempD;
+			strTargetOrder = strTempT;
+			document.getElementById('fdbkLink').href = "javascript:goURL('1cht03a.html?uC=0')";
+
+			}
+			disableDrag();//disable interaction		
+		}
+	showFdbk(strTemp);
+	if (userTries>1 ||selectedDrag ) document.getElementById('lyfdbk').style.height = "60px"
+	//document.getElementById('done').style.visibility = "hidden";
+//	document.getElementById('lyfdbk').innerHTML = strTemp;
+//	document.getElementById('lyfdbk').style.visibility = "visible";
+//	document.getElementById('feedback').style.visibility = "visible";
+	
+}
+
+function showaudiot() {
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('../../sysimages/done_2.jpg','../../sysimages/cont_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Chemical Health Threats / Identifying and Analyzing Chemical Health Threats
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 3 of 8<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Scenario Challenge Point<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <p>Drag the words to the correct location in order to complete the sentence  explaining how health threats are analyzed.</p>
+  <p>&nbsp;</p>
+  <blockquote>
+    <p>During your  analysis, you must place the health threat into the context of the ____________________ and </p><p>operational
+  
+  _____________________  to influence your course of action (COA).</p></blockquote>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<!--=============== Target position =================-->
+<div id="target1" style="position:absolute; left:625px; top:192px; width:156px; height:54px;"></div>
+<div id="target2" style="position:absolute; left:184px; top:230px; width:151px; height:53px;"></div>
+
+<!--================ Drag items positon ==================-->
+<div id="drag3" style="position:absolute; left:526px; top:318px; width:189px; height:51px; cursor:pointer;">
+  <p class="popTitle">recommendations</p>
+</div>
+
+<div id="drag1" style="position:absolute; left:526px; top:376px; width:189px; height:51px; cursor:pointer;">
+  <p class="popTitle">mission</p>
+</div>
+
+<div id="drag4" style="position:absolute; left:249px; top:376px; width:189px; height:51px; cursor:pointer;">
+  <p class="popTitle">health effects</p>
+</div>
+
+<div id="drag2" style="position:absolute; left:249px; top:318px; width:189px; height:51px; cursor:pointer;"><p class="popTitle">requirements</p></div>
+
+<div id="done" style="position:absolute; text-align: center; left:453px; top:453px; z-index:2; width: 91px; height: 32px;"><a href="javascript:;" onClick="judgeInteraction_S()" onMouseOver="MM_swapImage('DoneButton','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/done_0.jpg" alt="Done button" id="DoneButton" name="DoneButton" width="90" height="36" border="0"></a></div>
+
+<div id="feedback" style="position:absolute; top:432px; left:62px; width:828px; visibility:hidden;">
+<div class="txtfdbk" id='lyfdbk' style="height:38px;  scrollbar-arrow-color: #000000; scrollbar-base-color:#63570d;"></div><br />
+	<div id="fdbkContinue" style="position:relative; top:-10px; text-align: center;"><a id="fdbkLink" href="javascipt:;"  onMouseOver="MM_swapImage('btnCont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" alt="Continue button" name="btnCont" width="90" height="36" border="0" id="btnCont" /></a></div>
+</div>
+
+
+<div id="snowMapDot" style="position:absolute; top:40px; left:721px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Drag the words to the correct locations, and then click Done.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

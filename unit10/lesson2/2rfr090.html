@@ -1,0 +1,271 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style>
+
+body { background: url(../../sysimages/scenario_sand.jpg) no-repeat; }
+#Content { width:870px; }
+</style>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+MM_reloadPage(true);
+
+var uT;
+function onpage() {
+	uT = getQueryValue('uT');	//user tries set from next page
+	if (uT == 1) {
+		triesUser += 1;
+	}
+	document.getElementById("Next").style.visibility = "hidden";
+}
+
+function findNext() {
+	var pgURL = "2rfr100.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "2rfr08a.html"
+	goURL(pgURL);
+}
+
+<!--
+// Customized function for this page
+var nItems = 4;
+var triesLimit = 2;
+var triesUser = 0;
+var strHTML = ""
+var blnChoiceMade = false;
+var arrPopup = new Array()
+var userAns = 0;
+var correctAns = 4;
+
+//===feedbacks========
+var arrPopup = new Array(7);
+//feedback for not select
+arrPopup[0]  = "You have not made any selections.  Please try again."
+//Correct feedback
+arrPopup[1]  = "That's right!  While emitter location, past exposures, and wavelength are variables that should be considered, the biological effects of RFR exposures are primarily determined based on frequency. Select Continue.";
+//Incorrect feedback for 2nd try
+arrPopup[2]  = "Incorrect.  The correct answer is now displayed.  While emitter location, past exposures, and wavelength are variables that should be considered, the biological effects of RFR exposures are primarily determined based on frequency. Select Continue.";
+//Incorrect feedback for 1st try
+arrPopup[3]  = "No, sorry.  You will have another opportunity to answer this question after reading some information about this topic.<br />Select Continue."
+arrPopup[4]  = "No, sorry.  You will have another opportunity to answer this question after reading some information about this topic.<br />Select Continue."
+arrPopup[5]  = "No, sorry.  You will have another opportunity to answer this question after reading some information about this topic.<br />Select Continue."
+arrPopup[6]  = ""
+//===end of feedback =======
+
+function itemSelection( I ) {
+	if (blnChoiceMade == false ) {
+		userAns = I;
+		hidecont() //hide the continue button and feedback
+		for (var j=1; j<=nItems; j++) {
+			var g = eval("document.getElementById('img"+j+"').src");
+			var name = "img"+j;
+			var gnum = g.charAt(g.length-5)
+			var gfilename = getgname(g);
+			var gpath = getgpath(g)
+			if (j==I && gnum=="0" ) {
+			 	gfilename = gfilename.replace('_0','_2')	
+			} else if (j!=I && gnum=="2"  ) {
+				gfilename = gfilename.replace('_2','_0')
+			}
+			document.getElementById(name).src = gpath+gfilename;
+    	}
+	}
+}
+
+function hidecont() {
+	document.getElementById('done').style.visibility = 'visible';
+	document.getElementById('feedback').style.visibility = 'hidden';
+}
+
+//============click done to judge the question =======
+function judgeInteraction() {
+	var strTemp = "";	
+	triesUser += 1;
+	if (userAns == "") {
+			strTemp = arrPopup[0];
+			triesUser -= 1;
+			document.getElementById('fdbkLink').href = "javascript:hidecont()";
+	} else if (userAns == correctAns) {//correct
+			strTemp = arrPopup[1];
+			blnChoiceMade = true;
+			finalstep()
+			if (triesUser < triesLimit ) {  //1st try
+				document.getElementById('fdbkLink').href = "javascript:goURL('2rfr09a.html?uC=1')";
+			} else {
+				document.getElementById('fdbkLink').href = "javascript:findNext()";
+			}
+	} else { //incorrect
+				
+			if (triesUser < triesLimit ) {  //1st try
+				strTemp = arrPopup[userAns+2];
+				document.getElementById('fdbkLink').href = "javascript:goURL('2rfr09a.html?uC=0')";
+			} else { //2nd try
+				strTemp = arrPopup[2];
+				finalstep() 
+				document.getElementById('fdbkLink').href = "javascript:findNext()";
+			}
+			blnChoiceMade = true;
+	}
+	document.getElementById('done').style.visibility = "hidden";
+	document.getElementById('lyfdbk').innerHTML = strTemp;
+	document.getElementById('lyfdbk').style.visibility = "visible";
+	document.getElementById('feedback').style.visibility = "visible";
+}
+
+// End of question
+//====final step: highlight correct answer and lock them up ==
+function finalstep() {	
+	for (var j=1; j<=nItems; j++) {
+			var g = eval("document.getElementById('img"+j+"').src");
+			var name = "img"+j;
+			var gnum = g.charAt(g.length-5)
+			var gfilename = getgname(g);
+			var gpath = getgpath(g)
+			if (j==correctAns && gnum=="0" ) {
+				gfilename = gfilename.replace('_0','_2')	
+			} else if (j!=correctAns && gnum=="2"  ) {
+				gfilename = gfilename.replace('_2','_3')
+			}else{
+				gfilename = gfilename.replace('_0','_3')
+			}
+			document.getElementById(name).src = gpath+gfilename;
+    	}
+}
+
+function showaudiot(){
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('../../sysimages/done_2.jpg','../../sysimages/cont_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  NIR: Radio Frequency Radiation (RFR) / RFR Exposures
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 9 of 10<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Scenario Challenge Point<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <p>Before reporting back to your OIC about the RFR  health threats at the communications and radar site, you explain to another BE  Tech on your team how the biological effects of an RFR exposure are related to  the dose.&nbsp; Which one of the following  factors primarily determines the biological effects of RFR exposures?</p>
+  <table width="88%" align="center" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="40"><a href='javascript:itemSelection(1)'><img src="../../sysimages/mc_circle_a_0.png" alt="Distracter A" width="38" height="38" border="0" id="img1" /></a></td>
+    <td width="14" class='distrText'>&nbsp;</td>
+    <td width="576" class='distrText'>Emitter  Location</td>
+  </tr>
+  <tr>
+    <td><a href='javascript:itemSelection(2)'><img src="../../sysimages/mc_circle_b_0.png" alt="Distracter B" width="38" height="38" border="0" id="img2" /></a></td>
+    <td class='distrText'>&nbsp;</td>
+    <td class='distrText'>Past  Exposures</td>
+  </tr>
+  <tr>
+    <td><a href='javascript:itemSelection(3)'><img src="../../sysimages/mc_circle_c_0.png" alt="Distracter C" width="38" height="38" border="0" id="img3" /></a></td>
+    <td class='distrText'>&nbsp;</td>
+    <td class='distrText'>Wavelength</td>
+  </tr>
+  <tr>
+    <td><a href='javascript:itemSelection(4)'><img src="../../sysimages/mc_circle_d_0.png" alt="Distracter D" width="38" height="38" border="0" id="img4" /></a></td>
+    <td class='distrText'>&nbsp;</td>
+    <td class='distrText'>Frequency</td>
+  </tr>
+  <tr>
+    <td colspan="3" height="10">	</td>
+  </tr>
+  <tr>
+    <td colspan="3" align="center"><span id="done"><a href="javascript:judgeInteraction()"  onMouseOver="MM_swapImage('imgdone','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"> <img src='../../sysimages/done_0.jpg' name='imgdone' id='imgdone' alt='Done button' border='0' /></a></span>	</td>
+  </tr>
+</table>
+
+<div id="feedback" style="position:relative; top:-42px; left:53px; width:760px; height:50px; visibility:hidden;">
+	<div class="txtfdbk" id='lyfdbk'></div>
+	<br />
+	<div id="fdbkContinue" style="text-align: center;"><a id="fdbkLink" href="javascipt:;"  onMouseOver="MM_swapImage('btnCont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" alt="Continue button" name="btnCont" width="90" height="36" border="0" id="btnCont" /></a></div>
+</div>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="snowMapDot" style="position:absolute; top:35px; left:768px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select the correct answer, and then click Done.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

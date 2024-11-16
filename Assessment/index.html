@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script language="javascript" type="text/jscript">
+
+
+//if (window.XMLHttpRequest)
+//  {
+//  xmlDoc=new window.XMLHttpRequest();
+//  xmlDoc.open("GET","assessment_data.xml",false);
+//  xmlDoc.send("");
+//  xmlDoc=xmlDoc.responseXML;
+//  }
+//// IE 5 and IE 6
+//else if (ActiveXObject("Microsoft.XMLDOM"))
+//  {
+//  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+//  xmlDoc.async=false;
+//  xmlDoc.load("assessment_data.xml");	  
+//  }
+//alert(xmlDoc)	  
+function selectGroup(n) {
+	x=parent.frames['controller'].xmlDoc.getElementsByTagName("IsRandomize")[0].childNodes[0];
+	y=parent.frames['controller'].xmlDoc.getElementsByTagName("Group")[0].childNodes[0];
+ 
+	if (n==1) {
+		x.nodeValue="No";
+		
+		y.nodeValue="0";
+		
+	} else if (n==2) {
+		x.nodeValue="No";
+		y.nodeValue="1";
+	}
+	//alert(x.nodeValue)
+	parent.frames['controller'].blnRandom = x.nodeValue
+	parent.frames['controller'].group = y.nodeValue;
+	parent.frames['controller'].setGroupData();
+	window.location = "q0.html"
+}	  
+	  
+</script>
+
+</head>
+
+<body>
+<p align="center">BESA Assessment Review</p>
+<p align="center">Please select a group:</p>
+<p align="center"><a href="javascript:selectGroup(1)">Group A</a></p>
+<p align="center"><a href="javascript:selectGroup(2)">Group B</a></p>
+<p align="center"><a href="javascript:window.location = 'q0.html'">Randomized Group A and B</a></p>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/scenario_city.jpg);
+}
+#Content {width:870px}
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+function onpage() {
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "3smp060.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "3smp040.html"
+	goURL(pgURL);
+}
+
+function showaudiot(){
+}
+
+var arrPop = new Array(6);
+arrPop[0] = "<p class='popTitle'>Investigation</p> <p>You locate an EBS report dated January, 1989, that summarizes the actions taken when the landfill was investigated.  As you review the document, you discover the following information:</p><ul><li>Air sampling was conducted inside a golf course maintenance building in which a small explosion had occurred when a worker lit a cigarette.  Samples indicated methane gas levels above its lower explosive limit (LEL).</li><li>Soil gas samples taken near the maintenance building revealed low levels of volatile organic compounds (VOCs) and elevated levels of methane gas.</li><li>The report includes a recommendation to remove the maintenance building and install vents in the area where the building stood.</li></ul>"
+
+arrPop[1] = "<p class='popTitle'>Industrial wastes</p> <p>Concerned about what contaminants you may be dealing with, you conduct additional research and find that, at the time the capping was performed, two drums of trichloroethylene (TCE) were discovered buried in the landfill.</p>"
+
+arrPop[2] = "<p class='popTitle'>Vents</p> <p>You are not aware of a gas extraction system in place on the golf course, but you haven't been at Jenks very long, so you start to ask around and conduct research. </p><p> It takes you a while, but you eventually learn that, after the landfill was monitored for twenty years, the base was authorized to remove all the vents.</p><p>The final decision was that the landfill no longer posed any apparent public health hazard, but future construction was prohibited on the site due to concerns about compromising the cap.</p>"
+
+arrPop[3] = "<p class='popTitle'>Trees</p> <p>According to the article, trees cannot be planted over landfills because the roots could disturb the cap.  However, the golf course maintenance workers were trimming trees when they noticed the foul odor.  You call the grounds maintenance supervisor and find out that the trees were planted last spring.  Consulting a map, you confirm the trees' location - in the area previously used for the landfill. </p>"
+
+function showText(iNum) {
+	document.getElementById("popTxt").innerHTML = arrPop[iNum-1];
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Sampling / Soil and Solid Sampling
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 5 of 13<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Jenks AFB Scenario<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" --> 
+  <p>You print the article and make some notes, considering what the workers have told you.   Then you conduct more research based on your notes.  Select the circled areas of the document to review the information you have found. If you would like to read the entire article again,  you can select the graphic of the printer.</p>
+  <p>&nbsp;</p>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="gHolder" style="position:absolute; top:210px; left50px; width:842px; height:334px; left: 76px;">
+<img src="images/3smp050.jpg" border="0" usemap="#Map" />
+<map name="Map" id="Map">
+  <area shape="rect" coords="186,67,277,88" href="javascript:showText(1)" />
+  <area shape="rect" coords="217,87,331,112" href="javascript:showText(2)" />
+  <area shape="rect" coords="340,170,413,197" href="javascript:showText(3)" /><area shape="rect" coords="367,270,441,291" href="javascript:showText(4)" />
+</map>
+</div>
+<div id="pagegraphic" style="position:absolute; top:455px; left50px; width:92px; height:34px; left: 88px;"><a href="images/3smp050.pdf" target="_blank"><img src="images/icon_printer.png" alt="Select to view the entire article." border="0" /></a></div>
+<!-- Medical Facility Layer -->
+<div id="popTxt" style="position:absolute; top:228px; left:559px; width:316px; height:281px; visibility:visible; overflow: auto; scrollbar-arrow-color: #000000; scrollbar-base-color:#63570d; padding:15px"></div>
+
+<div id="snowMapDot" style="position:absolute; top:29px; left:732px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select the circled text, and then click Forward to continue.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

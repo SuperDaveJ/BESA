@@ -1,0 +1,246 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/scenario_city.jpg);
+}
+table {width:98%;border-collapse:collapse;margin:1em 0;}
+td {color:#FFFFFF; font-size:16px; text-align:center; padding:.5em; border:none}
+th {color:#FFFFFF; text-align:right; font-size:16px; padding:.8em; }
+.ftext {background-color:#644610; text-align:center; color:#FFFFFF; font-size:1em; border:1px solid #b1ae00; };
+.hi_ftext {background-color:#996633; text-align:center; color:#FFFFFF; font-size:16px; border:1px solid #b1ae00;  };
+.cellT {color: #FFFFFF}
+
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+function onpage() {
+document.getElementById("Next").style.visibility = "hidden";
+document.getElementById('input1').focus();
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "2smp170.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "2smp160_03.html"
+	goURL(pgURL);
+}
+function showaudiot() {
+}
+
+//Global variables
+var nItems = 1;
+var correctAns = "156.0"
+	arrCorrectAns = new Array();
+	arrCorrectAns = correctAns.split(",");
+var triesUser = 0;
+var defaultF = "---.-"
+	arrdefaultF = new Array(nItems);
+	arrdefaultF = defaultF.split(",");;
+//Question #1
+
+var arrPopup = new Array(4);//Feedback for questions other than the last one.
+arrPopup[0] = "Before proceeding you must complete the question.";	//No selection
+arrPopup[1] = "No, sorry.  Be sure you are following the instructions given and please try again.";		//First incorrect
+arrPopup[2] = "Incorrect. The correct answer is now displayed. By figuring the weekly reduction factor (0.78) and multiplying it by the OEL for an 8-hour exposure to MEK (200 ppm), you can determine that the equivalent OEL for a 48-hour work week is 156 ppm. Select Forward to continue."; //Final incorrect
+arrPopup[3] = "Correct!  By figuring the weekly reduction factor (0.78) and multiplying it by the OEL for an 8-hour exposure to MEK (200 ppm), you can determine that the equivalent OEL for a 48-hour work week is 156 ppm. Select Forward to continue.";			//Correct
+
+
+function judgeInteraction() {
+	var qStatus = 0;
+	var nCorrect = 0;
+	var strTemp = "";
+	arrUserAns = new Array();
+	for (i=0; i<nItems; i++) {
+		arrUserAns[i] = eval("document.getElementById('input"+(i+1)+"').value")
+		//arrUserAns[i]=arrUserAns[i].replace(/ /g, "")
+		arrUserAns[i]=arrUserAns[i].replace(")", "")
+		arrUserAns[i]=arrUserAns[i].replace("(", "")
+	}
+	
+	triesUser += 1;
+	//if (arrdefaultF == arrUserAns) qStatus = 0;
+//	alert(arrUserAns)
+	for (var i=0; i<nItems; i++) {
+		if (arrdefaultF[i] != arrUserAns[i]) {qStatus = 1;}
+		arrUserAns[i] = parseFloat(arrUserAns[i])
+		arrCorrectAns[i] = parseFloat(arrCorrectAns[i])
+		if (arrUserAns[i] == arrCorrectAns[i]) {
+			nCorrect += 1;
+			eval("document.getElementById('input"+(i+1)+"').className = 'ftext'");
+		} else {
+			eval("document.getElementById('input"+(i+1)+"').className = 'hi_ftext'");
+			eval("document.getElementById('input"+(i+1)+"').value = '"+ arrdefaultF[i]+"'" );
+		}
+	}
+	if (qStatus == 0) {
+		strTemp = arrPopup[0]
+		triesUser -= 1;
+	}else{
+		if (nCorrect == nItems) {
+			triesUser = 2;
+			strTemp = arrPopup[3];
+			showCorrect();
+			document.getElementById('Prompt').innerText = "Select Forward to continue."
+		} else if (triesUser < 2) {
+			strTemp = arrPopup[1];
+			/*
+			if (arrUserAns[0] != arrCorrectAns[0]) {
+				document.getElementById('input1').value = arrdefaultF[0];
+				//document.getElementById('input1').focus();
+			}
+			*/
+		} else {
+			strTemp = arrPopup[2];
+			showCorrect();		
+			document.getElementById('Prompt').innerText = "Select Forward to continue."
+		}
+		
+	}
+	showFdbk(strTemp)
+}
+
+function showCorrect() {
+	for (i=1; i<=nItems; i++) {
+		eval("document.getElementById('input"+i+"').value = '"+arrCorrectAns[i-1]+"'")
+		eval("document.getElementById('input"+i+"').readOnly = true");
+		eval("document.getElementById('input"+i+"').onfocus = ''");
+	}
+	//document.getElementById("continue").style.visibility = "visible";
+//	document.getElementById('fdbkLink').href = "javascript:findNext()";
+	document.getElementById("Next").style.visibility = "visible";
+}
+
+function showFdbk(strTemp) {
+	document.getElementById('lyfdbk').innerHTML = strTemp;
+	if (strTemp=="") {
+		document.getElementById('lyfdbk').style.visibility = "hidden";;
+		document.getElementById("lydone").style.visibility = "visible";
+	} else {
+		document.getElementById('lyfdbk').style.visibility = "visible";
+		document.getElementById("lydone").style.visibility = "hidden";
+	}
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('../../sysimages/done_2.jpg','../../sysimages/cont_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Sampling / Air Sampling
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 16 of 18<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Scenario Challenge Point<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <div id="question" style="position:relative; left:0px; width:845px;  height:50px;">
+    <p>Finally, you will calculate the equivalent OEL for MEK  exposure during an extended work week by multiplying the 8-hour OEL-TWA for MEK  (200 ppm) by the weekly reduction factor for a 48-hour work week (0.78).</p>
+  </div>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="ly1" style="position:absolute; left:161px; top:251px; width:494px; height:51px">
+<table width="100%" height="79" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <th width="60%">OEL <sub>weekly</sub>&nbsp;&nbsp;= </span></th>
+      <td width="40%"><input name="input1" type="text" class="ftext"  id="input1"  value="---.-" size="5" maxlength="5" onfocus="javascript:showFdbk('')" onkeydown="if (this.value==arrdefaultF[0]) this.value=''" /> 
+      ppm</td>
+    </tr>
+  </table>
+</div>
+
+<div id="lydone" style="position:absolute; text-align: center; left:429px; top:380px; z-index:2; width: 91px; height: 32px;"><a href="javascript:judgeInteraction()" onMouseOver="MM_swapImage('DoneButton','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/done_0.jpg" alt="Done button" id="DoneButton" name="DoneButton" width="90" height="36" border="0"></a></div>
+
+<div id="lyfdbk" class="txtfdbk" style="position:absolute; top:428px; left:103px; width:760px; height:auto; visibility:hidden;"></div>
+	<div id="continue" style="position:absolute; top:480px; text-align: center; visibility:hidden; left: 433px;"><a id = "fdbkLink" href="javascript:;" onMouseOver="MM_swapImage('btnCont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" alt="Continue button" name="btnCont" width="90" height="36" border="0" id="btnCont" /></a></div>
+
+
+<div id="snowMapDot" style="position:absolute; top:29px; left:732px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Type the correct data, and then click Done.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

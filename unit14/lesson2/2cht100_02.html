@@ -1,0 +1,628 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style>
+<!--
+	body { background: url(../../sysimages/scenario_tropical.jpg) no-repeat; }
+	#Content{width:870px;}
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+MM_reloadPage(true);
+
+function onpage() {
+	document.getElementById("Next").style.visibility = "hidden";
+	if (!blnRandom) qOrder = qOrder_seq;
+	else doRandomization();
+	writeQuestion(qOrder[0])
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "2cht110.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "2cht090.html"
+	goURL(pgURL);
+}
+
+function showaudiot(){
+}
+
+// ----------------  Interaction Functions -------------------------------
+//Global variables
+var nextButton = true;		//Is there a Next button for next question
+var blnRandom = false;		//Are questions need to be randomized?
+var blnInTest = true;		//Is the user in test? If yes, disable some buttons.
+var userAns = 0;			//user answer for Multiple Choice questions
+arrUserAns = new Array();	//user answer for Multiple Answer questions
+var triesUser = 0;
+var triesLimit = 1;
+var qStatus = 0;			//question status. 1=correct, 0=incorrect
+var qIndex = 0;				//qIndex is an index of question order (qOrder)
+var blnChoiceMade = false;	//Has user made any choice?
+
+var nQs = 9;				//Total number of questions
+var nQtoShow = nQs;			//Number of questiones to be showed for each round
+var nTotalCorrect = 0;		//Total number of questions that were answered correctly
+var qDisabled = false;		//Is question disabled?
+
+arrQs = new Array(nQs);
+qOrder_seq = new Array(nQs);
+qOrder = new Array(nQs);
+for (var i=0; i<nQs; i++) {
+	arrQs[i] = new Array(9);
+	qOrder_seq[i] = i;
+}
+
+arrLetters = new Array(5);
+arrLetters[1] = "a";
+arrLetters[2] = "b";
+arrLetters[3] = "c";
+arrLetters[4] = "d";
+
+//The index for each queston is as follow:
+// 0 - integer, questoin ID
+// 1 - integer (1 or 2), question type. 1 = Multiple Choice, 2 = Multiple Answer.
+// 2 - integer, number of distracters
+// 3 - string, question stem
+// 4 - string, distracters concatinated with a # symbol
+// 5 - integer (1 to n), correct answer
+// 6 - integer (1 to n), user answer
+// 7 - string, Feedback - all questions except last one
+// 8 - string, Feedback - for last question
+// 9 - integer, user tries
+
+//Question #1
+arrQs[0][0] = 1;	//qID
+arrQs[0][1] = 1;	//qType
+arrQs[0][2] = 2;	//number of distracters
+arrQs[0][3] = "Is the respirator intended for use during fire fighting?";		//qStem
+arrQs[0][4] = "Yes#No";	//distracters
+arrQs[0][5] = 2;		//Correct answer
+arrQs[0][6] = 0;		//User answer		//User answer
+
+arrQs[0][7] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[0][7][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[0][7][1] = "Incorrect. ";		//First incorrect
+arrQs[0][7][2] = "The correct answer is now displayed.  "; //Final incorrect
+arrQs[0][7][3] = "The respirator is intended to be worn by workers performing fuel filter change out in the refueling maintenance shop. ";			//Correct
+
+arrQs[0][8] = 0;	//User attemps for this question
+
+
+//Question #2
+arrQs[1][0] = 2;	//qID
+arrQs[1][1] = 1;	//qType
+arrQs[1][2] = 2;	//number of distracters
+arrQs[1][3] = "Is the respirator intended for use in an oxygen-deficient atmosphere?";		//qStem
+arrQs[1][4] = "Yes#No";	//distracters
+arrQs[1][5] = 2;		//Correct answer
+arrQs[1][6] = 0;		//User answer
+arrQs[1][7] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[1][7][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[1][7][1] = "Incorrect. ";		//First incorrect
+arrQs[1][7][2] = "The correct answer is now displayed. "; //Final incorrect
+arrQs[1][7][3] = "The refueling maintenance shop is not an oxygen-deficient atmosphere. ";			//Correct
+
+arrQs[1][8] = 0;	//User attemps for this question
+
+//Question #3
+arrQs[2][0] = 3;	//qID
+arrQs[2][1] = 1;	//qType
+arrQs[2][2] = 2;	//number of distracters
+arrQs[2][3] = "Is the respirator intended for entry into unknown or IDLH atmospheres?";		//qStem
+arrQs[2][4] = "Yes#No";
+arrQs[2][5] = 2;		//Correct answer
+arrQs[2][6] = 0;		//User answe
+arrQs[2][7] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[2][7][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[2][7][1] = "Incorrect. ";		//First incorrect
+arrQs[2][7][2] = ""; //Final incorrect
+arrQs[2][7][3] = "The refueling maintenance shop is not an unknown or IDLH atmosphere. ";			//Correct
+
+arrQs[2][8] = 0;	//User attemps for this question
+
+//Question #4
+arrQs[3][0] = 4;	//qID
+arrQs[3][1] = 1;	//qType
+arrQs[3][2] = 2;	//number of distracters
+arrQs[3][3] = "Is the exposure concentration less than the applicable exposure limit?";		//qStem
+arrQs[3][4] = "Yes#No";
+arrQs[3][5] = 2;		//Correct answer
+arrQs[3][6] = 0;		//User answer
+arrQs[3][7] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[3][7][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[3][7][1] = "Incorrect. ";		//First incorrect
+arrQs[3][7][2] = ""; //Final incorrect
+arrQs[3][7][3] = "Air sampling during the fuel filter change out process indicates that concentrations are above the exposure limits. ";			//Correct
+
+arrQs[3][8] = 0;	//User attemps for this question
+
+//Question #5
+arrQs[4][0] = 5;	//qID
+arrQs[4][1] = 1;	//qType
+arrQs[4][2] = 2;	//number of distracters
+arrQs[4][3] = "Would loss of life or irreversible health effects result if the respirator fails and the worker cannot escape?";		//qStem
+arrQs[4][4] = "Yes#No"; //distracters
+arrQs[4][5] = 2;		//Correct answer
+arrQs[4][6] = 0;		//User answer
+arrQs[4][7] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[4][7][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[4][7][1] = "Incorrect. ";		//First incorrect
+arrQs[4][7][2] = ""; //Final incorrect
+arrQs[4][7][3] = "A worker performing the fuel filter change out would be able to leave the area safely without irreversible health effects if the respirator were to fail. ";			//Correct
+
+arrQs[4][8] = 0;	//User attemps for this question
+
+//Question #6
+arrQs[5][0] = 6;	//qID
+arrQs[5][1] = 1;	//qType
+arrQs[5][2] = 2;	//number of distracters
+arrQs[5][3] = "Is the contaminant an eye irritant or can it cause eye damage at the workplace concentration?";		//qStem
+arrQs[5][4] = "Yes#No";	//distracters
+arrQs[5][5] = 1;		//Correct answer
+arrQs[5][6] = 0;		//User answer
+arrQs[5][7] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[5][7][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[5][7][1] = "Incorrect. ";		//First incorrect
+arrQs[5][7][2] = ""; //Final incorrect
+arrQs[5][7][3] = "Because JP-8 can be harmful to the workers’ eyes, particularly if splashed, you will need to select a respirator equipped with a full facepiece, helmet, or hood. ";			//Correct
+
+arrQs[5][8] = 0;	//User attemps for this question
+
+//Question #7
+arrQs[6][0] = 7;	//qID
+arrQs[6][1] = 1;	//qType
+arrQs[6][2] = 2;	//number of distracters
+arrQs[6][3] = "Air sampling results indicate that JP-8 is present at levels of 365.83 mg/m<sup>3</sup> during the fuel filter change out process.  The exposure limit is 200 mg/m<sup>3</sup>.  Is the maximum hazard ratio less than one?";		//qStem
+arrQs[6][4] = "Yes#No";	//distracters
+arrQs[6][5] = 2;		//Correct answer
+arrQs[6][6] = 0;		//User answer
+arrQs[6][7] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[6][7][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[6][7][1] = "Incorrect. ";		//First incorrect
+arrQs[6][7][2] = ""; //Final incorrect
+arrQs[6][7][3] = "To figure the hazard ratio, you divide the contaminant concentration by the exposure limit, so for a chemical with a concentration of 365.83 mg/m<sup>3</sup> and an exposure limit of 200 mg/m<sup>3</sup>, the hazard ratio is 1.83. ";			//Correct
+
+arrQs[5][8] = 0;	//User attemps for this question
+
+//Question #8
+arrQs[7][0] = 8;	//qID
+arrQs[7][1] = 1;	//qType
+arrQs[7][2] = 2;	//number of distracters
+arrQs[7][3] = "Is the respirator intended for escape purposes only?";		//qStem
+arrQs[7][4] = "Yes#No";	//distracters
+arrQs[7][5] = 2;		//Correct answer
+arrQs[7][6] = 0;		//User answer
+arrQs[7][7] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[7][7][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[7][7][1] = "Incorrect. ";		//First incorrect
+arrQs[7][7][2] = ""; //Final incorrect
+arrQs[7][7][3] = "The respirator is intended for routine use, until the ventilation system is installed in the refueling maintenance shop. ";			//Correct
+
+arrQs[7][8] = 0;	//User attemps for this question
+
+//Question #9
+arrQs[8][0] = 9;	//qID
+arrQs[8][1] = 1;	//qType
+arrQs[8][2] = 3;	//number of distracters
+arrQs[8][3] = "Select the physical form of the contaminant.";		//qStem
+arrQs[8][4] = "Particulate#Gas or vapor#Combination of gas or vapor and particulate";	//distracters
+arrQs[8][5] = 3;		//Correct answer
+arrQs[8][6] = 0;		//User answer
+arrQs[8][7] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[8][7][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[8][7][1] = "Incorrect. ";		//First incorrect
+arrQs[8][7][2] = ""; //Final incorrect
+arrQs[8][7][3] = "JP-8 is present as a combination of a gas or vapor and particulate. ";			//Correct
+
+arrQs[8][8] = 0;	//User attemps for this question
+
+
+//****************************************************************
+
+function getRandom(topLimit) {   
+	return Math.floor(Math.random()*topLimit)
+}
+
+
+function doRandomization() {
+	// Generate numberOfQuestoins unique random numbers
+	// initialization
+	arrTemp = new Array(nQs);
+		
+	for (i=0; i<nQs; i++) arrTemp[i]=-1
+		
+	// create a temp array of nQs unique random numbers
+	for (i=0; i<nQs; i++) {
+		for (j=0; j<100000; j++) {
+			blnFound = false;
+			intTemp = getRandom(nQs);
+			for (k=0; k<nQs; k++) {
+				if (arrTemp[k] == intTemp) {
+					blnFound = true;
+					break;
+				}
+			}
+			if (!blnFound) {
+				arrTemp[i] = intTemp;
+				break;
+			}
+		}
+	}
+
+	for (i=0; i<nQs; i++) {
+		k = arrTemp[i];
+		qOrder[i] = qOrder_seq[k];
+	}
+}
+
+function reInitialize() {
+	qIndex = 0;
+	var strTemp = "";
+	for (var i=0; i<nQs; i++) {
+		if (arrQs[qOrder[i]][8] < 2) strTemp = strTemp + qOrder[i] + ",";
+	}
+	strTemp = strTemp.substring(0, strTemp.length-1);
+	qOrder = strTemp.split(",");
+	nQtoShow = qOrder.length;
+	
+	writeQuestion(qOrder[0]);
+}
+	
+function itemSelection( qNum,I ) {
+	if (!qDisabled) {
+		hidecont();
+		var qType = arrQs[qNum][1];
+		var nItems = arrQs[qNum][2];
+		switch (qType) {
+			case 1:	//Multiple Choice
+				{
+					userAns = I;
+					blnChoiceMade = true;
+					for (var j=1; j<=nItems; j++) {
+						var g = eval("document.getElementById('img"+j+"').src");
+						var name = "img"+j;
+						var gnum = g.charAt(g.length-5)
+						var gfilename = getgname(g);
+						var gpath = getgpath(g)
+						if (j==I && gnum=="0" ) {
+							gfilename = gfilename.replace('_0','_2')	
+						} else if (j!=I && gnum=="2"  ) {
+							gfilename = gfilename.replace('_2','_0')
+						}
+						document.getElementById(name).src = gpath+gfilename;
+					}
+					break;
+				} //end of case 1
+	
+			case 2:
+				{
+					var blnSelected = arrUserAns[I-1];
+					var g = eval("document.getElementById('img"+I+"').src");
+					var name = "img"+I;
+					var gfilename = getgname(g);
+					var gpath = getgpath(g)
+					// toggle highlight
+					if (blnSelected == 1) {
+						arrUserAns[I-1] = 0;
+						gfilename = gfilename.replace('_2','_0')
+					} else  {
+						arrUserAns[I-1] = 1;
+						gfilename = gfilename.replace('_0','_2')
+					}
+						document.getElementById(name).src = gpath+gfilename;
+						//Make sure at least 1 choice has been made
+						blnChoiceMade = false;
+						for (j=0; j<nItems; j++) {
+							if (arrUserAns[j] == 1) {
+								blnChoiceMade = true;
+								break;
+							}
+						}
+						break;
+				}	// end of case 2
+		} //End of switch
+	} //end of !qDisabled		
+}
+
+function hidecont() {
+	document.getElementById('lydone').style.visibility = 'visible';
+	document.getElementById('feedback').style.visibility = 'hidden';
+	document.getElementById("lyfdbk").style.visibility = "hidden";
+	document.getElementById('fdbkContinue').style.visibility = "hidden";
+}
+
+function judgeInteraction() {
+ var strTemp = "";
+  if ( !blnChoiceMade ) {
+ 	document.getElementById("lyfdbk").innerHTML = arrQs[0][7][0];
+	document.getElementById("feedback").style.visibility = "visible";
+	document.getElementById("lyfdbk").style.visibility = "visible";
+	document.getElementById('lydone').style.visibility = 'hidden';
+	document.getElementById('fdbkContinue').style.visibility = 'hidden';
+  }else {
+  	document.getElementById('fdbkContinue').style.visibility = "visible";
+	qDisabled = true;
+	var qType = arrQs[qNum][1];
+	var nItems = arrQs[qNum][2];
+	var triesUser = arrQs[qNum][8];
+	arrQs[qNum][8] = 2 //arrQs[qNum][8] + 1;
+
+	switch (qType) {
+		case 1:	//Multiple Choice
+			{
+				qStatus = 0;
+				arrQs[qNum][6] = userAns;
+				correctAns = arrQs[qNum][5];
+				if (correctAns == userAns) { //correct
+					qStatus = 1;
+					//arrQs[qNum][8] = 2;
+					strTemp = "Correct! " +  arrQs[qNum][7][3] ;
+					
+				//} else if (arrQs[qNum][8] < 2) {
+				//	strTemp = "Incorrect. " +  arrQs[qNum][7][1];
+				} else {
+					strTemp = "Incorrect. " + arrQs[1][7][2] +  arrQs[qNum][7][3];
+				}
+				break
+			}	//End of case 1
+		case 2:	//Multiple Answer
+			{
+				qStatus = 1;
+				arrQs[qNum][6] = arrUserAns.join();
+				arrCorrectAns = new Array();
+				arrCorrectAns = arrQs[qNum][5].split(",");
+				for (var i=0; i<nItems; i++) {
+					if (arrCorrectAns[i] != arrUserAns[i]) {
+						qStatus = 0;
+						break;
+					}
+				}
+				if (qStatus==1) { //correct
+					arrQs[qNum][8] = 2;
+					strTemp = "Correct! " +  arrQs[qNum][7][3];
+				} else if (arrQs[qNum][8] < 2) { //incorrect
+					strTemp = "Incorrect. " +  arrQs[qNum][7][1] ; //1st attempt
+				} else {
+					strTemp = "Incorrect. " +  arrQs[0][7][2] +  arrQs[qNum][7][3]; //2nd attempt
+				}
+				break;
+			}	// End of case 2
+	}	//End of switch
+
+	if (isLastQ()) {
+		strTemp = strTemp + "Select Forward to continue."
+		document.getElementById("Prompt").innerHTML = "Select Forward to continue.";
+		document.getElementById("fdbkContinue").style.visibility = "hidden";
+		document.getElementById("Next").style.visibility = "visible";
+	} else {
+		strTemp = strTemp + "Select Continue for next question."//arrQs[qNum][7][iFdbkTxt];		
+	}
+	document.getElementById("lyfdbk").innerHTML = strTemp
+	document.getElementById("lydone").style.visibility = "hidden";
+	document.getElementById("feedback").style.visibility = "visible";
+	document.getElementById("lyfdbk").style.visibility = "visible";
+	//if ( qTotalScores==500) blnHit = true;
+
+	//save info.
+	qIndex += 1;	//increment question
+	nTotalCorrect += qStatus;
+//	if (nTotalCorrect > 4) blnLastPage = true;
+//	document.getElementById("lyscores").innerHTML ="Total Points: " +qTotalScores;
+	if ( (qStatus == 1) || (arrQs[qNum][8] > 1) ) {
+		finalStep()
+	}
+  }	//End of choice made
+}
+
+function finalStep() {
+	var nItems = arrQs[qNum][2];
+	var qType = arrQs[qNum][1];
+	var iTemp;
+	for (var i=1; i<=nItems; i++) {
+		if (qType==1) {
+			iTemp=i;
+		}else{
+			iTemp=1;
+			correctAns = arrCorrectAns[i-1];
+			userAns = arrUserAns[i-1]
+		}
+
+		var g = eval("document.getElementById('img"+i+"').src");
+		var name = "img"+i;
+		var gnum = g.charAt(g.length-5)
+		var gfilename = getgname(g);
+		var gpath = getgpath(g)
+		if (correctAns == iTemp) {
+			gfilename = gfilename.replace('_0','_2')	
+		} else if (userAns == iTemp) {
+			gfilename = gfilename.replace('_2','_3')
+		} else {
+			gfilename = gfilename.replace('_0','_3')
+		}
+		document.getElementById(name).src = gpath+gfilename;
+	}
+
+}
+
+function nextQuestion() {
+hidecont();
+	if (qIndex < nQtoShow) writeQuestion(qOrder[qIndex])
+	else reInitialize()
+}
+
+function isLastQ() {
+	var nTemp = 0;
+	for (var i=0; i<nQs; i++) {
+		if (arrQs[i][8] < 2) {
+			nTemp += 1;
+		}
+	}
+	if (nTemp == 0) return true
+	else return false
+}
+
+
+//****************************************
+function writeQuestion(nwqqNum) {
+qNum = parseInt(nwqqNum)
+	//reset variables
+	userAns = 0;
+	qStatus = 0;	//question status. 1=correct, 0=incorrect
+	blnChoiceMade = false;
+	qDisabled = false;
+	var nItems = arrQs[qNum][2];
+	var strHTML = "";
+	var gbtnName;
+	var gformat;
+	if (arrQs[qNum][1]==1) {
+		gbtnName="mc_circle_";
+		gformat="_0.png";
+		document.getElementById("Prompt").innerHTML  = "Select the correct answer, and then click Done."
+	}else{
+		gbtnName="mc_"
+		gformat="_0.jpg"
+		for (var j=0; j<nItems; j++) arrUserAns[j] = 0
+		document.getElementById("Prompt").innerHTML  = "Select all that apply, and then click Done."
+	}
+	
+	document.getElementById("lyfdbk").style.height = "auto";
+	document.getElementById("lyfdbk").style.overflow = "hidden";
+
+	distracters = new Array(nItems);
+	distracters = arrQs[qNum][4].split("#");
+	
+	for (var i=1; i<=nItems; i++) {
+		//table cells 
+		strHTML = strHTML + "<tr><td><a href='javascript:itemSelection("+qNum+","+ i +")'><img src='../../sysimages/"+gbtnName+arrLetters[i]+gformat+"' alt='Distracter "+arrLetters[i].toUpperCase()+"' id='img"+i+"' name='img"+i+"' width='38' height='38' border='0' /></a></td>"
+		strHTML = strHTML + "<td width='92%' class='distrText'>"+ distracters[i-1] +"</td></tr>"	
+	}	
+	strHTML = "<p>"+arrQs[qNum][3]+"</p><table width='90%' align='center' border='0' cellspacing='3' cellpadding='3'>" + strHTML + "<tr><td>&nbsp;</td><td>&nbsp;</td></tr></table>"
+
+
+	document.getElementById("question").innerHTML = strHTML;
+	var strTemp = ""
+	if (arrQs[qNum][0]==4 || arrQs[qNum][0]==5 || arrQs[qNum][0]==6) document.getElementById("tb1").style.visibility = "visible"
+	else document.getElementById("tb1").style.visibility = "hidden"  //strTemp = "<a href='2cht110_01.html?TB_iframe=true&amp;width=729&amp;height=485' class='thickbox' title=''><img src='images/2cht110b.png' border='0' alt='Selectable graphic labeled &quot;Air Sampling Results.&quot; ' /></a>"
+	if (arrQs[qNum][0]==5 || arrQs[qNum][0]==6) {
+	strTemp = "<a href='images/1cht060.pdf' target='_blank' ><img src='images/2cht100b.png' border='0' alt='Selectable graphic labeled &quot;J-P 8 Information&quot; ' /></a>";
+	document.getElementById("tb1").innerHTML = strTemp;
+	}
+
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('../../sysimages/done_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Chemical Health Threats / Respiratory Protection
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 10 of 13<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Scenario Challenge Point<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+
+
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="question" style="position:absolute; left:53px; top:132px; width:870px; height:280px; z-index:1; "></div>
+
+<div id="lydone" style="position:absolute; left:402px; top: 323px; visibility: hidden;"> <a href="javascript:judgeInteraction()"  onMouseOver="MM_swapImage('imgdone','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/done_0.jpg" name="imgdone" id="imgdone" alt="Done" width="90" height="36" border="0" /></a></div>
+	
+<div id="feedback" style="position:absolute; left:112px; width:756px; top:327px; height:120px; visibility:hidden;">
+<div class="txtfdbk" id='lyfdbk'></div><br />
+	<div id="fdbkContinue" style="position:relative; top: 13px; text-align: center;"> <a href="javascript:nextQuestion()"  onMouseOver="MM_swapImage('continue','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" name="imgcont" id="imgcont" alt="Continue button" width="90" height="36" border="0" /></a></div>
+</div>
+
+<div id="tb1" style="position:absolute; left:633px; top:160px; visibility:hidden; width: 127px; height: 73px; z-index: 2;"><a href="2cht110_01.html?TB_iframe=true&amp;width=729&amp;height=485" class="thickbox" title=""><img src="images/2cht110b.png" alt="Selectable graphic labeled &quot;Air Sampling Results.&quot; " width="253" height="118" border="0" /></a></div>
+
+<div id="snowMapDot" style="position:absolute; top:40px; left:721px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select Begin to start.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

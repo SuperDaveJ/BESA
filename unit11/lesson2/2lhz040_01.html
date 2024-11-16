@@ -1,0 +1,559 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besaQ.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style>
+<!--
+	body { background: url(../../sysimages/scenario_city.jpg) no-repeat; }
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+MM_reloadPage(true);
+
+function findNext() {
+
+	var pgURL
+	if (triesUser==2) pgURL = "2lhz050.html"
+	else pgURL = "2lhz040a.html?uT="+uT
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "2lhz03a.html"
+	goURL(pgURL);
+}
+
+function refresh() {
+	var pgURL = "2lhz040.html"
+	goURL(pgURL);
+}
+
+function showaudiot(){ 
+}
+//NOTE: It's not working for MA yet
+// ----------------  Interaction Functions -------------------------------
+//Global variables
+var nextButton = true;		//Is there a Next button for next question
+var blnRandom = false;		//Are questions need to be randomized?
+var blnInTest = true;		//Is the user in test? If yes, disable some buttons.
+var userAns = 0;			//user answer for Multiple Choice questions
+arrUserAns = new Array();	//user answer for Multiple Answer questions
+var triesUser = 0;
+var triesLimit = 1;
+var qStatus = 0;			//question status. 1=correct, 0=incorrect
+var qIndex = 0;				//qIndex is an index of question order (qOrder)
+var blnChoiceMade = false;	//Has user made any choice?
+
+var nQs = 2;				//Total number of questions
+var nQtoShow = nQs;			//Number of questiones to be showed for each round
+var nTotalCorrect = 0;		//Total number of questions that were answered correctly
+var qDisabled = false;		//Is question disabled?
+
+arrQs = new Array(nQs);
+qOrder_seq = new Array(nQs);
+qOrder = new Array(nQs);
+for (var i=0; i<nQs; i++) {
+	arrQs[i] = new Array(9);
+	qOrder_seq[i] = i;
+}
+
+arrLetters = new Array(5);
+arrLetters[1] = "a";
+arrLetters[2] = "b";
+arrLetters[3] = "c";
+arrLetters[4] = "d";
+
+//The index for each queston is as follow:
+// 0 - integer, questoin ID
+// 1 - integer (1 or 2), question type. 1 = Multiple Choice, 2 = Multiple Answer.
+// 2 - integer, number of distracters
+// 3 - string, question stem
+// 4 - string, distracters concatinated with a # symbol
+// 5 - integer (1 to n), correct answer
+// 6 - integer (1 to n), user answer
+// 7 - string, Feedback - all questions except last one
+// 8 - string, Feedback - for last question
+// 9 - integer, user tries
+
+//Question #1
+arrQs[0][0] = 1;	//qID
+arrQs[0][1] = 1;	//qType
+arrQs[0][2] = 4;	//number of distracters
+arrQs[0][3] = "Which of the following statements describe when laser hazards should be identified and analyzed?";		//qStem
+arrQs[0][4] = "Any time a laser is used for operations on an installation.#When annual compliance testing is required by regulations.#When a shop's mission changes, causing lasers to be removed.#Any time a laser has not been assessed for personnel exposure.";	//distracters
+arrQs[0][5] = 4;		//Correct answer
+arrQs[0][6] = 0;		//User answer
+
+arrQs[0][7] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[0][7][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[0][7][1] = "No, sorry. You will have another opportunity to answer this question after reading some information about this topic. ";		//First incorrect
+arrQs[0][7][2] = "Incorrect.  The correct answer is now displayed. <br />"; //Final incorrect
+arrQs[0][7][3] = "Correct! ";			//Correct
+
+arrQs[0][8] = 0;	//User attemps for this question
+
+//Question #2
+arrQs[1][0] = 2;	//qID
+arrQs[1][1] = 2;	//qType
+arrQs[1][2] = 4;	//number of distracters
+arrQs[1][3] = "Which two of the following are primary reasons why laser hazards should be identified and analyzed?";		//qStem
+arrQs[1][4] = "To determine the criticality of the mission using laser systems.#To gather appropriate information needed to classify a laser system.#To determine if a laser hazard could impact mission effectiveness.#To determine if a potential or existing laser exposure poses a health risk.";	//distracters
+arrQs[1][5] = "0,0,1,1";		//Correct answer
+arrQs[1][6] = 0;		//User answer
+
+arrQs[1][7] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[1][7][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[1][7][1] = "No, sorry. You will have another opportunity to answer this question after reading some information about this topic. ";		//First incorrect
+arrQs[1][7][2] = "Incorrect.  The correct answer is now displayed. <br />"; //Final incorrect
+arrQs[1][7][3] = "Correct! ";			//Correct
+
+arrQs[1][8] = 0;	//User attemps for this question
+
+/*Question #3
+arrQs[2][0] = 1;	//qID
+arrQs[2][1] = 1;	//qType
+arrQs[2][2] = 3;	//number of distracters
+arrQs[2][3] = "";		//qStem
+arrQs[2][4] = "stays the same#increases#decreases";	//distracters
+arrQs[2][5] = 3;		//Correct answer
+arrQs[2][6] = 0;		//User answer
+
+arrQs[2][7] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[2][7][0] = "";	//No selection
+arrQs[2][7][1] = "";		//First incorrect
+arrQs[2][7][2] = ""; //Final incorrect
+arrQs[2][7][3] = "";			//Correct
+
+arrQs[2][8] = 0;	//User attemps for this question
+*/
+
+var uT;
+function onpage() {
+	document.getElementById("Next").style.visibility = "hidden";
+	
+	uT = getQueryValue('uT');
+	var strTemp = uT.substring(0,1)
+	
+	if (strTemp=="1") {
+		uT="1"+uT.substring(1,uT.length)
+		qOrder = uT.substring(1,uT.length-1)
+		qOrder = qOrder.split(",");
+		nQtoShow = uT.substring(uT.length-1,uT.length)
+		nQs = nQtoShow
+		triesUser = 2;
+		for (i=0; i< nQtoShow; i++)  arrQs[qOrder[i]][8] = 1
+	} else {
+		if (!blnRandom)
+			qOrder = qOrder_seq;
+		else
+			doRandomization();
+	}
+	writeQuestion(qOrder[0])
+}
+
+//****************************************************************
+
+function getRandom(topLimit) {   
+	return Math.floor(Math.random()*topLimit)
+}
+
+
+	
+function doRandomization() {
+	// Generate numberOfQuestoins unique random numbers
+	// initialization
+	arrTemp = new Array(nQs);
+		
+	for (i=0; i<nQs; i++) arrTemp[i]=-1
+		
+	// create a temp array of nQs unique random numbers
+	for (i=0; i<nQs; i++) {
+		for (j=0; j<100000; j++) {
+			blnFound = false;
+			intTemp = getRandom(nQs);
+			for (k=0; k<nQs; k++) {
+				if (arrTemp[k] == intTemp) {
+					blnFound = true;
+					break;
+				}
+			}
+			if (!blnFound) {
+				arrTemp[i] = intTemp;
+				break;
+			}
+		}
+	}
+
+	for (i=0; i<nQs; i++) {
+		k = arrTemp[i];
+		qOrder[i] = qOrder_seq[k];
+	}
+}
+
+function reInitialize() {
+	qIndex = 0;
+	var strTemp = "";
+	for (var i=0; i<nQs; i++) {
+		if (arrQs[qOrder[i]][8] < 2) strTemp = strTemp + qOrder[i] + ",";
+	}
+	strTemp = strTemp.substring(0, strTemp.length-1);
+	qOrder = strTemp.split(",");
+	nQtoShow = qOrder.length;
+	uT="0"+qOrder+nQtoShow;
+	findNext()
+	//writeQuestion(qOrder[0]);
+}
+	
+function itemSelection( qNum,I ) {
+	if (!qDisabled) {
+		hidecont();
+		var qType = arrQs[qNum][1];
+		var nItems = arrQs[qNum][2];
+		switch (qType) {
+			case 1:	//Multiple Choice
+				{
+					userAns = I;
+					blnChoiceMade = true;
+					for (var j=1; j<=nItems; j++) {
+						var g = eval("document.getElementById('img"+j+"').src");
+						var name = "img"+j;
+						var gnum = g.charAt(g.length-5)
+						var gfilename = getgname(g);
+						var gpath = getgpath(g)
+						if (j==I && gnum=="0" ) {
+							gfilename = gfilename.replace('_0','_2')	
+						} else if (j!=I && gnum=="2"  ) {
+							gfilename = gfilename.replace('_2','_0')
+						}
+						document.getElementById(name).src = gpath+gfilename;
+					}
+					break;
+				} //end of case 1
+	
+			case 2:
+				{
+					var blnSelected = arrUserAns[I-1];
+					var g = eval("document.getElementById('img"+I+"').src");
+					var name = "img"+I;
+					var gfilename = getgname(g);
+					var gpath = getgpath(g)
+					// toggle highlight
+					if (blnSelected == 1) {
+						arrUserAns[I-1] = 0;
+						gfilename = gfilename.replace('_2','_0')
+					} else  {
+						arrUserAns[I-1] = 1;
+						gfilename = gfilename.replace('_0','_2')
+					}
+						document.getElementById(name).src = gpath+gfilename;
+						//Make sure at least 1 choice has been made
+						blnChoiceMade = false;
+						for (j=0; j<nItems; j++) {
+							if (arrUserAns[j] == 1) {
+								blnChoiceMade = true;
+								break;
+							}
+						}
+						break;
+				}	// end of case 2
+		} //End of switch
+	} //end of !qDisabled		
+}
+
+function hidecont() {
+	document.getElementById('lydone').style.visibility = 'visible';
+	document.getElementById('feedback').style.visibility = 'hidden';
+	document.getElementById("lyfdbk").style.visibility = "hidden";
+	document.getElementById('fdbkContinue').style.visibility = "hidden";
+}
+
+function judgeInteraction() {
+ 	var strTemp = "";
+  	if ( !blnChoiceMade ) {
+		document.getElementById("lyfdbk").innerHTML = arrQs[qNum][7][0];
+		document.getElementById("feedback").style.visibility = "visible";
+		document.getElementById("lyfdbk").style.visibility = "visible";
+		document.getElementById('lydone').style.visibility = 'hidden';
+		document.getElementById('fdbkContinue').style.visibility = 'hidden';
+  	} else {
+  	document.getElementById('fdbkContinue').style.visibility = "visible";
+	qDisabled = true;
+	var qType = arrQs[qNum][1];
+	var nItems = arrQs[qNum][2];
+	var triesUser = arrQs[qNum][8];
+	arrQs[qNum][8] = arrQs[qNum][8] + 1;
+
+	switch (qType) {
+		case 1:	//Multiple Choice
+			{
+				qStatus = 0;
+				arrQs[qNum][6] = userAns;
+				correctAns = arrQs[qNum][5];
+				if (correctAns == userAns) { //correct
+					qStatus = 1;
+					arrQs[qNum][8] = 2;
+					strTemp = arrQs[qNum][7][3];
+					
+				} else if (arrQs[qNum][8] < 2) {
+					strTemp = arrQs[qNum][7][1];
+				} else {
+					strTemp = arrQs[0][7][2];
+				}
+				break
+			}	//End of case 1
+		case 2:	//Multiple Answer
+			{
+				qStatus = 1;
+				arrQs[qNum][6] = arrUserAns.join();
+				arrCorrectAns = new Array();
+				arrCorrectAns = arrQs[qNum][5].split(",");
+				for (var i=0; i<nItems; i++) {
+					if (arrCorrectAns[i] != arrUserAns[i]) {
+						qStatus = 0;
+						break;
+					}
+				}
+				if (qStatus==1) { //correct
+					arrQs[qNum][8] = 2;
+					strTemp = arrQs[qNum][7][3] ;
+				} else if (arrQs[qNum][8] < 2) { //incorrect
+					strTemp = arrQs[qNum][7][1]; //1st attempt
+				} else {
+					strTemp = arrQs[qNum][7][2]; //2nd attempt
+				}
+				break;
+			}	// End of case 2
+	}	//End of switch
+
+	if (isLastQ() || qNum==1) {
+		strTemp = strTemp + " Select Continue."
+		document.getElementById("Prompt").innerHTML = "Select Continue.";
+		//document.getElementById("fdbkContinue").style.visibility = "hidden";
+		//document.getElementById("Next").style.visibility = "visible";
+	} else {
+		strTemp = strTemp + " Select Continue for the next question."		
+	}
+	document.getElementById("lyfdbk").innerHTML = strTemp
+	document.getElementById("lydone").style.visibility = "hidden";
+	document.getElementById("feedback").style.visibility = "visible";
+	document.getElementById("lyfdbk").style.visibility = "visible";
+	//if ( qTotalScores==500) blnHit = true;
+
+	//save info.
+	qIndex += 1;	//increment question
+	nTotalCorrect += qStatus;
+//	if (nTotalCorrect > 4) blnLastPage = true;
+//	document.getElementById("lyscores").innerHTML ="Total Points: " +qTotalScores;
+
+	if ( (qStatus == 1) || (arrQs[qNum][8] > 1) ) {
+		finalStep()
+	}
+  }	//End of choice made
+}
+
+function finalStep() {
+	var nItems = arrQs[qNum][2];
+	var qType = arrQs[qNum][1];
+	var iTemp;
+	for (var i=1; i<=nItems; i++) {
+		if (qType==1) {
+			iTemp=i;
+		}else{
+			iTemp=1;
+			correctAns = arrCorrectAns[i-1];
+			userAns = arrUserAns[i-1]
+		}
+
+		var g = eval("document.getElementById('img"+i+"').src");
+		var name = "img"+i;
+		var gnum = g.charAt(g.length-5)
+		var gfilename = getgname(g);
+		var gpath = getgpath(g)
+		if (correctAns == iTemp) {
+			gfilename = gfilename.replace('_0','_2')	
+		} else if (userAns == iTemp) {
+			gfilename = gfilename.replace('_2','_3')
+		} else {
+			gfilename = gfilename.replace('_0','_3')
+		}
+		document.getElementById(name).src = gpath+gfilename;
+	}
+
+}
+
+function nextQuestion() {
+	hidecont();
+	if (qIndex < nQtoShow) {
+		writeQuestion(qOrder[qIndex])
+	} else {
+		if (nQtoShow == nTotalCorrect || triesUser == 2) {
+			uT="1"
+			findNext()
+		} else {
+			reInitialize()
+		}
+	}
+}
+
+function isLastQ() {
+	var nTemp = 0;
+	for (var i=0; i<nQs; i++) {
+		if (triesUser==2) {
+			if (arrQs[qOrder[i]][8] < 2) nTemp += 1;
+		}else{
+			if (arrQs[i][8] < 2) nTemp += 1;
+		}
+	}
+	if (nTemp == 0) return true
+	else return false
+}
+
+//****************************************
+function writeQuestion(nwqqNum) {
+	qNum = parseInt(nwqqNum)
+	//reset variables
+	userAns = 0;
+	qStatus = 0;	//question status. 1=correct, 0=incorrect
+	blnChoiceMade = false;
+	qDisabled = false;
+	var nItems = arrQs[qNum][2];
+	var strHTML = "";
+	var gbtnName;
+	var gformat;
+	if (arrQs[qNum][1]==1) {
+		gbtnName="mc_circle_";
+		gformat="_0.png";
+		document.getElementById("Prompt").innerHTML = "Select the correct answer, and then click Done.";
+	}else{
+		gbtnName="mc_"
+		gformat="_0.jpg"
+		for (var j=0; j<nItems; j++) arrUserAns[j] = 0
+		document.getElementById("Prompt").innerHTML = "Select all that apply, and then click Done.";
+	}
+	
+	document.getElementById("lyfdbk").style.height = "auto";
+	document.getElementById("lyfdbk").style.overflow = "hidden";
+
+	distracters = new Array(nItems);
+	distracters = arrQs[qNum][4].split("#");
+	
+	for (var i=1; i<=nItems; i++) {
+		//table cells 
+		strHTML = strHTML + "<tr><td width='45'><a href='javascript:itemSelection("+qNum+","+ i +")'><img src='../../sysimages/"+gbtnName+arrLetters[i]+gformat+"' alt='Distracter "+arrLetters[i].toUpperCase()+"' id='img"+i+"' name='img"+i+"' width'38' height='38' border='0' /></a></td>"
+		strHTML = strHTML + "<td width='355' class='distrText'>"+ distracters[i-1] +"</td></tr>"	
+	}	
+	strHTML = "<p>"+arrQs[qNum][3]+"</p><table width='90%' align='center' border='0' cellspacing='3' cellpadding='3'>" + strHTML + "<tr><td>&nbsp;</td><td>&nbsp;</td></tr></table>"
+
+
+	document.getElementById("question").innerHTML = strHTML;
+	document.getElementById('lydone').style.visibility = 'visible';
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad="onpage();MM_preloadImages('../../sysimages/done_2.jpg','../../sysimages/cont_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  NIR: Laser Hazards / Analyzing Laser Hazards
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 4 of 9<!-- InstanceEndEditable --></div>
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Scenario Challenge Point<!-- InstanceEndEditable --></div>
+<div id="ContentExp" ><!-- InstanceBeginEditable name="EditContents" --> 
+
+<div id="question" style="position:absolute; width:435px; height:280px; z-index:0">
+</div>
+
+<div id="lydone" style="position:absolute; left:179px; top: 322px; visibility: hidden;"> <a href="javascript:judgeInteraction()"  onMouseOver="MM_swapImage('imgdone','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/done_0.jpg" name="imgdone" id="imgdone" alt="Done" width="90" height="36" border="0" /></a></div>
+	
+<div id="feedback" style="position:absolute; left:30px; width:384px; top:300px; height:120px; visibility:hidden;">
+	<div class="txtfdbk" id='lyfdbk'></div><br />
+	<div id="fdbkContinue" style="position:relative; top: 13px; text-align: center;"> <a id="fdbkLink" href="javascript:nextQuestion()"  onMouseOver="MM_swapImage('imgcont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" name="imgcont" id="imgcont" alt="Continue button" width="90" height="36" border="0" /></a></div>
+</div>
+
+<!-- InstanceEndEditable --></div>
+<!-- InstanceBeginEditable name="others" -->
+<div id="pageGraphic" style="position:absolute; top:173px; left:496px; width:391px; height:307px;"><img src="images/2lhz040.jpg" alt="Photo of a laser." /></div>
+
+<div id="snowMapDot" style="position:absolute; top:33px; left:729px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select Begin to start.<!-- InstanceEndEditable --></div>
+
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+
+<div id="lynav">
+      <ul id="navigation">
+        <!-- InstanceBeginEditable name="maps" -->
+        
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="javascript:goURL('../../help.html')" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+	
+
+</body>
+<!-- InstanceEnd --></html>

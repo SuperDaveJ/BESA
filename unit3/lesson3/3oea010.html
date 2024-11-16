@@ -1,0 +1,704 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besaPC.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+#PageT {z-index:100}
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+function onpage() {
+	document.getElementById("Next").style.visibility = "hidden";
+	document.getElementById("Back").style.visibility = "hidden";
+	document.getElementById("Repeat").style.visibility = "hidden";
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+if (nTotalCorrect >= 5) blnLastPage = true;
+	var pgURL = "../unit3_menu.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "../unit3_menu.html"
+	goURL(pgURL);
+}
+
+function showaudiot(){ 
+}
+//NOTE: It's not working for MA yet
+// ----------------  Interaction Functions -------------------------------
+//Global variables
+var nextButton = true;		//Is there a Next button for next question
+var blnRandom = false;		//Are questions need to be randomized?
+var blnInTest = true;		//Is the user in test? If yes, disable some buttons.
+var userAns = 0;			//user answer for Multiple Choice questions
+arrUserAns = new Array();	//user answer for Multiple Answer questions
+var triesLimit = 0;
+var blnLastPage = false;
+var lastPprompt;
+
+var qStatus = 0;			//question status. 1=correct, 0=incorrect
+var qIndex = 0;				//qIndex is an index of question order (qOrder)
+var blnChoiceMade = false;	//Has user made any choice?
+var blnHit = false;
+var nQs = 7;				//Total number of questions
+var nQtoShow = nQs;			//Number of questiones to be showed for each round
+var nTotalCorrect = 0;
+var qTotalScores = 0;		//Total number of questions that were answered correctly
+var qDisabled = false;		//Is question disabled?
+var qNum = 0;
+arrQs = new Array(nQs);
+qOrder_seq = new Array(nQs);
+qOrder = new Array(nQs);
+for (var i=0; i<nQs; i++) {
+	arrQs[i] = new Array(10);
+	qOrder_seq[i] = i;
+}
+
+arrLetters = new Array(5);
+arrLetters[1] = "a";
+arrLetters[2] = "b";
+arrLetters[3] = "c";
+arrLetters[4] = "d";
+
+//The index for each queston is as follow:
+// 0 - integer, questoin ID
+// 1 - integer (1 or 2), question type. 1 = Multiple Choice, 2 = Multiple Answer.
+// 2 - integer, number of distracters
+// 3 - string, question stem
+// 4 - string, distracters concatinated with a # symbol
+// 5 - integer (1 to n), correct answer
+// 6 - integer (1 to n), user answer
+// 7 - integer, user tries
+// 8 - string, Feedback - all questions except last one
+// 9 - string, Feedback - optional for last question
+
+
+//Question #1
+arrQs[0][0] = 1;	//qID
+arrQs[0][1] = 1;	//qType 1:MC; 2:MA
+arrQs[0][2] = 4;	//number of distracters
+arrQs[0][3] = "During the Predeployment/Baseline Activities step in the OEHSA process, which one of the following resources could you use to gain information on major U.S. industries including the typical chemicals used, materials produced as waste, and the most common emissions?";		//qStem
+arrQs[0][4] = "Defense Intelligence Agency (DIA)#Vulnerability Assessment (VA)#Department of Energy (DOE)#Environmental Protection Agency (EPA)";	//distracters
+arrQs[0][5] = 4;		//Correct answer
+arrQs[0][6] = 0;		//User answer
+arrQs[0][7] = 0;	//User attemps for this question
+
+arrQs[0][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[0][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[0][8][1] = "Incorrect. Remember, the Predeployment / Baseline Activities step allows you to identify activities that may have occurred in that area previously and also to collect data regarding current potential health risks. ";		//First incorrect
+arrQs[0][8][2] = "The correct answer is now displayed. "; //Final incorrect
+arrQs[0][8][3] = "The Environmental Protection Agency (EPA) has compiled information regarding major U.S. industries, including the typical chemicals used, materials produced as waste, and most common emissions.<br /><br />The Defense Intelligence Agency (DIA) provides pertinent operational intelligence that includes counterproliferation, facilities, and regional information.  Vulnerability Assessments (VAs) collect valuable information regarding health threats and complement the HRA process.  The Department of Energy (DOE) has developed extensive information regarding radiologically contaminated areas, to include overseas locations. ";			//Correct
+
+//arrQs[0][9] = new Array(4);	//Feedback for last question.
+//arrQs[0][9][0] = "";
+//arrQs[0][9][1] = "";		//First incorrect
+//arrQs[0][9][2] = "";
+//arrQs[0][9][3] = "";
+
+
+
+//Question #2
+arrQs[1][0] = 2;	//qID
+arrQs[1][1] = 2;	//qType
+arrQs[1][2] = 4;	//number of distracters
+arrQs[1][3] = "During the Site Identification and Sectoring step in the OEHSA process, Similar Exposure Groups (SEGs) may be determined based on which two of the following criteria?";		//qStem
+arrQs[1][4] = "Severity#Probability#Proximity#Activity";	//distracters
+arrQs[1][5] = "0,0,1,1";		//Correct answer
+arrQs[1][6] = 0;		//User answer
+arrQs[1][7] = 0;	//User attemps for this question
+
+arrQs[1][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[1][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[1][8][1] = "Incorrect. Recall the Site Identification and Sectoring step in the OEHSA process defines the area of responsibility (AOR), area of operations (AO), and missions – which include the personnel and equipment executing those missions.<br /> ";		//First incorrect
+arrQs[1][8][2] = "The correct answers are now displayed. "; //Final incorrect
+arrQs[1][8][3] = "Similar Exposure Groups (SEGs) may be determined based on proximity and similarity of tasks.  Severity and probability are related to the Health Risk Estimate (HRE). <br />";			//Correct
+
+//Question #3
+arrQs[2][0] = 3;	//qID
+arrQs[2][1] = 1;	//qType
+arrQs[2][2] = 4;	//number of distracters
+arrQs[2][3] = "Which one of the following is the purpose of the Site Reconnaissance step in the OEHSA process?";		//qStem
+arrQs[2][4] = "Detect or identify ambient threats that pose potential risks.#Define the area of responsibility (AOR), area of operations (AO), and missions.#Verify information gathered during the Predeployment and Baseline Activities step.#Articulate the health threats and exposure pathways based on everything known about the site.";	//distracters
+arrQs[2][5] = 3;		//Correct answer
+arrQs[2][6] = 0;		//User answer
+arrQs[2][7] = 0;	//User attemps for this question
+
+arrQs[2][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[2][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[2][8][1] = "Incorrect. Remember during the Site Reconnaissance step you will also help identify signs of potential hazards within an AO, potentially hazardous facilities, or extremely hazardous operations. ";		//First incorrect
+arrQs[2][8][2] = ""; //Final incorrect
+arrQs[2][8][3] = "The Site Reconnaissance step in the OEHSA process is used to verify what you recognized and gathered during the Predeployment and Baseline step. This is preferably accomplished through visual confirmation of the findings by observing the perimeter and area throughout the camp or base. <br />";			//Correct
+
+//Question #4
+arrQs[3][0] = 4;	//qID
+arrQs[3][1] = 2;	//qType
+arrQs[3][2] = 4;	//number of distracters
+arrQs[3][3] = "The Conceptual Site Model (CSM) uses information known about the site to articulate which two of the following?";		//qStem
+arrQs[3][4] = "Exposure pathways#Baseline activities#Mission objectives#Health threats";	//distracters
+arrQs[3][5] = "1,0,0,1";		//Correct answer
+arrQs[3][6] = 0;
+arrQs[3][7] = 0 //User attemps for this question
+
+arrQs[3][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[3][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[3][8][1] = "Incorrect. Remember, the Conceptual Site Model (CSM) includes information organized according to Areas of Concern (AOCs), potential source of release, media pathways, activity or points of exposure, exposure routes, and Similar Exposure Groups (SEGs). ";		//First incorrect
+arrQs[3][8][2] = ""; //Final incorrect
+arrQs[3][8][3] = "The Conceptual Site Model (CSM) articulates the health threats and exposure pathways based on everything that is known about the site.  The CSM does not address health risks or mission objectives."
+
+//Question #5
+arrQs[4][0] = 5;	//qID
+arrQs[4][1] = 1;	//qType
+arrQs[4][2] = 4;	//number of distracters
+arrQs[4][3] = "What is the primary objective when conducting an initial assessment in the OEHSA process?";		//qStem
+arrQs[4][4] = "Verify information gathered during the Predeployment / Baseline Activities step.#Perform sampling and analysis for COCs and potential hazards.#Consider known information about a site and any previous activities in the area.#Define the AOR, AO, missions, equipment, and personnel executing the mission.";	//distracters
+arrQs[4][5] = 2;		//Correct answer
+arrQs[4][6] = 0;
+arrQs[4][7] = 0 //User attemps for this question
+
+arrQs[4][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[4][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[4][8][1] = "Incorrect. Remember Initial (Routine) Assessment, or screening, is used to detect or identify ambient threats that pose potential health risks.";		//First incorrect
+arrQs[4][8][2] = ""; //Final incorrect
+arrQs[4][8][3] = "The primary objective of an initial assessment is to perform sampling and analysis for contaminants of concern (COCs) and potential hazards."
+
+//Question #6
+arrQs[5][0] = 6;	//qID
+arrQs[5][1] = 1;	//qType
+arrQs[5][2] = 4;	//number of distracters
+arrQs[5][3] = "Which one of the following describes the purpose of the Reassessment step in the OEHSA process?";		//qStem
+arrQs[5][4] = "Define the AOR, AO, mission, equipment, and personnel executing the mission. #Verify information gathered during the Predeployment/Baseline Activities step.#Determine whether previous data and assumptions remain true or have changed.#Consider known information about a site and any previous activities in the area.";	//distracters
+arrQs[5][5] = 3;		//Correct answer
+arrQs[5][6] = 0;
+arrQs[5][7] = 0 //User attemps for this question
+
+arrQs[5][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[5][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[5][8][1] = "Incorrect. Recall that information regarding reassessment of health risks should be provided during and after each reassessment. ";		//First incorrect
+arrQs[5][8][2] = ""; //Final incorrect
+arrQs[5][8][3] = "The purpose of the Reassessment step in the OEHSA process is to determine whether previous data and assumptions remain true or have changed. "
+
+//Question #7
+arrQs[6][0] = 7;	//qID
+arrQs[6][1] = 2;	//qType
+arrQs[6][2] = 4;	//number of distracters
+arrQs[6][3] = "Which two of the following are BE roles in the site selection process?";		//qStem
+arrQs[6][4] = "Conduct water vulnerability assessments#Construct base facilities at appropriate locations#Develop base occupational health programs#Recommend the location of base facilities.";	//distracters
+arrQs[6][5] = "1,0,0,1";		//Correct answer
+arrQs[6][6] = 0;
+arrQs[6][7] = 0 //User attemps for this question
+
+arrQs[6][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[6][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[6][8][1] = "Incorrect. Remember, during the site selection process BE helps assess what health risks personnel could be exposed to if a particular site is chosen. ";		//First incorrect
+arrQs[6][8][2] = ""; //Final incorrect
+arrQs[6][8][3] = "Assisting Civil Engineering (CE); finding the best site to meet health, hygiene, and sanitation requirements; minimizing environmental impacts; conducting water vulnerability assessments; and recommending the location of facilities are all roles BE plays in site selection.  Constructing base facilities is a role of CE and developing occupational health programs is a Public Health role. <br />"
+
+//****************************************************************
+
+function getRandom(topLimit) {   
+	return Math.floor(Math.random()*topLimit)
+}
+
+function setQOrder() {
+	// Set question order
+	hidecont()
+	document.getElementById("btnBegin").style.visibility = "hidden";
+	document.getElementById("Prompt").innerHTML = "Select the correct answer, then click Done.";
+	
+	if (!blnRandom)
+		qOrder = qOrder_seq;
+	else
+		doRandomization();
+}
+	
+function doRandomization() {
+	// Generate numberOfQuestoins unique random numbers
+	// initialization
+	arrTemp = new Array(nQs);
+		
+	for (i=0; i<nQs; i++) arrTemp[i]=-1
+		
+	// create a temp array of nQs unique random numbers
+	for (i=0; i<nQs; i++) {
+		for (j=0; j<100000; j++) {
+			blnFound = false;
+			intTemp = getRandom(nQs);
+			for (k=0; k<nQs; k++) {
+				if (arrTemp[k] == intTemp) {
+					blnFound = true;
+					break;
+				}
+			}
+			if (!blnFound) {
+				arrTemp[i] = intTemp;
+				break;
+			}
+		}
+	}
+
+	for (i=0; i<nQs; i++) {
+		k = arrTemp[i];
+		qOrder[i] = qOrder_seq[k];
+	}
+}
+
+function reInitialize() {
+	qIndex = 0;
+	var strTemp = "";
+	for (var i=0; i<nQs; i++) {
+		if (arrQs[qOrder[i]][7] < 2) strTemp = strTemp + qOrder[i] + ",";
+	}
+	strTemp = strTemp.substring(0, strTemp.length-1);
+	qOrder = strTemp.split(",");
+	nQtoShow = qOrder.length;
+	
+	writeQuestion(qOrder[0]);
+}
+	
+function itemSelection( qNum,I ) {
+	if (!qDisabled) {
+		hidecont();
+		var qType = arrQs[qNum][1];
+		var nItems = arrQs[qNum][2];
+		switch (qType) {
+			case 1:	//Multiple Choice
+				{
+					userAns = I;
+					blnChoiceMade = true;
+					for (var j=1; j<=nItems; j++) {
+						var g = eval("document.getElementById('img"+j+"').src");
+						var name = "img"+j;
+						var gnum = g.charAt(g.length-5)
+						var gfilename = getgname(g);
+						var gpath = getgpath(g)
+						if (j==I && gnum=="0" ) {
+							gfilename = gfilename.replace('_0','_2')	
+						} else if (j!=I && gnum=="2"  ) {
+							gfilename = gfilename.replace('_2','_0')
+						}
+						document.getElementById(name).src = gpath+gfilename;
+					}
+					break;
+				} //end of case 1
+	
+			case 2:
+				{
+					var blnSelected = arrUserAns[I-1];
+					var g = eval("document.getElementById('img"+I+"').src");
+					var name = "img"+I;
+					var gfilename = getgname(g);
+					var gpath = getgpath(g)
+					// toggle highlight
+					if (blnSelected == 1) {
+						arrUserAns[I-1] = 0;
+						gfilename = gfilename.replace('_2','_0')
+					} else  {
+						arrUserAns[I-1] = 1;
+						gfilename = gfilename.replace('_0','_2')
+					}
+						document.getElementById(name).src = gpath+gfilename;
+						//Make sure at least 1 choice has been made
+						blnChoiceMade = false;
+						for (j=0; j<nItems; j++) {
+							if (arrUserAns[j] == 1) {
+								blnChoiceMade = true;
+								break;
+							}
+						}
+						break;
+				}	// end of case 2
+		} //End of switch
+	} //end of !qDisabled		
+}
+
+function hidecont() {
+	document.getElementById('lydone').style.visibility = 'visible';
+	document.getElementById('feedback').style.visibility = 'hidden';
+	document.getElementById("lyfdbk").style.visibility = "hidden";
+	document.getElementById('fdbkContinue').style.visibility = "hidden";
+}
+
+function judgeInteraction() {
+ var strTemp = "";
+  if ( !blnChoiceMade ) {
+ 	document.getElementById("lyfdbk").innerHTML = arrQs[qNum][8][0];
+	document.getElementById("feedback").style.visibility = "visible";
+	document.getElementById("lyfdbk").style.visibility = "visible";
+	document.getElementById('lydone').style.visibility = 'hidden';
+	document.getElementById('fdbkContinue').style.visibility = 'hidden';
+  }else {
+  	document.getElementById('fdbkContinue').style.visibility = "visible";
+	qDisabled = true;
+	var qType = arrQs[qNum][1];
+	var nItems = arrQs[qNum][2];
+	var triesUser = arrQs[qNum][7];
+	arrQs[qNum][7] = arrQs[qNum][7] + 1;
+
+	switch (qType) {
+		case 1:	//Multiple Choice
+			{
+				qStatus = 0;
+				arrQs[qNum][6] = userAns;
+				correctAns = arrQs[qNum][5];
+				if (correctAns == userAns) {
+					qStatus = 1;
+					arrQs[qNum][7] = 2;
+					strTemp = "Correct! &nbsp;" + arrQs[qNum][8][3];
+					
+				} else if (arrQs[qNum][7] < 2) {
+					strTemp = arrQs[qNum][8][1];
+				} else {
+					strTemp = "Incorrect. " + arrQs[0][8][2] + arrQs[qNum][8][3];
+				}
+				break
+			}	//End of case 1
+		case 2:	//Multiple Answer
+			{
+				qStatus = 1;
+				arrQs[qNum][6] = arrUserAns.join();
+				arrCorrectAns = new Array();
+				arrCorrectAns = arrQs[qNum][5].split(",");
+				for (var i=0; i<nItems; i++) {
+					if (arrCorrectAns[i] != arrUserAns[i]) {
+						qStatus = 0;
+						break;
+					}
+				}
+				if (qStatus==1) {
+					arrQs[qNum][7] = 2;
+					strTemp = "Correct! &nbsp;" + arrQs[qNum][8][3];
+				} else if (arrQs[qNum][7] < 2) {
+					strTemp = arrQs[qNum][8][1];
+				} else {
+					strTemp = "Incorrect. " + arrQs[1][8][2] + arrQs[qNum][8][3];
+				}
+				break;
+			}	// End of case 2
+	}	//End of switch
+	var tempNum=parseInt(qNum)+1
+	var name = "pc"+(tempNum)+(triesUser+1);
+	//alert(qNum+", "+tempNum+", "+name)
+	var g = eval("document.getElementById('pc"+(tempNum)+(triesUser+1)+"').src");
+	
+	
+	document.getElementById(name).src = g.replace('_0','_1');
+	if (qStatus == 1) {
+	var tempN = "gSec"+tempNum;
+		document.getElementById(tempN).style.visibility = "visible"
+		if (triesUser > 0) {
+			qTotalScores += 50;
+			
+		}else{
+			qTotalScores += 100;
+		}
+			document.getElementById(name).src = g.replace('_0','_2');		
+	}else{
+			document.getElementById(name).src = g.replace('_0','_1');	
+	}
+
+
+//	if (isLastQ() && !blnHit && qTotalScores==500) {
+//		strTemp = strTemp + "<br /><br /> Congratulations! You have earned 500 points and completed this challenge! Click Forward to exit the Progress Check."
+//		document.getElementById("Prompt").innerHTML = "Select Forward to continue.";
+//		document.getElementById("fdbkContinue").style.visibility = "hidden";
+//		document.getElementById("Next").style.visibility = "visible";
+//	}else 
+	
+//	if (!blnHit && qTotalScores == 500 ) {
+//		strTemp = strTemp + "<br /><br />"+arrQs[0][7][2]
+//		document.getElementById("Next").style.visibility = "visible";
+//		document.getElementById("Prompt").innerHTML = "Select Forward to continue.";
+//	}else 
+
+	if (isLastQ() && qTotalScores==500 && qStatus == 1 ) {
+		blnLastPage=true;
+		strTemp = strTemp+ " Select Continue.";
+	} else if (isLastQ()) {
+		strTemp = strTemp + "Select Forward to continue."  //arrQs[qNum][8][iFdbkTxt];
+		document.getElementById("fdbkContinue").style.visibility = "hidden";
+		document.getElementById("Next").style.visibility = "visible";
+		document.getElementById("Prompt").innerHTML = "Select Forward to continue.";
+	} else {
+		strTemp = strTemp+ " Select Continue."//arrQs[qNum][8][iFdbkTxt];		
+	}
+	document.getElementById("lyfdbk").innerHTML = strTemp
+	document.getElementById("lydone").style.visibility = "hidden";
+	document.getElementById("feedback").style.visibility = "visible";
+	document.getElementById("lyfdbk").style.visibility = "visible";
+	//if ( qTotalScores==500) blnHit = true;
+
+	//save info.
+	qIndex += 1;	//increment question
+	nTotalCorrect += qStatus;
+	//if (nTotalCorrect > 4) blnLastPage = true;
+	document.getElementById("lyscores").innerHTML ="Total Points: " +qTotalScores;
+	if ( (qStatus == 1) || (arrQs[qNum][7] > 1) ) {
+		finalStep()
+	}
+  }	//End of choice made
+}
+
+function finalStep() {
+	var nItems = arrQs[qNum][2];
+	var qType = arrQs[qNum][1];
+	var iTemp;
+	for (var i=1; i<=nItems; i++) {
+		if (qType==1) {
+			iTemp=i;
+		}else{
+			iTemp=1;
+			correctAns = arrCorrectAns[i-1];
+			userAns = arrUserAns[i-1]
+		}
+
+		var g = eval("document.getElementById('img"+i+"').src");
+		var name = "img"+i;
+		var gnum = g.charAt(g.length-5)
+		var gfilename = getgname(g);
+		var gpath = getgpath(g)
+		if (correctAns == iTemp) {
+			gfilename = gfilename.replace('_0','_2')	
+		} else if (userAns == iTemp) {
+			gfilename = gfilename.replace('_2','_3')
+		} else {
+			gfilename = gfilename.replace('_0','_3')
+		}
+		document.getElementById(name).src = gpath+gfilename;
+	}
+	if (qNum==0) {
+	document.getElementById("lyfdbk").style.height = "180px";
+	//document.getElementById("lyfdbk").style.top = "-55px";
+	document.getElementById("lyfdbk").style.overflow = "auto";
+	//document.getElementById("continue").style.top = "-40px";
+	}
+	
+}
+
+function nextQuestion() {
+hidecont();
+	if (qIndex < nQtoShow) writeQuestion(qOrder[qIndex])
+	else if (blnLastPage==true ) {
+		document.getElementById("exitMessage").innerHTML="<p>Congratulations! You have earned 500 points and completed this challenge! </p>  "
+		document.getElementById("Prompt").innerHTML = "Select Exit Progress Check.";
+		document.getElementById("exitbtnExit").style.left="388px"
+		MM_showHideLayers('exitProgress','','show', 'exitMessage','','show', 'exitbtnCont','','hide', 'exitbtnExit','','show');
+	}
+	else reInitialize()
+}
+
+function isLastQ() {
+	var nTemp = 0;
+	for (var i=0; i<nQs; i++) {
+		if (arrQs[i][7] < 2) {
+			nTemp += 1;
+		}
+	}
+	if (nTemp == 0) return true
+	else return false
+}
+
+
+//****************************************
+function writeQuestion(nwqqNum) {
+qNum = parseInt(nwqqNum)
+	//reset variables
+	userAns = 0;
+	qStatus = 0;	//question status. 1=correct, 0=incorrect
+	blnChoiceMade = false;
+	qDisabled = false;
+	var nItems = arrQs[qNum][2];
+	var strHTML = "";
+	var strTemp
+	var gbtnName;
+	var gformat;
+	if (arrQs[qNum][1]==1) {
+		gbtnName="mc_circle_";
+		gformat="_0.png";
+		strTemp = "Select the correct answer, and then click Done."
+	}else{
+		gbtnName="mc_"
+		gformat="_0.jpg"
+		for (var j=0; j<nItems; j++) arrUserAns[j] = 0
+		strTemp = "Select all that apply, and then click Done."
+	}
+
+	if ( qTotalScores==500 && triesLimit == 0 ) {
+		MM_showHideLayers('exitProgress','','show', 'exitMessage','','show', 'exitbtnCont','','show', 'exitbtnExit','','show');
+		document.getElementById("Prompt").innerHTML = "";
+		lastPprompt = strTemp 
+	} else {
+		document.getElementById("Prompt").innerHTML = strTemp;
+	}
+		
+	document.getElementById("lyfdbk").style.height = "auto";
+	document.getElementById("lyfdbk").style.overflow = "hidden";
+	
+	distracters = new Array(nItems);
+	distracters = arrQs[qNum][4].split("#");
+	
+	for (var i=1; i<=nItems; i++) {
+		//table cells 
+		strHTML = strHTML + "<tr><td width='45'><a href='javascript:itemSelection("+qNum+","+ i +")'><img src='../../sysimages/"+gbtnName+arrLetters[i]+gformat+"' alt='Distracter "+arrLetters[i].toUpperCase()+"' id='img"+i+"' name='img"+i+"' width'38' height='38' border='0' /></a></td>"
+		strHTML = strHTML + "<td width='355' class='distrText'>"+ distracters[i-1] +"</td></tr>"	
+	}	
+	strHTML = "<p>"+arrQs[qNum][3]+"</p><table width='90%' align='center' border='0' cellspacing='3' cellpadding='3'>" + strHTML + "<tr><td>&nbsp;</td><td>&nbsp;</td></tr></table>"
+
+
+	document.getElementById("question").innerHTML = strHTML;
+}
+
+function hideexitLy() {
+	MM_showHideLayers('exitProgress','','hide', 'exitMessage','','hide', 'exitbtnCont','','hide', 'exitbtnExit','','hide'); 
+	document.getElementById("Prompt").innerHTML = lastPprompt;
+	triesLimit = 1;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad="onpage();MM_preloadImages('../../sysimages/begin_2.jpg','../../sysimages/done_2.jpg','../../sysimages/cont_2.jpg','../../sysimages/exitpgrcheck_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  OEHSA / Progress Check
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" --><!-- InstanceEndEditable --></div>
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Progress Check<!-- InstanceEndEditable --></div>
+<div id="ContentExp" ><!-- InstanceBeginEditable name="EditContents" --> 
+ <div id="question" style="position:absolute; left:0px; top:171px; width:474px; height:305px; z-index:0">
+<p>Your challenge is to  earn at least 500 points by answering questions related to the OEHSA process and  site selection.&nbsp; Each question is worth  100 points.&nbsp; If you do not earn 500  points on your first try, you will be given an opportunity to try any questions  you missed one more time; however, their point value will be reduced by  half.</p>
+<p>Select Begin to start.</p>
+</div>
+<!-- InstanceEndEditable --></div>
+<!-- InstanceBeginEditable name="others" -->
+<div id="pageGraphic" style="position:absolute; top:79px; left:31px; width:874px; height:163px;">
+<img src="images/model.jpg" alt="Organizer showing the OEHSA process." width="914" height="206" /></div>
+<div id="gSec1" style="position:absolute; left:112px; top:153px; width:50px; visibility: hidden;" ><img src="images/button1_2.png" width="126" height="114" /></div>
+<div id="gSec2" style="position:absolute; left:238px; top:153px; width:50px; visibility: hidden;" ><img src="images/button2_2.png" width="126" height="114" /></div>
+<div id="gSec3" style="position:absolute; left:364px; top:153px; width:50px; visibility: hidden;" ><img src="images/button3_2.png" width="126" height="114" /></div>
+<div id="gSec4" style="position:absolute; left:490px; top:153px; width:50px; visibility: hidden;" ><img src="images/button4_2.png" width="126" height="114" /></div>
+<div id="gSec5" style="position:absolute; left:616px; top:153px; width:50px; visibility: hidden;" ><img src="images/button5_2.png" width="126" height="114" /></div>
+<div id="gSec6" style="position:absolute; left:742px; top:153px; width:50px; visibility: hidden;" ><img src="images/button6_2.png" width="126" height="114" /></div>
+<div id="gSec7" style="position:absolute; left:129px; top:127px; width:50px; visibility: hidden;" ><img src="images/button7_2.png" width="98" height="20" /></div>
+
+<div style="position:absolute; left:188px; top:154px; width:50px;" ><img src="images/light_0.png" name="pc11" width="21" height="21" id="pc11" /></div> 
+<div style="position:absolute; left:200px; top:176px; width:50px;" ><img src="images/light_0.png" name="pc12" width="21" height="21" id="pc12" /></div>
+<div style="position:absolute; left:314px; top:155px; width:50px;" ><img src="images/light_0.png" name="pc21" width="21" height="21" id="pc21" /></div> 
+<div style="position:absolute; left:326px; top:176px; width:50px;" ><img src="images/light_0.png" name="pc22" width="21" height="21" id="pc22" /></div>
+<div style="position:absolute; left:440px; top:155px; width:50px;" ><img src="images/light_0.png" name="pc31" width="21" height="21" id="pc31" /></div> 
+<div style="position:absolute; left:452px; top:176px; width:50px;" ><img src="images/light_0.png" name="pc32" width="21" height="21" id="pc32" /></div>
+<div style="position:absolute; left:566px; top:155px; width:50px;" ><img src="images/light_0.png" name="pc41" width="21" height="21" id="pc41" /></div> 
+<div style="position:absolute; left:578px; top:176px; width:50px;" ><img src="images/light_0.png" name="pc42" width="21" height="21" id="pc42" /></div>
+<div style="position:absolute; left:691px; top:155px; width:50px;" ><img src="images/light_0.png" name="pc51" width="21" height="21" id="pc51" /> </div>
+<div style="position:absolute; left:703px; top:176px; width:50px;" ><img src="images/light_0.png" name="pc52" width="21" height="21" id="pc52" /></div>
+<div style="position:absolute; left:817px; top:155px; width:50px;" ><img src="images/light_0.png" name="pc61" width="21" height="21" id="pc61" /></div> 
+<div style="position:absolute; left:829px; top:176px; width:50px;" ><img src="images/light_0.png" name="pc62" width="21" height="21" id="pc62" /></div>
+<div style="position:absolute; left:675px; top:124px; width:18px;" ><img src="images/light_0.png" name="pc71" width="21" height="21" id="pc71" /></div> 
+<div style="position:absolute; left:696px; top:124px; width:50px;" ><img src="images/light_0.png" name="pc72" width="21" height="21" id="pc72" /></div>
+
+
+<div id="lyscores" style="position:absolute; left:405px; top:105px; width:183px; height:25px; font-weight: bold; color:#FFFFFF; font-size: 15px">
+Total Points: 0</div>
+
+<div id="btnBegin" style="position:absolute; left:687px; top:403px; width:60px; height:20px; z-index:3;">
+<a href="javascript:setQOrder(); writeQuestion(qOrder[0]);" onMouseOver="MM_swapImage('btnB','','../../sysimages/begin_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/begin_0.jpg" alt="Begin button" name="btnB" width="90" height="36" border="0" id="btnB" /></a></div>
+	
+<div id="lydone" style="position:absolute; left:679px; top: 403px; visibility: hidden;"> <a href="javascript:judgeInteraction()"  onMouseOver="MM_swapImage('imgdone','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/done_0.jpg" name="imgdone" id="imgdone" alt="Done" width="90" height="36" border="0" /></a></div>
+	
+<div id="feedback" style="position:absolute; left:542px; width:384px; top:322px; height:120px; visibility:hidden;">
+<div class="txtfdbk" id='lyfdbk'></div><br />
+	<div id="fdbkContinue" style="position:relative; top: 13px; text-align: center;"> <a href="javascript:nextQuestion()"  onMouseOver="MM_swapImage('imgcont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" name="imgcont" id="imgcont" alt="Continue button" width="90" height="36" border="0" /></a></div>
+</div>
+
+<div id="snowMapDot">
+<img src="../../sysimages/map_dot.png" border="0" />
+</div>
+
+<div id="exitProgress" style="background-image:url(images/background.jpg); background-repeat:no-repeat; position:absolute; width:911px; left: 32px; top: 77px; height: 514px; visibility: hidden;">
+<div id="exitMessage" style="position:absolute; top:152px; left:196px; width:535px">
+<p>Congratulations! You have earned 500 points and completed this challenge!  Do you want to keep going and try the next question anyway? </p></div>
+<div id="exitbtnCont" style="position:absolute; width:auto; left:298px; top:296px"><a href="javascript:hideexitLy()" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('imgbtnCont','','../../sysimages/cont_2.jpg',1)"><img src="../../sysimages/cont_0.jpg" alt="Continue" name="imgbtnCont" width="90" height="36" border="0" id="imgbtnCont" /></a></div>
+<div id="exitbtnExit" style="position:absolute; width:auto; left:457px; top:296px"><a href="javascript:findNext()" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('imgbtnExit','','../../sysimages/exitpgrcheck_2.jpg',1)"><img src="../../sysimages/exitpgrcheck_0.jpg" name="imgbtnExit" width="164" height="36" border="0" id="imgbtnExit" /></a></div>
+</div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select Begin to start.<!-- InstanceEndEditable --></div>
+
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+
+<div id="lynav">
+      <ul id="navigation" name="navigation">
+        <!-- InstanceBeginEditable name="maps" -->
+
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="#" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf"  target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+	
+
+</body>
+<!-- InstanceEnd --></html>

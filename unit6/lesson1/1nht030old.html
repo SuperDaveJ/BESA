@@ -1,0 +1,209 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>BESA WBT</title>
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+<link rel="stylesheet" type="text/css" href="../../tablecloth.css" media="screen" />
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/scenario_tropical.jpg);
+}
+-->
+</style>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/tablecloth.js"></script>
+<script language="javascript">
+<!--
+
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit the course?")==true) exitCourse(true);
+}
+
+MM_reloadPage(true);
+	
+function findNext() {
+	var pgURL = "1nht040.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "1nht020.html"
+	goURL(pgURL);
+}
+
+function showaudiot() {
+}
+
+var nItems = 3;
+var triesUser = 0;
+var triesLimit = 2;
+var blnKeepCorrect = true;
+var strCorrectAns = "3,1,2"
+arrUserAns = new Array(nItems);
+arrCorrectAns = new Array(nItems);
+for (var i=0; i<nItems; i++) arrUserAns[i] = 0;
+arrCorrectAns = strCorrectAns.split(",");
+var uT;
+var triesUser_local = 0;
+uT = getQueryValue('uT');	//user tries set from next page
+
+if (uT == 1) {
+	triesUser_local += 1;
+}
+var fdbkNoSelection = "You have not made any selections.  Please try again."
+var fdbkIncorrectFirstTry = "No, sorry.  You will have another opportunity to answer this question after reading some information about this topic. <br />Select Continue."
+var fdbkIncorrectFinal = "Incorrect. The correct answers are now displayed. Direct noise is transmitted directly from the source to the receiver.  Indirect noise is transmitted when vibrations from the source travel through a solid and are then transmitted through the air to the receiver. Reflective noise is transmitted when sound waves rebound from other surfaces and then travel to the receiver. <br />Select Continue."
+var fdbkCorrect = "Correct! Direct noise is transmitted directly from the source to the receiver.  Indirect noise is transmitted when vibrations from the source travel through a solid and are then transmitted through the air to the receiver. Reflective noise is transmitted when sound waves rebound from other surfaces and then travel to the receiver.  Select Continue."
+
+//***** The function below is not original ***********
+function hidecont() {
+	document.getElementById('done').style.visibility = 'visible';
+	document.getElementById('feedback').style.visibility = 'hidden';
+	triesUser=0;
+}
+
+function judgeInt_local() {
+	triesUser=2;
+	triesUser_local += 1;
+	var strTemp = "";
+	var nBlank = 0;
+	var nCorrect = 0
+	var table = document.getElementsByTagName("table")[0];
+
+	for (var i=0; i<nItems; i++) {
+		if (arrUserAns[i] == 0) nBlank += 1;
+		if (arrUserAns[i] == arrCorrectAns[i]) nCorrect += 1;
+	}
+	if (nBlank == nItems) {
+		//********** No selection ************
+		triesUser_local -= 1;
+		strTemp = fdbkNoSelection;
+		document.getElementById('fdbkLink').href = "javascript:hidecont()";
+	} else if (nCorrect == nItems) {
+		//********** Correct ************
+		//triesUser = triesLimit;
+		if (triesUser_local < triesLimit) {
+			document.getElementById('fdbkLink').href = "javascript:goURL('1nht03a.html?uC=1')";
+		}else{
+			document.getElementById('fdbkLink').href = "javascript:goURL('1nht040.html')";
+		}
+		showCorrect(table);
+		strTemp = fdbkCorrect;
+		
+	} else {
+		if (triesUser_local < triesLimit) {
+			//********** First Incorrect ************
+			//for (var i=0; i<nItems; i++) {
+//				if (blnKeepCorrect) {
+//					if (arrUserAns[i] != arrCorrectAns[i]) unhighlightCell(table, i+1, arrUserAns[i]);
+//				} else {
+//					unhighlightCell(table, i+1, arrUserAns[i]);
+//				}
+//			}
+			showUser(table);
+			strTemp = fdbkIncorrectFirstTry;
+			document.getElementById('fdbkLink').href = "javascript:goURL('1nht03a.html?uC=0')";
+		} else {
+			//********** Final Incorrect ************
+			showCorrect(table);
+			strTemp = fdbkIncorrectFinal;
+			document.getElementById('fdbkLink').href = "javascript:goURL('1nht040.html')";
+		}
+	}
+
+	document.getElementById('done').style.visibility = "hidden";
+	document.getElementById('lyfdbk').innerHTML = strTemp;
+	document.getElementById('lyfdbk').style.visibility = "visible";
+	document.getElementById('feedback').style.visibility = "visible";
+	
+}
+//-->
+</script>
+</head>
+
+<body  onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" >
+  Noise Health Threats / Hazardous Noise
+</div>
+<div id="pageN">Page 3 of 8</div>
+<div id="PageT">Scenario Challenge Point</div>
+<div id="ContentExp" >
+  <p>Before collecting the data, you consider the various ways that noise from the machine may affect the operator.  Match  each description with the appropriate noise pathway by clicking on the  appropriate block in the table.</p>
+  <div style="position:relative; left:0px; top:10px">
+  <table name="tb1" width="95%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th  class="col">Description</th>
+    <th width="17%" scope="col" class="col">Direct Noise Pathway</th>
+    <th width="17%" scope="col" class="col">Indirect Noise Pathway</th>
+    <th width="17%" scope="col" class="col">Reflective Noise Pathway</th>
+  </tr>
+  <tr>
+    <th scope="row" style="text-align:left">Sound waves are transmitted to the receiver after rebounding from       other surfaces.</th>
+    <td title="">&nbsp;</td>
+    <td title="">&nbsp;</td>
+    <td title="">&nbsp;</td>
+  </tr>
+  <tr>
+    <th scope="row" style="text-align:left">Sound waves are transmitted to the receiver straight from the       source.</th>
+    <td title="">&nbsp;</td>
+    <td title="">&nbsp;</td>
+    <td title="">&nbsp;</td>
+  </tr>
+  <tr>
+    <th scope="row" style="text-align:left">Sound waves are transmitted to the receiver through  the air after vibrations from the source travel through a solid.</th>
+    <td title="">&nbsp;</td>
+    <td title="">&nbsp;</td>
+    <td title="">&nbsp;</td>
+  </tr>
+</table>
+</div>
+
+<div id="done" style="position:absolute; text-align: center; left:393px; top:348px; z-index:2; width: 91px; height: 32px;"><a href="javascript:;" onClick="judgeInt_local()" onMouseOver="MM_swapImage('DoneButton','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/done_0.jpg" alt="Done button" id="DoneButton" name="DoneButton" width="90" height="36" border="0"></a></div>
+</div>
+<!--<div class="txtfdbk" id='lyfdbk' style="position:absolute; left:113px; top:452px; width:750px; height:40px; z-index:10;"></div>-->
+<div id="feedback" style="position:absolute; top:422px; left:109px; width:750px; height:50px; visibility:hidden;">
+	<div class="txtfdbk" id='lyfdbk'></div>
+	<br />
+	<div id="fdbkContinue" style="position:relative; top:-5px; text-align: center;"><a id="fdbkLink" href="javascipt:;"  onMouseOver="MM_swapImage('btnCont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" alt="Continue button" name="btnCont" width="90" height="36" border="0" id="btnCont" /></a></div>
+</div>
+
+<div id="Prompt">Correctly match the items, and then click Done.</div>
+
+<div id="lynav">
+      <ul id="navigation">
+        <li class="unitmenu"><a href="javascript:toMenu(false)" title="Unit Menu"></a></li>
+		<li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title=""></a></li>
+        <li class="options"><a href="#" title="Options"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="javascript:goURL('../../help.html')" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&amp; " class="thickbox" title="" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<div id="snowMapDot" style="position:absolute; top:40px; left:799px;">
+<img src="../../sysimages/map_dot.png" border="0" /></div>
+	
+<div id="Next" style="visibility:hidden"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+</html>

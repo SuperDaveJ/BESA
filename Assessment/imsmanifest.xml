@@ -1,0 +1,287 @@
+<?xml version="1.0" standalone="no" ?>
+<!-- created with "Manifest Maker for ADL SCORM 1.2 Version 2.0.0" for Dreamweaver,
+ on Mon Feb 08 2010 13:36:44 GMT-0600 (Central Standard Time) -->
+
+<manifest identifier="besa_xml-MANIFEST" version="1.0"
+  xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+  xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd
+                        http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd
+                        http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd" >
+
+<metadata>
+<schema>ADL SCORM</schema>
+<schemaversion>1.2</schemaversion>
+<adlcp:location>imsmetadata.xml</adlcp:location>
+</metadata>
+ 
+<organizations default="USAF">
+<organization identifier="USAF">
+<title>besa_xml</title >
+<item identifier="I_SCO0" identifierref="SCO0">
+<title>BESA Final Exam</title>
+</item>
+</organization>
+</organizations>
+
+<resources>
+<resource identifier="SCO0" type="webcontent" adlcp:scormtype="sco" href="besatest_index.html">
+<file href="besatest_index.html" />
+<dependency identifierref="ALLRESOURCES" />
+</resource>
+
+<resource identifier="ALLRESOURCES" type="webcontent" adlcp:scormtype="asset">
+<file href="1a001.html" />
+<file href="1a001e.html" />
+<file href="1a002e.html" />
+<file href="1a003e.html" />
+<file href="1a004e.html" />
+<file href="1a005e.html" />
+<file href="1a006e.html" />
+<file href="1a007e.html" />
+<file href="1a008e.html" />
+<file href="1a009e.html" />
+<file href="Templates/besa.dwt" />
+<file href="assessment_data.xml" />
+<file href="besa.css" />
+<file href="besatest_controller.html" />
+<file href="besatest_index.html" />
+<file href="blank.html" />
+<file href="q0.html" />
+<file href="scripts/MC.js" />
+<file href="scripts/MC_sec2.js" />
+<file href="scripts/access.js" />
+<file href="sysimages/background.jpg" />
+<file href="sysimages/bg_header1.jpg" />
+<file href="sysimages/bullet.png" />
+<file href="sysimages/clickgrid_0.png" />
+<file href="sysimages/clickgrid_1.png" />
+<file href="sysimages/clickgrid_2.png" />
+<file href="sysimages/clickgrid_3.png" />
+<file href="sysimages/close_0.jpg" />
+<file href="sysimages/close_2.jpg" />
+<file href="sysimages/close_small_0.jpg" />
+<file href="sysimages/close_small_2.jpg" />
+<file href="sysimages/cont_0.jpg" />
+<file href="sysimages/cont_2.jpg" />
+<file href="sysimages/done_0.jpg" />
+<file href="sysimages/done_2.jpg" />
+<file href="sysimages/exitcourse_0.jpg" />
+<file href="sysimages/exitcourse_0old.jpg" />
+<file href="sysimages/exitpgrcheck_0.jpg" />
+<file href="sysimages/exitpgrcheck_2.jpg" />
+<file href="sysimages/forward_0.jpg" />
+<file href="sysimages/forward_2.jpg" />
+<file href="sysimages/glossary_0.jpg" />
+<file href="sysimages/glossary_2.jpg" />
+<file href="sysimages/help_0.jpg" />
+<file href="sysimages/help_2.jpg" />
+<file href="sysimages/holder_transparent.png" />
+<file href="sysimages/icon_audio.png" />
+<file href="sysimages/legend.jpg" />
+<file href="sysimages/lessmap_bottom.jpg" />
+<file href="sysimages/lessmap_icon.jpg" />
+<file href="sysimages/lessmap_top.jpg" />
+<file href="sysimages/lessmenu_0.jpg" />
+<file href="sysimages/lessmenu_complete.png" />
+<file href="sysimages/lessmenu_inprogress.png" />
+<file href="sysimages/lessmenupic_CHZ.jpg" />
+<file href="sysimages/lessmenupic_HRA.jpg" />
+<file href="sysimages/lessmenupic_NHT.jpg" />
+<file href="sysimages/lessmenupic_OEA.jpg" />
+<file href="sysimages/lessmenupic_PTW.jpg" />
+<file href="sysimages/lessmenupic_RCM.jpg" />
+<file href="sysimages/lessmenupic_RFR.jpg" />
+<file href="sysimages/lessmenupic_SMP.jpg" />
+<file href="sysimages/lesson_menu.jpg" />
+<file href="sysimages/lesson_screen_back_city.jpg" />
+<file href="sysimages/lesson_screen_back_forest.jpg" />
+<file href="sysimages/lesson_screen_back_sand.jpg" />
+<file href="sysimages/lesson_screen_back_snow.jpg" />
+<file href="sysimages/lesson_screen_back_tropical.jpg" />
+<file href="sysimages/lesson_screen_background.jpg" />
+<file href="sysimages/lessonmap_0.jpg" />
+<file href="sysimages/lessonpic_BHT.jpg" />
+<file href="sysimages/lessonpic_CHT.jpg" />
+<file href="sysimages/lessonpic_IRD.jpg" />
+<file href="sysimages/lessonpic_LHZ.jpg" />
+<file href="sysimages/lessonpic_ROV.jpg" />
+<file href="sysimages/lessonpic_TIM.jpg" />
+<file href="sysimages/lessonpic_UVI.jpg" />
+<file href="sysimages/list3.jpg" />
+<file href="sysimages/list4.jpg" />
+<file href="sysimages/map_dot.png" />
+<file href="sysimages/mc_a_0.jpg" />
+<file href="sysimages/mc_a_2.jpg" />
+<file href="sysimages/mc_a_3.jpg" />
+<file href="sysimages/mc_b_0.jpg" />
+<file href="sysimages/mc_b_2.jpg" />
+<file href="sysimages/mc_b_3.jpg" />
+<file href="sysimages/mc_c_0.jpg" />
+<file href="sysimages/mc_c_2.jpg" />
+<file href="sysimages/mc_c_3.jpg" />
+<file href="sysimages/mc_circle_a_0.png" />
+<file href="sysimages/mc_circle_a_2.png" />
+<file href="sysimages/mc_circle_a_3.png" />
+<file href="sysimages/mc_circle_b_0.png" />
+<file href="sysimages/mc_circle_b_2.png" />
+<file href="sysimages/mc_circle_b_3.png" />
+<file href="sysimages/mc_circle_c_0.png" />
+<file href="sysimages/mc_circle_c_2.png" />
+<file href="sysimages/mc_circle_c_3.png" />
+<file href="sysimages/mc_circle_d_0.png" />
+<file href="sysimages/mc_circle_d_2.png" />
+<file href="sysimages/mc_circle_d_3.png" />
+<file href="sysimages/mc_circle_e_0.png" />
+<file href="sysimages/mc_circle_e_2.png" />
+<file href="sysimages/mc_circle_e_3.png" />
+<file href="sysimages/mc_d_0.jpg" />
+<file href="sysimages/mc_d_2.jpg" />
+<file href="sysimages/mc_d_3.jpg" />
+<file href="sysimages/mc_e_0.jpg" />
+<file href="sysimages/mc_e_2.jpg" />
+<file href="sysimages/mc_e_3.jpg" />
+<file href="sysimages/mm_10_dot_0.png" />
+<file href="sysimages/mm_10_dot_2.png" />
+<file href="sysimages/mm_10_dot_complete.png" />
+<file href="sysimages/mm_10_dot_started.png" />
+<file href="sysimages/mm_10_pic.png" />
+<file href="sysimages/mm_11_dot_0.png" />
+<file href="sysimages/mm_11_dot_2.png" />
+<file href="sysimages/mm_11_dot_complete.png" />
+<file href="sysimages/mm_11_dot_started.png" />
+<file href="sysimages/mm_11_pic.png" />
+<file href="sysimages/mm_12_dot_0.png" />
+<file href="sysimages/mm_12_dot_2.png" />
+<file href="sysimages/mm_12_dot_complete.png" />
+<file href="sysimages/mm_12_dot_started.png" />
+<file href="sysimages/mm_12_pic.png" />
+<file href="sysimages/mm_13_dot_0.png" />
+<file href="sysimages/mm_13_dot_2.png" />
+<file href="sysimages/mm_13_dot_complete.png" />
+<file href="sysimages/mm_13_dot_started.png" />
+<file href="sysimages/mm_13_pic.png" />
+<file href="sysimages/mm_14_dot_0.png" />
+<file href="sysimages/mm_14_dot_2.png" />
+<file href="sysimages/mm_14_dot_complete.png" />
+<file href="sysimages/mm_14_dot_started.png" />
+<file href="sysimages/mm_14_pic.png" />
+<file href="sysimages/mm_15_dot_0.png" />
+<file href="sysimages/mm_15_dot_2.png" />
+<file href="sysimages/mm_15_dot_complete.png" />
+<file href="sysimages/mm_15_dot_started.png" />
+<file href="sysimages/mm_15_pic.png" />
+<file href="sysimages/mm_16_dot_0.png" />
+<file href="sysimages/mm_16_dot_2.png" />
+<file href="sysimages/mm_16_dot_complete.png" />
+<file href="sysimages/mm_16_dot_started.png" />
+<file href="sysimages/mm_16_pic.png" />
+<file href="sysimages/mm_1_dot_0.png" />
+<file href="sysimages/mm_1_dot_2.png" />
+<file href="sysimages/mm_1_dot_complete.png" />
+<file href="sysimages/mm_1_dot_started.png" />
+<file href="sysimages/mm_1_pic.png" />
+<file href="sysimages/mm_2_dot_0.png" />
+<file href="sysimages/mm_2_dot_2.png" />
+<file href="sysimages/mm_2_dot_complete.png" />
+<file href="sysimages/mm_2_dot_started.png" />
+<file href="sysimages/mm_2_pic.png" />
+<file href="sysimages/mm_3_dot_0.png" />
+<file href="sysimages/mm_3_dot_2.png" />
+<file href="sysimages/mm_3_dot_complete.png" />
+<file href="sysimages/mm_3_dot_started.png" />
+<file href="sysimages/mm_3_pic.png" />
+<file href="sysimages/mm_4_dot_0.png" />
+<file href="sysimages/mm_4_dot_2.png" />
+<file href="sysimages/mm_4_dot_complete.png" />
+<file href="sysimages/mm_4_dot_started.png" />
+<file href="sysimages/mm_4_pic.png" />
+<file href="sysimages/mm_5_dot_0.png" />
+<file href="sysimages/mm_5_dot_2.png" />
+<file href="sysimages/mm_5_dot_complete.png" />
+<file href="sysimages/mm_5_dot_started.png" />
+<file href="sysimages/mm_5_pic.png" />
+<file href="sysimages/mm_6_dot_0.png" />
+<file href="sysimages/mm_6_dot_2.png" />
+<file href="sysimages/mm_6_dot_complete.png" />
+<file href="sysimages/mm_6_dot_started.png" />
+<file href="sysimages/mm_6_pic.png" />
+<file href="sysimages/mm_7_dot_0.png" />
+<file href="sysimages/mm_7_dot_2.png" />
+<file href="sysimages/mm_7_dot_complete.png" />
+<file href="sysimages/mm_7_dot_started.png" />
+<file href="sysimages/mm_7_pic.png" />
+<file href="sysimages/mm_8_dot_0.png" />
+<file href="sysimages/mm_8_dot_2.png" />
+<file href="sysimages/mm_8_dot_complete.png" />
+<file href="sysimages/mm_8_dot_started.png" />
+<file href="sysimages/mm_8_pic.png" />
+<file href="sysimages/mm_9_dot_0.png" />
+<file href="sysimages/mm_9_dot_2.png" />
+<file href="sysimages/mm_9_dot_complete.png" />
+<file href="sysimages/mm_9_dot_started.png" />
+<file href="sysimages/mm_9_pic.png" />
+<file href="sysimages/mm_exitcourse_0.jpg" />
+<file href="sysimages/mm_exitcourse_2.jpg" />
+<file href="sysimages/nextslide_0.png" />
+<file href="sysimages/nextslide_2.png" />
+<file href="sysimages/opmenu_0.jpg" />
+<file href="sysimages/page1_0.jpg" />
+<file href="sysimages/page1_2.jpg" />
+<file href="sysimages/page2_0.jpg" />
+<file href="sysimages/page2_2.jpg" />
+<file href="sysimages/page3_0.jpg" />
+<file href="sysimages/page3_2.jpg" />
+<file href="sysimages/page4_0.jpg" />
+<file href="sysimages/page4_2.jpg" />
+<file href="sysimages/page5_0.jpg" />
+<file href="sysimages/page5_2.jpg" />
+<file href="sysimages/popup_huge_city.jpg" />
+<file href="sysimages/popup_huge_desert.jpg" />
+<file href="sysimages/popup_huge_snow.jpg" />
+<file href="sysimages/popup_large_city.jpg" />
+<file href="sysimages/popup_large_desert.jpg" />
+<file href="sysimages/popup_large_forest.jpg" />
+<file href="sysimages/popup_large_snow.jpg" />
+<file href="sysimages/popup_large_tropical.jpg" />
+<file href="sysimages/popup_med_city.jpg" />
+<file href="sysimages/popup_med_desert.jpg" />
+<file href="sysimages/popup_med_forest.jpg" />
+<file href="sysimages/popup_med_snow.jpg" />
+<file href="sysimages/popup_med_tropical.jpg" />
+<file href="sysimages/popup_sand_extrlrge.jpg" />
+<file href="sysimages/popup_small_city.jpg" />
+<file href="sysimages/popup_small_desert.jpg" />
+<file href="sysimages/popup_small_forest.jpg" />
+<file href="sysimages/popup_small_snow.jpg" />
+<file href="sysimages/popup_small_tropical.jpg" />
+<file href="sysimages/previous_0.jpg" />
+<file href="sysimages/previous_2.jpg" />
+<file href="sysimages/printunit_0.jpg" />
+<file href="sysimages/printunit_2.jpg" />
+<file href="sysimages/repeat_0.jpg" />
+<file href="sysimages/repeat_2.jpg" />
+<file href="sysimages/resources_0.jpg" />
+<file href="sysimages/resources_2.jpg" />
+<file href="sysimages/rs_wb_large.jpg" />
+<file href="sysimages/rsmpbb1a.jpg" />
+<file href="sysimages/rsmpbb3aold.png" />
+<file href="sysimages/scenario_city.jpg" />
+<file href="sysimages/scenario_forest.jpg" />
+<file href="sysimages/scenario_sand.jpg" />
+<file href="sysimages/scenario_snow.jpg" />
+<file href="sysimages/scenario_tropical.jpg" />
+<file href="sysimages/screen_lessonmenu.jpg" />
+<file href="sysimages/screen_mainmenu.jpg" />
+<file href="sysimages/screen_resource.jpg" />
+<file href="sysimages/trashcan.png" />
+<file href="sysimages/unitmenu_0.jpg" />
+<file href="sysimages/wbtext.jpg" />
+<file href="sysimages/whiteboard_small.jpg" />
+<file href="sysimages/whiteboard_text.jpg" />
+</resource>
+
+</resources>
+
+</manifest>

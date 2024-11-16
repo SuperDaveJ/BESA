@@ -1,0 +1,258 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/lesson_screen_back_city.jpg);
+}
+#Content{width:875px}
+table {width:98%;border-collapse:collapse;margin:1em 0;}
+td {background:#63570d; color:#63570d; font-size:13px; text-align:center;padding:.2em; border:1px solid #b1ae00;}
+th {background:#644610; color:#FFFFFF; text-align:center; font-size:13px; padding: 6px 6px 6px 12px; border:1px solid #b1ae00;}
+th.col  {background:url(../../sysimages/bg_header1.jpg); background-repeat:no-repeat; text-align:center; font-style:italic; }
+td.old {background:#644610; color:#644610;}
+td.over{background:#63570d; color:#FFFFFF; }
+th.click{background:#644610; color:#FFFFFF; cursor:pointer;}
+.ftext {background-color:#644610; text-align:center; color:#FFFFFF; font-size:1em; border:1px solid #b1ae00; };
+.cellT {color: #FFFFFF}
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+
+function onpage() {
+	toclass()
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "3smp110.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "3smp090.html"
+	goURL(pgURL);
+}
+function showaudiot() {
+}
+
+function nextQuestion() {
+	findNext()
+}
+
+function toclass(){
+	// CONFIG 
+	var tableover = false;
+	this.start = function(){
+		var tables = document.getElementsByTagName("table");
+		for (var i=0;i<tables.length;i++){
+			tables[i].onmouseover = function(){tableover = true};
+			tables[i].onmouseout = function(){tableover = false};			
+			rows(tables[i]);
+		};
+	};
+	
+	this.rows = function(table){
+		var css = "";
+		var tr = table.getElementsByTagName("tr");
+		for (var i=0;i<tr.length;i++){
+			tr[i].className = css;
+			var arr = new Array();
+			for(var j=0;j<tr[i].childNodes.length;j++){				
+				if(tr[i].childNodes[j].nodeType == 1) arr.push(tr[i].childNodes[j]);
+			};		
+			for (var j=0;j<arr.length;j++){				
+				arr[j].row = i;
+				arr[j].col = j;				
+				arr[j].css = arr[j].className;
+				//arr[j].onmouseover = function(){
+//					over(table,this,this.row,this.col);
+//				};
+//				arr[j].onmouseout = function(){
+//					out(table,this,this.row,this.col);
+//				};
+				arr[j].onmousedown = function(){
+					down(table,this,this.row,this.col);
+				};								
+			};
+		};
+	};
+	
+//	// appyling mouseover state for objects (th or td)
+//	this.over = function(table,obj,row,col){
+//	if(obj.css!="col")obj.className = obj.css + "over"; 	};
+//	// appyling mouseout state for objects (th or td)	
+//	this.out = function(table,obj,row,col){
+//		obj.className = obj.css 
+//	};
+	this.down = function(table,obj,row,col){
+		//Add the if condition below
+		var tr = table.getElementsByTagName("tr");
+		if(obj.css=="click") {
+			//alert() //obj.className = obj.css + " down";
+			for (var i=0;i<tr.length;i++){
+			//tr[i].className = css;
+				var arr = new Array();
+				for(var j=0;j<tr[i].childNodes.length;j++){				
+					if(tr[i].childNodes[j].nodeType == 1) arr.push(tr[i].childNodes[j]);
+				};		
+				for (var j=0;j<arr.length;j++){				
+					if (i>row && j==col) {
+						//alert("row:"+row+", col:"+col+"; i:"+i+", j:"+j)
+
+						tr[i].childNodes[j+2].className = "over";
+					};								
+				};
+			}; //end for i
+		}//end if obj
+	}; //end down
+start();
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Sampling / Soil and Solid Sampling
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 10 of 13<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Number of Samples Needed<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" --> 
+
+  <p>The greater the number of samples collected from a  site, the more representative the analytical results will be. &nbsp;However, the number is often constrained by  available resources.</p>
+    <p>You can  identify the number of samples needed to achieve the desired confidence level  by using table 1-5 from the BE Field Manual and applying your professional  judgment to check your assumptions and adjust the number of samples, as  appropriate.</p>
+    <p>Select each Standard Deviation to discover the number of samples required in each situation.</p>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="ly1" style="position:absolute; left:53px; top:251px; width:880px; height:51px; ">
+<table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <th colspan="2" class="col">Confidence in Characterization (Consistency in hazard levels or environmental variability throughout the process)</th>
+              <th width="14%" class="col">High (Low Variability)</th>
+              <th width="14%" class="col">Moderate (Medium Variability)</th>
+              <th width="14%" class="col">Low (High Variability)</th>
+              <th width="14%" class="col">Very Low (Very High Variability)</th>
+            </tr>
+            <tr>
+              <th width="22%" rowspan="2" >Confidence Result Will Yield Correct Decision</th>
+              <th width="22%" rowspan="2" >Decision Error (p)</th>
+              <th >GSD= 1.02</th>
+              <th >GSD=1.3</th>
+              <th >GSD=2</th>
+          	  <th >GSD=54</th>         
+          </tr>
+            <tr>
+              <th class="click">Standard  Deviation =15%  </th>          
+              <th class="click">Standard  Deviation =50% </th>                               
+              <th class="click">Standard  Deviation =80% </th>                                       
+              <th class="click">Standard  Deviation =200%</th>                          
+            </tr>
+          <tr>
+              <th >99%</th>
+              <th >1%</th>
+              <td >5</td>
+              <td >25</td>
+              <td >59</td>
+              <td >350</td>
+          </tr>
+          <tr>
+              <th >95%</th>
+              <th >5%</th>
+              <td >3</td>
+              <td >13</td>
+              <td >30</td>
+              <td >175</td>
+          </tr>
+          <tr>
+              <th >90%</th>
+              <th >10%</th>
+              <td >2</td>
+              <td >8</td>
+              <td >18</td>
+              <td >106</td>
+          </tr>
+          <tr>
+              <th >80%</th>
+              <th >20%</th>
+              <td >1</td>
+              <td >4</td>
+              <td >8</td>
+              <td >46</td>
+          </tr>
+          <tr>
+              <th >70%</th>
+              <th >30%</th>
+              <td >1</td>
+              <td >2</td>
+              <td >3</td>
+              <td >18</td>
+          </tr>
+  </table>
+</div>
+
+<div id="snowMapDot" style="position:absolute; top:29px; left:732px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select each Standard Deviation to learn more, and then select Forward to continue.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

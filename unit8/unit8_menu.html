@@ -1,0 +1,158 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="65001"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besaLesMenu.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<link rel="stylesheet" type="text/css" href="../besamenu.css" title = "besaCSSmenu">
+
+<script language="JavaScript" type="text/JavaScript" src="../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../scripts/besa.js"></script>
+<script language="javascript">
+	
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+
+<!-- InstanceBeginEditable name="head" -->
+
+<script language="JavaScript" type="text/javascript">
+<!--
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+function updateMenu() {
+	if (verNumber != 2) { // LMS version
+		closing = false;
+		var lfinish = true
+		for (i=0; i< arrMLessons[7]-1; i++) { 
+			if (arrLessonStatus[7][i] < 1)  {MM_showHideLayers('sta'+(i+1),'','hide');lfinish = false}
+			else if (arrLessonStatus[7][i] >= 2) MM_swapImage('imgCompleted'+(i+1),'','../sysimages/lessmenu_complete.png',1)
+		}
+		if (lfinish==false) document.getElementById("pctitle").style.visibility = "hidden"
+	}	
+	//closing = false;
+//	var name;
+//	//var nCompleted = 0;
+//	if (verNumber != 2) { // LMS version
+//		//display completion status
+//		for (i=0; i<arrMLessons[1]; i++) {
+//			var g = eval("document.getElementById('imgCompleted"+(i+1)+"').src");
+//			name = "imgCompleted" + (i+1);
+//			var gfilename = getgname(g);
+//			var gpath = getgpath(g)
+//			if (arrLessonStatus[1][i] >= 2) {
+//				gfilename = gfilename.replace('_0','_2')
+//			} else if (arrLessonStatus[1][i] == 1) {
+//				gfilename = gfilename.replace('_0','_1')
+//			}
+//			document.getElementById(name).src = gpath+gfilename;
+//		}
+//	}
+}
+	nLessons = 4;
+	arrTitles = new Array(nLessons+1);
+	arrText = new Array(nLessons+1);
+//Unit title and description	
+	arrTitles[0] = "Unit 8:  Radiation Overview"; //&rsquo;
+	arrText[0] = "For this unit, you will be stationed at Labrador Field, a bare base, in Tuapaat, Greenland.  During your assignment you’ll be reviewing basic information about radiation in order to prepare for mission activities.  When you’re finished, you will be able to describe the basic principles associated with radiation.";
+
+//Lesson 1 title and description	
+	arrTitles[1] = "Principles of Radiation";
+	arrText[1] = "In this lesson, you will attend a workshop to review basic concepts related to radiation.  Upon completion of this lesson, you will be able to describe principles of radiation.";
+
+//Lesson 2 title and description	
+	arrTitles[2] = "Progress Check";
+	arrText[2] = "This Progress Check will assist you with reviewing information about basic principles associated with radiation. If you are taking this course for upgrade training, you are required to successfully complete each Progress Check to qualify for the final exam and enrollment in BESA II."
+
+//Recources description
+	arrTitles[3] = "Resources";
+	arrText[3] = "This page provides a list of helpful resources related to this unit."
+		
+	function showOverview(iLes) {
+		MM_setTextOfLayer('oTitle', '', arrTitles[iLes]);
+		MM_setTextOfLayer('text', '', arrText[iLes]);
+		MM_showHideLayers('overText', '', 'show');
+	}
+	
+		function toLesson(les) {
+		var startTles =  new Date().getTime();
+		setCookie("startTles", startTles);
+		window.location = "lesson"+les+"/"+les+"rov010.html"
+	}
+	
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onload="showOverview(0);MM_preloadImages('../sysimages/printunit_2.jpg')">
+<!-- InstanceBeginEditable name="others" -->
+
+<div id="overText" >
+<p id="oTitle"></p>
+<p id="text"></p>
+</div>
+
+<div id="lyprint">
+<a href="08_Print_Version.pdf" target="_blank" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('img_printer','','../sysimages/printunit_2.jpg',1)"><img src="../sysimages/printunit_0.jpg" alt="Select here to access the print version of this unit." name="img_printer" width="205" height="47" border="0" id="img_printer" /></a></div>
+
+<div id="menuPic"><img src="../sysimages/lessonpic_ROV.jpg" width="210" height="186" alt="Photo collage of a radio tower and a molecule structure." /></div>
+
+<div id="location" >Tuapaat, Greenland</div>
+
+<div id="lesTitles">
+<table border="0" cellspacing="0">
+    <tr>
+      <th ><a class="lesTitle" href="javascript:toLesson(1)" onmouseover="showOverview(1)" onmouseout="showOverview(0)"><p class="ltitle">Lesson 1: &nbsp;Principles of Radiation</p></a></th>
+    </tr>
+  
+  <tr>
+    <td><a class="lesTitle" href="javascript:goURL('resources.html')" onmouseover="showOverview(3)" onmouseout="showOverview(0)">Resources</a></td>
+  </tr>
+</table>
+</div>
+
+<div id="pctitle" style="position:absolute; left:436px; top:271px; width:321px; height: 20px;"><a href='javascript:toLesson(2)' onmouseover='showOverview(2)' onmouseout='showOverview(0)'>Progress Check</a></div>
+
+<div id="sta1" style="position:absolute; left:757px; top:187px" ><img src="../sysimages/lessmenu_inprogress.png" name="imgCompleted1" id="imgCompleted1" /></div>
+<div id="sta2" style="position:absolute; left:757px; top:259px; visibility: hidden;"><img src="../sysimages/lessmenu_inprogress.png" name="imgCompleted2" id="imgCompleted2" /></div>
+
+<!-- InstanceEndEditable -->
+<div id="lynav">
+      <ul id="navigation">
+
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+    </ul>
+</div>
+
+<script type="text/javascript">updateMenu()</script>
+</body>
+<!-- InstanceEnd --></html>

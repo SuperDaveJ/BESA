@@ -1,0 +1,255 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style>
+body { background: url(../../sysimages/scenario_forest.jpg) no-repeat; }
+	#Content { width:803px; }
+
+</style>
+<script type="text/javascript" src="../../scripts/DD.js" ></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = ""
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "1hra150.html"
+	goURL(pgURL);
+}
+
+
+//=====================
+
+var nObj = 3;
+
+var arrPopup = new Array(4)
+
+//===distribute value to popup
+arrPopup[0]  = "Before proceeding you must complete the question."
+//Correct feedback
+arrPopup[1]  = "Correct!  Engineering Controls, Administrative Controls, and Personal Protective Equipment all serve important purposes when managing health risks because the types of controls selected will be determined based on consideration of health risks and mission requirements.  Select Continue.";
+//Incorrect feedback for 2nd try
+arrPopup[2]  = "Incorrect. The correct answers are now displayed. The correct answers are now displayed.  Engineering Controls, Administrative Controls, and Personal Protective Equipment all serve important purposes when managing health risks because the types of controls selected will be determined based on consideration of health risks and mission requirements.  Select Continue.";
+//Incorrect feedback for 1st try
+arrPopup[3]  = "No, sorry.  You will have another opportunity to answer this question after reading some information about this topic. <br />Select Continue.";
+
+// Initialization
+
+var uT;
+function onpage() {
+	document.getElementById("Next").style.visibility = "hidden";	
+	distrload(nObj);
+	initDD();
+	uT = getQueryValue('uT');	//user tries set from next page
+	if (uT == 1) {
+		userTries += 1;
+	}
+}
+//============click done to judge the question =======
+
+function judgeInteraction_S() {
+
+	var strTemp="";
+	//MM_showHideLayers('done','','hide');
+	if (strDragOrder.length/2 < nObj) { // not match all
+		strTemp = arrPopup[0];
+		document.getElementById('fdbkLink').href = "javascript:showFdbk('')";
+	} else {
+		userTries += 1;
+		//alert(userTries)
+			if (strTargetOrder == strDragOrder)  { //correct
+				qStatus = 1
+				strTemp = arrPopup[1];
+				if (userTries < tryLimit) { //1st try correct
+					document.getElementById('fdbkLink').href = "javascript:goURL('1hra16a.html?uC=1')";
+				} else {
+					document.getElementById('fdbkLink').href = "javascript:goURL('1hra170.html')";
+				}
+			} else if (userTries == tryLimit) { //2nd try incorrect
+				// move to correct location
+				for (var i=0; i<nObj; i++) eval("moveToTarget(drag" + (i+1) + ", " + i + ")")
+				strTemp = arrPopup[2];
+				document.getElementById('fdbkLink').href = "javascript:goURL('1hra170.html')";
+			} else { //1st try incorrect
+				// move back incorrect ones
+				var strTempD = strDragOrder;
+				var strTempT = strTargetOrder;
+				for (var i=0; i<strTargetOrder.length/2; i++) {
+					var strTemp = strDragOrder.substr(i*2,1);
+					if (strTargetOrder.substr(i*2,1) != strTemp ) {
+						eval("moveBack(drag" + strTemp + ", " + strTemp + ")")
+						intTemp = strTempD.indexOf(strTemp + ",")
+						if (intTemp != -1) {
+							// remove from matched list
+							strTempD = strTempD.substring(0,intTemp) + strTempD.substring(intTemp+2,strTempD.length)
+							strTempT = strTempT.substring(0,intTemp) + strTempT.substring(intTemp+2,strTempT.length)
+						}
+					}
+				}
+			strTemp = arrPopup[3];
+			strDragOrder = strTempD;
+			strTargetOrder = strTempT;
+			document.getElementById('fdbkLink').href = "javascript:goURL('1hra16a.html?uC=0')";
+
+			}
+			disableDrag();//disable interaction		
+		}
+	showFdbk(strTemp);
+	//document.getElementById('done').style.visibility = "hidden";
+//	document.getElementById('lyfdbk').innerHTML = strTemp;
+//	document.getElementById('lyfdbk').style.visibility = "visible";
+//	document.getElementById('feedback').style.visibility = "visible";
+	
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<script src="../../scripts/AC_RunActiveContent.js" type="text/javascript"></script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('../../sysimages/done_2.jpg','../../sysimages/cont_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  HRA / Health  Risk Assessments
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 15 of 19<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Scenario Challenge Point<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><img src="../../sysimages/icon_audio.png" alt="audio icon" width="55" height="54" /><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <p>Match  each possible control with the category to which it belongs.</p>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="selected" style="position:absolute; top:169px; left:69px; width:427px; height:282px;">
+<img src="images/1hra160e.jpg" alt="Graphic background for choices." width="227" height="300" /></div>
+
+<div id="targetbkgd" style="position:absolute; top:171px; left:418px; width:317px; height:369px;">
+<img src="images/1hra160d.jpg" alt="" name="targetbkgd" width="504" height="300" border="0" usemap="#targetbkgdMap" />
+<map name="targetbkgdMap" id="targetbkgdMap">
+<area shape="rect" coords="27,109,207,131" href="#" alt="Drop location labeled &ldquo;Engineering Controls&rdquo;" />
+<area shape="rect" coords="305,110,449,143" href="#" alt="Drop location labeled &ldquo;Administrative Controls&rdquo;" /><area shape="rect" coords="177,252,318,281" href="#" alt="Drop location labeled &ldquo;Personal Protective Equipment (PPE)&rdquo;" />
+</map></div>
+
+<!--=============== Target position =================-->
+<div id="target1" style="position:absolute; left:573px; top:359px; width:199px; height:58px; "></div>
+<div id="target2" style="position:absolute; left:442px; top:218px; width:195px; height:58px;"></div>
+<div id="target3" style="position:absolute; left:703px; top:218px; width:194px; height:55px; "></div>
+
+<!--================ Drag items positon ==================-->
+<div id="drag2" style="position:absolute; left:88px; top:297px; width:189px; height:51px;  cursor:pointer;">
+<img src="images/1hra160b.jpg" alt="Drag item labeled &ldquo;Ventilation&rdquo;" name="Drag2Img" width="189" height="51" /></div>
+
+<div id="drag1" style="position:absolute; left:88px; top:207px; width:189px; height:51px;  cursor:pointer;">
+<img src="images/1hra160a.jpg" alt="Drag item labeled &ldquo;Neoprene Gloves&rdquo;" name="Drag1Img" width="189" height="51" /></div>
+
+<div id="drag3" style="position:absolute; left:88px; top:387px; width:189px; height:51px;  cursor:pointer;">
+<img src="images/1hra160c.jpg" alt="Drag item labeled &ldquo;Adjusted Work / Rest Cycle&rdquo;" name="Drag3Img" width="189" height="51" /></div>
+
+<!--============done button================-->
+<div id="done" style="position:absolute; text-align: center; left:472px; top:483px; z-index:2; width: 91px; height: 32px;"><a href="javascript:;" onClick="judgeInteraction_S()" onMouseOver="MM_swapImage('DoneButton','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/done_0.jpg" alt="Done button" id="DoneButton" name="DoneButton" width="90" height="36" border="0"></a></div>
+
+<div id="feedback" style="position:absolute; top:467px; left:80px; width:817px; height:20px; visibility:hidden;">
+	<div class="txtfdbk" id='lyfdbk'></div><br />
+	<div id="fdbkContinue" style="position:relative; top:-7px; text-align: center;"><a id="fdbkLink" href="javascipt:;"  onMouseOver="MM_swapImage('btnCont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" alt="Continue button" name="btnCont" width="90" height="36" border="0" id="btnCont" /></a></div>
+</div>
+
+<div id="lycc" style="position:absolute; top:492px; left:35px; width:472px; height:97px; overflow:auto;"><b>Narrator:</b>  There are several types of controls that you may need to consider in a situation like this.  Match each possible control with the category to which it belongs.</div>
+
+<div id="snowMapDot" style="position:absolute; top:25px; left:726px;">
+<img src="../../sysimages/map_dot.png" border="0" />
+</div>
+<div id="pageGraphic" style="position:absolute; top:0px; left:-73px; width:10px; height:10px;">
+  <script type="text/javascript">
+AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0','name','flamovie','width','1','height','1','id','flamovie','src','audios/1hra160','loop','false','quality','high','pluginspage','http://www.macromedia.com/go/getflashplayer','swliveconnect','true','movie','audios/1hra160' ); //end AC code
+  </script>
+  <noscript>
+  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" name="flamovie" width="1" height="1" id="flamovie">
+    <param name="movie" value="audios/1hra160.swf" />
+    <param name="quality" value="high" />
+    <param name="LOOP" value="false" />
+    
+    <embed src="audios/1hra160.swf" width="1" height="1" loop="false" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" swliveconnect="true" name="flamovie"></embed>
+  </object>
+  </noscript>
+</div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Correctly match the items, and then click Done.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

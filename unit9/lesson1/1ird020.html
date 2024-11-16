@@ -1,0 +1,492 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style>
+	body { background: url(../../sysimages/scenario_forest.jpg) no-repeat; }
+	#Content {width:400px;}
+</style>
+<script type="text/javascript" src="../../scripts/multipleDD.js" ></script>
+<script src="../../scripts/AC_RunActiveContent.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+var nObj = 6;
+var uT;
+uT = getQueryValue('uT');
+//var strCorrectObjs = "1,";
+arrTPropty = new Array(4);
+arrTPropty[0] = 0; 	//distance between 1st target top and paper top 
+arrTPropty[1] = 0; 	//distance between 1st target left and paper left 
+arrTPropty[2] = 25; 	//interval between targets
+arrTPropty[3] = -37; 	//left margin
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL
+	if (triesUser==2) pgURL = "1ird030.html"
+	else pgURL = "1ird02a.html?uT="+uT
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "1ird010.html"
+	goURL(pgURL);
+}
+var qNum;
+var correctAns; 
+var nextButton = true;		//Is there a Next button for next question
+var blnRandom = false;		//Are questions need to be randomized?
+var blnInTest = true;		//Is the user in test? If yes, disable some buttons.
+var userAns = 0;			//user answer for Multiple Choice questions
+arrUserAns = new Array();	//user answer for Multiple Answer questions
+var triesUser = 0;
+var triesLimit = 2;
+var qStatus = 0;			//question status. 1=correct, 0=incorrect
+var qIndex = 0;				//qIndex is an index of question order (qOrder)
+var blnChoiceMade = false;	//Has user made any choice?
+
+var nQs = 6;				//Total number of questions
+var nQtoShow = nQs;			//Number of questiones to be showed for each round
+var nTotalCorrect = 0;		//Total number of questions that were answered correctly
+var qDisabled = false;		//Is question disabled?
+
+arrQs = new Array(nQs);
+qOrder_seq = new Array(nQs);
+qOrder = new Array(nQs);
+for (var i=0; i<nQs; i++) {
+	arrQs[i] = new Array(10);
+	qOrder_seq[i] = i;
+}
+
+//Question #1
+arrQs[0][0] = 1;	//qID
+arrQs[0][1] = "An element with the same number of protons, but different number of neutrons is known as a(n) ____________________.";		//qStem
+arrQs[0][2] = "1,";		//Correct answer
+arrQs[0][3] = 0;		//User answer
+arrQs[0][4] = 0;	//User attemps for this question
+arrQs[0][5] = "203,83";	//target position (top,left)
+
+arrQs[0][7] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[0][7][0] = "Before proceeding you must complete the question.";	//No selection
+arrQs[0][7][1] = "No, sorry. ";		//First incorrect
+arrQs[0][7][2] = "The correct answer is now displayed. "; //Final incorrect
+arrQs[0][7][3] = "Correct! ";			//Correct
+
+//Question #2
+arrQs[1][0] = 2;	//qID
+arrQs[1][1] = "This electron displacement, called ____________________ creates two electrically charged particles which may cause changes in living cells, plants, animals, and people.";		//qStem
+arrQs[1][2] = "2,";		//Correct answer
+arrQs[1][3] = "";		//User answer
+arrQs[1][4] = 0;	//User attemps for this question
+arrQs[1][5] = "176,83";	//target position
+
+//Question #3
+arrQs[2][0] = 3;	//qID
+arrQs[2][1] = "Energy in the form of waves or moving subatomic particles emitted by an atom or other body as it changes from a higher energy state to a lower energy state is known as ____________________.";		//qStem
+arrQs[2][2] = "3,";		//Correct answer
+arrQs[2][3] = "";		//User answer
+arrQs[2][4] = 0;	//User attemps for this question
+arrQs[2][5] = "232,272";	//target position
+
+//Question #4
+arrQs[3][0] = 4;	//qID
+arrQs[3][1] = "____________________ is the spontaneous disintegration or transformation of an atom in an attempt by that atom to reach a stable state. ";		//qStem
+arrQs[3][2] = "4,";		//Correct answer
+arrQs[3][3] = "";		//User answer
+arrQs[3][4] = 0;	//User attemps for this question
+arrQs[3][5] = "147,83";	//target position
+
+//Question #5
+arrQs[4][0] = 5;	//qID
+arrQs[4][1] = "A(n) ____________________ is an unstable ____________________ that, in an attempt to become a stable atom, emits energy in the form of ____________________.";		//qStem
+arrQs[4][2] = "5,1,3,";		//Correct answer
+arrQs[4][3] = "";		//User answer
+arrQs[4][4] = 0;	//User attemps for this question
+arrQs[4][5] = "149,120";	//target position: top, left
+
+//Question #6
+arrQs[5][0] = 6;	//qID
+arrQs[5][1] = "____________________ is energy lost by particles along the path through which they are traveling.";		//qStem
+arrQs[5][2] = "6,";		//Correct answer
+arrQs[5][3] = "";		//User answer
+arrQs[5][4] = 0;	//User attemps for this question
+arrQs[5][5] = "147,83";	//target position
+
+function onpage() {
+	document.getElementById("Next").style.visibility = "hidden";	
+}
+
+function loadpre () {
+	var strTemp = uT.substring(0,1)
+	
+	if (strTemp=="1") {
+		uT="1"+uT.substring(1,uT.length)
+		qOrder = uT.substring(1,uT.length-1)
+		qOrder = qOrder.split(",");
+		nQtoShow = uT.substring(uT.length-1,uT.length)
+		nQs = nQtoShow
+		triesUser = 2;
+		for (i=0; i< nQtoShow; i++)  arrQs[qOrder[i]][4] = 1;
+		hideBegin();
+		//alert(qOrder[0])
+		writeQuestion(qOrder[qIndex])
+	} else {
+		if (!blnRandom)
+			qOrder = qOrder_seq;
+		else
+			doRandomization();
+	disableDrag();
+	}
+		
+}
+
+function getRandom(topLimit) {   
+	return Math.floor(Math.random()*topLimit)
+}
+
+function hideBegin () {
+	document.getElementById("done").style.visibility = "visible";
+	document.getElementById("Content").style.visibility = "hidden";
+	document.getElementById("btnBegin").style.visibility = "hidden";
+	//document.getElementById("Prompt").innerHTML = "Drag ......"
+}
+function setQOrder() {
+	hideBegin()
+	if (!blnRandom)
+		qOrder = qOrder_seq;
+	else
+		doRandomization();
+		
+	writeQuestion(qOrder[0])
+	
+	document.getElementById("Prompt").innerHTML = "Drag the terms on the right to complete the statement on the left, and then click Done.";
+//	distrload(nQs, arrQs[qOrder[0]][2], arrTPropty);
+//	init();
+//	document.getElementById("question").innerHTML = arrQs[qOrder[0]][1]
+}
+
+function doRandomization() {
+	// Generate numberOfQuestoins unique random numbers
+	// initialization
+	arrTemp = new Array(nQs);
+		
+	for (i=0; i<nQs; i++) arrTemp[i]=-1
+		
+	// create a temp array of nQs unique random numbers
+	for (i=0; i<nQs; i++) {
+		for (j=0; j<100000; j++) {
+			blnFound = false;
+			intTemp = getRandom(nQs);
+			for (k=0; k<nQs; k++) {
+				if (arrTemp[k] == intTemp) {
+					blnFound = true;
+					break;
+				}
+			}
+			if (!blnFound) {
+				arrTemp[i] = intTemp;
+				break;
+			}
+		}
+	}
+
+	for (i=0; i<nQs; i++) {
+		k = arrTemp[i];
+		qOrder[i] = qOrder_seq[k];
+	}
+}
+
+function reInitialize() {
+	qIndex = 0;
+	var strTemp = "";
+	for (var i=0; i<nQs; i++) {
+		if (arrQs[qOrder[i]][4] < 2) strTemp = strTemp + qOrder[i] + ",";
+	}
+	strTemp = strTemp.substring(0, strTemp.length-1);
+	qOrder = strTemp.split(",");
+	nQtoShow = qOrder.length;
+	uT="0"+qOrder+nQtoShow;
+	findNext()
+	//writeQuestion(qOrder[0]);
+}
+
+function hidecont() {
+	document.getElementById('done').style.visibility = 'visible';
+	document.getElementById('feedback').style.visibility = 'hidden';
+	document.getElementById("lyfdbk").style.visibility = "hidden";
+	document.getElementById('fdbkContinue').style.visibility = "hidden";
+}
+
+function nextQuestion() {
+	hidecont();
+	if (strMatched.match("0")== null) {
+		var stritem 
+		if (triesUser == 2) stritem = arrQs[qNum][2]; //old item correct ans
+		else stritem = arrQs[qNum][3]; //old item user's ans
+		var mbItems = new Array;
+			mbItems = stritem.substring(0,stritem.length-1).split(",");
+			//alert(mbItems) move old item(s) back
+		for (i=0; i<mbItems.length; i++) {
+			eval("moveBack(drag" + mbItems[i] + ", " + mbItems[i] + ")");
+		}
+		if (qIndex < nQtoShow) {
+			writeQuestion(qOrder[qIndex]) //new question
+		} else {
+			if (nQtoShow == nTotalCorrect || triesUser == 2) {
+				uT="1"
+				findNext()
+			} else {
+				reInitialize()
+			}
+		}
+	}	
+}
+
+//****************************************
+function writeQuestion(nwqqNum) {
+	qNum = parseInt(nwqqNum) //new qNum start here
+	document.getElementById("question").innerHTML = arrQs[qNum][1]
+	var tagetpos =  new Array();
+	tagetpos = arrQs[qNum][5].split(",");
+	document.getElementById("target1").style.top = tagetpos[0]
+	document.getElementById("target1").style.left = tagetpos[1]
+	//arrTPropty
+	distrload(nObj, arrQs[qNum][2], arrTPropty);
+	init();
+}
+
+function judgeInteraction_S() {
+	arrQs[qNum][3] = strMatched;
+	var strTemp = "";
+	//var strK = "";
+	var qStatus = 0;
+	arrQs[qNum][4] += 1;	//User's tries;
+
+	if (strMatched.match("0")!=null) { // not select
+		strTemp = arrQs[0][7][0]; 
+		arrQs[qNum][4] -= 1;			
+	} else if  (arrQs[qNum][2]==arrQs[qNum][3])  {	//Correct. 
+		disableDrag();
+		arrQs[qNum][4] = triesLimit;
+		strTemp = arrQs[0][7][3]; 
+		qStatus = 1;
+	} else if (arrQs[qNum][4] == triesLimit) { //2nd incorrect
+		strTemp = arrQs[0][7][2]; 
+		disableDrag();
+	} else { // 1st incorrect
+		disableDrag();
+		strTemp = arrQs[0][7][1] //arrPopup[3];
+	}
+
+	if (isLastQ() ) {
+		strTemp = strTemp + " Select Continue."
+		document.getElementById("Prompt").innerHTML = "Select Continue.";
+	} else {
+		if (arrQs[qNum][4] > 0) {
+			if (strTemp.substr(0,6) != "Before")
+			strTemp = strTemp + " Select Continue for the next question."	
+		}	
+	}
+
+	
+	showFdbk(strTemp);
+	if (arrQs[qNum][4] > 1 && qStatus != 1) {
+		finalStep(qNum) //move to target finalStep()
+	}
+	//save info.
+	qIndex += 1;	//increment question
+	nTotalCorrect += qStatus;
+}
+
+function isLastQ() {
+	var nTemp = 0;
+	for (var i=0; i<nQs; i++) {
+		if (triesUser==2) {
+			if (arrQs[qOrder[i]][4] < 2) nTemp += 1;
+		}else{
+			if (arrQs[qOrder[i]][4] < 1) nTemp += 1;
+		}
+	}
+	if (nTemp == 0) return true
+	else return false
+}
+
+function finalStep(qNum) {
+// move wrong item(s) back
+	var userAns = new Array();
+	userAns = arrQs[qNum][3].split(",") //user;s ans
+	for (var i=0; i<arrQs[qNum][3].length/2; i++) {
+		eval("moveBack(drag" + userAns[i] + ", " + userAns[i] + ")");
+	}
+
+//move correct item(s) to the target
+	var cAns = new Array();
+		cAns = arrQs[qNum][2].split(",") //correct ans
+	var tagetpos =  new Array();
+		tagetpos = arrQs[qNum][5].split(",");
+	for (var i=0; i<arrQs[qNum][2].length/2; i++) {
+		var CLayer = "drag"+(cAns[i])
+		document.getElementById(CLayer).style.pixelLeft = tagetpos[1] 
+		if (i>1) document.getElementById(CLayer).style.pixelTop = parseInt(tagetpos[0])+ (i+1)*arrTPropty[2] + 10;
+		else document.getElementById(CLayer).style.pixelTop = parseInt(tagetpos[0]) + i*arrTPropty[2]
+	}
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('../../sysimages/begin_2.jpg','../../sysimages/done_2.jpg','../../sysimages/cont_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Ionizing Radiation / Fundamentals and Effects of Ionizing Radiation
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 2 of 8<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Scenario Challenge Point<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><img src="../../sysimages/icon_audio.png" alt="Audio icon" width="55" height="54" /><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <p>In preparation to lead the  meeting with the other BE Techs, you decide to review some basic terms  associated with ionizing radiation that were included in your NCOIC&rsquo;s notes. </p>
+<p>You  will be presented several incomplete statements associated with ionizing  radiation.&nbsp; Drag the terms from the word  bank to the blanks that correctly complete the statement.&nbsp; Terms can be used more than once. </p>
+<p>Select Begin to start.</p>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="btnBegin" style="position:absolute; left:207px; top:362px; width:60px; height:20px; z-index:3;">
+<a href="javascript:setQOrder()" onMouseOver="MM_swapImage('btnB','','../../sysimages/begin_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/begin_0.jpg" alt="Begin button" name="btnB" width="90" height="36" border="0" id="btnB" /></a></div>
+  
+<div id="question" style="position:absolute; left:82px; top:147px; width:376px; height:247px; z-index:0; font-size:14px; color:#FFFFFF; line-height: 200%"></div>
+<!--=============== Target position =================-->
+<div id="target1" style="position:absolute; left:83px; top:147px; width:159px; height:62px;"><img src="../../sysimages/holder_transparent.png" alt="Graphic background for list." name="target1Img" width="150" height="150" /></div>
+
+
+
+<!--================ Drag items positon ==================-->
+
+<div id="drag1" style="position:absolute; left:635px; top:276px; width:189px; height:37px; cursor:pointer;">
+  <p class="popTitle">Isotope</p>
+</div>
+
+<div id="drag2" style="position:absolute; left:635px; top:393px; width:189px; height:37px; cursor:pointer;">
+  <p class="popTitle">Ionization</p>
+</div>
+
+<div id="drag3" style="position:absolute; left:635px; top:335px; width:189px; height:37px; cursor:pointer;">
+  <p class="popTitle">Radiation</p>
+</div>
+
+<div id="drag4" style="position:absolute; left:635px; top:453px; width:189px; height:37px; cursor:pointer;">
+  <p class="popTitle">Radioactive Decay</p>
+</div>
+
+<div id="drag5" style="position:absolute; left:635px; top:160px; width:189px; height:37px; cursor:pointer;">
+  <p class="popTitle">Radioisotope</p>
+</div>
+
+<div id="drag6" style="position:absolute; left:635px; top:217px; width:189px; height:37px; cursor:pointer;">
+  <p class="popTitle">Linear Energy Transfer</p>
+</div>
+
+
+<div style="position:absolute; top:200px; left:-20px; width:20px; height:20px;">
+<script type="text/javascript">
+AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0','width','1','height','1','src','audios/1ird020','quality','high','pluginspage','http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash','movie','audios/1ird020' ); //end AC code
+</script><noscript><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="1" height="1">
+  <param name="movie" value="audios/1ird020.swf" />
+  <param name="quality" value="high" />
+  <embed src="audios/1ird020.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="1" height="1"></embed>
+</object></noscript>
+</div>
+
+<!--============done button================-->
+<div id="done" style="position:absolute; text-align: center; left:207px; top:362px; z-index:2; width: 91px; height: 32px; visibility: hidden;"><a href="javascript:judgeInteraction_S();"  onMouseOver="MM_swapImage('DoneButton','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/done_0.jpg" alt="Done button" id="DoneButton" name="DoneButton" width="90" height="36" border="0"></a></div>
+
+<div id="feedback" style="position:absolute; top:361px; left:60px; width:380px; height:20px; visibility:hidden;">
+<div class="txtfdbk" id='lyfdbk'></div><br />
+	<div id="fdbkContinue" style="position:relative; top:0px; text-align: center;"><a id="fdbkLink" href="javascript:nextQuestion();"  onMouseOver="MM_swapImage('btnCont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" alt="Continue button" name="btnCont" width="90" height="36" border="0" id="btnCont" /></a></div>
+</div>
+<script type="text/javascript">
+	loadpre ()
+</script>
+
+<div id="lycc" style="position:absolute; top:492px; left:45px; width:472px; height:65px; overflow:auto; z-index:10; visibility:hidden;">
+  <p><strong>Narrator:&nbsp; </strong>Before your presentation, you need to make sure you understand the basic terms associated with ionizing radiation.</p></div>
+
+<div id="snowMapDot" style="position:absolute; top:27px; left:760px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select Begin to start.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

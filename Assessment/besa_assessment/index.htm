@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>XML Test</title>
+<script language="JavaScript" type="text/javascript" src="scripts/scorm.js"></script>
+<script language="JavaScript" type="text/javascript" src="scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="scripts/APIWrapper.js"></script>
+
+<script language="javascript">
+	var apiHandle = null;
+var findAPITries=0;
+var xmlDoc;
+var blnRandom;
+var group;
+var sec1num;
+var passingScore;
+var nQs;
+var iq = 0; //q ini number
+var assementData;
+var arrCorrectAns;
+var	uA;			//user answer
+var	qOrder;		//question order - randomized
+var	qOrder_seq;	//question order - sequential
+var allowTime = 2 //hours allow to completed the test
+var lastQ = false;
+var courseFinish = false;
+
+if (window.XMLHttpRequest)
+  {
+  xhttp=new XMLHttpRequest()
+  }
+else
+  {
+  xhttp=new ActiveXObject("Microsoft.XMLHTTP")
+  }
+xhttp.open("GET","assessment_data.xml",false);
+xhttp.send("");
+xmlDoc=xhttp.responseXML;
+
+	passingScore = xmlDoc.getElementsByTagName("PassingScore")[0].childNodes[0].nodeValue; 
+	
+	blnRandom = xmlDoc.getElementsByTagName("IsRandomize")[0].childNodes[0].nodeValue; 
+ 	
+	if (blnRandom == "Yes") 
+	{
+		group = getRandom(2);
+	}
+	else 
+	{
+		group = (xmlDoc.getElementsByTagName("Group")[0].childNodes[0].nodeValue)-1;
+	}
+	
+	setGroupData()
+	
+function getSPct() {
+    var count = 0;
+	if (lastQ == true) {
+		for (var i=0; i< nQs; i++) {
+			if (uA[i] == arrCorrectAns[i])	count += 1;
+		}
+		return Math.round (count/nQs * 100)
+	} else return 0;
+}
+
+//========== XML code ============
+
+
+
+function setGroupData() {
+
+	//alert(blnRandom +", and "+ group)
+	var x=xmlDoc.getElementsByTagName("Assessment")[group]; 
+	assementData = x.getElementsByTagName("Question");
+	
+	sec1num = parseInt(x.getAttribute("Section1Num"));
+	nQs = assementData.length;
+	
+	arrCorrectAns = new Array(nQs);
+	uA = new Array(nQs);			//user answer
+	qOrder = new Array(nQs);		//question order - randomized
+	qOrder_seq = new Array(nQs);	//question order - sequential
+	for (var i=0; i<nQs; i++) {
+		uA[i] = "0";
+		qOrder[i] = -1;
+		qOrder_seq[i] = i+1;
+		arrCorrectAns[i] =  assementData[i].getElementsByTagName("CorrectAnswer")[0].childNodes[0].nodeValue
+	}
+	
+	if (blnRandom == "Yes" ) doRandomization();
+	else qOrder = qOrder_seq;
+	//alert(qOrder)
+}
+
+var LessonTitle = 'BESA I Final Exam';  // the title of this lesson
+///==============assessment order code =========
+
+
+function getRandom(topLimit) {
+  
+	return Math.floor(Math.random()*topLimit)
+}
+
+function doRandomization() {
+	for (i=0; i<nQs-sec1num; i++) {
+		for (j=0; j<1000000; j++) {
+			blnFound = false;
+			intTemp = getRandom(nQs-sec1num);			
+			for (k=0; k<nQs-sec1num; k++) {
+				if (qOrder[k] == intTemp) {
+					blnFound = true;
+					break;
+				}
+			}
+			if (!blnFound) {
+				qOrder[i] = intTemp;
+				break;
+			}
+		}
+	}
+	
+	var qOrder_temp = new Array(nQs)
+	for (var i=0; i<nQs; i++) {
+		qOrder_temp[i] = qOrder[i];
+	}
+
+	//make the question numbers from 1 to nQs
+	for (i=0; i<nQs; i++) {
+		if (i < sec1num ) {
+			qOrder[i] = i+1;
+		} else {
+			//alert((i-sec1num) + ", " + qOrder_temp[i-sec1num])
+			qOrder[i] = qOrder_temp[i-sec1num] + sec1num + 1;
+		}
+	}
+
+}
+
+//**************** Start time count down code ***********************
+var gsecs = allowTime*60*60;
+var startTime = new Date().getTime();
+CountStepper = -1;
+var SetTimeOutPeriod = (Math.abs(CountStepper)-1)*1000 + 990;
+	
+</script>
+
+
+</head>
+
+<!-- in a frameset, the frames inside a frameset will load first -->
+<frameset rows="100%,*" id="lesFrame" onunload="unloadCourse();">
+  <frame src="loading.htm" name="contentFrame" scrolling="yes" id="content" title="Content Area"/>
+  <frame src="bottomEmpty.htm" name="bottomEmpty"  scrolling="no" id="bottomEmpty" title="Bottom Empty Page"/>
+  <NOFRAMES>
+      <P>This course uses Frames.  Apparently your browser is not supporting Frames.  If you would like to view this course, please install a more recent version of your browser.</P>
+  </NOFRAMES>
+</frameset>
+</html>

@@ -1,0 +1,729 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besaPC.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/lesson_screen_back_city.jpg);
+}
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+function onpage() {
+	document.getElementById("Next").style.visibility = "hidden";
+	document.getElementById("Repeat").style.visibility = "hidden";
+	document.getElementById("Back").style.visibility = "hidden";
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+if (nTotalCorrect >= 6) blnLastPage = true;
+	var pgURL = "../unit11_menu.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "../unit11_menu.html"
+	goURL(pgURL);
+}
+
+function showaudiot(){ 
+}
+//NOTE: It's not working for MA yet
+// ----------------  Interaction Functions -------------------------------
+//Global variables
+var nextButton = true;		//Is there a Next button for next question
+var blnRandom = false;		//Are questions need to be randomized?
+var blnInTest = true;		//Is the user in test? If yes, disable some buttons.
+var userAns = 0;			//user answer for Multiple Choice questions
+arrUserAns = new Array();	//user answer for Multiple Answer questions
+var triesLimit = 0;
+var blnLastPage = false;
+var lastPprompt;
+var qStatus = 0;			//question status. 1=correct, 0=incorrect
+var qIndex = 0;				//qIndex is an index of question order (qOrder)
+var blnChoiceMade = false;	//Has user made any choice?
+
+var nQs = 8;				//Total number of questions
+var nQtoShow = nQs;			//Number of questiones to be showed for each round
+var nTotalCorrect = 0;
+var qTotalScores = 0;		//Total number of questions that were answered correctly
+var qDisabled = false;		//Is question disabled?
+
+arrQs = new Array(nQs);
+qOrder_seq = new Array(nQs);
+qOrder = new Array(nQs);
+for (var i=0; i<nQs; i++) {
+	arrQs[i] = new Array(10);
+	qOrder_seq[i] = i;
+}
+//==ini puzzle variables
+dropPositionArray = new Array(nQs);
+for (var i=0; i<nQs-2; i++) {
+	dropPositionArray[i] = new Array(2);
+}
+//==assign the postion to the array
+dropPositionArray[0][1] = 507; //puzzle 1 x 
+dropPositionArray[0][2] = 136; //puzzle 1 y 
+dropPositionArray[1][1] = 696; //puzzle 2 x 
+dropPositionArray[1][2] = 136; //puzzle 2 y 
+dropPositionArray[2][1] = 846; //puzzle 3 x 
+dropPositionArray[2][2] = 136; //puzzle 3 y 
+dropPositionArray[3][1] = 507; //puzzle 4 x 
+dropPositionArray[3][2] = 300; //puzzle 4 y 
+dropPositionArray[4][1] = 699; //puzzle 5 x 
+dropPositionArray[4][2] = 300; //puzzle 5 y 
+dropPositionArray[5][1] = 846; //puzzle 5 x 
+dropPositionArray[5][2] = 300; //puzzle 5 y 
+
+arrLetters = new Array(5);
+arrLetters[1] = "a";
+arrLetters[2] = "b";
+arrLetters[3] = "c";
+arrLetters[4] = "d";
+
+//The index for each queston is as follow:
+// 0 - integer, questoin ID
+// 1 - integer (1 or 2), question type. 1 = Multiple Choice, 2 = Multiple Answer.
+// 2 - integer, number of distracters
+// 3 - string, question stem
+// 4 - string, distracters concatinated with a # symbol
+// 5 - integer (1 to n), correct answer
+// 6 - integer (1 to n), user answer
+// 7 - integer, user tries
+// 8 - string, Feedback - all questions except last one
+// 9 - string, Feedback - optiona: for last question
+
+
+//Question #1
+arrQs[0][0] = 1;	//qID
+arrQs[0][1] = 1;	//qType 1:MC; 2:MA
+arrQs[0][2] = 4;	//number of distracters
+arrQs[0][3] = "Which one of the following statements is the correct definition of a laser?";		//qStem
+arrQs[0][4] = "Luminosity accelerated by simultaneous energy release.#Luminescent apparatus for stimulating energy and rays.#Lighting amplified by supplied energy and radiance.#Light amplification by stimulated emission of radiation.";	//distracters
+arrQs[0][5] = 4;		//Correct answer
+arrQs[0][6] = 0;		//User answer
+arrQs[0][7] = 0;	//User attemps for this question
+
+arrQs[0][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[0][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[0][8][1] = "Incorrect. Lasers are employed in diverse fields, ranging from military-specific uses to consumer products. ";		//First incorrect
+arrQs[0][8][2] = "The correct answer is now displayed. "; //Final incorrect
+arrQs[0][8][3] = "Lasers are defined as light amplification by stimulated emission of radiation.<br />";			//Correct
+
+//arrQs[0][9] = new Array(4);	//Feedback for last question.
+//arrQs[0][9][0] = "";
+//arrQs[0][9][1] = "";		//First incorrect
+//arrQs[0][9][2] = "";
+//arrQs[0][9][3] = "";
+
+
+
+//Question #2
+arrQs[1][0] = 2;	//qID
+arrQs[1][1] = 1;	//qType
+arrQs[1][2] = 4;	//number of distracters
+arrQs[1][3] = "Which one of the following classifications are hazardous to the eyes and skin from direct beam exposures?";		//qStem
+arrQs[1][4] = "Class 1 Lasers#Class 2M Lasers#Class 3R Lasers#Class 4 Lasers";	//distracters
+arrQs[1][5] = 4;		//Correct answer
+arrQs[1][6] = 0;		//User answer
+arrQs[1][7] = 0;	//User attemps for this question
+
+arrQs[1][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[1][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[1][8][1] = "Incorrect. Laser systems are classified based on wavelength and their capability to cause health effects to personnel. ";		//First incorrect
+arrQs[1][8][2] = "The correct answers are now displayed. "; //Final incorrect
+arrQs[1][8][3] = "Class 4 lasers are hazardous to the eyes and skin from direct beam exposures.  Class 1 lasers are considered to be incapable of producing damaging radiation levels during operation, which allows them to be exempt from any control measures or other forms of surveillance.  Class 2M laser systems emit energy in the visible portion of the electromagnetic spectrum.  Class 3R laser systems are potentially hazardous under some direct and specular reflection viewing conditions if the eye is appropriately focused and stable; however, the probability of actual injury is small.<br />";			//Correct
+
+//Question #3
+arrQs[2][0] = 3;	//qID
+arrQs[2][1] = 1;	//qType
+arrQs[2][2] = 4;	//number of distracters
+arrQs[2][3] = "Which one of the following types of damage is brought about by the temperature elevation of a substance due to laser exposure?";		//qStem
+arrQs[2][4] = "Thermal Damage#Athermal Damage#Neurological Damage#Photochemical Damage";	//distracters
+arrQs[2][5] = 1;		//Correct answer
+arrQs[2][6] = 0;		//User answer
+arrQs[2][7] = 0;	//User attemps for this question
+
+arrQs[2][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[2][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[2][8][1] = "Incorrect. Remember, tissues will either transmit or absorb energy from a laser.  If the tissue transmits energy, the tissue structures are not damaged.  If the tissue absorbs energy, the laser wavelength can damage the tissue structures. ";		//First incorrect
+arrQs[2][8][2] = ""; //Final incorrect
+arrQs[2][8][3] = "Thermal damage is brought about by the temperature elevation of a substance due to laser exposure.  This occurs when a steady stream of photons is absorbed by the tissue until the natural cooling ability of the tissue is overwhelmed and its temperature rises to damaging levels.  Photochemical damage is damage to individual cells brought about by the absorption of photons by molecules that directly alter the molecule.  Athermal damage and neurological damage are not associated with laser exposures.<br />";			//Correct
+
+//Question #4
+arrQs[3][0] = 4;	//qID
+arrQs[3][1] = 2;	//qType
+arrQs[3][2] = 4;	//number of distracters
+arrQs[3][3] = "Which two of the following statements describe why laser hazards are analyzed?";		//qStem
+arrQs[3][4] = "To determine if the laser hazard is a potential or actual problem.#To determine the use and maintenance history of the laser hazard emitter.#To determine the type of pumping system used to produce the laser energy.#To determine if the laser hazard impacts operations or mission effectiveness.";	//distracters
+arrQs[3][5] = "1,0,0,1";		//Correct answer
+arrQs[3][6] = 0;
+arrQs[3][7] = 0 //User attemps for this question
+
+arrQs[3][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[3][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[3][8][1] = "Incorrect. When a laser used in base operations has not been assessed for personnel exposure, the laser hazards should be identified and analyzed. ";		//First incorrect
+arrQs[3][8][2] = ""; //Final incorrect
+arrQs[3][8][3] = "Once the risk is identified, laser hazards are analyzed to determine why the laser hazard is a potential or actual problem, if there are other potential threats surrounding the laser hazard, if the laser hazard impacts operations or mission effectiveness, or if there is a potential for exposure variability. "
+
+//Question #5
+arrQs[4][0] = 5;	//qID
+arrQs[4][1] = 2;	//qType
+arrQs[4][2] = 4;	//number of distracters
+arrQs[4][3] = "Which two of the following steps in the OEHSA process are associated with identifying laser hazards?";		//qStem
+arrQs[4][4] = "Predeployment / Baseline Activities#Conceptual Site Model (CSM)#Site Reconnaissance#Initial / Specialized Surveillance";	//distracters
+arrQs[4][5] = "1,0,1,0";		//Correct answer
+arrQs[4][6] = 0;
+arrQs[4][7] = 0 //User attemps for this question
+
+arrQs[4][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[4][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[4][8][1] = "Incorrect. Remember when evaluating any potential health risk, including those posed by laser hazards, you should use the Health Risk Assessment (HRA) and Occupational and Environmental Health Site Assessment (OEHSA) processes. ";		//First incorrect
+arrQs[4][8][2] = ""; //Final incorrect
+arrQs[4][8][3] = "When using the OEHSA process to provide data for the HRA, you should obtain any available information about existing lasers in the AOC and their classifications during the predeployment / baseline activities step.  During the site reconnaissance step, you should perform a site visit to confirm the information that has been gathered.<br />"
+
+//Question #6
+arrQs[5][0] = 6;	//qID
+arrQs[5][1] = 1;	//qType
+arrQs[5][2] = 4;	//number of distracters
+arrQs[5][3] = "Which one of the following is the area within a laser workplace in which the exposure from direct beam, specular reflection, and diffuse reflection could exceed the maximum limit?";		//qStem
+arrQs[5][4] = "Nominal Hazard Zone (NHZ)#Permissible Exposure Limit (PEL)#Maximum Permissible Exposure (MPE)#Nominal Ocular Hazard Distance (NOHD)";	//distracters
+arrQs[5][5] = 1;		//Correct answer
+arrQs[5][6] = 0;
+arrQs[5][7] = 0 //User attemps for this question
+
+arrQs[5][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[5][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[5][8][1] = "Incorrect. Determining the MPE, NOHD, and NHZ enables you to identify the amount and type of energy a person can be exposed to before the exposure becomes hazardous at a certain distance.<br />";		//First incorrect
+arrQs[5][8][2] = ""; //Final incorrect
+arrQs[5][8][3] = "The MPE is the level of laser radiation to which a person may be exposed without hazardous effects or adverse biological changes in the eyes or skin.  The NOHD is the distance along the laser beam beyond which the exposure is not expected to exceed the appropriate MPE.  The NHZ is the area within a laser workplace in which the exposure from direct beam, specular reflection, and diffuse reflection could exceed the MPE. "
+
+//Question #7
+arrQs[6][0] = 7;	//qID
+arrQs[6][1] = 2;	//qType
+arrQs[6][2] = 4;	//number of distracters
+arrQs[6][3] = "Which two of the following are factors which should be considered when determining if laser eye protection (LEP) is used and maintained in accordance with established guidelines? ";		//qStem
+arrQs[6][4] = "Manufacturer#Eyewear damage#Wavelength of laser system#Color of the lens and frames";	//distracters
+arrQs[6][5] = "0,1,1,0";		//Correct answer
+arrQs[6][6] = 0;
+arrQs[6][7] = 0 //User attemps for this question
+
+arrQs[6][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[6][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[6][8][1] = "Incorrect. In order to recommend the appropriate LEP, you should consider several factors related to its proper use and maintenance. ";		//First incorrect
+arrQs[6][8][2] = ""; //Final incorrect
+arrQs[6][8][3] = "When selecting LEP and determining if it is used and maintained in accordance with established guidelines, you should consider the wavelength of the laser system, any eyewear damage, optical density requirements, angular dependence, comfort and fit, and capability of specular reflection from the LEP. "
+
+//Question #8
+arrQs[7][0] = 8;	//qID
+arrQs[7][1] = 1;	//qType
+arrQs[7][2] = 4;	//number of distracters
+arrQs[7][3] = "Which one of the following parameters of laser eye protection (LEP) would be appropriate for use with a laser system that has a wavelength of 400 nm and an optical density rating of 8?";		//qStem
+arrQs[7][4] = "Wavelength range of 380-510 nm with an optical density rating of 6+#Wavelength range of 190-450 nm with an optical density rating of 8+#Wavelength range of 190-350 nm with an optical density rating of 9+#Wavelength range of 850-900 nm with an optical density rating of 6+";	//distracters
+arrQs[7][5] = 2;		//Correct answer
+arrQs[7][6] = 0;
+arrQs[7][7] = 0 //User attemps for this question
+
+arrQs[7][8] = new Array(4);	//Feedback for questions other than the last one.
+arrQs[7][8][0] = "You have not made any selections.  Please try again.";	//No selection
+arrQs[7][8][1] = "Incorrect. All protective eye wear must be clearly labeled with the optical density and wavelength to be able to determine the proper use for the device. ";		//First incorrect
+arrQs[7][8][2] = ""; //Final incorrect
+arrQs[7][8][3] = "When selecting LEP, you should make sure the wavelength for the LEP sufficiently matches the laser’s wavelength.  You should also consider the potential for multi-wavelength operations such as tunable lasers to ensure the LEP is appropriate for the wavelengths that can be produced.  The optical density rating must be provided on the LEP and describes the amount of light energy the LEP lens blocks.  It’s important for the optical density to be high enough to protect personnel from the laser while still allowing enough light through so work can be performed. "
+
+//****************************************************************
+
+function getRandom(topLimit) {   
+	return Math.floor(Math.random()*topLimit)
+}
+
+function setQOrder() {
+	// Set question order
+	document.getElementById("btnBegin").style.visibility = "hidden";
+	document.getElementById("lyscores").innerHTML ="Questions answered correctly: 0 of 8";
+	if (!blnRandom)
+		qOrder = qOrder_seq;
+	else
+		doRandomization();
+}
+	
+function doRandomization() {
+	// Generate numberOfQuestoins unique random numbers
+	// initialization
+	arrTemp = new Array(nQs);
+		
+	for (i=0; i<nQs; i++) arrTemp[i]=-1
+		
+	// create a temp array of nQs unique random numbers
+	for (i=0; i<nQs; i++) {
+		for (j=0; j<100000; j++) {
+			blnFound = false;
+			intTemp = getRandom(nQs);
+			for (k=0; k<nQs; k++) {
+				if (arrTemp[k] == intTemp) {
+					blnFound = true;
+					break;
+				}
+			}
+			if (!blnFound) {
+				arrTemp[i] = intTemp;
+				break;
+			}
+		}
+	}
+
+	for (i=0; i<nQs; i++) {
+		k = arrTemp[i];
+		qOrder[i] = qOrder_seq[k];
+	}
+}
+
+function reInitialize() {
+	qIndex = 0;
+	var strTemp = "";
+	for (var i=0; i<nQs; i++) {
+		if (arrQs[qOrder[i]][7] < 2) strTemp = strTemp + qOrder[i] + ",";
+	}
+	strTemp = strTemp.substring(0, strTemp.length-1);
+	qOrder = strTemp.split(",");
+	nQtoShow = qOrder.length;
+	
+	writeQuestion(qOrder[0]);
+}
+	
+function itemSelection( qNum,I ) {
+	if (!qDisabled) {
+		hidecont();
+		var qType = arrQs[qNum][1];
+		var nItems = arrQs[qNum][2];
+		switch (qType) {
+			case 1:	//Multiple Choice
+				{
+					userAns = I;
+					blnChoiceMade = true;
+					for (var j=1; j<=nItems; j++) {
+						var g = eval("document.getElementById('img"+j+"').src");
+						var name = "img"+j;
+						var gnum = g.charAt(g.length-5)
+						var gfilename = getgname(g);
+						var gpath = getgpath(g)
+						if (j==I && gnum=="0" ) {
+							gfilename = gfilename.replace('_0','_2')	
+						} else if (j!=I && gnum=="2"  ) {
+							gfilename = gfilename.replace('_2','_0')
+						}
+						document.getElementById(name).src = gpath+gfilename;
+					}
+					break;
+				} //end of case 1
+	
+			case 2:
+				{
+					var blnSelected = arrUserAns[I-1];
+					var g = eval("document.getElementById('img"+I+"').src");
+					var name = "img"+I;
+					var gfilename = getgname(g);
+					var gpath = getgpath(g)
+					// toggle highlight
+					if (blnSelected == 1) {
+						arrUserAns[I-1] = 0;
+						gfilename = gfilename.replace('_2','_0');
+					} else  {
+						arrUserAns[I-1] = 1;
+						gfilename = gfilename.replace('_0','_2')
+					}
+						document.getElementById(name).src = gpath+gfilename;
+						//Make sure at least 1 choice has been made
+						blnChoiceMade = false;
+						for (j=0; j<nItems; j++) {
+							if (arrUserAns[j] == 1) {
+								blnChoiceMade = true;
+								break;
+							}
+						}
+						break;
+				}	// end of case 2
+		} //End of switch
+	} //end of !qDisabled		
+}
+
+function hidecont() {
+	document.getElementById('lydone').style.visibility = 'visible';
+	document.getElementById('lyfdbk').style.visibility = 'hidden';
+	document.getElementById("continue").style.visibility = "hidden";
+}
+
+function judgeInteraction(qNum) {
+ var strTemp = "";
+  if ( !blnChoiceMade ) {
+ 	document.getElementById("lyfdbk").innerHTML = arrQs[qNum][8][0];
+	document.getElementById("lyfdbk").style.visibility = "visible";
+	document.getElementById('lydone').style.visibility = 'hidden';
+  }else {
+	qDisabled = true;
+	var qType = arrQs[qNum][1];
+	var nItems = arrQs[qNum][2];
+	var triesUser = arrQs[qNum][7];
+	arrQs[qNum][7] = arrQs[qNum][7] + 1;
+
+	switch (qType) {
+		case 1:	//Multiple Choice
+			{
+				qStatus = 0;
+				arrQs[qNum][6] = userAns;
+				correctAns = arrQs[qNum][5];
+				if (correctAns == userAns) {
+					qStatus = 1;
+					arrQs[qNum][7] = 2;
+					strTemp = "Correct! &nbsp;" + arrQs[qNum][8][3];
+					
+				} else if (arrQs[qNum][7] < 2) {
+					strTemp = arrQs[qNum][8][1];
+				} else {
+					strTemp = "Incorrect. " + arrQs[0][8][2] + arrQs[qNum][8][3];
+				}
+				break
+			}	//End of case 1
+		case 2:	//Multiple Answer
+			{
+				qStatus = 1;
+				arrQs[qNum][6] = arrUserAns.join();
+				arrCorrectAns = new Array();
+				arrCorrectAns = arrQs[qNum][5].split(",");
+				for (var i=0; i<nItems; i++) {
+					if (arrCorrectAns[i] != arrUserAns[i]) {
+						qStatus = 0;
+						break;
+					}
+				}
+				if (qStatus==1) {
+					arrQs[qNum][7] = 2;
+					strTemp = "Correct! &nbsp;" + arrQs[qNum][8][3];
+				} else if (arrQs[qNum][7] < 2) {
+					strTemp = arrQs[qNum][8][1];
+				} else {
+					strTemp = "Incorrect. "+ arrQs[1][8][2] + arrQs[qNum][8][3];
+				}
+				break;
+			}	// End of case 2
+	}	//End of switch
+
+	if (qStatus == 1 && nTotalCorrect < nQs-2) {
+	//==puzzle showup
+		var cNum = nTotalCorrect+1;
+		var name = "lydrop"+cNum;
+		var d1=document.getElementById(name);
+		var d2x, d2y;
+		d2x = dropPositionArray[cNum-1][1];
+		d2y = dropPositionArray[cNum-1][2];
+		var imgs="pc" + cNum
+		var imgb="pc" + cNum +"b"
+		movableObj(d1.style.pixelLeft, d1.style.pixelTop, d2x, d2y, 10, 10, d1.id);
+		opacity(imgs, 100, 0, 500);
+		opacity(imgb, 0, 100, 500);
+		//document.getElementById(imgb).alt = "Capt. Charles Toth and Tech. Sgt. Melissa Saraiva check monitoring devices for common pesticides and other environmental hazardous chemicals in the air April 13, 2008 at Balad Air Base, Iraq. "
+	}
+	
+//save info.
+	qIndex += 1;	//increment question
+	nTotalCorrect += qStatus;
+	if (nTotalCorrect==6 && blnLastPage==false) {
+		document.getElementById("txtCption").style.visibility = "visible";
+		opacity("pcfinal", 0, 100, 500);
+	}
+//==show feedback
+	if (isLastQ() && blnLastPage) {
+		strTemp = strTemp + "Select Forward to continue."  //arrQs[qNum][8][iFdbkTxt];
+		document.getElementById("continue").style.visibility = "hidden";
+		document.getElementById("Next").style.visibility = "visible";
+		document.getElementById("Prompt").innerHTML = "Select Forward to continue.";
+	} else if (isLastQ() && nTotalCorrect < 6) {
+		strTemp = strTemp + "Select Forward to continue."  //arrQs[qNum][8][iFdbkTxt];
+		document.getElementById("continue").style.visibility = "hidden";
+		document.getElementById("Next").style.visibility = "visible";
+		document.getElementById("Prompt").innerHTML = "Select Forward to continue.";
+	} else if (isLastQ() ) {
+		strTemp = strTemp+ " Select Continue."//arrQs[qNum][8][iFdbkTxt];		
+		document.getElementById("continue").style.visibility = "visible";
+		triesLimit = 1
+	} else {
+		strTemp = strTemp+ " Select Continue."//arrQs[qNum][8][iFdbkTxt];		
+		document.getElementById("continue").style.visibility = "visible";
+	}
+	document.getElementById("lyfdbk").innerHTML = strTemp
+	document.getElementById("lydone").style.visibility = "hidden";
+	document.getElementById("lyfdbk").style.visibility = "visible";
+
+
+	
+	document.getElementById("lyscores").innerHTML ="Questions answered correctly: " +nTotalCorrect+ " of 8";
+	if ( (qStatus == 1) || (arrQs[qNum][7] > 1) ) {
+		finalStep(qNum)
+	}
+
+  }	//End of choice made
+}
+
+function finalStep(qNum) {
+	var nItems = arrQs[qNum][2];
+	var qType = arrQs[qNum][1];
+	var iTemp;
+	for (var i=1; i<=nItems; i++) {
+		if (qType==1) {
+			iTemp=i;
+		}else{
+			iTemp=1;
+			correctAns = arrCorrectAns[i-1];
+			userAns = arrUserAns[i-1]
+		}
+		var g = eval("document.getElementById('img"+i+"').src");
+		var name = "img"+i;
+		var gnum = g.charAt(g.length-5)
+		var gfilename = getgname(g);
+		var gpath = getgpath(g)
+		if (correctAns == iTemp) {
+			gfilename = gfilename.replace('_0','_2')	
+		} else if (userAns == iTemp) {
+			gfilename = gfilename.replace('_2','_3')
+		} else {
+			gfilename = gfilename.replace('_0','_3')
+		}
+		document.getElementById(name).src = gpath+gfilename;
+	}
+	
+	
+	//if (!isLastQ()) {
+		var d=document.getElementById("lyfdbk").style
+		if (arrQs[qNum][0]==2||arrQs[qNum][0]==3||arrQs[qNum][0]==6||arrQs[qNum][0]==8) d.height = "120px";
+		else d.height = "auto";
+		d.top = "-45px";
+		document.getElementById("continue").style.top = "-35px";
+	//}
+	
+}
+
+function nextQuestion() {
+
+	if (qIndex < nQtoShow) writeQuestion(qOrder[qIndex])
+	else if (triesLimit==1) {
+	document.getElementById("exitMessage").innerHTML="<p>Congratulations! You have answered 6 of 8 questions correctly and completed this challenge!</p>  "
+	document.getElementById("exitbtnExit").style.left="388px"
+	document.getElementById("Prompt").innerHTML="Select Exit Progress Check"
+	MM_showHideLayers('exitProgress','','show', 'exitMessage','','show', 'exitbtnCont','','hide', 'exitbtnExit','','show');
+	document.getElementById("continue").style.visibility = "hidden"
+	}
+	else reInitialize()
+}
+
+function isLastQ() {
+	var nTemp = 0;
+	for (var i=0; i<nQs; i++) {
+		if (arrQs[i][7] < 2) {
+			nTemp += 1;
+		}
+	}
+	if (nTemp == 0) return true
+	else return false
+}
+
+
+//****************************************
+function writeQuestion(qNum) {
+	//reset variables
+	//if (qIndex == 0 && arrQs[qNum ][9] ==1 && nTotalCorrect < nQs) alert ("You missed "+ (nQs-nTotalCorrect) + " questions. Now, you're taking second attempt.  ")
+
+	userAns = 0;
+	qStatus = 0;	//question status. 1=correct, 0=incorrect
+	blnChoiceMade = false;
+	qDisabled = false;
+	var nItems = arrQs[qNum][2];
+	var strHTML = "";
+	var gbtnName;
+	var gformat;
+	var strTemp
+	if (arrQs[qNum][1]==1) {
+		gbtnName="mc_circle_";
+		gformat="_0.png";
+		strTemp = "Select the correct answer, and then click Done."
+	}else{
+		gbtnName="mc_"
+		gformat="_0.jpg"
+		for (var j=0; j<nItems; j++) arrUserAns[j] = 0
+		strTemp = "Select all that apply, and then click Done."
+	}
+		if ( nTotalCorrect == 6 && blnLastPage==false ) {
+			MM_showHideLayers('exitProgress','','show', 'exitMessage','','show', 'exitbtnCont','','show', 'exitbtnExit','','show');
+			document.getElementById("Prompt").innerHTML = "";
+			lastPprompt = strTemp 
+		} else {
+			document.getElementById("Prompt").innerHTML = strTemp;
+		}
+//	//var fdbkStyle;
+//	var dontStyle;
+//	 if (qNum==0) {
+//		
+//		dontStyle = "top:-40px;"
+//	 }else{
+////	 	fdbkStyle = " top:-30px; height:auto; overflow:hidden";
+//		dontStyle = "top:-5px;"
+//	 }
+	//alert(qNum+", "+fdbkStyle)
+	distracters = new Array(nItems);
+	distracters = arrQs[qNum][4].split("#");
+	
+	for (var i=1; i<=nItems; i++) {
+		//table cells 
+		strHTML = strHTML + "<tr><td width='45'><a href='javascript:itemSelection("+qNum+","+ i +")'><img src='../../sysimages/"+gbtnName+arrLetters[i]+gformat+"' alt='Distracter "+arrLetters[i].toUpperCase()+"' id='img"+i+"' name='img"+i+"' width'38' height='38' border='0' /></a></td>"
+		strHTML = strHTML + "<td width='355' class='distrText'>"+ distracters[i-1] +"</td></tr>"	
+	}	
+	strHTML = "<p>"+arrQs[qNum][3]+"</p><table width='90%' align='center' border='0' cellspacing='3' cellpadding='3'>" + strHTML + "<tr><td>&nbsp;</td><td>&nbsp;</td></tr></table>"
+//done button	
+	strHTML = strHTML + "<div id='lydone' style='position:relative; text-align: center;'> <a href='javascript:judgeInteraction("+qNum+")'  onMouseOver='MM_swapImage(&quot;imgdone&quot;,&quot;&quot;,&quot;../../sysimages/done_2.jpg&quot;,1)' onMouseOut='MM_swapImgRestore()'><img src='../../sysimages/done_0.jpg' name='imgdone' id='imgdone' alt='Done' width='90' height='36' border='0' /></a></div>"
+	
+	strHTML = strHTML + "<div id='lyfdbk' class='txtfdbk' style='position:relative; top:-20; text-align: center; overflow:auto; visibility:hidden;'></div>"
+	
+	strHTML = strHTML + "<div id='continue' style='position:relative; top:0px; text-align: center; visibility:hidden;'><a id='fdbkLink'  href='javascript:nextQuestion()' onMouseOver='MM_swapImage(&quot;continue&quot;,&quot;&quot;,&quot;../../sysimages/cont_2.jpg&quot;,1)' onMouseOut='MM_swapImgRestore()'>"
+	strHTML = strHTML + "<img src='../../sysimages/cont_0.jpg' alt='Continue button' name='continue' border='0'>"
+	strHTML = strHTML + "</a></div>"
+
+	document.getElementById("question").innerHTML = strHTML;
+}
+
+function hideexitLy() {
+	MM_showHideLayers('exitProgress','','hide', 'exitMessage','','hide', 'exitbtnCont','','hide', 'exitbtnExit','','hide'); 
+	document.getElementById("Prompt").innerHTML = lastPprompt;
+	blnLastPage = true;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad="onpage();MM_preloadImages('../../sysimages/begin_2.jpg','../../sysimages/cont_2.jpg','../../sysimages/exitpgrcheck_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  NIR: Laser Hazards / Progress Check
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" --><!-- InstanceEndEditable --></div>
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Progress Check<!-- InstanceEndEditable --></div>
+<div id="ContentExp" ><!-- InstanceBeginEditable name="EditContents" --> 
+  <div id="btnBegin" style="position:absolute; left:173px; top:302px; width:60px; height:20px; z-index:3;">
+<a href="javascript:setQOrder(); writeQuestion(qOrder[0]);" onMouseOver="MM_swapImage('btnB','','../../sysimages/begin_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/begin_0.jpg" alt="Begin button" name="btnB" width="90" height="36" border="0" id="btnB" /></a></div>
+  
+<div id="question" style="position:absolute; width:435px; height:233px">
+  <p>Your  challenge is to complete the puzzle by answering questions about laser  hazards.&nbsp; For every question you answer  correctly, part of the puzzle will fall into place.&nbsp; You will have a second attempt at questions  that you answered incorrectly after you have attempted all questions once.&nbsp; Answer enough questions correctly, and the  entire puzzle will come together.&nbsp; </p>
+  <p>Select  Begin to start.&nbsp;</p>
+</div>
+<!-- InstanceEndEditable --></div>
+<!-- InstanceBeginEditable name="others" -->
+<div id="lyscores" style="position:absolute; left:636px; top:92px; width:302px; height:40px; font-weight: bold; color:#FFFFFF; font-size: 13px; z-index:0"></div>
+<div id="pageGraphic" style="position:absolute; top:110px; left:508px; width:431px; height:303px;"  >
+<img src="images/puzzle_frame.png" width="433" height="318" /></div>
+<div id="txtCption" style="position:absolute; top:422px; left:523px; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:13px; color:#FFFFFF; width: 404px; visibility: hidden;">The YAL-1A Airborne Laser aircraft is one of the  programs being tested at Edwards AFB.</div>
+<!--drops (big) graphics layer-->
+<div id="lydrop1b" style="position:absolute; width:50px; top: 124px; height: 60px; left: 526px;"><img src="images/piece1_large.png" alt="" name="pc1b" width="153" height="151" id="pc1b" style="opacity:0;filter:alpha(opacity=0)" /></div>
+<div id="lydrop2b" style="position:absolute; width:50px; top: 125px; height: 60px; left: 644px;"><img src="images/piece2_large.png" alt="" name="pc2b" width="159" height="171" id="pc2b" style="opacity:0;filter:alpha(opacity=0)" /></div>
+<div id="lydrop3b" style="position:absolute; width:50px; top: 125px; height: 60px; left: 768px;"><img src="images/piece3_large.png" name="pc3b" width="150" height="151" id="pc3b" style="opacity:0;filter:alpha(opacity=0)" /></div>
+<div id="lydrop4b" style="position:absolute; width:50px; top: 240px; height: 60px; left: 526px;"><img src="images/piece4_large.png" alt="" name="pc4b" width="132" height="161" id="pc4b" style="opacity:0;filter:alpha(opacity=0)" /></div>
+<div id="lydrop5b" style="position:absolute; width:50px; top: 260px; height: 60px; left: 625px;"><img src="images/piece5_large.png" alt="" name="pc5b" width="199" height="141" id="pc5b" style="opacity:0;filter:alpha(opacity=0)" /></div>
+<div id="lydrop6b" style="position:absolute; width:50px; top: 240px; height: 60px; left: 789px;"><img src="images/piece6_large.png" alt="" name="pc6b" width="129" height="161" id="pc6b" style="opacity:0;filter:alpha(opacity=0)" /></div>
+
+<div id="lyfinalg" style="position:absolute; width:50px; top: 122px; height: 60px; left: 521px;"><img src="images/Untitled-1.jpg" name="pcfinal" id="pcfinal" style="opacity:0;filter:alpha(opacity=0)"  /></div>
+
+<!--drops (small) graphics layer-->
+
+<div id="lydrop1" style="position:absolute; width:50px; top: 417px; height: 60px; left: 514px;"><img src="images/LHZ_piece1_small.png" name="pc1" width="99" height="104" id="pc1" /></div>
+<div id="lydrop2" style="position:absolute; width:48px; left: 638px; top: 414px;"> <img src="images/LHZ_piece2_small.png" name="pc2" width="106" height="106" id="pc2" /></div>
+<div id="lydrop3" style="position:absolute; width:45px; left: 780px; top: 413px;"><img src="images/LHZ_piece3_small.png" name="pc3" width="98" height="101" id="pc3" /></div>
+<div id="lydrop4" style="position:absolute; width:48px; left: 577px; top: 498px;"><img src="images/LHZ_piece4_small.png" name="pc4" width="96" height="97" id="pc4" /></div>
+<div id="lydrop5" style="position:absolute; width:48px; left: 708px; top: 493px;"><img src="images/LHZ_piece5_small.png" name="pc5" width="104" height="102" id="pc5" /></div>
+<div id="lydrop6" style="position:absolute; width:48px; left: 839px; top: 495px;"><img src="images/LHZ_piece6_small.png" name="pc6" width="95" height="101" id="pc6" /></div>
+
+<div id="exitProgress" style="background-image:url(../../sysimages/background.jpg); background-repeat:no-repeat; position:absolute; width:911px; left: 34px; top: 83px; height: 514px; visibility: hidden;">
+<div id="exitMessage" style="position:absolute; top:152px; left:191px; width:535px">
+<p>Congratulations! You have answered 6 of 8 questions correctly and completed this challenge!  Do you want to keep going and try the next question anyway?</p></div>
+<div id="exitbtnCont" style="position:absolute; width:auto; left:307px; top:286px"><a href="javascript:hideexitLy()" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('imgbtnCont','','../../sysimages/cont_2.jpg',1)"><img src="../../sysimages/cont_0.jpg" alt="Continue" name="imgbtnCont" width="90" height="36" border="0" id="imgbtnCont" /></a></div>
+<div id="exitbtnExit" style="position:absolute; width:auto; left:466px; top:286px"><a href="javascript:findNext()" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('imgbtnExit','','../../sysimages/exitpgrcheck_2.jpg',1)"><img src="../../sysimages/exitpgrcheck_0.jpg" name="imgbtnExit" width="164" height="36" border="0" id="imgbtnExit" /></a></div>
+</div>
+
+<div id="snowMapDot" style="position:absolute; top:33px; left:729px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select Begin to start.<!-- InstanceEndEditable --></div>
+
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+
+<div id="lynav">
+      <ul id="navigation" name="navigation">
+        <!-- InstanceBeginEditable name="maps" -->
+
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="#" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf"  target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+	
+
+</body>
+<!-- InstanceEnd --></html>

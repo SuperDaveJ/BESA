@@ -1,0 +1,147 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<script language="JavaScript" type="text/javascript">
+<!--
+var lfinish = false;
+var pageitem = "";
+var totalitem = 3;
+
+function onpage() {
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+var pgURL = "1cir040.html"
+	if (verNumber != 2) { // LMS version		
+		if (arrLessonStatus[0][0] > 1)  lfinish = true
+	}	
+	if (pageitem.length == totalitem) lfinish = true
+		if (lfinish == false) {
+			if (confirm("You have not viewed everything on this page.  Are you sure you want to continue to the next page?")==true) lfinish = true;
+		}
+	
+
+	if (lfinish == true) goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "1cir020.html"
+	goURL(pgURL);
+}
+
+function showHi(lyg) {
+	document.getElementById(lyg).style.visibility = "visible";
+}
+
+function checkpage(itemn) {
+	if (pageitem.indexOf(itemn) == -1) pageitem = pageitem + itemn
+	var lyg = "ly" + itemn
+	if (itemn > 1) document.getElementById(lyg).style.visibility = "visible";
+	//alert(pageitem.length)
+}
+
+function toMenu(isfalse) {
+}
+
+function showaudiot() {
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+	body {
+		background-image: url(../../sysimages/lesson_screen_back_city.jpg);
+	}
+	#Content { 
+		width:870px; 
+	}
+-->
+</style>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Course Introduction<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 3 of 8<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Selectable Elements<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <p>Selectable elements have been included in the course to provide additional   content and an increased level of interactivity.&nbsp; For example, whenever you see <a onclick="javascript:checkpage('1')" href="1cir030_01.html?TB_iframe=true&amp;width=561&amp;height=395" class="thickbox" title="">bold yellow text</a>, you can select it to view more   information about the topic. Even though you may know the meaning of a word in   bold text, it is important to click on it.&nbsp; In this course, these popup boxes   often contain tables and graphics, and sometimes, selecting a bold word opens a   document.</p>
+  <p>You&rsquo;ve already seen some examples of selectable graphics.&nbsp; Throughout the   course, you will see other graphics you can click to launch animations, audio,   popup text, or example documents.&nbsp; You will usually be able to identify these   selectable graphics by a hexagon shape, as shown below.</p>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="pageGraphic" style="position:absolute; top:274px; left:92px; width:344px; height:151px; z-index: -1;"><img src="images/1cir030a.jpg" alt="Screenshot showing a flow chart." width="792" height="242" border="0" usemap="#Map" />
+<map name="Map" id="Map">
+<area shape="rect" coords="13,11,359,228" href="1cir030_02.html?TB_iframe=true&amp;width=446&amp;height=277;" alt="Screenshot showing a flow chart." class="thickbox" title="" onclick="javascript:checkpage('2')" />
+<area shape="rect" coords="429,14,764,227" href="1cir030_03.html?TB_iframe=true&amp;width=446&amp;height=277;" alt="Screenshot showing a tabbed page." class="thickbox" title="" onclick="javascript:checkpage('3')" />
+</map></div>
+
+<div id="ly2" style="position:absolute; top:300px; left:120px; width:300; visibility: hidden;"> <a href="1cir030_02.html?TB_iframe=true&amp;width=446&amp;height=277" class="thickbox" title=""><img src="images/1cir030b.jpg" border="0" alt="Screenshot showing a flow chart." /></a></div>
+<div id="ly3" style="position:absolute; top:300px; left:679px; width:300; visibility: hidden;"> <a href="1cir030_03.html?TB_iframe=true&amp;width=446&amp;height=277" class="thickbox" title=""><img src="images/1cir030c.jpg" border="0" alt="Screenshot showing a tabbed page." /></a></div>
+
+<div id="ly4" style="position:absolute; top:519px; left:54px; width:875px;">
+<p>It is important that you read the prompt on the bottom of each screen so you   don&rsquo;t miss important information.&nbsp;&nbsp; During this lesson, while you&rsquo;re learning,   you will see a warning box if you accidentally click Forward without viewing all   of the selectable elements on a page.&nbsp; However, this feature is not continued   throughout the rest of the course.</p>
+</div>
+
+<div id="snowMapDot" style="position:absolute; top:26px; left:738px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select the highlighted text and each graphic.  Then click Forward to continue.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

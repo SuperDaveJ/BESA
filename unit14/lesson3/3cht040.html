@@ -1,0 +1,132 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/scenario_tropical.jpg);
+}
+#Content { width:870px; }
+-->
+</style>
+<script type="text/javascript" src="../../scripts/Trashcan.js" ></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+//==distracters=========
+var nObj = 4;
+var CorrectAns="Good Job!  A regulated area is required as an interim measure until the ventilation system is being put into operation because exposure is above acceptable levels, and hazardous exposure could occur if access by personnel not wearing the appropriate PPE is not controlled. Select Forward to continue."
+var strCorrectObjs = "3,4,";
+
+
+
+function onpage() {
+	distrload(nObj, strCorrectObjs, CorrectAns);
+	init();
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "3cht050.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "3cht03b.html"
+	goURL(pgURL);
+}
+function showaudiot() {
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" -->Chemical Health Threats / Regulated  Areas<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 4 of 5<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Scenario Challenge Point<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+   <p>Based on all the information you have, including  sampling results that indicate JP-8 exposures above the OEL, you need to determine  whether a regulated area should be established.&nbsp;  Which two of the following statements do NOT apply to this situation?</p>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<!--================ Drag items positon ==================-->
+<div id="lydistracters" style="position:absolute; left:273px; top:247px; width:350px; z-index:-1"> 
+  <img src="images/3cht040f.jpg" /></div>
+  
+<div id="drag1" style="position:absolute; left:495px; top:283px; width:20px; height:20px; z-index:3; visibility: visible; cursor:pointer;"><img name="Drag1Img" src="images/3cht040d.jpg" width="189" height="51" alt="Hazardous exposure could occur if access to the area is not effectively controlled." /></div>
+
+<div id="drag2" style="position:absolute; left:292px; top:283px; width:20px; height:20px; z-index:3; visibility: visible; cursor:pointer;"><img name="Drag2Img" src="images/3cht040b.jpg" width="189" height="51"  alt="A regulated area must be established because exposure is above acceptable levels." /></div>
+
+<div id="drag3" style="position:absolute; left:292px; top:373px; width:20px; height:20px; z-index:3; visibility: visible; cursor:pointer;"><img name="Drag3Img" src="images/3cht040c.jpg" width="189" height="51"  alt="A regulated area is not necessary because a ventilation system has been ordered." /></div>
+  
+<div id="drag4" style="position:absolute; left:495px; top:373px; width:20px; height:20px; z-index:3; visibility: visible; cursor:pointer;"><img name="Drag4Img" src="images/3cht040e.jpg" width="189" height="51"  alt="Unregulated access to the area is acceptable because personnel are wearing respirators." /></div>
+  
+<!-- *********** Trashcan as a target ************** -->
+
+<div id="target1" style="position:absolute; left:640px; top:257px; width:288px; height:120px; z-index:-1; visibility: visible">
+  <div align="right"><img src="../../sysimages/trashcan.png" alt="Trashcan" name="target1Img" width="149" height="179" border="0" /></div>
+  <br />
+  <div class='txtfdbk' id='lyfdbk' style="top:30px; visibility:hidden; overflow:auto; height:90px"></div>
+</div>
+
+<div id="snowMapDot" style="position:absolute; top:40px; left:721px;">
+<img src="../../sysimages/map_dot.png" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Drag the items that do not belong into the trash can.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>C&sup2; Technologies, Inc.</title>
+<!--<script language="javascript" src="scripts/APIWrapper.js" type="text/javascript"></script>
+<script language="javascript" src="scripts/SCOFunctions.js" type="text/javascript"></script>
+<script language="javascript" src="scripts/launchFunctions.js" type="text/javascript"></script>-->
+
+<script language="javascript" type="text/jscript">
+var apiHandle = null;
+var findAPITries=0;
+var xmlDoc;
+var assementData;
+var blnRandom
+var group;
+var sec1num;
+var passingScore;
+var nQs;
+var iq = 0; //q ini number
+var assementData;
+var arrCorrectAns;
+var	uA;			//user answer
+var	qOrder;		//question order - randomized
+var	qOrder_seq;	//question order - sequential
+loadQdata();
+
+function loadPage() {
+   var api = getAPIHandle();
+   api.LMSInitialize("");
+   if (api.LMSGetValue("cmi.core.lesson_status") !="completed") {
+  	 api.LMSSetValue("cmi.core.lesson_status", "incomplete"); // CHANGE THE NAME VALUE
+   }
+   api.LMSCommit("");
+
+}
+
+function getAPIHandle()
+{
+   if (apiHandle == null){
+      apiHandle = getAPI();
+   }
+
+   return apiHandle;
+}
+
+function getAPI(){
+   findAPITries=0;
+   var theAPI = findAPI(window);
+   if ((theAPI == null) && (window.opener != null) && (typeof(window.opener) != "undefined")) {
+      theAPI = findAPI(window.opener);
+   }
+   if (theAPI == null){
+      alert("Unable to find an API adapter");
+   }
+   return theAPI;
+}
+
+function findAPI(win){
+   while ((win.API == null) && (win.parent != null) && (win.parent != win))  {
+      findAPITries++;      
+      
+     // Note: 10 is an arbitrary number, but should be more than sufficient
+      if (findAPITries > 10) {
+         alert("Error finding API -- too deeply nested.");
+         return null;
+      }
+      
+      win = win.parent;
+
+   }     
+   return win.API;
+}
+
+function unloadPage() {
+   var api = getAPIHandle();
+   if (api.LMSGetValue("cmi.core.lesson_status") !="completed") {
+   	 lessonstatus = computeLessonStatus();
+  	 api.LMSSetValue("cmi.core.lesson_status", lessonstatus); // CHANGE THE NAME VALUE
+   }
+   api.LMSCommit("");
+   api.LMSFinish("");    
+}
+
+function computeLessonStatus() {
+    var count = 0;
+	var scorePct;
+    for (var i=0; i< nQs; i++) {
+		if (uA[i] == arrCorrectAns[i])	count += 1;
+    }
+	scorePct = Math.round (count/nQs * 100)
+	
+	if (scorePct >= PassingScore)
+		return "completed";
+	else
+		return "incomplete";
+}
+
+
+//========== XML code ============
+
+function loadQdata() {
+	if (window.XMLHttpRequest)
+	  {
+	  xmlDoc=new window.XMLHttpRequest();
+	  xmlDoc.open("GET","assessment_data.xml",false);
+	  xmlDoc.send("");
+	  xmlDoc=xmlDoc.responseXML;
+	  }
+	// IE 5 and IE 6
+	else if (ActiveXObject("Microsoft.XMLDOM"))
+	  {
+	  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+	  xmlDoc.async=false;
+	  xmlDoc.load("assessment_data.xml");	  
+	  }
+	passingScore = xmlDoc.getElementsByTagName("PassingScore")[0].childNodes[0].nodeValue;  
+	blnRandom = xmlDoc.getElementsByTagName("IsRandomize")[0].childNodes[0].nodeValue;  
+	if (blnRandom == "Yes") group = getRandom(2);
+	else group = (xmlDoc.getElementsByTagName("Group")[0].childNodes[0].nodeValue)-1
+	var x=xmlDoc.getElementsByTagName("Assessment")[group]; 
+	assementData = x.getElementsByTagName("Question");
+	sec1num = parseInt(x.getAttribute("Section1Num"));
+	nQs = assementData.length;
+	arrCorrectAns = new Array(nQs);
+	uA = new Array(nQs);			//user answer
+	qOrder = new Array(nQs);		//question order - randomized
+	qOrder_seq = new Array(nQs);	//question order - sequential
+	for (var i=0; i<nQs; i++) {
+		uA[i] = "0";
+		qOrder[i] = -1;
+		qOrder_seq[i] = i+1;
+		//arrCorrectAns[i] =  assementData.getElementsByTagName("CorrectAnswer")[0].childNodes[0].nodeValue
+	}
+	if (blnRandom == "Yes" ) doRandomization();
+	else qOrder = qOrder_seq;
+	alert(qOrder)
+}	  
+  
+
+
+var LessonTitle = 'BESA Assessment';  // the title of this lesson
+///==============assessment order code =========
+
+
+function getRandom(topLimit) {   
+	return Math.floor(Math.random()*topLimit)
+}
+
+function doRandomization() {
+	for (i=0; i<nQs-sec1num; i++) {
+		for (j=0; j<1000000; j++) {
+			blnFound = false;
+			intTemp = getRandom(nQs-sec1num);			
+			for (k=0; k<nQs-sec1num; k++) {
+				if (qOrder[k] == intTemp) {
+					blnFound = true;
+					break;
+				}
+			}
+			if (!blnFound) {
+				qOrder[i] = intTemp;
+				break;
+			}
+		}
+	}
+	
+	var qOrder_temp = new Array(nQs)
+	for (var i=0; i<nQs; i++) {
+		qOrder_temp[i] = qOrder[i];
+	}
+
+	//make the question numbers from 1 to nQs
+	for (i=0; i<nQs; i++) {
+		if (i < sec1num ) {
+			qOrder[i] = i+1;
+		} else {
+			//alert((i-sec1num) + ", " + qOrder_temp[i-sec1num])
+			qOrder[i] = qOrder_temp[i-sec1num] + sec1num + 1;
+		}
+	}
+
+}
+
+
+
+</script>
+
+
+</head>
+
+<body>
+<iframe onLoad="loadPage(); " onUnload="unloadPage()" src="q0.html" name="iframename"  scrolling="no" scroll="no" id="iframename" marginwidth="0" marginheight="0" frameborder="0" style="width:100%; height:680px"></iframe>
+
+</body>
+</html>

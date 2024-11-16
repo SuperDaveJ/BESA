@@ -1,0 +1,33 @@
+/* 
+
+	TableCloth	
+	by Alen Grakalic, brought to you by cssglobe.com
+	
+*/
+
+/* general styles */
+
+table, td{
+	font:100% Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+table {width:100%;border-collapse:collapse;margin:1em 0;}
+th, td {text-align:center;padding:.5em; border:1px solid #b1ae00;}
+th.col {background:#644610; background:url(sysimages/bg_header1.jpg); background-repeat:no-repeat;color:#fff;}
+th  {background:#644610; color:#fff; padding: 6px 6px 6px 12px;}
+
+/*th.alt {background:#957A2B;color:#fff;}*/
+td {background:#63570d;}
+/*td.alt {background:#A7A754;}*/
+
+/* tablecloth styles */
+
+td.over {background:#63570d url(sysimages/clickgrid_1.png) center no-repeat}
+td.down {background:#63570d url(sysimages/clickgrid_2.png) center no-repeat}
+td.selected {background:#63570d url(sysimages/clickgrid_2.png) center no-repeat}
+td.correct {background:#63570d url(sysimages/clickgrid_2.png) center no-repeat}
+td.wrong {background:#63570d url(sysimages/clickgrid_3.png) center no-repeat}
+
+
+/* use this if you want to apply different styleing to empty table cells*/
+td.empty {background:#999;}

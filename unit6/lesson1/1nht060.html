@@ -1,0 +1,134 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/lesson_screen_back_tropical.jpg);
+}
+#Content { width:870px; }
+-->
+</style>
+<script type="text/javascript" src="../../scripts/Trashcan.js" ></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+//==distracters=========
+var nObj = 4;
+var CorrectAns="Good Job!  A hazardous noise area is any area where personnel could be exposed to an 8-hour continuous sound level greater than 85 dB(A), continuous or intermittent noise above 115 dB, or peak sound pressure levels above 140 dB. Select Forward to continue."
+var strCorrectObjs = "2,";
+
+
+
+function onpage() {
+	distrload(nObj, strCorrectObjs, CorrectAns);
+	init();
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "1nht070.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "1nht050.html"
+	goURL(pgURL);
+}
+function showaudiot() {
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Noise Health Threats / Hazardous Noise
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 6 of 8<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Appraisal<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+   <p>According  to AFOSH Std 48-20, which of the following is NOT a criterion for determining  if a noise source or area should be considered hazardous?</p>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<!--================ Drag items positon ==================-->
+<div id="lydistracters" style="position:absolute; left:339px; top:174px; width:350px; z-index:-1"> 
+  <img src="images/1nht060e.jpg" /></div>
+  
+<div id="drag1" style="position:absolute; left:380px; top:212px; width:20px; height:20px; z-index:3; visibility: visible; cursor:pointer;"><img name="Drag1Img" src="images/1nht060a.jpg" width="189" height="51" alt="Continuous sound level greater than 85 dB(A)." /></div>
+
+<div id="drag2" style="position:absolute; left:380px; top:302px; width:20px; height:20px; z-index:3; visibility: visible; cursor:pointer;"><img name="Drag2Img" src="images/1nht060b.jpg" width="189" height="51"  alt="Multiple-source noise levels above 120 dB." /></div>
+
+<div id="drag3" style="position:absolute; left:380px; top:392px; width:20px; height:20px; z-index:3; visibility: visible; cursor:pointer;"><img name="Drag3Img" src="images/1nht060c.jpg" width="189" height="51"  alt="Continuous or intermittent noise above 115 dB." /></div>
+  
+<div id="drag4" style="position:absolute; left:380px; top:481px; width:20px; height:20px; z-index:3; visibility: visible; cursor:pointer;"><img name="Drag4Img" src="images/1nht060d.jpg" width="189" height="51"  alt="Peak sound pressure levels above 140 dB" /></div>
+  
+<!-- *********** Trashcan as a target ************** -->
+
+<div id="target1" style="position:absolute; left:621px; top:263px; width:294px; height:120px; z-index:-1; visibility: visible">
+  <div align="center"><img src="../../sysimages/trashcan.png" alt="Trashcan" name="target1Img" width="149" height="179" border="0" /></div>
+  <br />
+  <div class='txtfdbk' id='lyfdbk' style=" visibility:hidden; top:30px"></div>
+</div>
+
+<div id="snowMapDot" style="position:absolute; top:40px; left:799px;">
+<img src="../../sysimages/map_dot.png" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Drag the item that does not belong into the trash can.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

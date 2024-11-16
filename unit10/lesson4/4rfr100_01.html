@@ -1,0 +1,343 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {background-image: url(../../sysimages/scenario_sand.jpg);}
+table {width:98%;border-collapse:collapse;margin:1em 0;}
+td {color:#FFFFFF; font-size:13px; text-align:center; padding:.5em; border:none;}
+th {color:#FFFFFF; text-align:right; font-size:16px; padding:.5em; }
+td.line{color:#ffffff; font-size:13px; text-align:center; padding:.5em; border-bottom:1px solid #fff}
+.ftext {background-color:#644610; text-align:center; color:#FFFFFF; font-size:1em; border:1px solid #b1ae00; };
+.hi_ftext {background-color:#996633; text-align:center; color:#FFFFFF; font-size:13px; border:1px solid #b1ae00;  };
+.cellT {color: #FFFFFF}
+#Content:{width: 700px}
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+var uC;
+var triesUser = 0;
+function onpage() {
+uC = getQueryValue('uC');
+var strTemp = uC.substring(0,1)
+		if (strTemp=="1") triesUser += 1;
+document.getElementById("Next").style.visibility = "hidden";
+document.getElementById('input1').focus();
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	uC="2"+uC.substring(1,uC.length)
+	var pgURL = "4rfr100_02.html?uC="+uC
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "4rfr090.html"
+	goURL(pgURL);
+}
+function showaudiot() {
+}
+
+//Global variables
+var selected = false;
+var nItems = 5;
+var correctAns = "0.03,0.03,10,0.52,0.25"
+	arrCorrectAns = new Array();
+	arrCorrectAns = correctAns.split(",");
+
+var defaultF = "-.--,-.--,--.-,-.--,-.--"
+	arrdefaultF = new Array(nItems);
+	arrdefaultF = defaultF.split(",");;
+//Question #1
+//var qStem = "To figure the daily OEL reduction factor, first insert the value of h, or the number of hours in the workday.";	//qStem
+
+var arrPopup = new Array(4);//Feedback for questions other than the last one.
+arrPopup[0] = "Before proceeding you must complete the question.";	//No selection
+arrPopup[1] = "No, sorry.  The correct answer is now displayed. You will have another opportunity to answer this question later. Use the scroll bar on the right to learn more about how to perform these calculations. <br /><br />To find the wavelength of this system, which is 0.03 m, you must remember to divide by 10 GHz, or 10x10^9.<br /><br />Using the Windows calculator in the Scientific view, the key sequence is:<br /><br />3 * 10 Exp 8 = / (10 * 10 Exp 9) =<br /><br />To determine the near-field boundary (NFB), you divide the longest dimension of the antenna in meters (.25 m) by 4 times the wavelength of this system (0.03 m).  Once you have calculated the NFB, you will be able to determine if the maintenance worker had a near-field or far-field exposure.<br /><br />Select Continue for the next question.";		//First incorrect
+arrPopup[2] = "Incorrect. The correct answer is now displayed. Use the scroll bar on the right to learn more about how to perform these calculations.<br /><br />To find the wavelength of this system, which is 0.03 m, you must remember to divide by 10 GHz, or 10x10^9.<br /><br />Using the Windows calculator in the Scientific view, the key sequence is:<br /><br />3 * 10 Exp 8 = / (10 * 10 Exp 9) =<br /><br />To determine the near-field boundary (NFB), you divide the longest dimension of the antenna in meters (.25 m), by 4 times the wavelength of this system (0.03 m).  Therefore, for this emitter, the NFB is 0.52 m.<br /><br />The worker was not within the NFB because the worker’s distance from the emitter was 0.9 m.  Therefore, this was a far-field exposure.<br /><br />Select Continue for next question."; //Final incorrect
+arrPopup[3] = "Correct! The system wavelength for this nose-mounted radar is 0.03 m. Which you find by dividing the velocity of EMR by 10 GHz, or 10x10^9.<br /><br />Once you determine the near-field boundary (NFB), by dividing the longest dimension of the antenna in meters (.25 m) by 4 times the wavelength of this system (0.03 m), you can determine that the maintenance worker had a far-field exposure because the worker’s distance from the emitter was 0.9 m.<br /><br />Select Continue for next question.";			//Correct
+
+function judgeInteraction(whichButton) {
+selected = true
+	var qStatus = 0;
+	var nCorrect = 0;
+	var strTemp = "";
+	arrUserAns = new Array();
+	for (i=0; i<nItems; i++) {
+		arrUserAns[i] = eval("document.getElementById('input"+(i+1)+"').value")
+		//arrUserAns[i]=arrUserAns[i].replace(/ /g, "")
+		arrUserAns[i]=arrUserAns[i].replace(")", "")
+		arrUserAns[i]=arrUserAns[i].replace("(", "")
+	}
+	
+	triesUser += 1;
+	//if (arrdefaultF == arrUserAns) qStatus = 0;
+//	alert(arrUserAns)
+	for (var i=0; i<nItems; i++) {
+		if (arrdefaultF[i] != arrUserAns[i]) {qStatus = 1;}
+		arrUserAns[i] = parseFloat(arrUserAns[i])
+		arrCorrectAns[i] = parseFloat(arrCorrectAns[i])
+		if (arrUserAns[i] == arrCorrectAns[i]) {
+			nCorrect += 1;
+			eval("document.getElementById('input"+(i+1)+"').className = 'ftext'");
+		} else {
+			eval("document.getElementById('input"+(i+1)+"').className = 'hi_ftext'");
+			eval("document.getElementById('input"+(i+1)+"').value = '"+ arrdefaultF[i]+"'" );
+		}
+	}
+	if (qStatus == 0) { //not selected
+		strTemp = arrPopup[0]
+		triesUser -= 1;
+		selected = false;
+	} else { //correct
+		if ( (nCorrect == nItems) && (whichButton == 2) ) {
+			triesUser = 2;
+			strTemp = arrPopup[3];
+			showCorrect();
+		} else if (triesUser < 2) { //1st incorrect
+		document.getElementById("lyfdbk").style.height = "73px";
+			/*
+			if (arrUserAns[1] != arrCorrectAns[1]) {
+				document.getElementById('input2').value = arrdefaultF[1];
+				document.getElementById('input2').focus();
+			}
+			if (arrUserAns[0] != arrCorrectAns[0]) {
+				document.getElementById('input1').value = arrdefaultF[0];
+				document.getElementById('input1').focus();
+			}
+			*/
+			strTemp = arrPopup[1];
+			document.getElementById("continue").style.visibility = "visible";
+			document.getElementById('fdbkLink').href = "javascript:ucpage()";
+			for (i=1; i<=nItems; i++) {
+			if (i==3) arrCorrectAns[i-1] = arrCorrectAns[i-1] + ".0"
+				eval("document.getElementById('input"+i+"').value = '"+arrCorrectAns[i-1]+"'")
+				eval("document.getElementById('input"+i+"').readOnly = true");
+				eval("document.getElementById('input"+i+"').onfocus = ''");
+			}
+			//for (i=1; i<=nItems; i++) {
+//				eval("document.getElementById('input"+i+"').readOnly = true");
+//				eval("document.getElementById('input"+i+"').onfocus = ''");
+//			}
+		} else { //2nd incorrect
+			strTemp = arrPopup[2];
+			showCorrect();		
+		}
+		//showCorrect();
+	}
+	showFdbk(strTemp)
+}
+
+function ucpage() {
+	var ucpage = "4rfr100_02.html?uC=100"
+	goURL(ucpage)
+}
+
+function showCorrect() {
+	for (i=1; i<=nItems; i++) {
+	if (i==3) arrCorrectAns[i-1] = arrCorrectAns[i-1] + ".0"
+		eval("document.getElementById('input"+i+"').value = '"+arrCorrectAns[i-1]+"'")
+		eval("document.getElementById('input"+i+"').readOnly = true");
+		eval("document.getElementById('input"+i+"').onfocus = ''");
+	}
+	document.getElementById("continue").style.visibility = "visible";
+	document.getElementById('fdbkLink').href = "javascript:findNext()";
+	document.getElementById("lyfdbk").style.height = "73px";
+}
+
+function showFdbk(strTemp) {
+	//alert("In showFdbk()");
+	document.getElementById('lyfdbk').innerHTML = strTemp;
+	if (strTemp=="") {
+		document.getElementById('lyfdbk').style.visibility = "hidden";;
+		document.getElementById("lyNear").style.visibility = "visible";
+		document.getElementById("lyFar").style.visibility = "visible";
+	} else {
+		document.getElementById('lyfdbk').style.visibility = "visible";
+		document.getElementById("lyNear").style.visibility = "hidden";
+		document.getElementById("lyFar").style.visibility = "hidden";
+	}
+}
+
+function hideFdbk() {
+//alert(arrdefaultF[1])
+if (selected==false) {
+	document.getElementById('lyfdbk').style.visibility = "hidden";;
+	document.getElementById("lyNear").style.visibility = "visible";
+	document.getElementById("lyFar").style.visibility = "visible";
+	}
+}
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('images/button_NFE_2.jpg','images/button_FFE_2.jpg','../../sysimages/cont_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  NIR: Radio Frequency Radiation (RFR) / Investigating an RFR Overexposure or Accident
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 10 of 14<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Near-Field Boundary (NFB)<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+ <p>First, you need to determine if the maintenance  worker was located within the near-field boundary (NFB). Remember that when calculating the System Wavelength  you are dividing by GHz, which will require unit conversion for the equation to  work out properly.</p>
+    <p>System Wavelength Calculation:</p>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="pageGraphic" style="position:absolute; top:115px; left:594px; width:344px; height:312px;">
+<img src="images/4rfr100a.jpg" alt="Graphic of a notepad." width="312" height="360" /></div>
+
+<div id="ly1" style="position:absolute; left:53px; top:208px; width:446px; height:88px">
+<table width="50%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="6%" rowspan="2" ><em>&lambda;</em></td>
+      <td width="5%" rowspan="2" >=</td>
+      <td width="7%" class="line">c</td>
+      <td width="12%" rowspan="2" >&nbsp;</td>
+      <td width="20%" rowspan="2" ><input name="input1" onblur="javascript:document.getElementById('input2').value=this.value;" type="text" class="ftext" id="input1" value="-.--" size="4" maxlength="4" onkeydown="hideFdbk(); if (this.value==arrdefaultF[0] && selected==false ) this.value=''" /> 
+      m</td>
+      <td width="5%" rowspan="2">=</td>
+      <td width="45%" class="line">3 X 10<sup>8</sup> m/sec      </td>
+    </tr>
+    <tr>
+      <td width="7%" >f</td>
+      <td valign="top"><input name="input3"  type="text" class="ftext" id="input3" value="--.-" size="4" maxlength="4" onkeydown="hideFdbk(); if (this.value==arrdefaultF[2] && selected==false) this.value=''" /> 
+      GHz</td>
+    </tr>
+  </table>
+
+</div>
+<div id="ly2" style="position:absolute; left:53px; top:269px; width:446px; height:51px;">
+<table width="50%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td colspan="5"><p>Near-Field Boundary Calculation:</p></td>
+    </tr>
+    
+    <tr>
+      <td width="16%" class="line">L<sup>2</sup></td>
+      <td width="14%" rowspan="2">&nbsp;</td>
+      <td width="20%" rowspan="2"><input name="input4"  type="text" class="ftext" id="input4" value="-.--" size="4" maxlength="4" onkeydown="hideFdbk(); if (this.value==arrdefaultF[3] && selected==false) this.value=''" /> m</td>
+      <td width="5%" rowspan="2">=</td>
+      <td class="line">(
+        <input name="input5" type="text" class="ftext" id="input5" value="-.--" size="4" maxlength="4" onkeydown="hideFdbk(); if (this.value==arrdefaultF[4] && selected==false) this.value=''" /> 
+      m)<sup>2</sup></td>
+    </tr>
+    <tr>
+      <td height="44">(4)(<em>&lambda;</em>)</td>
+      <td width="45%">
+        (4) (
+        <input name="input2" type="text" class="ftext" id="input2" onblur="javascript:document.getElementById('input1').value=this.value;"  value="-.--" size="4" maxlength="4" onkeydown="hideFdbk(); if (this.value==arrdefaultF[1] && selected==false) this.value=''" />
+      m)</td>
+    </tr>
+  </table>
+</div>
+
+<div id="ly2" style="position:absolute; left:52px; top:388px; width:446px; height:51px">
+  <p>Where:
+    <br />
+    <em>&lambda;</em> = wavelength
+    <br />
+    f = frequency
+    <br />
+    c = velocity of EMR (3 x 10<sup>8</sup> meters per second)
+    <br />
+  L = longest dimension of the antenna (meters)</p>
+</div>
+
+<div id="qp3" style="position:absolute; left:52px; top:488px; width:447px; height:51px">
+  <p>Based on the calculations you've performed and the information you've been provided, is the maintenance worker's exposure considered a near-field or far-field exposure?</p>
+</div>
+
+<div id="lyNear" style="position:absolute; text-align: center; left:566px; top:489px; z-index:2; width: 91px; height: 32px;"><a href="javascript:judgeInteraction(1)" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('btnNFE','','images/button_NFE_2.jpg',1)"><img src="images/button_NFE_0.jpg" alt="Near-Field Exposure" name="btnNFE" width="164" height="36" border="0" id="btnNFE" /></a></div>
+
+<div id="lyFar" style="position:absolute; text-align: center; left:757px; top:489px; z-index:2; width: 91px; height: 32px;"><a href="javascript:judgeInteraction(2)" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('btnFFE','','images/button_FFE_2.jpg',1)"><img src="images/button_FFE_0.jpg" alt="Far-Field Exposure" name="btnFFE" width="164" height="36" border="0" id="btnFFE" /></a></div>
+
+<div id="lyfdbk" class="txtfdbk" style="position:absolute; top:460px; left:520px; width:409px; height:auto; visibility:hidden; overflow:auto; scrollbar-arrow-color: #000000; scrollbar-base-color:#63570d;"></div>
+
+<div id="continue" style="position:absolute; top:540px; text-align: center; visibility:hidden; left: 697px;"><a id = "fdbkLink" href="javascript:;" onMouseOver="MM_swapImage('btnCont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" alt="Continue button" name="btnCont" width="90" height="36" border="0" id="btnCont" /></a></div>
+
+
+
+<div id="snowMapDot" style="position:absolute; top:35px; left:768px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Type the correct data, and then click Done.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

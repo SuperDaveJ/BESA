@@ -1,0 +1,97 @@
+<?xml version="1.0" standalone="no" ?>
+<!-- created with "Manifest Maker for ADL SCORM 1.2 Version 2.0.0" for Dreamweaver,
+ on Fri Mar 05 2010 10:31:49 GMT-0600 (Central Standard Time) -->
+
+<manifest identifier="BESA_Exam-MANIFEST" version="1.0"
+  xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+  xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd
+                        http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd
+                        http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd" >
+
+<metadata>
+<schema>ADL SCORM</schema>
+<schemaversion>1.2</schemaversion>
+<adlcp:location>imsmetadata.xml</adlcp:location>
+</metadata>
+ 
+<organizations default="TOC1">
+<organization identifier="TOC1">
+<title>BESA I Final Exam</title >
+<item identifier="I_SCO0" identifierref="SCO0">
+<title>BESA I Final Exam</title>
+</item>
+</organization>
+</organizations>
+
+<resources>
+<resource identifier="SCO0" type="webcontent" adlcp:scormtype="sco" href="besatest_index.html">
+<file href="besatest_index.html" />
+<dependency identifierref="ALLRESOURCES" />
+</resource>
+
+<resource identifier="ALLRESOURCES" type="webcontent" adlcp:scormtype="asset">
+<file href="1a001.html" />
+<file href="1a001e.html" />
+<file href="1a002e.html" />
+<file href="1a002e_b.html" />
+<file href="1a003e.html" />
+<file href="1a004e.html" />
+<file href="1a005e.html" />
+<file href="1a006e.html" />
+<file href="1a007e.html" />
+<file href="1a008e.html" />
+<file href="1a009e.html" />
+<file href="Templates/besa.dwt" />
+<file href="assessment_data.xml" />
+<file href="besa.css" />
+<file href="besatest_controller.html" />
+<file href="besatest_index.html" />
+<file href="blank.html" />
+<file href="q0.html" />
+<file href="scripts/MC.js" />
+<file href="scripts/access.js" />
+<file href="sysimages/Completed_BaseMap.jpg" />
+<file href="sysimages/Prelim_BaseMap.jpg" />
+<file href="sysimages/background.jpg" />
+<file href="sysimages/bg_header1.jpg" />
+<file href="sysimages/bullet.png" />
+<file href="sysimages/clickgrid_0.png" />
+<file href="sysimages/done_0.jpg" />
+<file href="sysimages/done_2.jpg" />
+<file href="sysimages/exitcourse_0.jpg" />
+<file href="sysimages/forward_0.jpg" />
+<file href="sysimages/forward_2.jpg" />
+<file href="sysimages/holder_transparent.png" />
+<file href="sysimages/lesson_screen_back_city.jpg" />
+<file href="sysimages/lesson_screen_back_forest.jpg" />
+<file href="sysimages/lesson_screen_back_sand.jpg" />
+<file href="sysimages/lesson_screen_back_snow.jpg" />
+<file href="sysimages/lesson_screen_back_tropical.jpg" />
+<file href="sysimages/lesson_screen_background.jpg" />
+<file href="sysimages/mc_circle_a_0.png" />
+<file href="sysimages/mc_circle_a_2.png" />
+<file href="sysimages/mc_circle_a_3.png" />
+<file href="sysimages/mc_circle_b_0.png" />
+<file href="sysimages/mc_circle_b_2.png" />
+<file href="sysimages/mc_circle_b_3.png" />
+<file href="sysimages/mc_circle_c_0.png" />
+<file href="sysimages/mc_circle_c_2.png" />
+<file href="sysimages/mc_circle_c_3.png" />
+<file href="sysimages/mc_circle_d_0.png" />
+<file href="sysimages/mc_circle_d_2.png" />
+<file href="sysimages/mc_circle_d_3.png" />
+<file href="sysimages/mc_circle_e_0.png" />
+<file href="sysimages/mc_circle_e_2.png" />
+<file href="sysimages/mc_circle_e_3.png" />
+<file href="sysimages/previous_0.jpg" />
+<file href="sysimages/previous_2.jpg" />
+<file href="sysimages/q23A.png" />
+<file href="sysimages/q23B.png" />
+<file href="sysimages/repeat_0.jpg" />
+</resource>
+
+</resources>
+
+</manifest>

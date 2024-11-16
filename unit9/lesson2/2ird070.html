@@ -1,0 +1,312 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/scenario_forest.jpg);
+}
+table {width:98%;border-collapse:collapse;margin:1em 0;}
+td {color:#FFFFFF; font-size:13px; text-align:center; padding:.5em; border:none;}
+td.line{color:#ffffff; font-size:13px; text-align:center; padding:.5em; border-bottom:1px solid #fff}
+#Content{width:375px}
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+// correct answer
+// Customized function for this page
+var nItems = 4;
+var triesLimit = 2;
+var triesUser = 0;
+var strHTML = ""
+var blnChoiceMade = false;
+var arrPopup = new Array()
+var userAns = 0;
+var correctAns = 2;
+
+//===feedbacks========
+var arrPopup = new Array(7);
+
+//feedback for not select
+arrPopup[0]  = "You have not made any selections.  Select Continue."
+//Correct feedback
+arrPopup[1]  = "Correct!  The annual exposure for non-radiation personnel occupying the facility management office is 16 mR. <br /><br />The annual exposure for this situation is calculated by first multiplying the scatter survey result at the facility management office (2.5 µR) by the number of films taken at the MTF per year (27,375).  Then, to convert the units to mR, you divide that number by 1,000 µR.  Next, multiply that number times the percentage of the year a worker will be exposed (0.228).  Multiplying that result times an occupancy factor of 1, gives you the annual exposure for personnel occupying the facility management office.  Select Continue.";
+//Incorrect feedback for 2nd try
+arrPopup[2]  = "Incorrect. The correct answer is now displayed. The annual exposure for this situation is calculated by first multiplying the scatter survey result at the facility management office (2.5 µR) by the number of films taken at the MTF per year (27,375).  Remember that to find the number of films taken each year you must multiply the number of table x-rays taken per day (75) by the number of days the MTF is open each year (365.)<br /><br />Then, to convert the units to mR, you divide that number by 1,000 µR.  Next, multiply that number times the percentage of the year a worker will be exposed (0.228).  Don’t forget that to find that percentage you must divide the work-year of 2,000 hours by the number of hours in a year (8,760).<br /><br />Multiplying that result times an occupancy factor of 1, gives you the annual exposure for personnel occupying the facility management office of 16 mR.<br /><br />Using the Windows calculator in Scientific view, the key sequence for this calculation is:<br /><br />2.5 * (75 * 365) = / 1000 = * (2000 / 8760) = * 1 =<br /><br />Select Continue.";
+//Incorrect feedback for 1st try
+arrPopup[3]  = "No, sorry.  Remember that to find the number of films taken each year you must multiply the number of table x-rays taken per day (75) by the number of days the MTF is open each year (365.)<br /><br />Don’t forget to divide the work-year of 2,000 hours by the number of hours in a year (8,760) to find the percentage of the year a worker would be exposed.<br /><br />You will have another opportunity to answer this question after reading some information about this topic on the following pages.<br /><br />Select Continue."
+
+//===end of feedback =======
+
+
+var uT;
+function onpage() {
+	uT = getQueryValue('uT');	//user tries set from next page
+	if (uT == 1) {
+		triesUser += 1;
+	}
+	document.getElementById("Next").style.visibility = "hidden";
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "2ird080.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "2ird06b.html"
+	goURL(pgURL);
+}
+
+function showaudiot(){
+}
+
+function itemSelection( I ) {
+	if (blnChoiceMade == false ) {
+	hidecont() //hide the continue button and feedback
+		userAns = I;
+		document.getElementById('lydone').style.visibility = "visible";
+		document.getElementById('feedback').style.visibility = "hidden";
+		for (var j=1; j<=nItems; j++) {
+			var g = eval("document.getElementById('img"+j+"').src");
+			var name = "img"+j;
+			var gnum = g.charAt(g.length-5)
+			var gfilename = getgname(g);
+			var gpath = getgpath(g)
+			if (j==I && gnum=="0" ) {
+			 	gfilename = gfilename.replace('_0','_2')	
+			} else if (j!=I && gnum=="2"  ) {
+				gfilename = gfilename.replace('_2','_0')
+			}
+			document.getElementById(name).src = gpath+gfilename;
+    	}
+	}
+}
+
+function judgeInteraction() {
+	var strTemp = "";	
+	triesUser += 1;
+	if (userAns == "") {
+			strTemp = arrPopup[0];
+			triesUser -= 1;
+			document.getElementById('fdbkLink').href = "javascript:hidecont()";
+	} else if (userAns == correctAns) {//correct
+			strTemp = arrPopup[1];
+			blnChoiceMade = true;
+			finalstep()
+			if (triesUser < triesLimit ) {  //1st try
+				document.getElementById('fdbkLink').href = "javascript:goURL('2ird07a.html?uC=1')";
+			} else {
+				document.getElementById('fdbkLink').href = "javascript:goURL('2ird080.html')";
+			}
+	} else { //incorrect
+				
+			if (triesUser < triesLimit ) {  //1st try
+				strTemp = arrPopup[3];
+				document.getElementById('fdbkLink').href = "javascript:goURL('2ird07a.html?uC=0')";
+				document.getElementById('lyfdbk').style.height = "150px";
+			} else { //2nd try
+				strTemp = arrPopup[2];
+				finalstep()
+				document.getElementById('fdbkLink').href = "javascript:goURL('2ird080.html')";
+			}
+			blnChoiceMade = true;
+	}
+	document.getElementById('lydone').style.visibility = "hidden";
+	document.getElementById('lyfdbk').innerHTML = strTemp;
+	document.getElementById('lyfdbk').style.visibility = "visible";
+	document.getElementById('feedback').style.visibility = "visible";
+}
+// End of question
+//====final step: highlight correct answer and lock them up ==
+function finalstep() {	
+	for (var j=1; j<=nItems; j++) {
+			var g = eval("document.getElementById('img"+j+"').src");
+			var name = "img"+j;
+			var gnum = g.charAt(g.length-5)
+			var gfilename = getgname(g);
+			var gpath = getgpath(g)
+			if (j==correctAns && gnum=="0" ) {
+				gfilename = gfilename.replace('_0','_2')	
+			} else if (j!=correctAns && gnum=="2"  ) {
+				gfilename = gfilename.replace('_2','_3')
+			}else{
+				gfilename = gfilename.replace('_0','_3')
+			}
+			document.getElementById(name).src = gpath+gfilename;
+			document.getElementById('lyfdbk').style.height = "150px";
+    	}
+}
+
+function hidecont() {
+	document.getElementById('lydone').style.visibility = 'visible';
+	document.getElementById('feedback').style.visibility = 'hidden';
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('../../sysimages/done_2.jpg','../../sysimages/cont_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Ionizing Radiation / Scatter Surveys
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 7 of 10<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Scenario Challenge Point<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <p>You and SrA Jones  complete the survey at the medical facility and return to the BE shop.&nbsp;  You review your notes, which state that the x-ray machine takes 75 table x-rays  per day, and that the MTF is open 365 days per year.&nbsp; In your notes, you  also recorded the following exposure data from the scatter survey:</p>
+  <ul>
+        <li>Console= 1.1  &mu;R </li>
+        <li>In hallway (at  door)= 0.8 &mu;R </li>
+        <li>Waiting area  1= 0.2 &mu;R </li>
+        <li>Waiting area  2= 0.5 &mu;R </li>
+        <li>Facility  management office= 2.5 &mu;R</li>
+      </ul>
+  <p>When determining annual exposure, assume a  work-year of 2,000 hr (40 hr/wk x 50 wk), so the percentage of the year a  worker will be exposed is (2,000 hr/yr)/(8,760 hr/yr).</p>
+  <p><br />
+    <br />
+  Where: OF = Occupancy Factor</p>
+  <p>Note: Take measurements in integrated mode. </p>
+  <div id="lyg1" style="position:absolute; top:-1px; left:401px; width:488px; height:320px;">
+<p>Using  this information, what is the annual exposure for non-radiation personnel  occupying the facility management office adjacent to the <br />
+  x-ray room?</p>
+<p>Use an Occupancy Factor of 1 and round to the nearest whole number.</p>
+<table width="85%" align="center" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="40"><a href='javascript:itemSelection(1)'><img id="img1" src="../../sysimages/mc_circle_a_0.png" border="0" alt="Distracter A" /></a></td>
+    <td class='distrText'>16 &mu;R</td>
+  </tr>
+  <tr>
+    <td><a href='javascript:itemSelection(2)'><img id="img2" src="../../sysimages/mc_circle_b_0.png" border="0" alt="Distracter B" /></a></td>
+    <td class='distrText'>16 mR</td>
+  </tr>
+  <tr>
+    <td><a href='javascript:itemSelection(3)'><img id="img3" src="../../sysimages/mc_circle_c_0.png" border="0" alt="Distracter C" /></a></td>
+    <td class='distrText'>68 &mu;R</td>
+  </tr>
+  <tr>
+    <td><a href='javascript:itemSelection(4)'><img id="img4" src="../../sysimages/mc_circle_d_0.png" border="0" alt="Distracter D" /></a></td>
+    <td class='distrText'>68 mR</td>
+  </tr>
+  <tr>
+    <td colspan="2" height="10">	</td>
+  </tr>
+</table>
+
+</div>
+
+
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="ly1" style="position:absolute; left:30px; top:417px; width:842px; height:51px">
+  <table width="99%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td colspan="4" rowspan="2">Annual Exposure</td>
+      <td width="2%" rowspan="2">=</td>
+      <td width="45%" rowspan="2">[(Integrated  Exposure (&mu;R/Film)) X (Films/Year) X (</td>
+      <td width="9%" class="line" >1 mR</td>
+      <td width="6%" rowspan="2" >) X (</td>
+      <td width="11%" class="line" >2,000  hr/yr</td>
+      <td width="8%" rowspan="2" >)] X OF</td>
+    </tr>
+    <tr>
+      <td >1000  &mu;R</td>
+      <td >8,760 hr/yr</td>
+    </tr>
+  </table>
+</div>
+
+<div id="lydone" style="position:absolute; top:281px; left:695px; width:96px; height:40px;"><a href="javascript:judgeInteraction()"  onMouseOver="MM_swapImage('imgdone','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"> <img src='../../sysimages/done_0.jpg' name='imgdone' id='imgdone' alt='Done button' border='0' /></a></div>
+
+<div id="feedback" style="position:absolute; top:227px; left:579px; width:323px; height:50px; visibility:hidden;">
+  <div class="txtfdbk" id='lyfdbk' style="height:auto; overflow:auto; scrollbar-arrow-color: #000000; scrollbar-base-color:#63570d;"></div>
+  <br />
+  <div id="fdbkContinue" style="text-align: center;"><a id="fdbkLink" href="javascipt:;"  onmouseover="MM_swapImage('btnCont','','../../sysimages/cont_2.jpg',1)" onmouseout="MM_swapImgRestore()"><img id="btnCont" name="btnCont" src="../../sysimages/cont_0.jpg" alt="Continue button" border="0" /></a></div>
+</div>
+
+<div id="snowMapDot" style="position:absolute; top:27px; left:760px;">
+<img src="../../sysimages/map_dot.png" border="0" />
+</div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select  the correct answer, and then click Done.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

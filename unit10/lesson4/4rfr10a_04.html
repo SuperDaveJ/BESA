@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>BESA WBT</title>
+<link rel="stylesheet" type="text/css" href="../../besa.css">
+<style type="text/css">
+<!--
+table {width:60%;border-collapse:collapse;margin:0em 0;}
+td {color:#ffffff; font-size:13px; text-align:center; padding:.3em; border:none;}
+td.line{color:#ffffff; font-size:13px; text-align:center; padding:.3em; border-bottom:1px solid #fff}
+-->
+</style>
+</head>
+
+<body style="background-image: url(../../sysimages/popup_large_desert.jpg);background-repeat:no-repeat; background-color:#000000;">
+<div style="position:absolute; top:46px; left:15px; height:393px; width: 698px; scrollbar-arrow-color: #000000; scrollbar-base-color:#63570d; overflow: auto;">
+<p class='popTitle'>Exposed Within Far-Field</p>
+<p>If the individual was  exposed outside the near-field range of the emitter, you should calculate the  power density using the far-field power density calculation (S<sub>ff</sub>).&nbsp; The far-field power density can be calculated  using the following formula: </p>
+<table width="50%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="22%" rowspan="2" >&nbsp;</td>
+      <td width="7%" rowspan="2" >S<sub>ff</sub></td>
+      <td width="4%" rowspan="2" >=</td>
+      <td width="55%" class="line">(P<sub>avg</sub>) (G<sub>abs</sub>)</td>
+      <td width="12%" rowspan="2" >&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="55%" >(4) (<span style="font-family:serif">&pi;</span>) (distance[in meters]<sup>2</sup>)</td>
+    </tr>
+  </table>
+<p>Where:<br /> 
+  G<sub>abs</sub> = absolute gain<br />
+P<sub>avg</sub> = average power</p>
+<p>If  the emitter involved is a scanning emitter, you will also need to calculate the  rotation reduction factor (RRF<sub>ff</sub>) and multiply it by the calculated  far-field power density (S<sub>ff</sub>).&nbsp;  The RRF<sub>ff</sub> can be calculated using the following  formula:</p>
+<table width="50%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="31%" rowspan="2" >&nbsp;</td>
+      <td width="6%" rowspan="2" >RRF<sub>ff</sub></td>
+      <td width="3%" rowspan="2" >=</td>
+      <td width="36%" class="line">B</td>
+      <td width="24%" rowspan="2" >&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="36%" >Q<sub>s</sub></td>
+    </tr>
+  </table>
+<p>Where:<br />
+  Q<sub>s</sub>= scan  angle in radians<br />
+B = half-power beam width</p>
+</div>
+</body>
+</html>

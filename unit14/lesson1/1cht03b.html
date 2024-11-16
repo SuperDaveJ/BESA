@@ -1,0 +1,126 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<script language="JavaScript" type="text/javascript">
+<!--
+var uC;
+function onpage() {
+	uC = getQueryValue('uC');	//user correct from previous page
+	//document.getElementById("Back").style.visibility = "hidden";
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+var pgURL
+	if (uC == 0) {
+		pgURL = "1cht030.html?uT=1"
+	} else {
+		pgURL = "1cht040.html"		//set user tries
+	}
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "1cht03a.html?uC="+uC
+	goURL(pgURL);
+}
+
+function showaudiot() {
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+	body {
+		background-image: url(../../sysimages/scenario_tropical.jpg);
+	}
+	#Content { 
+		width:870px; 
+		height: 300px;
+		overflow-y:scroll;
+		scrollbar-arrow-color: #000000;
+		scrollbar-base-color:#63570d;
+		padding-right:15px;
+	}
+-->
+</style>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Chemical Health Threats / Identifying and Analyzing Chemical Health Threats
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 3b of 8<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Steps for Analyzing Chemical Health Threats<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <p>Once you have completed a  routine assessment and identified a chemical health threat that requires  sampling, you would follow up with a special assessment to determine if  controls are required.&nbsp; During your  analysis, you must place the health threat into the context of the mission and  operational requirements to influence your course of action (COA).</p>
+  <p>During your analysis, you will  determine why the health threat is a potential or actual problem.&nbsp; Consider whether the threat can cause  immediate or long-term health consequences and how it affects operational  capability.&nbsp; Other functional areas  should participate in the assessment as needed.&nbsp;  For example, Public Health (PH) should be involved in an assessment for  an infectious disease threat.&nbsp; Remember  that you should consider the potential for exposure changes due to contributing  factors such as weather or personnel movement.</p>
+  <p>You will determine the Health  Risk Estimate (HRE) for each identified chemical by estimating the probability  and severity of the health threat.&nbsp; Then,  you&rsquo;ll consider the effectiveness of controls that are already in place to  determine if new controls are needed.&nbsp;  You&rsquo;ll also identify plausible outcomes associated with exposure levels  and discuss the health risks and consequences of accepting or controlling the  risks with Commanders.</p>
+  <p>Before making recommendations,  you will consider how the health threat<strong> </strong>will  affect the mission, personnel, or other affected populations over a period of  time if the risk is accepted, and whether the effects are imminent, delayed, or  reversible. Your recommendations are important for Commanders as they make  decisions about controlling or accepting health risks.</p>
+  <p>Remember that the steps of  routine and special assessment as part of health threat analysis are components  of the Health Risk Assessment (HRA) process.&nbsp;  Ideally, the entire HRA process, as summarized above, is followed before  control recommendations are made.&nbsp;  However, there may be HRA situations which require quick reactions and  recommendations based on limited information and your professional judgment.</p>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="pageGraphic" style="position:absolute; top:446px; left:133px; width:344px; height:124px;"><img src="images/1cht03b.jpg" alt="Graphic organizer with the 5 steps." width="699" height="84" /></div>
+
+<div id="snowMapDot" style="position:absolute; top:40px; left:721px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select Forward to continue.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

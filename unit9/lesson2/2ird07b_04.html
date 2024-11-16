@@ -1,0 +1,307 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/scenario_forest.jpg);
+}
+table {width:98%;border-collapse:collapse;margin:1em 0;}
+th {background:#644610; color:#FFFFFF; text-align:center; font-size:11px; padding:.2em; border:1px solid #b1ae00; }
+td {background:#63570d; color:#FFFFFF; font-size:11px; text-align:left; padding:.2em; border:none; border:1px solid #b1ae00;}
+#Content{width:350px}
+.ftext {background-color:#644610; font-size:13px; text-align:center; color:#FFFFFF; font-size:1em; border:1px solid #b1ae00; }
+.tabTitle{font-size:11px; text-align:center;color:#FFFFFF;}
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+var uC;
+function onpage() {
+	uC = getQueryValue('uC');	//user correct from previous page
+	//document.getElementById("Next").style.visibility = "hidden";
+	document.getElementById('input1').focus();
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	if (uC == 0) {
+		var pgURL = "2ird070.html?uT=1";
+	} else {
+		var pgURL = "2ird080.html"		//set user tries
+	}
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "2ird07b_03.html?uC=" + uC;
+	goURL(pgURL);
+}
+function showaudiot() {
+}
+
+//Global variables
+var nItems = 2;
+var correctAns = "1.42,1"
+	arrCorrectAns = new Array();
+	arrCorrectAns = correctAns.split(",");
+var triesUser = 1;
+var defaultF = "-.--,-.-"
+	arrdefaultF = new Array(nItems);
+	arrdefaultF = defaultF.split(",");;
+//Question #1
+var qStem = "";	//qStem
+
+var arrPopup = new Array(4);//Feedback for questions other than the last one.
+arrPopup[0] = "You have not provided an answer to the question.  Please try again.";	//No selection
+arrPopup[1] = "Your answer to the equation is not correct.  Please try again.";		//First incorrect
+arrPopup[2] = "Incorrect.  The correct answer is now displayed.  Select Forward to continue."; //Final incorrect
+arrPopup[3] = "Correct!  Select Forward to continue.";			//Correct
+
+function judgeInteraction() {
+	var qStatus = 0;
+	var nCorrect = 0;
+	var strTemp = "";
+	arrUserAns = new Array();
+	for (i=0; i<nItems; i++) {
+		arrUserAns[i] = eval("document.getElementById('input"+(i+1)+"').value")
+		//arrUserAns[i]=arrUserAns[i].replace(/ /g, "")
+		arrUserAns[i]=arrUserAns[i].replace(")", "")
+		arrUserAns[i]=arrUserAns[i].replace("(", "")
+	}
+	
+	triesUser += 1;
+	//if (arrdefaultF == arrUserAns) qStatus = 0;
+//	alert(arrUserAns)
+	for (var i=0; i<nItems; i++) {
+		if (arrdefaultF[i] != arrUserAns[i]) {qStatus = 1;}
+		arrUserAns[i] = parseFloat(arrUserAns[i])
+		arrCorrectAns[i] = parseFloat(arrCorrectAns[i])
+		if (arrUserAns[i] == arrCorrectAns[i]) {
+			nCorrect += 1;
+			eval("document.getElementById('input"+(i+1)+"').className = 'ftext'");
+		} else {
+		//alert()
+			eval("document.getElementById('input"+(i+1)+"').className = 'hi_ftext'");
+			eval("document.getElementById('input"+(i+1)+"').value = '"+ arrdefaultF[i]+"'" );
+		}
+	}
+	if (qStatus == 0) {
+		strTemp = arrPopup[0]
+		triesUser -= 1;
+	} else {
+		if (nCorrect == nItems) {
+			triesUser = 2;
+			strTemp = arrPopup[3];
+			showCorrect();
+		} else if (triesUser < 2) {
+			/*
+			if (arrUserAns[1] != arrCorrectAns[1]) {
+				document.getElementById('input2').value = arrdefaultF[1];
+				document.getElementById('input2').focus();
+			}
+			if (arrUserAns[0] != arrCorrectAns[0]) {
+				document.getElementById('input1').value = arrdefaultF[0];
+				document.getElementById('input1').focus();
+			}
+			*/
+			strTemp = arrPopup[1];
+		} else {
+			strTemp = arrPopup[2];
+			showCorrect();		
+		}
+		
+	}
+	showFdbk(strTemp)
+}
+
+function showCorrect() {
+	for (i=1; i<=nItems; i++) {
+		eval("document.getElementById('input"+i+"').value = '"+arrCorrectAns[i-1]+"'")
+		eval("document.getElementById('input"+i+"').readOnly = true");
+		eval("document.getElementById('input"+i+"').onfocus = ''");
+	}
+	//document.getElementById("continue").style.visibility = "visible";
+	//document.getElementById('fdbkLink').href = "javascript:findNext()";
+}
+
+function showFdbk(strTemp) {
+	//alert("In showFdbk()");
+	document.getElementById('lyfdbk').innerHTML = strTemp;
+	if (strTemp=="") {
+		document.getElementById('lyfdbk').style.visibility = "hidden";;
+		document.getElementById("lydone").style.visibility = "visible";
+	} else {
+		document.getElementById('lyfdbk').style.visibility = "visible";
+		document.getElementById("lydone").style.visibility = "hidden";
+	}
+}
+
+function hideFdbk() {
+	//document.getElementById('lyfdbk').style.visibility = "hidden";;
+	//document.getElementById("lydone").style.visibility = "visible";
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Ionizing Radiation / Scatter Surveys
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 7b of 10<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Medical / Industrial X-Ray Survey Calculation<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+<p>Based on the information  that you have already learned about the medical / industrial x-ray survey  calculation, use the information below to practice calculating the annual  exposure value for an x-ray technician working behind the operator&rsquo;s shield.</p>
+    <p>A dental facility  performs 100 x-rays per week in a single configuration.&nbsp; The measurements  taken from a scatter survey yields the following data: </p>
+    <ul>
+    <ul>
+      <li>Waiting Area =  1.8 &mu;R</li>
+      <li>Restroom = 2.1  &mu;R</li>
+      <li>Adjacent  Office = 0.8 &mu;R</li>
+      <li>In hallway = 2.4  &mu;R</li>
+      <li>Behind  operator&rsquo;s shield = 1.2 &mu;R
+        </p>
+        </p>
+</li>
+    </ul>
+    <!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="pageGraphic" style="position:absolute; top:127px; left50px; width:507px; height:410px; left: 424px; overflow: auto; padding-right:5px; scrollbar-arrow-color: #000000; scrollbar-base-color:#63570d;">
+  <p><span class="popTitle">Step 4</span></p>
+  <p>To complete the equation  for the annual exposure, you need to consider what adjustment should be made  based on the occupancy factor.</p>
+  <p>In this example, the area  you are determining the annual exposure for is at an operator's position, the  full calculated amount should be considered for the annual exposure based on  the table shown below.&nbsp; <br />
+  </p>
+  <p>If the location you were  calculating for was an unattended waiting room, for example, you would consider  5% of the calculated amount as the annual exposure.</p>
+  <p>Complete your calculation  to determine the annual exposure for an x-ray technician who works behind the  operator&rsquo;s shield by multiplying your previous answer by the appropriate  occupancy factor.</p>
+  <p>Use the text field to practice completing this part of the equation, and then click Done.</p>
+  <p><input name="input1" type="text" class="ftext" id="input1" onkeydown="hideFdbk(); if (this.value==arrdefaultF[0]) this.value=''" value="-.--" size="4" maxlength="4" />
+    mR = [ 1.42 mR ]&nbsp; X 
+    <input name="input2" type="text" class="ftext" id="input2" onkeydown="hideFdbk(); if (this.value==arrdefaultF[1]) this.value=''" value="-.-" size="3" maxlength="3" />
+  </p>
+  <p><em>BEE Guide to Ionizing Radiation - 2005</em></p>
+  <p class="tabTitle">TABLE 12-3. Occupanccy Factors for Non-Occupationally Exposed Persons<br />
+  (NCRP 2004)</p>
+  <table >
+    <tr>
+      <th width="16%" scope="col">Occupancy Factor</th>
+      <th width="84%" scope="col">Area</th>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <td scope="row">Administrative or clerical offices; laboratories, pharmacies, and other work areas fully occupied by an individual; receptionist areas, attended waiting rooms, children's indoor play areas, adjacent x-ray rooms, film reading areas, nurse's stations, x-ray control rooms</td>
+    </tr>
+    <tr>
+      <th scope="row">0.5</th>
+      <td scope="row">Rooms used for patient examinations and treatments</td>
+    </tr>
+    <tr>
+      <th scope="row">0.2</th>
+      <td scope="row">Corridors, patient rooms, employee lounges, staff rest rooms</td>
+    </tr>
+    <tr>
+      <th scope="row">0.125</th>
+      <td scope="row">Corridor doors</td>
+    </tr>
+    <tr>
+      <th scope="row">0.05</th>
+      <td scope="row">Public toilets, unattended vending areas, storage rooms, outdoor areas with seating, unattended waiting rooms, patient holding areas</td>
+    </tr>
+    <tr>
+      <th scope="row">0.025</th>
+      <td scope="row">Outdoor areas with only transient pedestrian or vehicular traffic, unattended parking lots, vehicular drop areas (unattended), attics, stairways, unattended elevators, janitor's closets</td>
+    </tr>
+  </table>
+  
+</div>
+
+<div id="lyfdbk" class="txtfdbk" style="position:absolute; top:459px; left:52px; width:330px; height:auto; visibility:hidden;"></div>
+
+<div id="lydone" style="position:absolute; text-align: center; left:157px; top:477px; z-index:2; width: 91px; height: 32px;"><a href="javascript:showCorrect()" onMouseOver="MM_swapImage('DoneButton','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/done_0.jpg" alt="Done button" id="DoneButton" name="DoneButton" width="90" height="36" border="0"></a></div>
+
+<div id="snowMapDot" style="position:absolute; top:29px; left:732px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Type the correct data, click Done, and then click Forward to continue.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

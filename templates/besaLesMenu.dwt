@@ -1,0 +1,44 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="65001"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- TemplateEndEditable -->
+<link rel="stylesheet" type="text/css" href="../besamenu.css" title = "besaCSSmenu">
+
+<script language="JavaScript" type="text/JavaScript" src="../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../scripts/besa.js"></script>
+<script language="javascript">
+	
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+
+<!-- TemplateBeginEditable name="head" -->
+
+<script language="JavaScript">
+<!--
+
+//-->
+</script>
+<!-- TemplateEndEditable -->
+</head>
+
+<body onload="showOverview(0)">
+<!-- TemplateBeginEditable name="others" -->othersttt<!-- TemplateEndEditable -->
+<div id="lynav">
+      <ul id="navigation">
+
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+    </ul>
+</div>
+
+<script type="text/javascript">updateMenu()</script>
+</body>
+</html>

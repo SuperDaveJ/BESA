@@ -1,0 +1,314 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style>
+	body { background: url(../../sysimages/scenario_forest.jpg) no-repeat; }
+	#Content{width:870px}
+</style>
+<script type="text/javascript" src="../../scripts/listbutton.js" ></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+//==distracters=========
+
+
+MM_reloadPage(true);
+
+function findNext() {
+
+	if (triesUser==2) uC = uC.substring(0,1)+"2"+uC.substring(2,uC.length)
+	else uC = uC.substring(0,1)+"1"+uC.substring(2,uC.length)
+	
+	if (uC.substring(2,3) == 9)
+		var pgURL = "1uvi090.html"
+	else
+		var pgURL = "1uvi08a.html?uC="+uC
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "1uvi070.html"
+	goURL(pgURL);
+}
+
+
+var uC;
+var triesUser = 0;
+
+
+function showaudiot(){
+}
+
+//=====================
+// Set up question variables
+var nObj = 8;
+
+var strCorrectObjs = "1,2,3,4,";
+arrCorrectObjs = new Array();
+arrCorrectObjs = strCorrectObjs.substring(0,strCorrectObjs.length-1).split(",");
+
+arrTPropty = new Array(3);
+arrTPropty[0] = 39; 	//distance between 1st target top and paper top 
+arrTPropty[1] = 643; 	//distance between 1st target left and paper left 
+arrTPropty[2] = 62; 	//interval between targets
+
+
+var arrPopup = new Array(4)
+
+//===distribute value to popup
+arrPopup[0]  = "Before proceeding you must complete the question."
+//Correct feedback
+arrPopup[1]  = "Correct! Appropriate PPE for the worker includes sunscreen, a welding helmet, a welding vest and gloves, and dark colored clothing.  Light colored clothing reflects UV radiation causing potential health effects, a respirator is not needed for welding operations, and sunglasses would not provide the level of protection needed for welding.   Select Continue.";
+//Incorrect feedback for 2nd try
+arrPopup[2]  = "Incorrect.  The correct answers are displayed. Appropriate PPE for the worker includes sunscreen, a welding helmet, a welding vest and gloves, and dark colored clothing.  Light colored clothing reflects UV radiation causing potential health effects, a respirator is not needed for welding operations, and sunglasses would not provide the level of protection needed for welding.  Select Continue.";
+//Incorrect feedback for 1st try
+arrPopup[3]  = "No, sorry.  You will have another opportunity to answer this question after reading some information about this topic. Select Continue.";
+
+function onpage() {
+	uC = getQueryValue('uC');
+	var strTemp = uC.substring(1,2)
+	if (strTemp=="1"||strTemp=="2") triesUser += 1;
+	//else if (strTemp=="2") goURL("1uvi090.html?uC="+uC);
+	document.getElementById("Next").style.visibility = "hidden";
+	distrload(nObj, strCorrectObjs, arrTPropty);
+	init();
+}
+
+//============click done to judge the question =======
+function judgeInteraction_S() {
+	var userCorrect = 0;
+	var strIncorrect = "";
+	var strTemp = "";
+	var strK = "";
+	triesUser += 1;
+	for (var i=0; i<strCorrectObjs.length; i++) {
+		if (strCorrectObjs.match(strMatched.substr(i,1))) userCorrect += 1
+		else if (strMatched.substr(i,1) != ",") {
+			//remember incorrect ones
+			strIncorrect = strIncorrect + strMatched.substr(i,1) + ",";
+			strK = strK + i + ","
+		}
+	}
+	if (strMatched.match("0")!=null) {
+			strTemp = arrPopup[0];
+			triesUser -= 1;	
+			document.getElementById('fdbkLink').href = "javascript:showFdbk('')"; //hidecont()";
+	} else if (triesUser < triesLimit ) { 
+		disableDrag();						
+		if  ((userCorrect-nCorrect) == nCorrect)  {	//correct.
+			strTemp = arrPopup[1];
+			blnChoiceMade = true;
+			triesUser = 2;
+			document.getElementById('fdbkLink').href = "javascript:findNext()";
+			
+		} else {
+			strTemp = arrPopup[3];
+			document.getElementById('fdbkLink').href = "javascript:ucpage()";
+			//move back
+			var arrTemp = new Array;
+			arrTemp = strK.substring(0,strK.length-1).split(",");
+			for (var i=0; i<arrTemp.length; i++) {
+				//keep correct ones and replace incorrect ones with 0
+				strMatched = strMatched.replace(strMatched.substr(arrTemp[i],1), '0')
+			}
+			var mbItems = new Array;
+			mbItems = strIncorrect.substring(0,strIncorrect.length-1).split(",");
+			for (i=0; i<mbItems.length; i++) {
+				eval("moveBack(drag" + mbItems[i] + ", " + mbItems[i] + ")");
+			}
+		}
+	} else { //2nd try
+		if  ((userCorrect-nCorrect) == nCorrect)  {	//correct.
+			strTemp = arrPopup[1];
+		} else {			
+			strTemp = arrPopup[2];
+			setCorrect();
+		}
+		document.getElementById('fdbkLink').href = "javascript:findNext()";
+		disableDrag()
+	}
+	showFdbk(strTemp);
+
+}
+
+function ucpage() {
+var ucpage = "1uvi08a.html?uC="+uC.substring(0,1)+"1"
+goURL(ucpage)
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+
+function init() {
+	
+	if ( IE ) {
+		var targetStyle;
+		for (var i=0; i<nObj; i++) {
+			eval("dragStyle = document.all['drag" + (i+1) + "'].style");
+			dragPositionArray[i][0] = dragStyle.pixelLeft;
+			dragPositionArray[i][1] = dragStyle.pixelTop;
+			eval("dragPositionArray[" + i + "][2] = document.all['drag" + (i+1) + "'].offsetWidth");	
+			eval("dragPositionArray[" + i + "][3] = document.all['drag" + (i+1) + "'].offsetHeight");
+		}
+
+		targetLeft = parseInt(target1.style.left) + arrTPropty[1]
+		targetRight = targetLeft + target1Img.width
+		targetTop = parseInt(target1.style.top) + arrTPropty[0]
+		targetBottom = targetTop + target1Img.height
+		for (var i=0; i<nCorrect; i++) {
+			if (i == 3)
+				targetPositionArray[i][0] = targetLeft-1
+			else
+				targetPositionArray[i][0] = targetLeft
+			targetPositionArray[i][1] = targetTop + i*arrTPropty[2];
+		}
+		document.onmousedown = grabItem;
+		document.onmousemove = dragItem;
+		document.onmouseup = releaseItem;
+	} else if (N4) {
+		setNSEventCapture()
+		document.onmousedown = grabItem
+		document.onmousemove = dragItem
+		document.onmouseup = releaseItem
+	} else {	//NS 6 and others
+		for (var i=0; i<nObj; i++) {
+			eval("drag1 = document.getElementById('drag"+(i+1)+"')")
+			eval("attachEvent(drag"+(i+1)+")")
+		}
+		
+		window.onmousemove = dragItem
+	}
+	//alert(dragItem)
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('../../sysimages/done_2.jpg','../../sysimages/cont_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  NIR: UV/IR / Ultraviolet and Infrared Hazards
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 8 of 11<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Scenario Challenge Point<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <p>Since you&rsquo;ve determined that the  workers&rsquo; symptoms are most likely related to welding of the horse stables, you  begin to consider how this health threat should be controlled.&nbsp; </p>
+  <p>Build a list of potential actions that could  be taken to control the non-welding workers&rsquo; exposure to UV radiation. </p>
+  
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="target1" style="position:absolute; top:207px; left:43px; width:427px; height:282px;">
+<img src="images/1uvi08a.jpg" alt="Graphic background for choices." name="target1Img" width="888" height="301" id="target1Img" /></div>
+
+<!--================ Drag items positon ==================-->
+<div id="drag4" style="position:absolute; left:243px; top:299px; width:189px; height:51px; cursor:pointer;"><img src="images/1uvi08g.jpg" alt="Increase distance from welding" name="Drag4Img" width="189" height="51" /></div>
+
+<div id="drag2" style="position:absolute; left:339px; top:356px; width:189px; height:51px; cursor:pointer;">
+<img src="images/1uvi08j.jpg" alt="Install welding curtains" name="Drag2Img" width="189" height="51" /></div>
+
+<div id="drag6" style="position:absolute; left:243px; top:241px; width:189px; height:51px; cursor:pointer;">
+<img src="images/1uvi08d.jpg" alt="Install increased ventilation in the area" name="Drag6Img" width="189" height="51" /></div>
+
+<div id="drag5" style="position:absolute; left:48px; top:241px; width:189px; height:51px; cursor:pointer;">
+<img src="images/1uvi08c.jpg" alt="Issue face shields to all workers" name="Drag5Img" width="189" height="51" /></div>
+
+<div id="drag1" style="position:absolute; left:437px; top:241px; width:189px; height:51px; cursor:pointer;">
+<img src="images/1uvi08e.jpg" alt="Issue sunscreen and lotions" name="Drag1Img" width="189" height="51" /></div>
+
+<div id="drag3" style="position:absolute; left:48px; top:299px; width:189px; height:51px; cursor:pointer;">
+<img src="images/1uvi08f.jpg" alt="Restrict access to the area" name="Drag3Img" width="189" height="51" /></div>
+
+<div id="drag7" style="position:absolute; left:437px; top:299px; width:198px; height:51px; cursor:pointer;">
+<img src="images/1uvi08h.jpg" alt="Discontinue all welding operations" name="Drag7Img" width="189" height="51" /></div>
+
+<div id="drag8" style="position:absolute; left:144px; top:356px; width:189px; height:51px; cursor:pointer;">
+<img src="images/1uvi08i.jpg" alt="Decrease number of workers in the shop" name="Drag8Img" width="189" height="51" /></div>
+
+<div id="done" style="position:absolute; text-align: center; left:302px; top:451px; z-index:2; width: 91px; height: 32px;"><a href="javascript:;" onClick="judgeInteraction_S()" onMouseOver="MM_swapImage('DoneButton','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/done_0.jpg" alt="Done button" id="DoneButton" name="DoneButton" width="90" height="36" border="0"></a></div>
+
+<div id="feedback" style="position:absolute; top:441px; left:56px; width:567px; height:20px; visibility:hidden;">
+<div class="txtfdbk" id='lyfdbk'></div><br />
+	<div id="fdbkContinue" style="position:relative; top:-10px; text-align: center;"><a id="fdbkLink" href="javascipt:;"  onMouseOver="MM_swapImage('btnCont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" alt="Continue button" name="btnCont" width="90" height="36" border="0" id="btnCont" /></a></div>
+</div>
+
+
+<div id="snowMapDot" style="position:absolute; top:18px; left:758px;">
+<img src="../../sysimages/map_dot.png" border="0" />
+</div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Drag the items on the left to the list on the right, and then click Done.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

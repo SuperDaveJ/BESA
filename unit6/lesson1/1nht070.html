@@ -1,0 +1,288 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style>
+	body { background: url(../../sysimages/scenario_tropical.jpg) no-repeat; }
+	#Content { width:870px; visibility:hidden;}
+</style>
+
+<script src="../../scripts/AC_RunActiveContent.js" type="text/javascript"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+function onpage() {
+document.getElementById("Next").style.visibility = "hidden";
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "1nht080.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "1nht060.html"
+	goURL(pgURL);
+}
+
+// Customized function for this page
+var nItems = 2;
+var triesLimit = 1;
+var triesUser = 0;
+var strHTML = ""
+var blnChoiceMade = false;
+var arrPopup = new Array()
+var userAns = 0;
+var correctAns = 1;
+
+//===feedbacks========
+var arrPopup = new Array(3);
+//feedback for not select
+arrPopup[0]  = "You have not made any selections.  Please try again."
+//Correct feedback
+arrPopup[1]  = "Correct! The sound pressure levels reached 125 dB(A) at the operator's position.  Even though the machine will only be operated when needed, the source and area around the machine should be considered hazardous because the noise levels exceed the 115 dB threshold for continuous or intermittent noise.  Select Continue.";
+//Incorrect feedback for 2nd try
+arrPopup[2]  = "Incorrect. The correct answer is now displayed. The sound pressure levels reached 125 dB(A) at the operator's position.  Even though the machine will only be operated when needed, the source and area around the machine should be considered hazardous because the noise levels exceed the 115 dB threshold for continuous or intermittent noise. Select Continue.";
+
+//===end of feedback =======
+
+function itemSelection( I ) {
+	if (blnChoiceMade == false ) {
+		userAns = I;
+		hidecont() //hide the continue button and feedback
+		for (var j=1; j<=nItems; j++) {
+			var g = eval("document.getElementById('img"+j+"').src");
+			var name = "img"+j;
+			var gnum = g.charAt(g.length-5)
+			var gfilename = getgname(g);
+			var gpath = getgpath(g)
+			if (j==I && gnum=="0" ) {
+			 	gfilename = gfilename.replace('_0','_2')	
+			} else if (j!=I && gnum=="2"  ) {
+				gfilename = gfilename.replace('_2','_0')
+			}
+			document.getElementById(name).src = gpath+gfilename;
+    	}
+	}
+}
+
+function hidecont() {
+	document.getElementById('done').style.visibility = 'visible';
+	document.getElementById('feedback').style.visibility = 'hidden';
+}
+
+function judgeInteraction() {
+	var strTemp = "";
+	triesUser += 1;	
+	if (userAns == 0 ) { //no distr selected 
+			strTemp = arrPopup[0];
+			triesUser -= 1;
+			document.getElementById('fdbkLink').href = "javascript:hidecont()";
+	} else { 
+		
+		if (userAns == correctAns) { //correct
+			strTemp = arrPopup[1];
+		} else {//incorrect
+			strTemp = arrPopup[2];			
+		}
+		blnChoiceMade = true;
+		finalstep()
+		document.getElementById('fdbkLink').href = "javascript:goURL('1nht080.html')";
+		
+	}	 
+
+	document.getElementById('done').style.visibility = "hidden";
+	document.getElementById('lyfdbk').innerHTML = strTemp;
+	document.getElementById('lyfdbk').style.visibility = "visible";
+	document.getElementById('feedback').style.visibility = "visible";
+}
+
+//====final step: highlight correct answer and lock them up ==
+function finalstep() {	
+	for (var j=1; j<=nItems; j++) {
+			var g = eval("document.getElementById('img"+j+"').src");
+			var name = "img"+j;
+			var gnum = g.charAt(g.length-5)
+			var gfilename = getgname(g);
+			var gpath = getgpath(g)
+			if (j==correctAns && gnum=="0" ) {
+				gfilename = gfilename.replace('_0','_2')	
+			} else if (j!=correctAns && gnum=="2"  ) {
+				gfilename = gfilename.replace('_2','_3')
+			}else{
+				gfilename = gfilename.replace('_0','_3')
+			}
+			document.getElementById(name).src = gpath+gfilename;
+    	}
+}
+
+function showQ() {
+	document.getElementById("pageGraphic").style.visibility = "hidden";
+	document.getElementById("Content").style.visibility = "visible";
+	document.getElementById("Prompt").innerHTML = "Select the correct answer, and then click Done.";
+	document.getElementById("pageT").innerHTML ="Scenario Challenge Point"
+	
+}
+
+function startFlash() {
+	document.getElementById("txtBox").style.visibility = "hidden";
+	MM_controlShockwave('flamovie', '', 'GotoFrame', 0);
+	MM_controlShockwave('flamovie', '', 'Play');
+	//showQ();
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('../../sysimages/done_2.jpg','../../sysimages/cont_2.jpg','../../sysimages/begin_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Noise Health Threats / Hazardous Noise
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 7 of 8<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" --><!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><img src="../../sysimages/icon_audio.png" alt="Audio icon" width="55" height="54" /><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <p>The surface grinder is  designed to be operated only when bearings need to be adjusted.&nbsp; While the machine was in use, the sound  pressure levels reached 125 dB(A) at the operator&rsquo;s position.&nbsp; Based on this information, should the machine  and the room in which it is used be classified as hazardous?&nbsp; Select the correct answer, and then click  Done.</p>
+  <table width="80%" align="center" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="45"><a href='javascript:itemSelection(1)'><img src="../../sysimages/mc_circle_a_0.png" alt="Yes" name="img1" width="38" height="38" border="0" id="img1" /></a></td>
+    <td width="42" class='distrText'>Yes</td>
+    <td width="543" class='distrText'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href='javascript:itemSelection(2)'><img src="../../sysimages/mc_circle_b_0.png" alt="No" width="38" height="38" border="0" id="img2" /></a></td>
+    <td class='distrText'>No</td>
+    <td class='distrText'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href='javascript:itemSelection(3)'></a></td>
+    <td colspan="2" class='distrText'>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href='javascript:itemSelection(4)'></a></td>
+    <td colspan="2" class='distrText'>&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td colspan="3" align="center"><span id="done"><a href="javascript:judgeInteraction()"  onMouseOver="MM_swapImage('imgdone','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"> <img src='../../sysimages/done_0.jpg' alt='Done button' name='imgdone' width="90" height="36" border='0' id='imgdone' /></a></span>	</td>
+  </tr>
+</table>
+
+<div id="feedback" style="position:relative; top:-42px; left:90px; width:700px; height:50px; visibility:hidden;">
+	<div class="txtfdbk" id='lyfdbk'></div>
+	<br />
+	<div id="fdbkContinue" style="text-align: center;"><a id="fdbkLink" href="javascipt:;"  onMouseOver="MM_swapImage('btnCont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" alt="Continue button" name="btnCont" width="90" height="36" border="0" id="btnCont" /></a></div>
+</div>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="pageGraphic" style="position:absolute; top:272px; left:44px; width:811px; height:215px;">
+  <script type="text/javascript">
+AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0','name','flamovie','width','880','height','268','id','flamovie','src','images/1nht070','loop','false','quality','high','pluginspage','http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash','allowscriptaccess','always','play','false','wmode','transparent','movie','images/1nht070' ); //end AC code
+  </script>
+  <noscript>
+  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" name="flamovie" width="880" height="268" id="flamovie" >
+    <param name="movie" value="images/1nht070.swf" />
+    <param name="quality" value="high" />
+    
+    <param name="allowScriptAccess" value="always" />
+    
+    <param name="wmode" value="transparent" /><param name="PLAY" value="false" /><param name="LOOP" value="false" />
+    <embed src="images/1nht070.swf" width="880" height="268" loop="false" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash"  name="flamovie" allowscriptaccess="always" play="false" wmode="transparent"></embed>
+  </object>
+  </noscript>
+</div>
+<div id="lycc" style="position:absolute; top:482px; left:43px; width:472px; height:97px; overflow:auto;">
+  <p><strong>BE Tech:  </strong>Okay,  I think that&rsquo;ll do it.&nbsp; Thanks for the  demo.</p>
+  <p><strong>Shop Worker: </strong>No  problem.&nbsp; So how&rsquo;d we do?&nbsp; Is our new grinder a health threat?</p>
+</div>
+
+<div id="txtBox" style="position:absolute; left:305px; top:180px; width:359px; height:250px; ">
+<p>You  run the initial noise survey to collect data on the new equipment and record  the noise levels detected.&nbsp; </p>
+<p>Select Begin  to record the noise levels and determine whether the new equipment and the area  it is in should be classified as hazardous.</p>
+<div id="begin" style="position:relative; left:120px; top:20px; width:90px; height:30px;">
+<a href="javascript:startFlash();" onMouseOver="MM_swapImage('btnBegin','','../../sysimages/begin_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img id="btnBegin" name="btnBegin" src="../../sysimages/begin_0.jpg" border="0" alt="Begin button" /></a></div>
+</div>
+
+<div id="snowMapDot" style="position:absolute; top:40px; left:799px;">
+<img src="../../sysimages/map_dot.png" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select Begin and the correct answer, and then click Forward to continue.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

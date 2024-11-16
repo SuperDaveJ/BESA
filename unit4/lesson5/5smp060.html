@@ -1,0 +1,203 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style>
+	#Content { width:870px; visibility:hidden }
+	body { background: url(../../sysimages/scenario_city.jpg) no-repeat; }
+	table {width:98%;border-collapse:collapse;margin:1em 0;}
+	td {color:#ffffff; font-size:13px; text-align:center;padding:.2em; border:1px solid #b1ae00;}
+	th {background:#644610; color:#FFFFFF; text-align:center; font-size:13px; padding: 6px 6px 6px 12px; border:1px solid #b1ae00;}
+	th.em {font-style:italic; }
+	th.col  {background:url(../../sysimages/bg_header1.jpg); background-repeat:repeat-x; text-align:center; }
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+function onpage() {
+	document.getElementById("Next").style.visibility = "hidden";
+	document.getElementById("Content").style.visibility = "hidden";
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "5smp060_01.html?uT='0'"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "5smp050.html"
+	goURL(pgURL);
+}
+function setQOrder() {
+	document.getElementById("Content").style.visibility = "visible";
+	document.getElementById("Continue").style.visibility = "visible";
+	document.getElementById("btnBegin").style.visibility = "hidden";
+	document.getElementById("question").style.visibility = "hidden";
+	document.getElementById("Prompt").innerHTML = "Select Continue."
+}
+
+function showaudiot() {
+}
+
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('../../sysimages/begin_2.jpg','../../sysimages/cont_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Sampling / Interpreting Sampling Results
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 6 of 10<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Scenario Challenge Point<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <p>First, review the sampling  results.&nbsp; When you are finished, select  Continue.</p>
+  <table border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <th colspan="4" class="col">Results of Air Sampling Conducted  in the Corrosion Control Shop <br />
+During the Painting of NASA&rsquo;s Super Guppy Aircraft</th>
+            </tr>
+            <tr>
+                <th width="22%" class="em">Chemical</th>
+                <th width="14%" class="em">8-hr TWA OEL (ppm)</th>
+                <th width="14%" class="em">8-hr TWA   Range for SEG (ppm)</th>
+                <th width="14%" class="em">8-hr TWA Mean for SEG (ppm)</th>
+            </tr>
+            
+          <tr>
+              <th >2,4-Pentanedione</th>
+              <td >NA</td>
+              <td >ND &ndash; 0.05</td>
+              <td >0.02</td>
+          </tr>
+          <tr>
+              <th >Methyl  n-Amyl Ketone</th>
+              <td >50</td>
+              <td >18 - 24</td>
+              <td >20</td>
+          </tr>
+          <tr>
+            <th >2-Ethylhexyl  Acetate</th>
+            <td >NA</td>
+            <td >ND</td>
+            <td >ND</td>
+          </tr>
+          <tr>
+              <th >Ethylbenzene</th>
+              <td >100</td>
+              <td >8 - 33</td>
+              <td >25</td>
+          </tr>
+          <tr>
+              <th >Xylene</th>
+              <td >100</td>
+              <td >12 - 39</td>
+              <td >20</td>
+          </tr>
+          <tr>
+            <th >Hexamethylene  Diisocyanate</th>
+            <td >0.005</td>
+            <td >ND</td>
+            <td >ND</td>
+          </tr>
+          <tr>
+              <th >Methyl  Ethyl Ketone</th>
+              <td >200</td>
+              <td >58 - 146</td>
+              <td >120</td>
+          </tr>
+  </table>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="btnBegin" style="position:absolute; left:447px; top:301px; width:60px; height:20px; z-index:3;">
+<a href="javascript:setQOrder()" onMouseOver="MM_swapImage('btnB','','../../sysimages/begin_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/begin_0.jpg" alt="Begin button" name="btnB" width="90" height="36" border="0" id="btnB" /></a></div>
+  
+<div id="question" style="position:absolute; left:53px; top:132px; width:870px; height:263px; z-index:0;">
+
+<p>You and SrA Wright are ready to interpret the lab results  from air samples taken in the corrosion control shop while workers were  painting NASA&rsquo;s Super Guppy.&nbsp; Select Begin  to work through the steps.</p>
+</div>
+
+<div id="Continue" style="position:absolute; top: 481px; text-align: center; left: 454px; visibility: hidden;"> <a href="javascript:findNext()"  onMouseOver="MM_swapImage('imgcont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" name="imgcont" id="imgcont" alt="Continue button" width="90" height="36" border="0" /></a></div>
+
+<div id="snowMapDot" style="position:absolute; top:29px; left:732px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select Begin to start.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

@@ -1,0 +1,515 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style>
+	body { background: url(../../sysimages/lesson_screen_back_city.jpg) no-repeat; }
+	table {width:90%;}
+	td {font-size:13px; font-weight:bold;color:#fff; text-align:center; padding:.5em; border:0px;}
+	td.old {background:#644610; color:#644610;}
+	td.over{ color:#ebd808; cursor:pointer}
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+function onpage() {
+	//document.getElementById("Next").style.visibility = "hidden";
+	
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "4smp110.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "4smp090.html"
+	goURL(pgURL);
+}
+
+function showaudiot() {
+}
+
+//NOTE: It's not working for MA yet
+// ----------------  Interaction Functions -------------------------------
+//Global variables
+var blnRandom =  true;		//Are questions need to be randomized?
+var triesLimit = 2;         //the attempts for each question
+var qStatus = 0;			//question status. 1=correct, 0=incorrect
+var qIndex = 0;				//qIndex is an index of question order (qOrder)
+var blnChoiceMade = false;	//Has user made any choice?
+
+var nQs = 8;				//Total number of questions
+var nQtoShow = nQs;			//Number of questiones to be showed for each round
+var nTotalCorrect = 0;		//Total number of questions that were answered correctly
+var qDisabled = true;		//Is question disabled?
+var qNum;					//the current q num
+arrQs = new Array(nQs);     //variable for holding the q
+
+qOrder_seq = new Array(nQs);
+qOrder = new Array(nQs);
+for (var i=0; i<nQs; i++) {
+	arrQs[i] = new Array(3);
+	qOrder_seq[i] = i;
+}
+
+//feedback group
+var arrPopup = new Array(4);	//Feedback for questions other than the last one.
+arrPopup[0] = "You have not made any selections.  Please try again.";	//No selection
+arrPopup[1] = "No, sorry. Select Continue for next question. ";		//First incorrect
+arrPopup[2] = "Incorrect. The correct answer is now displayed. "; //Final incorrect
+arrPopup[3] = "Correct! ";			//Correct
+
+//Question #1
+arrQs[0][0] = "These include routine surveillance and health risk assessment.";		//qStem
+arrQs[0][1] = 0;		//User answer
+arrQs[0][2] = 0;	//User attemps for this question
+
+//Question #2
+arrQs[1][0] = "Some examples are sediment, oil, and detergents.";		//qStem
+arrQs[1][1] = 0;		//User answer
+arrQs[1][2] = 0;	//User attemps for this question
+
+//Question #3
+arrQs[2][0] = "Selecting these helps ensure representativeness and homogeneity of the sample.";		//qStem
+arrQs[2][1] = 0;		//User answer
+arrQs[2][2] = 0;	//User attemps for this question
+
+//Question #4
+arrQs[3][0] = "The most common are grab and composite.";		//qStem
+arrQs[3][1] = 0;		//User answer
+arrQs[3][2] = 0;	//User attemps for this question
+
+//Question #5
+arrQs[4][0] = "These can be either manual or automatic.";		//qStem
+arrQs[4][1] = 0;		//User answer
+arrQs[4][2] = 0;	//User attemps for this question
+
+//Question #6
+arrQs[5][0] = "Categories include closed conduit or open channel, for example.";		//qStem
+arrQs[5][1] = 0;		//User answer
+arrQs[5][2] = 0;	//User attemps for this question
+
+//Question #7
+arrQs[6][0] = "An example is storing samples in a manner which ensures the parameters to be analyzed are not altered.";		//qStem
+arrQs[6][1] = 0;		//User answer
+arrQs[6][2] = 0;	//User attemps for this question
+
+//Question #8
+arrQs[7][0] = "This includes providing recommendations to commanders about controlling health risks.";		//qStem
+arrQs[7][1] = 0;		//User answer
+arrQs[7][2] = 0;	//User attemps for this question
+
+//****************************************************************
+
+function getRandom(topLimit) {   
+	return Math.floor(Math.random()*topLimit)
+}
+
+function setQOrder() {
+	// Set question order
+	
+	document.getElementById("gbracketL").style.visibility = "visible"
+	document.getElementById("gbracketR").style.visibility = "visible"
+	document.getElementById("btnBegin").style.visibility = "hidden";
+	document.getElementById("lydone").style.visibility = "visible";
+	document.getElementById("Prompt").innerHTML = "Select the correct answer, and then click Done.";
+	qDisabled = false;
+	toclass()
+	if (!blnRandom)
+		qOrder = qOrder_seq;
+	else
+		doRandomization();
+}
+	
+function doRandomization() {
+	// Generate numberOfQuestoins unique random numbers
+	// initialization
+	arrTemp = new Array(nQs);
+		
+	for (i=0; i<nQs; i++) arrTemp[i]=-1
+		
+	// create a temp array of nQs unique random numbers
+	for (i=0; i<nQs; i++) {
+		for (j=0; j<100000; j++) {
+			blnFound = false;
+			intTemp = getRandom(nQs);
+			for (k=0; k<nQs; k++) {
+				if (arrTemp[k] == intTemp) {
+					blnFound = true;
+					break;
+				}
+			}
+			if (!blnFound) {
+				arrTemp[i] = intTemp;
+				break;
+			}
+		}
+	}
+
+	for (i=0; i<nQs; i++) {
+		k = arrTemp[i];
+		qOrder[i] = qOrder_seq[k];
+	}
+}
+
+function reInitialize() {
+	qIndex = 0;
+	var strTemp = "";
+	for (var i=0; i<nQs; i++) {
+		if (arrQs[qOrder[i]][2] < 2) strTemp = strTemp + qOrder[i] + ",";
+	}
+	strTemp = strTemp.substring(0, strTemp.length-1);
+	qOrder = strTemp.split(",");
+	nQtoShow = qOrder.length;
+	
+	writeQuestion(qOrder[0]);
+}
+	
+function itemSelection(final, row) {
+	var I = row+1
+	if (final==0)	hidecont();
+		userAns = I;
+		blnChoiceMade = true;
+		for (var j=1; j<=nQs; j++) {
+			var g = eval("document.getElementById('img"+j+"').src");
+			var name = "img"+j;
+			var gnum = g.charAt(g.length-5)
+			var gfilename = getgname(g);
+			var gpath = getgpath(g)
+			//alert(arrQs[j-1][1])
+			if (j==I && gnum=="0" ) {
+				gfilename = gfilename.replace('_0','_1')
+			} else if (j!=I && gnum=="1" && arrQs[j-1][1] != j-1 && arrQs[j-1][2] !=2 ) { //&& arrQs[I][2] < 1
+				gfilename = gfilename.replace('_1','_0')
+			}
+			document.getElementById(name).src = gpath+gfilename;
+		}
+	//} //end of !qDisabled		
+}
+
+function hidecont() {
+	document.getElementById('lydone').style.visibility = 'visible';
+	document.getElementById('feedback').style.visibility = 'hidden';
+	document.getElementById("lyfdbk").style.visibility = "hidden";
+	document.getElementById('fdbkContinue').style.visibility = "hidden";
+}
+
+function judgeInteraction() {
+	qDisabled = true;
+ var strTemp = "";
+  if ( !blnChoiceMade ) {
+  	qDisabled = false;
+ 	document.getElementById("lyfdbk").innerHTML = arrPopup[0];
+	document.getElementById("feedback").style.visibility = "visible";
+	document.getElementById("lyfdbk").style.visibility = "visible";
+	document.getElementById('lydone').style.visibility = 'hidden';
+	document.getElementById('fdbkContinue').style.visibility = 'hidden';
+  }else {
+  	document.getElementById('fdbkContinue').style.visibility = "visible";
+	qDisabled = true;;
+	arrQs[qNum][2] = arrQs[qNum][2] + 1;
+	qStatus = 0;
+	//alert(arrQs[qNum][1])
+	if (arrQs[qNum][1] == qNum ) { //correct
+		qStatus = 1;
+		arrQs[qNum][2] = 2;
+		strTemp =  arrPopup[3];	
+		var g = eval("document.getElementById('img"+(qNum+1)+"').src");
+		var name = "img"+(qNum+1);
+		var gnum = g.charAt(g.length-5)
+		var gfilename = getgname(g);
+		var gpath = getgpath(g)
+		gfilename = gfilename.replace('_1','_2')
+		document.getElementById(name).src = gpath+gfilename;	
+	} else if (arrQs[qNum][2] < 2) { //1st incorrect
+		strTemp = arrPopup[1];
+	} else { //2nd incorrect
+		strTemp = arrPopup[2];
+	}				
+
+	if (isLastQ()) {
+		if (arrQs[qNum][1] == qNum ) strTemp = strTemp + " You have identified the correct factors you must consider when developing a water and liquid sampling strategy."
+		strTemp = strTemp + " Select Forward to continue."
+		document.getElementById("Prompt").innerHTML = "Select Forward to continue.";
+		document.getElementById("fdbkContinue").style.visibility = "hidden";
+		document.getElementById("Next").style.visibility = "visible";
+	} else if (arrQs[qNum][2] == 2 ) {
+		strTemp = strTemp + " Select Continue for the next question."		
+	}
+	//if (qIndex == nQtoShow-1 && !isLastQ() ) strTemp = strTemp + " You will start the 2nd round attempts. "
+	
+	document.getElementById("lyfdbk").innerHTML = strTemp
+	document.getElementById("lydone").style.visibility = "hidden";
+	document.getElementById("feedback").style.visibility = "visible";
+	document.getElementById("lyfdbk").style.visibility = "visible";
+
+	//save info.
+	qIndex += 1;	//increment question
+	nTotalCorrect += qStatus;
+	//show correct answer while correct or 2nd incorrect
+	if (arrQs[qNum][2] > 1) {
+		itemSelection(1, qNum)
+	}
+  }	//End of choice made
+}
+
+
+function nextQuestion() {
+	hidecont(); //hide the feedback
+//======= remove the prev check mark
+	var i;
+		if (arrQs[qNum][2] > 1) i=qNum+1;
+		else i=arrQs[qNum][1]+1;
+
+	var g = eval("document.getElementById('img"+i+"').src");
+	var name = "img"+i;
+	var gnum = g.charAt(g.length-5)
+	var gfilename = getgname(g);
+	var gpath = getgpath(g)
+	if (arrQs[qNum][1] != qNum && arrQs[qNum][2] < 2) gfilename = gfilename.replace('_1','_0')
+	document.getElementById(name).src = gpath+gfilename;
+//=====end of remove =======
+	qDisabled = false;	 //enable selectable distracters
+	if (qIndex < nQtoShow) writeQuestion(qOrder[qIndex]) // write next q
+	else reInitialize()
+}
+
+function isLastQ() {
+	var nTemp = 0;
+	for (var i=0; i<nQs; i++) {
+		if (arrQs[i][2] < 2) {
+			nTemp += 1;
+		}
+	}
+	if (nTemp == 0) return true
+	else return false
+}
+
+
+//****************************************
+function writeQuestion(nwqqNum) {
+qNum = parseInt(nwqqNum)
+	//reset variables
+	qStatus = 0;	//question status. 1=correct, 0=incorrect
+	blnChoiceMade = false;
+	var strHTML = "";		
+	strHTML = "<p>Select the consideration that the statement describes from the list on the right, and then click Done.</p><p>&nbsp;</p><blockquote><p>"+arrQs[qNum][0]+"</p></blockquote>"
+	document.getElementById("qstem").innerHTML = strHTML;
+}
+//**********end **************
+
+function toclass(){
+	// CONFIG 
+	var tableover = false;
+	this.start = function(){
+		var tables = document.getElementsByTagName("table");
+		for (var i=0;i<tables.length;i++){
+			tables[i].onmouseover = function(){tableover = true};
+			tables[i].onmouseout = function(){tableover = false};			
+			rows(tables[i]);
+		};
+	};
+	
+	this.rows = function(table){
+		var css = "";
+		var tr = table.getElementsByTagName("tr");
+		for (var i=0;i<tr.length;i++){
+			tr[i].className = css;
+			var arr = new Array();
+			for(var j=0;j<tr[i].childNodes.length;j++){				
+				if(tr[i].childNodes[j].nodeType == 1) arr.push(tr[i].childNodes[j]);
+			};		
+			for (var j=0;j<arr.length;j++){				
+				arr[j].row = i;
+				arr[j].col = j;				
+				arr[j].css = arr[j].className;
+				arr[j].onmouseover = function(){
+					over(table,this,this.row,this.col);
+				};
+				arr[j].onmouseout = function(){
+					out(table,this,this.row,this.col);
+				};
+				arr[j].onmousedown = function(){
+					down(table,this,this.row,this.col);
+				};
+												
+			};
+		};
+	};
+	
+	// appyling mouseover state for objects (th or td)
+	this.over = function(table,obj,row,col){
+		obj.className = obj.css + "over";  
+	};
+	// appyling mouseout state for objects (th or td)	
+	this.out = function(table,obj,row,col){
+		obj.className = obj.css 
+	};
+	this.down = function(table,obj,row,col){
+		//alert(arrQs[row][2]<1)
+		if (!qDisabled || arrQs[row][2]<1) {
+			arrQs[qNum][1] = row;
+			itemSelection(0,row)
+		}
+	};
+	
+start();
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('../../sysimages/begin_2.jpg','../../sysimages/done_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Sampling / Liquid and Water Sampling
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 10 of 11<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Appraisal<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+
+  <div id="btnBegin" style="position:absolute; left:149px; top:205px; width:60px; height:20px; z-index:3;">
+<a href="javascript:setQOrder(); writeQuestion(qOrder[0]);" onMouseOver="MM_swapImage('btnB','','../../sysimages/begin_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/begin_0.jpg" alt="Begin button" name="btnB" width="90" height="36" border="0" id="btnB" /></a></div>
+  
+<div id="qstem" style="position:absolute; left:0px; top:0px; width:421px; height:280px; z-index:0">
+<p>For this question set,  you will be matching several descriptions with the sampling strategy  considerations listed on the right.&nbsp; Read  each description you see and select the consideration to which it corresponds  by clicking on that item in the list.</p>
+<p>Select Begin to start.</p>
+
+</div>
+
+<div id="lydone" style="position:absolute; left:148px; top: 242px; visibility: hidden;"> <a href="javascript:judgeInteraction()"  onMouseOver="MM_swapImage('imgdone','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/done_0.jpg" name="imgdone" id="imgdone" alt="Done" width="90" height="36" border="0" /></a></div>
+	
+<div id="feedback" style="position:absolute; left:25px; width:365px; top:292px; height:120px; visibility:hidden;">
+	<div class="txtfdbk" id='lyfdbk'></div><br />
+	<div id="fdbkContinue" style="position:relative; top: -3px; text-align: center;"> <a href="javascript:nextQuestion()"  onMouseOver="MM_swapImage('continue','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" name="imgcont" id="imgcont" alt="Continue button" width="90" height="36" border="0" /></a></div>
+</div>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+
+<div id="pageGraphic" style="position:absolute; top:146px; left:522px; width:344px; height:312px;"><img src="images/4smp100.png" alt="" /></div>
+
+<div id="question" style="position:absolute; left:528px; top:204px; width:396px; height:280px; z-index:0">
+  <table cellpadding="3" cellspacing="3" >
+<tr>
+    	<th><img src="../../sysimages/clickgrid_0.png" name="img1" id="img1" /></th> 
+   	  <td colspan="2" >Sampling  program objectives</td>    
+    </tr>
+    <tr>
+    	<th><img src="../../sysimages/clickgrid_0.png" name="img2" id="img2" /></th> 
+   	  <td colspan="2" >Potential  contaminants</td>    
+    </tr>
+    <tr>
+    	<th><img src="../../sysimages/clickgrid_0.png" name="img3" id="img3" /></th> 
+   	  <td colspan="2" >Sampling  point locations</td>    
+    </tr>
+    <tr>
+    	<th><img src="../../sysimages/clickgrid_0.png" name="img4" id="img4" /></th> 
+   	  <td colspan="2" >Types  of samples</td>
+    </tr>
+    <tr>
+    	<th><img src="../../sysimages/clickgrid_0.png" name="img5" id="img5" /></th> 
+   	  <td colspan="2">Sample  collection methods</td>    
+    </tr>
+    <tr>
+    	<th><img src="../../sysimages/clickgrid_0.png" name="img6" id="img6" /></th> 
+   	  <td colspan="2">Flow  measurements</td>    
+    </tr>
+    <tr>
+        <th><img src="../../sysimages/clickgrid_0.png" name="img7" id="img7" /></th>  
+      <td colspan="2">Sampling  procedures</td>
+    </tr>
+    <tr>
+        <th><img src="../../sysimages/clickgrid_0.png" name="img8" id="img8" /></th>      
+      <td>Communication,  documentation, and follow-up</td>
+    </tr>   
+  </table>
+</div>
+
+<div id="gbracketL" style="position:absolute; left:62px; top:209px; width: 63px; height: 48px; z-index:11; visibility: hidden;">
+<img src="images/2ptw070_bracket_left.png" border="0" /></div>
+<div id="gbracketR" style="position:absolute; left:450px; top:209px; z-index:11; visibility: hidden;">
+<img src="images/2ptw070_bracket_right.png" border="0" /></div>
+
+<div id="snowMapDot" style="position:absolute; top:29px; left:732px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select Begin to start.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

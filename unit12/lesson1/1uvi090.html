@@ -1,0 +1,493 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/scenario_forest.jpg);
+}
+#Content { width:557px; }
+-->
+</style>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "1uvi100.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "1uvi08a.html?uC=009"
+	goURL(pgURL);
+}
+
+
+//=====================
+
+var nObj = 7;
+var iniLayer = 3;
+var strCorrectObjs = "1,2,3,4,";
+var strMatched = "";
+var selectedDrag = null;
+var dragLayerId, intDragNum;
+var triesUser = 0
+var triesLimit = 2
+
+var targetCenterX, targetCenterY;
+var targetLeft, targetRight, targetTop, targetBottom;
+var targetOffsetX = 50;	//Horizontal distance from correct item center to target center in pixels
+var targetOffsetY = 50;	//Vertical distance from correct item center to target center in pixels
+var strUserImages = "";
+
+var offsetX, offsetY;
+
+var dragLayerArray, dragPositionArray, targetPositionArray;
+targetLayerArray = new Array("target1");
+arrCorrectObjs = new Array();
+arrCorrectObjs = strCorrectObjs.substring(0,strCorrectObjs.length-1).split(",");
+var nCorrect = strCorrectObjs.length/2
+dragLayerArray = new Array(nObj);
+dragPositionArray = new Array(nObj);
+targetPositionArray = new Array(nCorrect);
+for (var i=0; i<nObj; i++) {
+	dragLayerArray[i] = "drag"+(i+1);
+	dragPositionArray[i] = new Array(4);
+}
+strMatched = ""
+for (var i=0; i<nCorrect; i++) {
+	targetPositionArray[i] = new Array(2);
+	strMatched = strMatched +"0," //new add
+}
+
+targetPositionArray[0][0] = 634
+targetPositionArray[0][1] = 211
+targetPositionArray[1][0] = 828
+targetPositionArray[1][1] = 211
+targetPositionArray[2][0] = 634
+targetPositionArray[2][1] = 355
+targetPositionArray[3][0] = 828
+targetPositionArray[3][1] = 354
+
+var arrPopup = new Array(4)
+
+//===distribute value to popup
+arrPopup[0]  = "Before proceeding you must complete the question."
+//Correct feedback
+arrPopup[1]  = "Correct!  Appropriate PPE for the worker includes sunscreen, a welding helmet, a welding vest and gloves, and dark colored clothing.  Light colored clothing reflects UV radiation causing potential health effects, a respirator is not needed for welding operations, and sunglasses would not provide the level of protection needed for welding.  Select Continue.";
+//Incorrect feedback for 2nd try
+arrPopup[2]  = "Incorrect. The correct answers are now displayed. Appropriate PPE for the worker includes sunscreen, a welding helmet, a welding vest and gloves, and dark colored clothing.  Light colored clothing reflects UV radiation causing potential health effects, a respirator is not needed for welding operations, and sunglasses would not provide the level of protection needed for welding. Select Continue.";
+//Incorrect feedback for 1st try
+arrPopup[3]  = "No, sorry.  You will have another opportunity to answer this question after reading some information about this topic.  Select Continue.";
+
+// Initialization
+
+var uT;
+function onpage() {
+	document.getElementById("Next").style.visibility = "hidden";	
+	uT = getQueryValue('uT');	//user tries set from next page
+	if (uT == 1) {
+		triesUser += 1;
+	}
+	init()
+}
+
+function init() {
+	
+	if ( IE ) {
+		var targetStyle;
+		for (var i=0; i<nObj; i++) {
+			eval("dragStyle = document.all['drag" + (i+1) + "'].style");
+			dragPositionArray[i][0] = dragStyle.pixelLeft;
+			dragPositionArray[i][1] = dragStyle.pixelTop;
+			eval("dragPositionArray[" + i + "][2] = document.all['drag" + (i+1) + "'].offsetWidth");	
+			eval("dragPositionArray[" + i + "][3] = document.all['drag" + (i+1) + "'].offsetHeight");
+		}
+		targetLeft = parseInt(target1.style.left)
+		targetRight = targetLeft + target1Img.width
+		targetTop = parseInt(target1.style.top)
+		targetBottom = targetTop + target1Img.height
+		
+		document.onmousedown = grabItem;
+		document.onmousemove = dragItem;
+		document.onmouseup = releaseItem;
+	} else if (N4) {
+		setNSEventCapture()
+		document.onmousedown = grabItem
+		document.onmousemove = dragItem
+		document.onmouseup = releaseItem
+	} else {	//NS 6 and others
+		for (var i=0; i<nObj; i++) {
+			eval("drag1 = document.getElementById('drag"+(i+1)+"')")
+			eval("attachEvent(drag"+(i+1)+")")
+		}
+		
+		window.onmousemove = dragItem
+	}
+	//alert(dragItem)
+}
+///set z-index property
+function setzIndex(dragLayer, zOrder) {
+	if (N6) dragLayer.zIndex = zOrder
+	else dragLayer.style.zIndex = zOrder
+}
+
+function shiftTo(dragLayer, x, y) {
+	if (N4) dragLayer.moveTo(x, y)
+	else if (N6) {dragLayer.style.left = x; dragLayer.style.top = y;}
+	else {dragLayer.style.pixelLeft = x; dragLayer.style.pixelTop = y;}
+}
+
+function moveBack(objDragLayer, intDragNum) {
+	//alert(objDragLayer +", "+intDragNum)
+	var releaseX, releaseY;
+	//releaseX = window.event.clientX
+//	releaseY = window.event.clientY
+//	movableObj(releaseX, releaseY, dragPositionArray[intDragNum-1][0], dragPositionArray[intDragNum-1][1], 10, 10, objDragLayer.id)
+	shiftTo(objDragLayer, dragPositionArray[intDragNum-1][0], dragPositionArray[intDragNum-1][1])
+	setzIndex(objDragLayer,0)
+}
+
+
+function moveToTarget(objDragLayer,itemN) {
+	shiftTo(objDragLayer, targetPositionArray[itemN][0], targetPositionArray[itemN][1])
+
+}
+
+function setSelectedElem(e) {
+	//Only N4 and IE call this function
+	if (N4) {
+		clickX = e.pageX
+		clickY = e.pagyY
+		for (i=document.layers.length-1; i>=0; i--) {
+			testObj = document.layers[i]	//a draggable layer
+			for (j=0; j<dragLayerArray.length; j++) {
+				if ( (testObj.id == dragLayerArray[j]) && (clickX > testObj.left) && (clickX < testObj.left+testObj.clip.width) && (clickY > testObj.top) && (clickY < testObj.top+testObj.clip.height) ) {
+					selectedDrag = testObj
+					setzIndex(selectedDrag,100)
+					return
+				}
+			}
+		}
+	} else {	//IE
+		imgObj = window.event.srcElement	//image object
+		testObj = imgObj.parentElement	//draggable layer
+		dragLayerId = imgObj.parentElement.id
+		intDragNum = parseInt(dragLayerId.substring(4,dragLayerId.length))
+		for (i=0; i<dragLayerArray.length; i++) {
+			if (dragLayerId == dragLayerArray[i] && testObj) {
+				selectedDrag = testObj
+				setzIndex(selectedDrag,100)
+				return
+			}
+		}
+	}
+}
+
+function dragItem(e) {
+	if (selectedDrag) {
+		if (IE) {
+			x = event.clientX - offsetX
+			y = event.clientY - offsetY
+		} else {
+			x = e.pageX - offsetX
+			y = e.pageY - offsetY
+		}
+		shiftTo(selectedDrag, x, y)
+		return false
+	}
+}
+
+function grabItem(e) {
+	if (N6) {
+		offsetX = e.layerX
+		offsetY = e.layerY
+		selectedDrag = this
+		//iniLayer = selectedDrag.zIndex
+		setzIndex(selectedDrag,100)
+	} else {
+		setSelectedElem(e)
+		if (selectedDrag) {
+			if (N4) {
+				offsetX = e.pageX - selectedDrag.left
+				offsetY = e.pageY - selectedDrag.top
+			} else {
+				offsetX = window.event.offsetX
+				offsetY = window.event.offsetY
+			}
+		}
+		return false
+	}
+}
+
+function releaseItem(e) {
+	if (selectedDrag) {
+		showFdbk("")
+		//determine where user released mouse button
+		var releaseX, releaseY;
+		if (IE) {	//Microsoft Internet Explorer
+			releaseX = window.event.clientX
+			releaseY = window.event.clientY
+		} else {
+			releaseX = e.pageX
+			releaseY = e.pageY
+		}
+		for (var i=0; i<nObj; i++) {
+			//check to see if there is any match
+			if ( (releaseX > targetLeft) && (releaseX < targetRight) && (releaseY > targetTop) && (releaseY < targetBottom) && (i == intDragNum-1)  && (strMatched.indexOf("0") != -1) ) {  //&& (strCorrectObjs.indexOf((i+1)+",") != -1)
+				var pos = strMatched.indexOf("0")
+				if (strMatched.indexOf(intDragNum)!=-1) strMatched = strMatched.substring(0,strMatched.indexOf(intDragNum)) + "0" + strMatched.substring(strMatched.indexOf(intDragNum)+1,strMatched.length)
+				strMatched = strMatched.substring(0,pos) + intDragNum + strMatched.substring(pos+1,strMatched.length)
+				moveToTarget(selectedDrag,pos/2)
+			} else if (i == intDragNum-1) {
+				var pos = strMatched.indexOf(intDragNum)
+				if (pos != -1) {
+					strMatched = strMatched.substring(0,pos) + "0" + strMatched.substring(pos+1,strMatched.length)
+				}
+					moveBack(selectedDrag, intDragNum)
+			}
+		}
+		setzIndex(selectedDrag,iniLayer)
+		selectedDrag = null
+	}
+}
+//============click done to judge the question =======
+function judgeInteraction_S() {
+	var userCorrect = 0;
+	var strIncorrect = "";
+	var strTemp = "";
+	var strK = "";
+	triesUser += 1;
+	for (var i=0; i<strCorrectObjs.length; i++) {
+		if (strCorrectObjs.match(strMatched.substr(i,1))) userCorrect += 1
+		else if (strMatched.substr(i,1) != ",") {
+			//remember incorrect ones
+			strIncorrect = strIncorrect + strMatched.substr(i,1) + ",";
+			strK = strK + i + ","
+		}
+	}
+	if (strMatched.match("0")!=null) {
+			strTemp = arrPopup[0];
+			triesUser -= 1;	
+			document.getElementById('fdbkLink').href = "javascript:showFdbk('')"; //hidecont()";
+	} else if (triesUser < triesLimit ) { 
+		disableDrag();						
+		if  ((userCorrect-nCorrect) == nCorrect)  {	//correct.
+			strTemp = arrPopup[1];
+			blnChoiceMade = true;
+			document.getElementById('fdbkLink').href = "javascript:goURL('1uvi09a.html?uC=1')";
+			
+		} else {
+			strTemp = arrPopup[3];
+			document.getElementById('fdbkLink').href = "javascript:goURL('1uvi09a.html?uC=0')";
+			//move back
+			var arrTemp = new Array;
+			arrTemp = strK.substring(0,strK.length-1).split(",");
+			for (var i=0; i<arrTemp.length; i++) {
+				//keep correct ones and replace incorrect ones with 0
+				strMatched = strMatched.replace(strMatched.substr(arrTemp[i],1), '0')
+			}
+			var mbItems = new Array;
+			mbItems = strIncorrect.substring(0,strIncorrect.length-1).split(",");
+			for (i=0; i<mbItems.length; i++) {
+				eval("moveBack(drag" + mbItems[i] + ", " + mbItems[i] + ")");
+			}
+		}
+	} else { //2nd try
+		if  ((userCorrect-nCorrect) == nCorrect)  {	//correct.
+			strTemp = arrPopup[1];
+		} else {			
+			strTemp = arrPopup[2];
+			setCorrect();
+		}
+		document.getElementById('fdbkLink').href = "javascript:findNext()";
+		disableDrag()
+	}
+	showFdbk(strTemp);
+
+}
+
+function showFdbk(strTemp) {
+	document.getElementById('lyfdbk').innerHTML = strTemp;
+	if (strTemp=="") {
+		document.getElementById('lyfdbk').style.visibility = "hidden";
+		if(document.getElementById('feedback')!=null) document.getElementById('feedback').style.visibility = "hidden";
+		document.getElementById('done').style.visibility = "visible";
+		if (document.getElementById('fdbkContinue')!=null) document.getElementById('fdbkContinue').style.visibility = "hidden";
+	} else {
+		document.getElementById('lyfdbk').style.visibility = "visible";
+		if(document.getElementById('feedback')!=null) document.getElementById('feedback').style.visibility = "visible";
+		document.getElementById('done').style.visibility = "hidden";
+		if (document.getElementById('fdbkContinue')!=null) document.getElementById('fdbkContinue').style.visibility = "visible";
+	}
+
+}
+
+function setCorrect() {
+	for (var i=0; i<nObj; i++) {
+	var obj = eval("document.getElementById('drag"+(i+1)+"')")
+		//alert(obj)
+		if (i<nCorrect) shiftTo(obj, targetPositionArray[i][0], targetPositionArray[i][1])
+		else shiftTo(obj, dragPositionArray[i][0], dragPositionArray[i][1])
+	}
+}
+
+function attachEvent(obj) {
+	if (N4 || N6) {//for N6 only
+		obj.addEventListener("mousedown", grabItem, false)
+		obj.addEventListener("mousemove", dragItem, false)
+		obj.addEventListener("mouseup", releaseItem, false)
+	}
+}
+
+
+//set event capture for N4
+function setNSEventCapture() {
+	if (N4) document.captureEvents(Event.MOUSEDOWN | Event.MOUSEMOVE | Event.MOUSEUP)
+}
+
+function disableDrag() {
+	document.onmousedown = null;
+	document.onmousemove = null;
+	document.onmouseup = null;
+}
+
+function showaudiot() {
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();MM_preloadImages('../../sysimages/done_2.jpg','../../sysimages/cont_2.jpg')" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  NIR: UV/IR / Ultraviolet and Infrared Hazards
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 9 of 11<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Scenario Challenge Point<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <p>As you observe the workers performing welding on  the horse stables, you notice some are not wearing all of the required  PPE.&nbsp; Prepare the worker to perform the  welding operations by dragging the appropriate PPE to the worker. </p>
+  <p>&nbsp;</p>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="selected" style="position:absolute; top:184px; left:44px; width:652px; height:282px;">
+<img src="images/1uvi090i.jpg" alt="Graphic background for choices." width="528" height="301" /></div>
+
+<div id="target1" style="position:absolute; top:142px; left:619px; width:333px; height:282px;">
+<img src="images/1uvi090j.jpg" alt="Photo of a person preparing to perform welding operations in BDUs." name="target1Img" width="312" height="398" id="target1Img" /></div>
+
+<!--=============== Target position =================-->
+<!--================ Drag items positon ==================-->
+<div id="drag2" style="position:absolute; left:219px; top:203px; width:104px; height:51px; cursor:pointer;">
+<img src="images/1uvi090b.png" alt="Welding Helmet" name="Drag2Img" width="92" height="78" /></div>
+
+<div id="drag1" style="position:absolute; left:97px; top:203px; width:92px; height:51px; cursor:pointer;">
+<img src="images/1uvi090a.png" alt="Sunscreen" name="Drag1Img" width="92" height="78" /></div>
+
+<div id="drag6" style="position:absolute; left:342px; top:204px; width:95px; height:51px; cursor:pointer;">
+<img src="images/1uvi090c.png" alt="Light Colored Clothing" name="Drag6Img" width="92" height="78" /></div>
+
+<div id="drag3" style="position:absolute; left:464px; top:203px; width:95px; height:51px; cursor:pointer;">
+<img src="images/1uvi090d.png" alt="Welding Vest and Gloves" name="Drag3Img" width="92" height="78" /></div>
+
+<div id="drag5" style="position:absolute; left:158px; top:327px; width:103px; height:51px; cursor:pointer;">
+<img src="images/1uvi090e.png" alt="Respirator" name="Drag5Img" width="92" height="78" /></div>
+
+<div id="drag4" style="position:absolute; left:281px; top:328px; width:103px; height:51px; cursor:pointer;">
+<img src="images/1uvi090f.png" alt="Dark Colored Clothing" name="Drag4Img" width="92" height="78" /></div>
+
+<div id="drag7" style="position:absolute; left:403px; top:327px; width:103px; height:51px; cursor:pointer;">
+<img src="images/1uvi090g.png" alt="Sunglasses" name="Drag7Img" width="92" height="78" /></div>
+
+<!--============done button================-->
+<div id="done" style="position:absolute; text-align: center; left:291px; top:479px; z-index:2; width: 91px; height: 32px;"><a href="javascript:;" onClick="judgeInteraction_S()" onMouseOver="MM_swapImage('DoneButton','','../../sysimages/done_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/done_0.jpg" alt="Done button" id="DoneButton" name="DoneButton" width="90" height="36" border="0"></a></div>
+
+<div id="feedback" style="position:absolute; top:453px; left:53px; width:615px; height:20px; visibility:hidden;">
+<div class="txtfdbk" id="lyfdbk" style="height:auto; overflow:auto; scrollbar-arrow-color: #000000; scrollbar-base-color:#63570d;"></div><br />
+	<div id="fdbkContinue" style="position:relative; top:-11px; text-align: center;"><a id="fdbkLink" href="javascipt:;"  onMouseOver="MM_swapImage('btnCont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" alt="Continue button" name="btnCont" width="90" height="36" border="0" id="btnCont" /></a></div>
+</div>
+
+<div id="snowMapDot" style="position:absolute; top:18px; left:758px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Drag the PPE on the left to the worker on the right, and then click Done.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&#038; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

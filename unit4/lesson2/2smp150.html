@@ -1,0 +1,176 @@
+<%@LANGUAGE="JAVASCRIPT" CODEPAGE="1252"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/besa.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>BESA WBT</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" type="text/css" href="../../besa.css" title = "besaCSS">
+
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/APIWrapper.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/SCOFunctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="../../scripts/jquery.js" ></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/access.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/besa.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="../../scripts/shadowbox.js"></script>
+
+<script language="javascript">
+if (typeof(blnTut) == "undefined")  {
+	initializePage();
+}
+
+function popConfirm(){
+	if (confirm("Do you wish to exit this unit?")==true) exitCourse(true);
+}
+</script>
+<!-- InstanceBeginEditable name="head" -->
+<style type="text/css">
+<!--
+body {
+	background-image: url(../../sysimages/scenario_city.jpg);
+}
+table {width:98%;border-collapse:collapse;margin:1em 0;}
+td {color:#FFFFFF; font-size:16px; text-align:center; padding:.5em; border:none}
+th {color:#FFFFFF; text-align:right; font-size:16px; padding:.8em; }
+td.line{color:#ffffff; font-size:16px; text-align:center; padding:.5em; border-bottom:1px solid #fff}
+
+.ftext {background-color:#644610; text-align:center; color:#FFFFFF; font-size:1em; border:1px solid #b1ae00; };
+.cellT {color: #FFFFFF}
+-->
+</style>
+<script language="JavaScript" type="text/javascript">
+<!--
+function onpage() {
+document.getElementById("Next").style.visibility = "hidden";
+}
+
+MM_reloadPage(true);
+
+function findNext() {
+	var pgURL = "2smp150_02.html"
+	goURL(pgURL);
+}
+
+function findBack() {
+	var pgURL = "2smp140.html"
+	goURL(pgURL);
+}
+
+function showQ() {
+	findNext();
+	//document.getElementById("question").style.visibility = "visible"
+	//document.getElementById("pageGraphic").style.visibility = "hidden"
+}
+
+function startFlash() {
+	document.getElementById("txtBox").style.visibility = "hidden";
+	MM_controlShockwave('flamovie', '', 'GotoFrame', 0);
+	MM_controlShockwave('flamovie', '', 'Play');
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+//-->
+</script>
+<script src="../../scripts/AC_RunActiveContent.js" type="text/javascript"></script>
+<!-- InstanceEndEditable -->
+</head>
+
+<body onLoad=" onpage();" onUnload="if (closing) exitCourse(false)">
+<div id="Banner"></div>
+<div id="TopicH" ><!-- InstanceBeginEditable name="EditModuleT" --> 
+  Sampling / Air Sampling
+<!-- InstanceEndEditable --></div>
+<div id="pageN"><!-- InstanceBeginEditable name="EditPageN" -->Page 15 of 18<!-- InstanceEndEditable --></div>
+
+<div id="PageT"><!-- InstanceBeginEditable name="pageT" -->Scenario Challenge Point<!-- InstanceEndEditable --></div>
+<div id="AudioIcon"><!-- InstanceBeginEditable name="audioIcon" --><img src="../../sysimages/icon_audio.png" alt="Audio icon" width="55" height="54" /><!-- InstanceEndEditable --></div>
+<div id="Content" ><!-- InstanceBeginEditable name="EditContents" -->
+  <div id="question" style="position:relative; left:0px; width:845px; height:50px; visibility: hidden;">
+    <p>As you continue with sampling strategy development, you need to determine if calculating equivalent OELs for the paint exposure is necessary.</p>
+    <p>Select Begin to hear part of your interview with the corrosion control shop supervisor, and then answer the question.</p>
+    <div id="btnNext" style="position:relative; left:382px; top:20px; width:60px; height:20px; visibility:inherit"><a href="javascript:findNext(); " onMouseOver="MM_swapImage('btnCont','','../../sysimages/cont_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/cont_0.jpg" alt="Continue button" name="btnCont" width="90" height="36" border="0" id="btnCont" /></a></div> 
+  </div>
+<!-- InstanceEndEditable --></div>
+
+<!-- InstanceBeginEditable name="others" -->
+<div id="pageGraphic" style="position:absolute; top:223px; left:68px; width:811px; height:215px;">
+  <script type="text/javascript">
+AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0','name','flamovie','width','840','height','301','id','flamovie','src','images/2smp150','quality','high','pluginspage','http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash','wmode','transparent','allowscriptaccess','always','movie','images/2smp150' ); //end AC code
+</script><noscript><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" name="flamovie" width="840" height="301" id="flamovie">
+    <param name="movie" value="images/2smp150.swf" />
+    <param name="allowScriptAccess" value="always" />
+    <param name="quality" value="high" />
+    <param name="wmode" value="transparent" />
+    
+    <embed src="images/2smp150.swf" width="840" height="301" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" name="flamovie" wmode="transparent" allowscriptaccess="always"></embed>
+  </object>
+</noscript>
+
+<div id="txtBox" style="position:absolute; left:251px; top:39px; width:359px; height:196px;">
+<p>As you continue with sampling strategy development, you need to  determine if calculating equivalent OELs for the paint exposure is necessary.</p>
+<p>Select Begin to hear part of your interview with the corrosion control  shop supervisor, and then answer the question.</p>
+<div id="begin" style="position:relative; left:120px; top:5px; width:90px; height:30px;">
+<a href="javascript:startFlash();" onMouseOver="MM_swapImage('btnBegin','','../../sysimages/begin_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img id="btnBegin" name="btnBegin" src="../../sysimages/begin_0.jpg" border="0" alt="Begin button" /></a></div>
+</div>
+
+</div>
+
+<div id="lycc" style="position:absolute; top:482px; left:43px; width:472px; height:97px; overflow:auto;">
+  <p><strong>BE Tech:&nbsp; </strong>What&rsquo;s the work schedule for this shop?</p>
+  <p><strong>Shop Supervisor: </strong>We work a 10-hour shift, 4 days per week.&nbsp; We&rsquo;re on a bit of a tight timeline with the  Super Guppy, so it looks like we may have to put in some extra hours.&nbsp; I&rsquo;ve been thinking of switching to a 6-day  week with 8-hour shifts while we&rsquo;re doing the painting, but I haven&rsquo;t decided  yet.</p>
+  <p><strong>Narrator:</strong> Remembering that for MEK, the OEL-TWA for an 8 hour  shift is 200 ppm, what is the OEL-TWA for a 10-hour shift?</p>
+</div>
+
+<div id="snowMapDot" style="position:absolute; top:29px; left:732px;">
+<img src="../../sysimages/map_dot.png" width="16" height="16" border="0" /></div>
+<!-- InstanceEndEditable -->
+<div id="Prompt"><!-- InstanceBeginEditable name="EditPrompt" -->Select Begin to learn more.<!-- InstanceEndEditable --></div>
+<div id="Next"><a href="javascript:findNext();" onMouseOver="MM_swapImage('btnNext','','../../sysimages/forward_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/forward_0.jpg" alt="Goes to next page" name="btnNext" width="78" height="20" border="0" id="btnNext"></a></div> 
+
+<div id="Repeat" ><a href="javascript:refresh()"  onMouseOver="MM_swapImage('btnRepeat','','../../sysimages/repeat_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/repeat_0.jpg" alt="Replays the current page" name="btnRepeat" width="78" height="20" border="0" id="btnRepeat"></a></div>
+
+<div id="Back"><a href="javascript:findBack();" onMouseOver="MM_swapImage('btnBack','','../../sysimages/previous_2.jpg',1)" onMouseOut="MM_swapImgRestore()"><img src="../../sysimages/previous_0.jpg" alt="Goes to previous page" name="btnBack" width="78" height="20" border="0" id="btnBack"></a></div>
+</body>
+
+<div id="lynav">
+      <ul id="navigation">
+
+        <!-- InstanceBeginEditable name="maps" -->
+		
+		<!-- InstanceEndEditable -->
+		<li class="unitmenu"><a href="javascript:toMenu(false)" title="Lesson Menu"></a></li>
+        <li class="unitmap"><a href="lesson_map.html?TB_iframe=true&amp;width=352&amp;height=451" class="thickbox" title="Lesson Map"></a></li>
+		<li class="options"><a href="#" title="Options Menu"></a></li>
+			<ul id="optionslist" >
+				<li class="help"><a href="../../BESA_Help.pdf" target="_blank" title="Help" ></a></li>
+				<li class="audioT"><a href="javascript:showaudiot()" title="Audio Transcript"></a></li>
+				<li class="glossary"><a href="../../glossary.html?TB_iframe=true&amp; " class="thickbox" title="Glossary" ></a></li>
+				<li class="contactInf"><a href="javascript:goURL('../resources.html')" title="Resources"></a></li>
+  			</ul>
+        <li class="exit"><a href="javascript:popConfirm()" title="Exit Course"></a></li>
+      </ul>
+</div>
+
+<!-- InstanceEnd --></html>

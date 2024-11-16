@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>BESA WBT</title>
+<link rel="stylesheet" type="text/css" href="../../besa.css">
+<style>
+	table.formula {width:70%; border-collapse:collapse;}
+	td {color:#ffffff; font-size:13px; text-align:center; padding:.2em;}
+	td.line{color:#ffffff; font-size:13px; text-align:center; padding:.2em; border-bottom:1px solid #fff}
+	td.ftd {color:#ffffff; font-size:13px; text-align:center; padding:.2em; border:1px solid #b1ae00;}
+	th.fth {background:#644610; color:#FFFFFF; text-align:center; font-size:13px; padding: 6px 6px 6px 12px; border:1px solid #b1ae00;}
+	th.col  {background:url(../../sysimages/bg_header1.jpg); background-repeat:no-repeat; color:#FFFFFF; text-align:center; font-size:13px; padding: 6px 6px 6px 12px; border:1px solid #b1ae00; }
+
+.style1 {font-size: 12px}
+</style>
+</head>
+
+<body style="background-image: url(../../sysimages/popup_large_city.jpg);background-repeat:no-repeat; background-color:#000000;">
+<div style="position:absolute; top:45px; left:15px; width:688px; height:391px; overflow: auto; scrollbar-arrow-color: #000000; scrollbar-base-color:#63570d; padding-right:8px;">
+<p class='popTitle'>Calculating the Compliance Factor</p>
+<p>In case of a mixture of  air contaminants, the equivalent exposure shall be computed as follows:</p>
+<div align="center">
+  <table width="50%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td  rowspan="2">CF<span class="style1"><sub>TWA</sub></span> </td>
+      <td width="15%" rowspan="2">=</td>
+      <td width="15%" class="line">TWA<sub>1</sub></td>
+      <td width="5%" rowspan="2">+</td>
+      <td width="15%" class="line">TWA<sub>2</sub></td>
+      <td width="15%" rowspan="2">+ &hellip;.</td>
+      <td width="15%" class="line">TWA<em><sub>n</sub></em></td>
+    </tr>
+    <tr>
+      <td width="15%" valign="top">OEL<sub>1</sub></td>
+      <td width="15%" valign="top">OEL<sub>2</sub></td>
+      <td width="15%" valign="top">OEL<em><sub>n</sub></em></td>
+    </tr>
+  </table>
+</div>
+<p>Where:</p>
+<ul type="square">
+  <li>TWA is the time-weighted average concentration of a particular contaminant.</li>
+  <li>OEL is the exposure  limit for that substance specified in Subpart Z of 29 CFR Part 1910.</li>
+  </ul>
+<p>If the value of CF<span class="style1"><sub>TWA</sub></span> is greater than one, unity has been exceeded.&nbsp; If the result is less than one, unity       has not been exceeded. </p>
+<p>To illustrate the  formula above, consider the following exposure:</p>
+<table align="center" class="formula" >
+  <tr>
+    <th width="97" class="col">Substance</strong> </th>
+    <th width="180" class="col">Actual concentration of 8-hour exposure (ppm)</th>
+    <th width="96" class="col">8-hour TWA PEL (ppm)</th>
+  </tr>
+  <tr>
+    <th width="97" class="fth">Chemical A</th>
+    <td class="ftd">500</td>
+    <td class="ftd">1,000</td>
+  </tr>
+  <tr>
+    <th width="97" class="fth">Chemical B</th>
+    <td class="ftd">45</td>
+    <td class="ftd">200</td>
+  </tr>
+  <tr>
+    <th width="97" class="fth">Chemical C</th>
+    <td class="ftd">40</td>
+    <td class="ftd">200</td>
+  </tr>
+</table>
+<p>Substituting the values  into the formula, we have:</p>
+<ul type="square">
+  <li>CF<span class="style1"><sub>TWA</sub></span> = (500 &divide; 1,000) + (45 &divide;  200) + (40 &divide;  200)</li>
+  <li>CF<span class="style1"><sub>TWA</sub></span> = 0.500 + 0.225 + 0.200</li>
+  <li>CF<span class="style1"><sub>TWA</sub></span> = 0.925</li>
+  <li>Since CF<span class="style1"><sub>TWA</sub></span> is less than unity (1), the exposure combination is within acceptable limits.</li>
+</ul>
+</div>
+</body>
+</html>
